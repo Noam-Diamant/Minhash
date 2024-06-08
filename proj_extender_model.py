@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import math
 
 # Function to generate a random DNA sequence
 def generate_random_sequence(length):
@@ -22,18 +23,20 @@ def sequence_to_hexadecimal(sequence):
 
     return hex_array
 
-# Function to extend kmers
 def extend_kmers(kmer_indices, frag_len, kmer_len, memory):
     num_kmers = len(kmer_indices)
-    extended_kmers = np.zeros((num_kmers, frag_len), dtype=np.int8)
+    extended_kmers = np.full((num_kmers, frag_len), 0x0, dtype=np.int8)  # Initialize with 'N' (0x0)
 
     for i, idx in enumerate(kmer_indices):
-        frag_idx = idx // frag_len
-        start_idx = max(0, frag_idx * frag_len - (frag_len - kmer_len) // 2)
-        end_idx = min(len(memory), start_idx + frag_len)
+        # Calculate start and end index for the fragment
+        start_idx = idx - (frag_len - kmer_len) // 2
+        end_idx = start_idx + frag_len
         
-        if start_idx < end_idx:
-            extended_kmers[i][:end_idx - start_idx] = memory[start_idx:end_idx]
+        for j in range(start_idx, end_idx):
+            if 0 <= j < len(memory):
+                extended_kmers[i][j - start_idx] = memory[j]
+            else:
+                extended_kmers[i][j - start_idx] = 0x0  # Fill with 'N' (0x0) if out of bounds
 
     return extended_kmers
 
@@ -62,8 +65,13 @@ def matrix_to_ACTGN(extended_kmers):
 
     # Convert each row of extended_kmers to corresponding ACTGN sequence
     actgn_sequences = [''.join([hex_to_base[hex_row] for hex_row in row]) for row in extended_kmers]
+    actgn_sequences_str = '['
+    for idx in range(len(actgn_sequences) - 1):
+        actgn_sequences_str += '[' + actgn_sequences[idx] + ']\n'
+    actgn_sequences_str += '[' + actgn_sequences[-1] + ']'
+    actgn_sequences_str += ']'
 
-    return actgn_sequences
+    return actgn_sequences_str
 
 # Main function to illustrate the above functions
 def main():
@@ -74,7 +82,7 @@ def main():
     num_kmers = 3
 
     # Step 1: Generate random sequence
-    memory = generate_random_sequence(seq_length)
+    memory = 'AAAGTGTTTCTGACTAATGCTGGAAAGAATAT'#generate_random_sequence(seq_length)
     print(f"Random sequence: {memory}")
 
     # Step 2: Convert sequence to hexadecimal format
@@ -82,7 +90,7 @@ def main():
     print(f"Hexadecimal array:\n{hex_array}")
 
     # Step 3: Generate random kmer indices
-    kmer_indices = [1,2,28]#random.sample(range(0, seq_length - kmer_len + 1), num_kmers)
+    kmer_indices = [0, 5, 15, 21, 28]#random.sample(range(0, seq_length - kmer_len + 1), num_kmers)
     print(f"Random kmer indices: {kmer_indices}")
 
     # Step 4: Extend kmers
