@@ -7,7 +7,7 @@ module sorter_tb;
   reg valid_in;
   reg [SIGNATURE_WIDTH-1:0] signature_in;
   reg [INDEX_WIDTH-1:0] index_in;
-  
+   
   wire valid_out;
   wire [(NUM_COMPARATORS*INDEX_WIDTH)-1:0] indices_out;
 
@@ -25,10 +25,20 @@ module sorter_tb;
   );
 
   initial begin
+
+    $dumpfile("sorter.vcd");
+    $dumpvars(0,sorter_tb);
+
     // Initialize inputs
     valid_in = 0;
     signature_in = 0;
     index_in = 0;
+
+        // Check results
+    $display("Indices in:");
+    for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
+      $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
+    end
     
     // Apply stimulus
     #10;
@@ -58,9 +68,9 @@ module sorter_tb;
     index_in = 10'b0000000101;
 
     // Check results
-    $display("Indices out:");
+    $display("Indices in:");
     for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
-      $display("indices[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
+      $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
     end
 
     #10;

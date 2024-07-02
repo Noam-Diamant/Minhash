@@ -23,17 +23,20 @@ module sorter
   wire [LOG_COMPARATORS-1:0] new_position;
   reg replace = 1'b0;
 
-  reg [SIGNATURE_WIDTH-1:0] signature_read;
-  reg [INDEX_WIDTH-1:0] index_read;
-  reg [LOG_COMPARATORS-1:0] position_read;
-  integer file, status;
-  integer i = 0;
-  initial begin
-    for (i = 0; i < NUM_COMPARATORS; i = i + 1)      
-          signatures[i] = 32'h12345678;
-          indices[i] = 10'b0000000000;
-          positions[i] = i;
-      end
+  //reg [SIGNATURE_WIDTH-1:0] signature_read;
+  //reg [INDEX_WIDTH-1:0] index_read;
+  //reg [LOG_COMPARATORS-1:0] position_read;
+  //integer file, status;
+    
+    integer i = 0;
+    initial begin
+        for (i = 0; i < NUM_COMPARATORS; i++) begin
+            signatures[i] = {SIGNATURE_WIDTH{1'b1}}; // Initializes to unity (all 1s)
+            indices[i] = 10'b0000000000;
+            positions[i] = i;
+        end
+    end
+
 
   genvar j;
   generate
