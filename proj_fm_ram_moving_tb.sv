@@ -3,7 +3,7 @@
 module tb_proj_fm_ram;
 
     // Parameters
-    localparam ENTRIES = 32;
+    localparam ENTRIES = 8;
     localparam DATA_BITS = 8;
     localparam ADDR_BITS = $clog2(ENTRIES);
 
@@ -69,7 +69,7 @@ module tb_proj_fm_ram;
         $display("Started reading...");
         in_we = 1'b0;
         for (int i = 0; i < ENTRIES; i++) begin
-            $display("Reading data in Address: %0d | Data: %0h", $time, dut.raddr, dut.data[dut.raddr]);
+            $display("Reading data in Address: %0d | Data: %0h", dut.raddr, dut.data[dut.raddr]);
             #10;  // Wait for a clock cycle
         end
 
@@ -79,5 +79,3 @@ module tb_proj_fm_ram;
     end
 
 endmodule
-
-
