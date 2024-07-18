@@ -62,7 +62,7 @@ always_ff @(posedge clk) begin
     end
 end
 
-//WRITE
+//ADDRESS
 always_ff @(posedge clk) begin
     if (~rst_n && we) begin
         data[waddr] <= '0;
