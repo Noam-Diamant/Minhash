@@ -1,1 +1,1 @@
-xrun ./proj_fm_ram_moving.sv -sv ./mdtb.sv -access +rw-c -INPUT ./simulation.tcl
+xrun ./FM/pkg.sv ./FM/proj_fm.sv -sv ./FM/proj_fm_tb.sv -access +rw-c -INPUT ./simulation.tcl
