@@ -6,9 +6,9 @@ module proj_fm_ram_tb();
     parameter BUFFER_COUNT = 2;
     parameter RAMS = 2;
     parameter ENTRIES = 2;
-    parameter OFFSET = 1;
-    parameter CHUNK_SIZE = 2;
+    parameter OFFSET = 2;
     parameter DATA_BITS = 8;
+    parameter READ_ADDRESSES_COUNT = 2;
 
     // Input signals
     logic [DATA_BITS-1:0] in_wdata;  // Input data to write
@@ -16,7 +16,7 @@ module proj_fm_ram_tb();
     logic in_rst_n;                  // Reset signal (active low)
 
     // Output signals
-    wire [CHUNK_SIZE * DATA_BITS-1:0] out_rdata;  // Output data read
+    wire [READ_ADDRESSES_COUNT * DATA_BITS-1:0] out_rdata;  // Output data read
 
     // Instantiate the Unit Under Test (UUT)
     proj_fm_ram #(
@@ -24,8 +24,8 @@ module proj_fm_ram_tb();
         .RAMS(RAMS),
         .ENTRIES(ENTRIES),
         .OFFSET(OFFSET),
-        .CHUNK_SIZE(CHUNK_SIZE),
-        .DATA_BITS(DATA_BITS)
+        .DATA_BITS(DATA_BITS),
+        .READ_ADDRESSES_COUNT(READ_ADDRESSES_COUNT)
     ) dut (
         .in_wdata(in_wdata),
         .out_rdata(out_rdata),
