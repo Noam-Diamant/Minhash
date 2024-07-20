@@ -55,7 +55,7 @@ module proj_fm_ram
     genvar i;
     generate
         for (i = 0; i < READ_ADDRESSES_COUNT; i++) begin : gen_read
-            assign rdata_next[(i+1)*DATA_BITS-1 : i*DATA_BITS] = FMbuffers[rd_idx][raddr + i];
+            assign rdata_next[READ_ADDRESSES_COUNT * DATA_BITS - i*DATA_BITS-1 : READ_ADDRESSES_COUNT * DATA_BITS - (i+1)*DATA_BITS] = FMbuffers[rd_idx][raddr + i];
         end
     endgenerate
 
