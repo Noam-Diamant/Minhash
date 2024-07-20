@@ -10,16 +10,16 @@ module proj_fm_ram
     parameter ENTRIES = 4,
     // Size of the offset in each entry
     parameter OFFSET = 8,
-    // Width of each read chunk
-    parameter CHUNK_SIZE = 2,
     // Width of each memory cell
-    parameter DATA_BITS = 8
+    parameter DATA_BITS = 8,
+    // Number of bytes to read
+    parameter READ_ADDRESSES_COUNT = 2
 )
 (
     // Input data
     input wire [DATA_BITS-1:0] in_wdata,
     // Output data
-    output wire [CHUNK_SIZE * DATA_BITS-1:0] out_rdata,
+    output wire [READ_ADDRESSES_COUNT * DATA_BITS-1:0] out_rdata,
     // Clock signal
     input wire in_clk,
     // Reset signal (active low)
@@ -37,8 +37,8 @@ module proj_fm_ram
     logic [ADDR_BITS-1:0] raddr;
     logic [ADDR_BITS-1:0] waddr;
     logic [DATA_BITS-1:0] wdata;
-    logic [CHUNK_SIZE * DATA_BITS-1:0] rdata;
-    wire [CHUNK_SIZE * DATA_BITS-1:0] rdata_next;
+    logic [READ_ADDRESSES_COUNT * DATA_BITS-1:0] rdata;
+    wire [READ_ADDRESSES_COUNT * DATA_BITS-1:0] rdata_next;
     logic [ADDR_BITS-1:0] waddr_next;
     logic [ADDR_BITS-1:0] raddr_next;
     logic [BUFFER_COUNT-1:0][BUFFER_SIZE-1:0][DATA_BITS-1:0] FMbuffers;
@@ -51,14 +51,19 @@ module proj_fm_ram
     assign clk = in_clk;
     assign out_rdata = rdata;
 
-    // Concatenate data from two addresses for the read operation
-    assign rdata_next = {FMbuffers[rd_idx][raddr], FMbuffers[rd_idx][raddr+1]};
+    // Concatenate data from READ_ADDRESSES_COUNT addresses for the read operation
+    genvar i;
+    generate
+        for (i = 0; i < READ_ADDRESSES_COUNT; i++) begin : gen_read
+            assign rdata_next[(i+1)*DATA_BITS-1 : i*DATA_BITS] = FMbuffers[rd_idx][raddr + i];
+        end
+    endgenerate
 
     // Increment write address
     assign waddr_next = waddr + 1'b1;
 
     // Calculate the next read address
-    assign raddr_next = waddr_next & 3'b110;
+    assign raddr_next = waddr_next & (BUFFER_SIZE - READ_ADDRESSES_COUNT);
 
     // Check if write address reached the end of the buffer
     assign rst_addr = (waddr == (BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
