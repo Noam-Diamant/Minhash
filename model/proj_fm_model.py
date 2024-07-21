@@ -1,12 +1,11 @@
 import math
 
 class proj_fm_ram:
-    def __init__(self, BUFFER_COUNT=2, RAMS=2, ENTRIES=4, OFFSET=8, CHUNK_SIZE=2, DATA_BITS=8, READ_ADDRESSES_COUNT = 2):
+    def __init__(self, BUFFER_COUNT=2, RAMS=2, ENTRIES=4, OFFSET=8, DATA_BITS=8, READ_ADDRESSES_COUNT = 2):
         self.BUFFER_COUNT = BUFFER_COUNT
         self.RAMS = RAMS
         self.ENTRIES = ENTRIES
         self.OFFSET = OFFSET
-        self.CHUNK_SIZE = CHUNK_SIZE
         self.DATA_BITS = DATA_BITS
         self.READ_ADDRESSES_COUNT = READ_ADDRESSES_COUNT
         
@@ -35,7 +34,7 @@ class proj_fm_ram:
         # Read operation
         self.rdata = ""
         for i in range(self.READ_ADDRESSES_COUNT):
-            self.rdata += "".join(self.FMbuffers[self.rd_idx][self.raddr + i])
+            self.rdata = "".join(self.FMbuffers[self.rd_idx][self.raddr + i]) + self.rdata
 
         # Update addresses
         self.waddr = (self.waddr + 1) % self.BUFFER_SIZE
@@ -52,12 +51,11 @@ def simulate_proj_fm_ram():
     BUFFER_COUNT = 2
     RAMS = 2
     ENTRIES = 2
-    OFFSET = 1
-    CHUNK_SIZE = 2
+    OFFSET = 2
     DATA_BITS = 8
-    READ_ADDRESSES_COUNT = 2
+    READ_ADDRESSES_COUNT = 4
 
-    dut = proj_fm_ram(BUFFER_COUNT, RAMS, ENTRIES, OFFSET, CHUNK_SIZE, DATA_BITS, READ_ADDRESSES_COUNT)
+    dut = proj_fm_ram(BUFFER_COUNT, RAMS, ENTRIES, OFFSET, DATA_BITS, READ_ADDRESSES_COUNT)
 
     print("Time=0: Simulation started")
 
