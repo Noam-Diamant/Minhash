@@ -8,7 +8,7 @@ module proj_fm_ram_tb();
     parameter ENTRIES = 2;
     parameter OFFSET = 2;
     parameter DATA_BITS = 8;
-    parameter READ_ADDRESSES_COUNT = 2;
+    parameter READ_ADDRESSES_COUNT = 4;
 
     // Input signals
     logic [DATA_BITS-1:0] in_wdata;  // Input data to write
