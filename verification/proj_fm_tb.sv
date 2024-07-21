@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+import proj_pkg::*;  // Include the package
 module proj_fm_ram_tb();
 
     // Parameters for the testbench
