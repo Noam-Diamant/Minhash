@@ -1,3 +1,6 @@
+`timescale 1ns / 1ps
+
+
 module murmur_4bytes
   #(
     parameter HASHER_DATA_BITS = 32
