@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+import proj_pkg::*;  // Include the package
 module murmur_4bytes_tb;
 
   parameter HASHER_DATA_BITS = 32;

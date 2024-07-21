@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+import proj_pkg::*;  // Include the package
 module extend_kmers #(
     parameter KMER_LEN = 4,
     parameter FRAG_LEN = 8,

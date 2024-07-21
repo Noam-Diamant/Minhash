@@ -1,3 +1,4 @@
+import proj_pkg::*;  // Include the package
 module tb_extend_kmers;
 
     // Parameters
