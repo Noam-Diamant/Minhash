@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module extend_kmers #(
     parameter KMER_LEN = 4,
     parameter FRAG_LEN = 8,
