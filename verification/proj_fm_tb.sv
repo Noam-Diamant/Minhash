@@ -1,14 +1,19 @@
 `timescale 1ns / 1ps
-
 module proj_fm_ram_tb();
 
     // Parameters for the testbench
-    parameter BUFFER_COUNT = 2;
-    parameter RAMS = 2;
-    parameter ENTRIES = 2;
-    parameter OFFSET = 2;
-    parameter DATA_BITS = 8;
-    parameter READ_ADDRESSES_COUNT = 4;
+    // Number of buffers in the FM
+    parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT;
+    // Number of RAMs in each buffer
+    parameter RAMS = proj_pkg::FM_RAMS_COUNT;
+    // Number of entries in each RAM
+    parameter ENTRIES = proj_pkg::FM_ENTRIES_COUNT;
+    // Size of the offset in each entry
+    parameter OFFSET = proj_pkg::FM_OFFSET_COUNT;
+    // Width of each memory cell
+    parameter DATA_BITS = proj_pkg::FM_GENOME_BTYE;
+    // Number of bytes to read
+    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_ADDRESS_READ_COUNT;
 
     // Input signals
     logic [DATA_BITS-1:0] in_wdata;  // Input data to write

@@ -1,19 +1,20 @@
 `timescale 1ns / 1ps
+import proj_pkg::*;  // Include the package
 
 module proj_fm_ram
 #(
     // Number of buffers in the FM
-    parameter BUFFER_COUNT = 2,
+    parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT,
     // Number of RAMs in each buffer
-    parameter RAMS = 2,
+    parameter RAMS = proj_pkg::FM_RAMS_COUNT,
     // Number of entries in each RAM
-    parameter ENTRIES = 4,
+    parameter ENTRIES = proj_pkg::FM_ENTRIES_COUNT,
     // Size of the offset in each entry
-    parameter OFFSET = 8,
+    parameter OFFSET = proj_pkg::FM_OFFSET_COUNT,
     // Width of each memory cell
-    parameter DATA_BITS = 8,
+    parameter DATA_BITS = proj_pkg::FM_GENOME_BTYE,
     // Number of bytes to read
-    parameter READ_ADDRESSES_COUNT = 2
+    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_ADDRESS_READ_COUNT
 )
 (
     // Input data
