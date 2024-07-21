@@ -15,7 +15,7 @@ package proj_pkg;
     parameter KMER_BUFFER_HASHER_BASE_BITS = BASE_LEN;
     parameter KMER_BUFFER_HASHER_GENOME_BTYE = 2 * BASE_LEN; // = GENOME_BTYE
     // Length of each kmer in bytes
-    parameter KMER_BUFFER_HASHER_KMER_LEN = KMER_LEN;
+    parameter KMER_BUFFER_HASHER_KMER_LEN = 8;
 
     // FM parameters
     parameter FM_GENOME_BTYE = GENOME_BTYE;
@@ -24,7 +24,7 @@ package proj_pkg;
     // Number of RAMs in each buffer
     parameter FM_RAMS_COUNT = 2;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 2;
+    parameter FM_ENTRIES_COUNT = 8;
     // Size of the offset in each entry
     parameter FM_OFFSET_COUNT = 2;
 
