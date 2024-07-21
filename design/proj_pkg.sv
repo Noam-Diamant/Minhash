@@ -4,12 +4,12 @@
 package proj_pkg;
 
     // Generic parameters
-    // Each byte is 8 bits
-    parameter GENOME_BTYE = 8;
-    // Kmer size
-    parameter KMER_LEN = 4;
     // Base length
     parameter BASE_LEN = 4;
+    // Each byte is 8 bits
+    parameter GENOME_BTYE = 2 * BASE_LEN;
+    // Kmer size in Bytes
+    parameter KMER_LEN = 8;
 
     // FM parameters
     parameter FM_GENOME_BTYE = GENOME_BTYE;
@@ -24,8 +24,11 @@ package proj_pkg;
     // Number of bytes to read
     parameter FM_ADDRESS_READ_COUNT = 4;
 
-    // Hasher parameters
-    parameter HASHER_KMER_LEN = KMER_LEN;
+    // Kmer buffer and Hasher parameters
+    parameter KMER_BUFFER_HASHER_BASE_BITS = BASE_LEN;
+    parameter KMER_BUFFER_HASHER_GENOME_BTYE = 2 * BASE_LEN; // = GENOME_BTYE
+    // Length of each kmer in bytes
+    parameter KMER_BUFFER_HASHER_KMER_LEN = KMER_LEN;
 
     // Extender parameters
     parameter EXTENDER_KMER_LEN = KMER_LEN;

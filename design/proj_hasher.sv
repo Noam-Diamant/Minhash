@@ -2,13 +2,14 @@
 import proj_pkg::*;  // Include the package
 module murmur_4bytes
   #(
-    parameter HASHER_DATA_BITS = 32
+    parameter KMER_LEN = proj_pkg::KMER_BUFFER_HASHER_KMER_LEN,
+    parameter BASE_BITS = proj_pkg::KMER_BUFFER_HASHER_BASE_BITS,
+    parameter HASHER_DATA_BITS = KMER_LEN * BASE_BITS
   )(
     input wire [HASHER_DATA_BITS-1:0]  seed,
     input wire [HASHER_DATA_BITS-1:0]  kmer,
     output wire [HASHER_DATA_BITS-1:0] signature    
   );
-  
   assign signature = hasher(seed, kmer);
   
   function [HASHER_DATA_BITS-1:0] hasher(input [HASHER_DATA_BITS-1:0] seed, kmer);
