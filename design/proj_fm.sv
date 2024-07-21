@@ -28,7 +28,7 @@ module proj_fm_ram
 );
 
     // Calculate buffer size
-    localparam BUFFER_SIZE = RAMS * ENTRIES * OFFSET;
+    localparam FM_BUFFER_SIZE = RAMS * ENTRIES * OFFSET;
     // Calculate the number of address bits
     localparam ADDR_BITS = $clog2(RAMS * ENTRIES * OFFSET);
 
@@ -42,7 +42,7 @@ module proj_fm_ram
     wire [READ_ADDRESSES_COUNT * DATA_BITS-1:0] rdata_next;
     logic [ADDR_BITS-1:0] waddr_next;
     logic [ADDR_BITS-1:0] raddr_next;
-    logic [BUFFER_COUNT-1:0][BUFFER_SIZE-1:0][DATA_BITS-1:0] FMbuffers;
+    logic [BUFFER_COUNT-1:0][FM_BUFFER_SIZE-1:0][DATA_BITS-1:0] FMbuffers;
     logic rst_addr;
     logic wr_idx, rd_idx;
 
@@ -64,16 +64,16 @@ module proj_fm_ram
     assign waddr_next = waddr + 1'b1;
 
     // Calculate the next read address
-    assign raddr_next = waddr_next & (BUFFER_SIZE - READ_ADDRESSES_COUNT);
+    assign raddr_next = waddr_next & (FM_BUFFER_SIZE - READ_ADDRESSES_COUNT);
 
     // Check if write address reached the end of the buffer
-    assign rst_addr = (waddr == (BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
+    assign rst_addr = (waddr == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
 
     // Toggle read index based on write index
     assign rd_idx = ~wr_idx;
 
     // Change index when write address reaches the end
-    assign chg_idx = (waddr == (BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
+    assign chg_idx = (waddr == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
 
     // Change index logic
     always_ff @(posedge clk) begin
