@@ -14,7 +14,7 @@ module proj_fm_ram_tb();
     // Width of each memory cell
     parameter DATA_BITS = proj_pkg::FM_GENOME_BTYE;
     // Number of bytes to read
-    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_ADDRESS_READ_COUNT;
+    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_EXTENDER_BYTES_READ_COUNT;
 
     // Input signals
     logic [DATA_BITS-1:0] in_wdata;  // Input data to write

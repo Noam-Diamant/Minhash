@@ -2,12 +2,13 @@ import proj_pkg::*;  // Include the package
 module tb_extend_kmers;
 
     // Parameters
-    parameter KMER_LEN = 4;
-    parameter FRAG_LEN = 8;
-    parameter BASE_LEN = 4;
-    parameter MEM_LEN = 32 * BASE_LEN;
-    parameter INDICES_COUNT = 2;
-    parameter INDICE_LEN = 5; // Define the parameter for bit width
+    parameter KMER_LEN = proj_pkg::EXTENDER_KMER_LEN;
+    parameter FRAG_LEN = proj_pkg::EXTENDER_FRAG_LEN;
+    parameter BASE_LEN = proj_pkg::BASE_LEN;
+    parameter ACTUAL_MEM = proj_pkg::EXTENDER_MEM_LEN_BASES;
+    parameter MEM_LEN = proj_pkg::EXTENDER_MEM_LEN;
+    parameter INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT;
+    parameter INDICE_LEN = proj_pkg::HASHER_EXTENDER_INDICE_LEN;
 
     // Inputs
     logic [MEM_LEN-1:0] memory;
