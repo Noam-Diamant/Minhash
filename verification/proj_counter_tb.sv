@@ -5,7 +5,6 @@ module proj_fm_counter_tb();
 
     // Parameters
     localparam CLK_PERIOD = 10;  // 10 ns clock period
-
     // Signals
     logic clk;
     logic rst_n;
