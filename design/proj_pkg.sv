@@ -24,13 +24,15 @@ package proj_pkg;
     // Number of RAMs in each buffer
     parameter FM_RAMS_COUNT = 2;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 8;
+    parameter FM_ENTRIES_COUNT = 1;
     // Size of the offset in each entry
     parameter FM_OFFSET_COUNT = 2;
+    // Size of each buffer
+    parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
 
     // FM and Extender parameters
     // Number of bytes to read
-    parameter FM_EXTENDER_BYTES_READ_COUNT = 16; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BYTES_READ_COUNT * 2
+    parameter FM_EXTENDER_BYTES_READ_COUNT = 2; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BYTES_READ_COUNT * 2
 
     // Extender parameters
     parameter EXTENDER_KMER_LEN = KMER_LEN;

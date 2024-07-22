@@ -28,9 +28,12 @@ module proj_fm_ram
 );
 
     // Calculate buffer size
-    localparam FM_BUFFER_SIZE = RAMS * ENTRIES * OFFSET;
+    localparam FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE;
     // Calculate the number of address bits
-    localparam ADDR_BITS = $clog2(RAMS * ENTRIES * OFFSET);
+    localparam RAM_ADDR_BITS = $clog2(RAMS);
+    localparam ENTRIES_ADDR_BITS = $clog2(ENTRIES);
+    localparam OFFSET_ADDR_BITS = $clog2(OFFSET);
+    localparam ADDR_BITS = RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS;
 
     // Internal signals
     logic clk;
@@ -61,7 +64,7 @@ module proj_fm_ram
     endgenerate
 
     // Increment write address
-    assign waddr_next = waddr + 1'b1;
+    assign waddr_next = rst_addr ? 1'b0 : waddr + 1'b1;
 
     // Calculate the next read address
     assign raddr_next = waddr_next & (FM_BUFFER_SIZE - READ_ADDRESSES_COUNT);
