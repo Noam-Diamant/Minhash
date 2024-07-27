@@ -39,7 +39,15 @@ package proj_pkg;
     parameter EXTENDER_FRAG_LEN = 8;
     parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BYTES_READ_COUNT * 2; // Memory fragment length in bases.
     parameter EXTENDER_MEM_LEN = EXTENDER_MEM_LEN_BASES * BASE_LEN;
-    parameter HASHER_EXTENDER_INDICES_COUNT = 2;
+
+    // Sorter and Extender parameters
+    parameter HASHER_EXTENDER_INDICES_COUNT = 4;
     parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BYTES_READ_COUNT * 2);
+
+    // Sorter parameters and structures
+      typedef struct packed {
+    logic [32-1:0] signature;
+    logic [8-1:0]  index;
+      } signature_index_pack;
 
 endpackage
