@@ -4,7 +4,8 @@ import proj_pkg::*;
 module proj_sorter_tb;
     // Parameters
     localparam INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT;
-    localparam INDICE_LEN = proj_pkg::HASHER_EXTENDER_INDICE_LEN;
+    localparam INDICE_LEN = proj_pkg::SORTER_INDICE_LEN;
+    localparam SIGNATURE_LEN = proj_pkg::HASHER_SORTER_SIGNATURE;
 
     // Inputs
     logic [32-1:0] in_signature;
@@ -18,7 +19,8 @@ module proj_sorter_tb;
     // Instantiate the Unit Under Test (UUT)
     proj_sorter #(
         .INDICES_COUNT(INDICES_COUNT),
-        .INDICE_LEN(INDICE_LEN)
+        .INDICE_LEN(INDICE_LEN),
+        .SIGNATURE_LEN(SIGNATURE_LEN)
     ) dut (
         .in_signature(in_signature),
         .in_index(in_index),

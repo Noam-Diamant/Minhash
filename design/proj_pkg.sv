@@ -44,10 +44,14 @@ package proj_pkg;
     parameter HASHER_EXTENDER_INDICES_COUNT = 4;
     parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BYTES_READ_COUNT * 2);
 
+    // Sorter and Hasher parameters
+    parameter HASHER_SORTER_SIGNATURE = 32;
+
     // Sorter parameters and structures
+    parameter SORTER_INDICE_LEN = 8;
       typedef struct packed {
-    logic [32-1:0] signature;
-    logic [8-1:0]  index;
+    logic [HASHER_SORTER_SIGNATURE-1:0] signature;
+    logic [SORTER_INDICE_LEN-1:0]  index;
       } signature_index_pack;
 
 endpackage

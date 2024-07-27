@@ -1,11 +1,11 @@
-`timescale 1ns / 1ps
 import proj_pkg::*;  // Include the package
 module proj_sorter #(
     parameter INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT,
-    parameter INDICE_LEN = proj_pkg::HASHER_EXTENDER_INDICE_LEN
+    parameter INDICE_LEN = proj_pkg::SORTER_INDICE_LEN,
+    parameter SIGNATURE_LEN = proj_pkg::HASHER_SORTER_SIGNATURE
 )(
-    input wire [32-1:0] in_signature,
-    input wire [8-1:0] in_index,
+    input wire [SIGNATURE_LEN-1:0] in_signature,
+    input wire [INDICE_LEN-1:0] in_index,
     output wire [INDICES_COUNT-1:0][8-1:0] out_smallest_idx,
     input wire in_rst_n,
     input wire in_clk
@@ -34,7 +34,6 @@ module proj_sorter #(
         for (i = 1; i < INDICES_COUNT; i++) begin
     assign smallest_idx_next[i].signature = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? smallest_idx_curr[i].signature : equation_result_bigger[i-1].signature;
     assign smallest_idx_next[i].index = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? smallest_idx_curr[i].index : equation_result_bigger[i-1].index;
-
     assign equation_result_bigger[i].signature = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].signature : smallest_idx_curr[i].signature;
     assign equation_result_bigger[i].index = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].index : smallest_idx_curr[i].index;
         end
