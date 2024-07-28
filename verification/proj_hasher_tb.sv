@@ -10,8 +10,8 @@ module murmur_4bytes_tb;
   reg [HASHER_DATA_BITS-1:0]  kmer_tb;
   wire [HASHER_DATA_BITS-1:0] signature_tb;
   
-  murmur_4bytes #(.HASHER_DATA_BITS(HASHER_DATA_BITS)) 
-    uut (
+  proj_hasher #(.HASHER_DATA_BITS(HASHER_DATA_BITS)) 
+    dut (
     .seed(seed_tb),
     .kmer(kmer_tb),
     .signature(signature_tb)

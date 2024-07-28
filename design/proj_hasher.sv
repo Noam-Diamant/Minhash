@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 import proj_pkg::*;  // Include the package
-  
-module murmur_4bytes
+
+module proj_hasher
   #(
     parameter KMER_LEN = proj_pkg::KMER_BUFFER_HASHER_KMER_LEN,
     parameter BASE_BITS = proj_pkg::KMER_BUFFER_HASHER_BASE_BITS,
