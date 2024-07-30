@@ -20,7 +20,7 @@ module proj_extender #(
     input wire rst_n,
     input wire clk,
     // Output ports
-    output logic signed [SIGNED_INDICE_LEN-1:0] out_index,
+    output logic [SIGNED_INDICE_LEN-1:0] out_index,
     output logic [FRAG_PART-1:0] out_gfm
 );
     // Local parameters

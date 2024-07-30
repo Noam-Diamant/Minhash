@@ -52,7 +52,7 @@ module proj_extender_tb;
         .INDICES_COUNT(INDICES_COUNT),
         .INDICE_LEN(INDICE_LEN),
         .FRAG_PART(FRAG_PART)
-    ) uut (
+    ) dut (
         .in_fragment(in_fragment),
         .in_kmer_indices(in_kmer_indices),
         .rst_n(rst_n),
