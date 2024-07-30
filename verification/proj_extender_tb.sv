@@ -1,55 +1,88 @@
-import proj_pkg::*;  // Include the package
-module tb_extend_kmers;
+`timescale 1ns / 1ps
+import proj_pkg::*;
 
-    // Parameters
-    parameter KMER_LEN = proj_pkg::EXTENDER_KMER_LEN;
-    parameter FRAG_LEN = proj_pkg::EXTENDER_FRAG_LEN;
-    parameter BASE_LEN = proj_pkg::BASE_LEN;
-    parameter ACTUAL_MEM = proj_pkg::EXTENDER_MEM_LEN_BASES;
-    parameter MEM_LEN = proj_pkg::EXTENDER_MEM_LEN;
-    parameter INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT;
-    parameter INDICE_LEN = proj_pkg::HASHER_EXTENDER_INDICE_LEN;
+module proj_extender_tb;
 
-    // Inputs
-    logic [MEM_LEN-1:0] memory;
-    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] kmer_indices;
+    localparam KMER_LEN = 4;
+    localparam FRAG_LEN = 8;
+    localparam BASE_LEN = proj_pkg::BASE_LEN;
+    localparam INDICES_COUNT = 4;
+    localparam INDICE_LEN = 5;
+    localparam FRAG_PART = 2;
+    localparam MEM_WIDTH = 32;
+    localparam MEM_DEPTH = 32;
+    localparam SIGNED_INDICE_LEN = INDICE_LEN + 1;
+    localparam FRAG_PARTS_COUNT = FRAG_LEN / FRAG_PART;
 
-    // Outputs
-    logic [INDICES_COUNT-1:0][FRAG_LEN*BASE_LEN-1:0] extended_kmers;
+    logic [FRAG_LEN-1:0] in_fragment;
+    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices;
+    logic rst_n;
+    logic clk;
+    logic signed [SIGNED_INDICE_LEN-1:0] out_index;
+    logic [FRAG_PART-1:0] out_gfm;
 
-    // Instantiate the module
-    extend_kmers #(
+    logic [MEM_WIDTH-1:0] ext_mem;
+
+    logic [FRAG_LEN-1:0] padded_fragment;
+
+    always_comb begin
+        padded_fragment = '0; 
+        for (int i = 0; i < FRAG_LEN; i++) begin
+            if ((out_index + i >= 0) && (out_index + i < MEM_WIDTH)) begin
+                padded_fragment[i] = ext_mem[out_index + i];
+            end
+
+        end
+    end
+
+    assign in_fragment = padded_fragment;
+    proj_extender #(
         .KMER_LEN(KMER_LEN),
         .FRAG_LEN(FRAG_LEN),
         .BASE_LEN(BASE_LEN),
-        .MEM_LEN(MEM_LEN),
-        .INDICES_COUNT(INDICES_COUNT)
+        .INDICES_COUNT(INDICES_COUNT),
+        .INDICE_LEN(INDICE_LEN),
+        .FRAG_PART(FRAG_PART)
     ) uut (
-        .memory(memory),
-        .kmer_indices(kmer_indices),
-        .extended_kmers(extended_kmers)
+        .in_fragment(in_fragment),
+        .in_kmer_indices(in_kmer_indices),
+        .rst_n(rst_n),
+        .clk(clk),
+        .out_index(out_index),
+        .out_gfm(out_gfm)
     );
 
+
+
+    always begin
+        #5 clk = ~clk;
+    end
+
     initial begin
-        // Initialize memory with some values (each base is 4 bits)
-        memory = 128'h01234567899876543210001122334455;
-        
-        // Initialize kmer indices using the parameterized bit width
-        kmer_indices[0] = 5'd1;  // Example index 1: 4 in 5-bit format
-        kmer_indices[1] = 5'd15; // Example index 2: 12 in 5-bit format
 
-        // Wait for a small time to let the combinational logic settle
-        #100;
+        clk = 0;
+        rst_n = 0;
+        #10 rst_n = 1;
 
-        // Display results
-        $display("Memory: %h", memory);
-        $display("Kmer Indices: %0d, %0d", kmer_indices[0], kmer_indices[1]);
-        $display("Extended Kmers:");
+
+        for (int i = 0; i < MEM_DEPTH; i++) begin
+            ext_mem = $random;
+        end
         for (int i = 0; i < INDICES_COUNT; i++) begin
-            $display("  Extended Kmer %0d: %h", i, extended_kmers[i]);
+            in_kmer_indices[i] = $urandom_range(0, 31);
         end
 
-        // Finish simulation
+        for (int test = 0; test < 10; test++) begin
+
+            for (int i = 0; i < MEM_DEPTH; i++) begin
+            ext_mem = $random;
+        end
+
+        for (int i = 0; i < INDICES_COUNT; i++) begin
+            in_kmer_indices[i] = $urandom_range(0, 31);
+        end
+            repeat(FRAG_PARTS_COUNT*INDICES_COUNT) @(posedge clk);
+        end
         $finish;
     end
 
