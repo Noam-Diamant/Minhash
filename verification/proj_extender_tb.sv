@@ -1,55 +1,131 @@
-import proj_pkg::*;  // Include the package
-module tb_extend_kmers;
+`timescale 1ns / 1ps
+import proj_pkg::*;
 
-    // Parameters
-    parameter KMER_LEN = proj_pkg::EXTENDER_KMER_LEN;
-    parameter FRAG_LEN = proj_pkg::EXTENDER_FRAG_LEN;
-    parameter BASE_LEN = proj_pkg::BASE_LEN;
-    parameter ACTUAL_MEM = proj_pkg::EXTENDER_MEM_LEN_BASES;
-    parameter MEM_LEN = proj_pkg::EXTENDER_MEM_LEN;
-    parameter INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT;
-    parameter INDICE_LEN = proj_pkg::HASHER_EXTENDER_INDICE_LEN;
+module proj_extender_tb;
+    // Define local parameters
+    localparam KMER_LEN = 4;
+    localparam FRAG_LEN = 8;
+    localparam BASE_LEN = proj_pkg::BASE_LEN;
+    localparam INDICES_COUNT = 4;
+    localparam INDICE_LEN = 5;
+    localparam FRAG_PART = 2;
+    localparam MEM_WIDTH = 32;
+    localparam MEM_DEPTH = 32;
+    localparam SIGNED_INDICE_LEN = INDICE_LEN + 1;
+    localparam FRAG_PARTS_COUNT = FRAG_LEN / FRAG_PART;
 
-    // Inputs
-    logic [MEM_LEN-1:0] memory;
-    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] kmer_indices;
+    // Declare input and output signals
+    logic [FRAG_LEN-1:0] in_fragment;
+    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices;
+    logic rst_n;
+    logic clk;
+    logic signed [SIGNED_INDICE_LEN-1:0] out_index;
+    logic [FRAG_PART-1:0] out_gfm;
 
-    // Outputs
-    logic [INDICES_COUNT-1:0][FRAG_LEN*BASE_LEN-1:0] extended_kmers;
+    // Declare external memory and padded fragment
+    logic [MEM_WIDTH-1:0] ext_mem;
+    logic [FRAG_LEN-1:0] padded_fragment;
 
-    // Instantiate the module
-    extend_kmers #(
+    // Implement padding logic
+    always_comb begin
+        padded_fragment = '0; // Initialize with zeros
+        for (int i = 0; i < FRAG_LEN; i++) begin
+            // Check if index is within valid range
+            if ((out_index + i >= 0) && (out_index + i < MEM_WIDTH)) begin
+                padded_fragment[i] = ext_mem[out_index + i];
+            end
+            // Else, keep as 0 (padded)
+        end
+    end
+
+    int step_count = 0;
+    int current_kmer_index = 0;
+
+    // Assign padded fragment to input fragment
+    assign in_fragment = padded_fragment;
+
+    // Instantiate the Unit Under Test (UUT)
+    proj_extender #(
         .KMER_LEN(KMER_LEN),
         .FRAG_LEN(FRAG_LEN),
         .BASE_LEN(BASE_LEN),
-        .MEM_LEN(MEM_LEN),
-        .INDICES_COUNT(INDICES_COUNT)
-    ) uut (
-        .memory(memory),
-        .kmer_indices(kmer_indices),
-        .extended_kmers(extended_kmers)
+        .INDICES_COUNT(INDICES_COUNT),
+        .INDICE_LEN(INDICE_LEN),
+        .FRAG_PART(FRAG_PART)
+    ) dut (
+        .in_fragment(in_fragment),
+        .in_kmer_indices(in_kmer_indices),
+        .rst_n(rst_n),
+        .clk(clk),
+        .out_index(out_index),
+        .out_gfm(out_gfm)
     );
 
+    // Clock generation
+    always begin
+        #5 clk = ~clk;
+    end
+
+    // Modify the test procedure
     initial begin
-        // Initialize memory with some values (each base is 4 bits)
-        memory = 128'h01234567899876543210001122334455;
-        
-        // Initialize kmer indices using the parameterized bit width
-        kmer_indices[0] = 5'd1;  // Example index 1: 4 in 5-bit format
-        kmer_indices[1] = 5'd15; // Example index 2: 12 in 5-bit format
+        clk = 0;
+        rst_n = 0;
+        #10 rst_n = 1;
 
-        // Wait for a small time to let the combinational logic settle
-        #100;
-
-        // Display results
-        $display("Memory: %h", memory);
-        $display("Kmer Indices: %0d, %0d", kmer_indices[0], kmer_indices[1]);
-        $display("Extended Kmers:");
-        for (int i = 0; i < INDICES_COUNT; i++) begin
-            $display("  Extended Kmer %0d: %h", i, extended_kmers[i]);
+        // Initialize external memory with random data
+        for (int i = 0; i < MEM_DEPTH; i++) begin
+            ext_mem = $random;
         end
 
-        // Finish simulation
+        // Generate random indices
+        for (int i = 0; i < INDICES_COUNT; i++) begin
+            in_kmer_indices[i] = $urandom_range(0, 31);
+        end
+
+        // Run 10 test cases
+        for (int test = 0; test < 10; test++) begin
+            $display("Test case %0d:", test);
+
+            // Randomize external memory for each test
+            for (int i = 0; i < MEM_DEPTH; i++) begin
+                ext_mem = $random;
+            end
+
+            // Generate new random indices for each test
+            for (int i = 0; i < INDICES_COUNT; i++) begin
+                in_kmer_indices[i] = $urandom_range(0, 31);
+            end
+
+            // Wait for the module to process all fragment parts and indices
+            for (int i = 0; i < INDICES_COUNT; i++) begin
+                for (int j = 0; j < FRAG_PARTS_COUNT; j++) begin
+                    @(posedge clk);
+                    print_step_info(i);
+                end
+            end
+
+            $display("\n");  // Add a blank line between test cases
+        end
+
+        // End simulation
+        $finish;
+    end
+
+    // Function to print step information
+    function void print_step_info(int kmer_index);
+        step_count++;
+        $display("Step %0d:", step_count);
+        $display("  Current kmer_indices[%0d]: 0x%h", kmer_index, in_kmer_indices[kmer_index]);
+        $display("  out_index: 0x%h", out_index);
+        $display("  in_fragment: 0x%h", in_fragment);
+        $display("  out_gfm: 0x%h", out_gfm);
+        $display("");  // Add a blank line for readability
+    endfunction
+
+    // Add this to stop the simulation after a certain number of steps or time
+    initial begin
+        #10000;  // Stop after 10,000 time units, adjust as needed
+        $display("Simulation stopped due to timeout");
         $finish;
     end
 
