@@ -5,7 +5,7 @@ package proj_pkg;
 
     // Generic parameters
     // Base length
-    parameter BASE_LEN = 4;
+    parameter BASE_LEN = 2;
     // Each byte is 8 bits
     parameter GENOME_BTYE = 2 * BASE_LEN;
     // Kmer size in Bytes
@@ -32,17 +32,17 @@ package proj_pkg;
 
     // FM and Extender parameters
     // Number of bytes to read
-    parameter FM_EXTENDER_BYTES_READ_COUNT = 2; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BYTES_READ_COUNT * 2
+    parameter FM_EXTENDER_BASES_READ_COUNT = 256; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BASES_READ_COUNT * 2
 
     // Extender parameters
     parameter EXTENDER_KMER_LEN = KMER_LEN;
     parameter EXTENDER_FRAG_LEN = 8;
-    parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BYTES_READ_COUNT * 2; // Memory fragment length in bases.
+    parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BASES_READ_COUNT * 2; // Memory fragment length in bases.
     parameter EXTENDER_MEM_LEN = EXTENDER_MEM_LEN_BASES * BASE_LEN;
 
     // Sorter and Extender parameters
     parameter HASHER_EXTENDER_INDICES_COUNT = 4;
-    parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BYTES_READ_COUNT * 2);
+    parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BASES_READ_COUNT * 2);
 
     // Sorter and Hasher parameters
     parameter HASHER_SORTER_SIGNATURE = 32;

@@ -5,7 +5,7 @@ module proj_fm_counter
     // Size of each buffer in the FM
     parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE,
     // Number of bytes to read from the FM
-    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_EXTENDER_BYTES_READ_COUNT
+    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_EXTENDER_BASES_READ_COUNT
 )
 (
     // Output data

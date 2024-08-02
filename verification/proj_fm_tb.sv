@@ -1,79 +1,131 @@
 `timescale 1ns / 1ps
-import proj_pkg::*;  // Include the package
-module proj_fm_ram_tb();
+import proj_pkg::*;
 
-    // Parameters for the testbench
-    // Number of buffers in the FM
-    parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT;
-    // Number of RAMs in each buffer
-    parameter RAMS = proj_pkg::FM_RAMS_COUNT;
-    // Number of entries in each RAM
-    parameter ENTRIES = proj_pkg::FM_ENTRIES_COUNT;
-    // Size of the offset in each entry
-    parameter OFFSET = proj_pkg::FM_OFFSET_COUNT;
-    // Width of each memory cell
-    parameter DATA_BITS = proj_pkg::FM_GENOME_BTYE;
-    // Number of bytes to read
-    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_EXTENDER_BYTES_READ_COUNT;
+module proj_fm_tb();
 
-    // Input signals
-    logic [DATA_BITS-1:0] in_wdata;  // Input data to write
-    logic in_clk;                    // Clock signal
-    logic in_rst_n;                  // Reset signal (active low)
+    // Parameters
+    localparam BUFFER_COUNT = 2;
+    localparam RAMS = 2;
+    localparam ENTRIES = 2;
+    localparam OFFSET = 2;
+    localparam DATA_BITS = 2;
+    localparam READ_BASES_COUNT = 2;
+    localparam INDICE_LEN = $clog2(RAMS * ENTRIES *OFFSET);
+    localparam SIGNED_INDICE_LEN = INDICE_LEN + 1;
+    localparam FRAG_LEN = 4;
+    localparam FM_BUFFER_SIZE = RAMS * ENTRIES *OFFSET;
+    localparam KMER_BUFFER_SIZE = 4;
+    localparam TESTS_NUM = 10;
 
-    // Output signals
-    wire [READ_ADDRESSES_COUNT * DATA_BITS-1:0] out_rdata;  // Output data read
+    // Signals
+    logic [DATA_BITS-1:0] in_wdata;
+    logic [DATA_BITS-1:0] data;
+    logic [FRAG_LEN-1:0] out_rdata;
+    logic in_clk;
+    logic in_rst_n;
+    logic chg_idx;
+    logic [SIGNED_INDICE_LEN-1:0] frag_idx;
 
-    // Instantiate the Unit Under Test (UUT)
-    proj_fm_ram #(
+    // Instantiate the DUT
+    proj_fm #(
         .BUFFER_COUNT(BUFFER_COUNT),
         .RAMS(RAMS),
         .ENTRIES(ENTRIES),
         .OFFSET(OFFSET),
         .DATA_BITS(DATA_BITS),
-        .READ_ADDRESSES_COUNT(READ_ADDRESSES_COUNT)
+        .READ_BASES_COUNT(READ_BASES_COUNT),
+        .INDICE_LEN(INDICE_LEN),
+        .SIGNED_INDICE_LEN(SIGNED_INDICE_LEN),
+        .FRAG_LEN(FRAG_LEN)
     ) dut (
         .in_wdata(in_wdata),
         .out_rdata(out_rdata),
         .in_clk(in_clk),
-        .in_rst_n(in_rst_n)
+        .in_rst_n(in_rst_n),
+        .chg_idx(chg_idx),
+        .frag_idx(frag_idx)
     );
 
     // Clock generation
-    always begin
-        #5 in_clk = ~in_clk;  // Toggle the clock every 5 time units
-    end
+    always #5 in_clk = ~in_clk;
 
-    // Test procedure
+    // Testbench logic
     initial begin
-        // Initialize inputs
-        in_wdata = 0;
+        // Initialize signals
         in_clk = 0;
         in_rst_n = 0;
+        in_wdata = 0;
+        chg_idx = 0;
+        frag_idx = 0;
 
-        $display("Time=%0t: Simulation started", $time);
-
-        // Apply reset
+        // Reset
         #10 in_rst_n = 1;
-        $display("Time=%0t: Reset released", $time);
 
-        // Test three full cycles of writing and reading
-        for (int cycle = 0; cycle < 8; cycle++) begin
-            $display("Time=%0t: Starting cycle %0d. wr_idx: %d, rd_idx: %d", $time, cycle, dut.wr_idx, dut.rd_idx);
-            
-            for (int i = 0; i < RAMS * ENTRIES * OFFSET; i++) begin
-                // Write operation
-                in_wdata = i + RAMS * ENTRIES * OFFSET * cycle;
-                $display("Time=%0t: Wrote data: %h", $time, in_wdata);
 
-                // Read operation (happens 1 cycle after write)
-                #10;
-                $display("Time=%0t: Read data: %h", $time, out_rdata);
-            end
+    for (int test = 0; test < TESTS_NUM; test++) begin
+        $display("Starting test %0d", test);
+
+        // Write to the first buffer
+        for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
+            @(posedge in_clk);
+            in_wdata = $random & ((1 << DATA_BITS) - 1);
+        end
+        // Wait 4 cycles after writing to the first buffer
+        repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
+        // Assert chg_idx on the negedge of the clock
+        @(negedge in_clk);
+        chg_idx = 1;
+        // Deassert chg_idx on the next negedge
+        @(negedge in_clk);
+        chg_idx = 0;
+
+        // Test reading from both buffers
+        for (int i = 0; i < BUFFER_COUNT; i++) begin
+            frag_idx = 0;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
+            frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
+            // Test negative index
+            frag_idx = -2;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
         end
 
-        // Finish simulation
-        #100 $display("Time=%0t: Simulation finished", $time);
-        $finish;
+
+        // Write to the second buffer
+        for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
+            @(posedge in_clk);
+            in_wdata = $random & ((1 << DATA_BITS) - 1);
+        end
+        // Wait 4 cycles after writing to the first buffer
+        repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
+        // Assert chg_idx on the negedge of the clock
+        @(negedge in_clk);
+        chg_idx = 1;
+        // Deassert chg_idx on the next negedge
+        @(negedge in_clk);
+        chg_idx = 0;
+        // Test reading from both buffers
+        for (int i = 0; i < BUFFER_COUNT; i++) begin
+            frag_idx = 0;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
+            frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
+            // Test negative index
+            frag_idx = -2;
+            @(posedge in_clk);
+            $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
+        end
+
+        $display("Finished test %0d", test);
     end
+
+    // End simulation
+    #20 $finish;
+end
+
 endmodule
