@@ -1,4 +1,5 @@
 import math
+import random
 
 class proj_fm_ram:
     def __init__(self, BUFFER_COUNT=2, RAMS=2, ENTRIES=4, OFFSET=8, DATA_BITS=8, READ_ADDRESSES_COUNT = 2):
@@ -67,9 +68,11 @@ def simulate_proj_fm_ram():
         print(f"Time={time}: Starting cycle {cycle}. wr_idx: {dut.wr_idx}, rd_idx: {dut.rd_idx}")
 
         for i in range(RAMS * ENTRIES * OFFSET):
+            if (i%4 == 0):
+                frag_idx = random.randint(-RAMS * ENTRIES * OFFSET//4, RAMS * ENTRIES * OFFSET // 4)
+                print(f"now the input index for the fragmnet is: {frag_idx}")
             in_wdata = i + RAMS * ENTRIES * OFFSET * cycle
             print(f"Time={time}: Wrote data: {in_wdata:02x}")
-
             time += 10
             out_rdata = dut.clock_cycle(in_wdata)
             print(f"Time={time}: Read data: {out_rdata}")
