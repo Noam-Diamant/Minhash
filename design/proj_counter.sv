@@ -3,9 +3,7 @@ import proj_pkg::*;  // Include the package
 module proj_counter
 #(
     // Size of each buffer in the FM
-    parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE,
-    // Number of bytes to read from the FM
-    parameter READ_ADDRESSES_COUNT = proj_pkg::FM_EXTENDER_BASES_READ_COUNT
+    parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE
 )
 (
     // Output data

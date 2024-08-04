@@ -5,6 +5,8 @@ module proj_counter_tb();
 
     // Parameters
     localparam CLK_PERIOD = 10;  // 10 ns clock period
+    localparam FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE;
+
     
     // Signals
     logic clk;
@@ -14,7 +16,10 @@ module proj_counter_tb();
 
 
     // Instantiate the Unit Under Test (UUT)
-    proj_counter dut (
+    proj_counter #(
+        .FM_BUFFER_SIZE(FM_BUFFER_SIZE)
+    )
+    dut (
         .index(index),
         .in_clk(clk),
         .in_rst_n(rst_n),

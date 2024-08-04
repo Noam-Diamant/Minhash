@@ -7,7 +7,7 @@ package proj_pkg;
     // Base length
     parameter BASE_LEN = 2;
     // Kmer length in Bases
-    parameter KMER_LEN = 4;
+    parameter KMER_LEN = 16;
     // Fragment length in bases
     parameter FRAG_LEN = 8;
 
@@ -29,6 +29,10 @@ package proj_pkg;
     parameter INDICE_LEN = $clog2(FM_BUFFER_SIZE);
     // Length of a certain signed index
     parameter SIGNED_INDICE_LEN = INDICE_LEN+1;
+
+    // Kmer Buffer parametres
+    parameter KMER_BUFFER_BITS = BASE_LEN;
+    parameter KMER_BUFFER_LEN = KMER_LEN;
 
 
 

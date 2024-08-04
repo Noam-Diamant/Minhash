@@ -2,8 +2,8 @@
 import proj_pkg::*;  // Include the project package
 
 module proj_kmer_buffer #(
-    parameter DATA_BITS = 2,    // Number of bits for each nucleotide
-    parameter KMER_LEN = 16,    // Length of the k-mer
+    parameter DATA_BITS = proj_pkg::KMER_BUFFER_BITS,    // Number of bits for each nucleotide
+    parameter KMER_LEN = proj_pkg::KMER_BUFFER_LEN,    // Length of the k-mer
     parameter OUT_KMER = KMER_LEN * DATA_BITS  // Total bits in the output k-mer
 )(
     input wire clk,             // Clock input

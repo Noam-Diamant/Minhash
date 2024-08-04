@@ -2,8 +2,8 @@
 import proj_pkg::*;
 module proj_kmer_buffer_tb();
     // Parameters
-    localparam DATA_BITS = 2;
-    localparam KMER_LEN = 16;
+    localparam DATA_BITS = proj_pkg::KMER_BUFFER_BITS;
+    localparam KMER_LEN = proj_pkg::KMER_BUFFER_LEN;
     localparam OUT_KMER = KMER_LEN * DATA_BITS;
     localparam CLK_PERIOD = 10; // 10ns clock period
     // Signals
