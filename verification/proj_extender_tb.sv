@@ -3,16 +3,16 @@ import proj_pkg::*;
 
 module proj_extender_tb;
     // Define local parameters
-    localparam KMER_LEN = 4;
-    localparam FRAG_LEN = 8;
-    localparam BASE_LEN = proj_pkg::BASE_LEN;
-    localparam INDICES_COUNT = 4;
-    localparam INDICE_LEN = 5;
-    localparam FRAG_PART = 2;
+    localparam FRAG_LEN_BITS = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS;
+    localparam FRAG_SIZE = proj_pkg::FRAG_LEN;
+    localparam KMER_SIZE = proj_pkg::KMER_LEN;
+    localparam INDICES_COUNT = proj_pkg::SORTER_EXTENDER_INDICES_COUNT;
+    localparam INDICE_LEN = proj_pkg::INDICE_LEN;
+    localparam SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN;
+    localparam FRAG_PART = proj_pkg::EXTENDER_OUT_PART_LEN;
     localparam MEM_WIDTH = 32;
     localparam MEM_DEPTH = 32;
-    localparam SIGNED_INDICE_LEN = INDICE_LEN + 1;
-    localparam FRAG_PARTS_COUNT = FRAG_LEN / FRAG_PART;
+    localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART));
 
     // Declare input and output signals
     logic [FRAG_LEN-1:0] in_fragment;
@@ -48,7 +48,6 @@ module proj_extender_tb;
     proj_extender #(
         .KMER_LEN(KMER_LEN),
         .FRAG_LEN(FRAG_LEN),
-        .BASE_LEN(BASE_LEN),
         .INDICES_COUNT(INDICES_COUNT),
         .INDICE_LEN(INDICE_LEN),
         .FRAG_PART(FRAG_PART)

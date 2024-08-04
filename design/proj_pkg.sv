@@ -7,7 +7,7 @@ package proj_pkg;
     // Base length
     parameter BASE_LEN = 2;
     // Kmer length in Bases
-    parameter KMER_LEN = 16;
+    parameter KMER_LEN = 4;
     // Fragment length in bases
     parameter FRAG_LEN = 8;
 
@@ -40,23 +40,12 @@ package proj_pkg;
     // Sorter and Hasher parameters
     parameter HASHER_SORTER_SIGNATURE = 32;
 
-    // FM and Extender parameters
-    // Number of bytes to read
-    parameter FM_EXTENDER_BASES_READ_COUNT = 256; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BASES_READ_COUNT * 2
+    // Sorter parameters and structures
+    typedef struct packed {
+    logic [HASHER_SORTER_SIGNATURE-1:0] signature;
+    logic [INDICE_LEN-1:0]  index;
+    } signature_index_pack;
 
     // Extender parameters
-    parameter EXTENDER_KMER_LEN = KMER_LEN;
-    parameter EXTENDER_FRAG_LEN = 8;
-    parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BASES_READ_COUNT * 2; // Memory fragment length in bases.
-    parameter EXTENDER_MEM_LEN = EXTENDER_MEM_LEN_BASES * BASE_LEN;
-
-
-
-    // Sorter parameters and structures
-    parameter SORTER_INDICE_LEN = 8;
-      typedef struct packed {
-    logic [HASHER_SORTER_SIGNATURE-1:0] signature;
-    logic [SORTER_INDICE_LEN-1:0]  index;
-      } signature_index_pack;
-
+    parameter EXTENDER_OUT_PART_LEN = 4;
 endpackage
