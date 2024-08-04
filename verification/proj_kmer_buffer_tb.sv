@@ -43,13 +43,17 @@ module proj_kmer_buffer_tb();
         $display("Reset complete: rst_n=%b", rst_n);
         // Test case 1: Fill the buffer
         $display("Starting Test Case 1: Filling the buffer");
-        for (int i = 0; i < OUT_KMER * DATA_BITS; i++) begin
+        for (int i = 0; i < KMER_LEN; i++) begin
             in_data = $random;
             $display("Cycle %0d: in_data=%b", i, in_data);
             #CLK_PERIOD;
         end
         $display("Buffer filled. Waiting for %0d cycles", KMER_LEN);
-        repeat(KMER_LEN) @(posedge clk);
+        for (int i = 0; i < KMER_LEN; i++) begin
+            in_data = $random;
+            $display("Cycle %0d: out_kmer=%b", i+KMER_LEN, out_kmer);
+            #CLK_PERIOD;
+        end
         // Test case 2: Start over
         $display("Starting Test Case 2: Start over");
         @(negedge clk)
@@ -72,6 +76,7 @@ module proj_kmer_buffer_tb();
             @(negedge clk)
             in_data = $random;
             $display("Additional input %0d: in_data=%b", i, in_data);
+            $display("out_kmer=%b", out_kmer);
         end
         $display("Testbench completed");
         $finish;
