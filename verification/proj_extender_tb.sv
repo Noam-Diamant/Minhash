@@ -10,6 +10,8 @@ module proj_extender_tb;
     localparam INDICE_LEN = proj_pkg::INDICE_LEN;
     localparam SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN;
     localparam FRAG_PART = proj_pkg::EXTENDER_OUT_PART_LEN;
+
+    // TB parameters
     localparam MEM_WIDTH = 32;
     localparam MEM_DEPTH = 32;
     localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART));
@@ -46,10 +48,12 @@ module proj_extender_tb;
 
     // Instantiate the Unit Under Test (UUT)
     proj_extender #(
-        .KMER_LEN(KMER_LEN),
-        .FRAG_LEN(FRAG_LEN),
+        .FRAG_LEN_BITS(FRAG_LEN_BITS),
+        .FRAG_SIZE(FRAG_SIZE),
+        .KMER_SIZE(KMER_SIZE),
         .INDICES_COUNT(INDICES_COUNT),
         .INDICE_LEN(INDICE_LEN),
+        .SIGNED_INDICE_LEN(SIGNED_INDICE_LEN),
         .FRAG_PART(FRAG_PART)
     ) dut (
         .in_fragment(in_fragment),
