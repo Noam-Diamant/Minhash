@@ -9,11 +9,10 @@ def generate_random_sequence(length):
 # Function to convert a DNA sequence to hexadecimal format using one-hot encoding
 def sequence_to_hexadecimal(sequence):
     # Define the mapping dictionary
-    base_to_hex = {'A': 0x8,
-                   'C': 0x4,
-                   'G': 0x2,
-                   'T': 0x1,
-                   'N': 0x0}  # Placeholder for undefined bases
+    base_to_hex = {'A': 0x3,
+                   'C': 0x2,
+                   'G': 0x1,
+                   'T': 0x0}  # Placeholder for undefined bases
 
     # Convert sequence to list of one-hot encoded arrays
     hex_list = [base_to_hex[base] for base in sequence]
@@ -25,7 +24,7 @@ def sequence_to_hexadecimal(sequence):
 
 def extend_kmers(kmer_indices, frag_len, kmer_len, memory):
     num_kmers = len(kmer_indices)
-    extended_kmers = np.full((num_kmers, frag_len), 0x0, dtype=np.int8)  # Initialize with 'N' (0x0)
+    extended_kmers = np.full((num_kmers, frag_len), 0x0, dtype=np.int8) 
 
     for i, idx in enumerate(kmer_indices):
         # Calculate start and end index for the fragment
@@ -36,32 +35,17 @@ def extend_kmers(kmer_indices, frag_len, kmer_len, memory):
             if 0 <= j < len(memory):
                 extended_kmers[i][j - start_idx] = memory[j]
             else:
-                extended_kmers[i][j - start_idx] = 0x0  # Fill with 'N' (0x0) if out of bounds
+                extended_kmers[i][j - start_idx] = 0x0
 
     return extended_kmers
 
-# Function to convert from hexadecimal format back to DNA sequence
-def hexadecimal_to_sequence(hex_array):
-    # Define the reverse mapping dictionary
-    hex_to_base = {0x8: 'A',
-                   0x4: 'C',
-                   0x2: 'G',
-                   0x1: 'T',
-                   0x0: 'N'}
-
-    # Convert each row of hex_array to corresponding base
-    sequence_list = ''.join(hex_to_base[hex_row] for hex_row in hex_array)
-
-    return sequence_list
-
 # Function to convert extended kmers matrix back to ACTGN format
-def matrix_to_ACTGN(extended_kmers):
+def matrix_to_ACTG(extended_kmers):
     # Define the reverse mapping dictionary
-    hex_to_base = {0x8: 'A',
-                   0x4: 'C',
-                   0x2: 'G',
-                   0x1: 'T',
-                   0x0: 'N'}
+    hex_to_base = {0x3: 'A',
+                   0x2: 'C',
+                   0x1: 'G',
+                   0x0: 'T'}
 
     # Convert each row of extended_kmers to corresponding ACTGN sequence
     actgn_sequences = [''.join([hex_to_base[hex_row] for hex_row in row]) for row in extended_kmers]
@@ -72,6 +56,29 @@ def matrix_to_ACTGN(extended_kmers):
     actgn_sequences_str += ']'
 
     return actgn_sequences_str
+
+def convert_and_send_bases(input_array):
+    # Define the one-hot encoding dictionary
+    one_hot_dict = {
+        0: '0001',
+        1: '0010',
+        2: '0100',
+        3: '1000'
+    }
+    
+    # Convert input array to one-hot encoding
+    one_hot_array = np.array([[one_hot_dict[base] for base in row] for row in input_array])
+    
+    # Flatten the array
+    flat_array = one_hot_array.flatten()
+    
+    # Iterate through the flattened array, yielding two bases at a time
+    for i in range(0, len(flat_array), 2):
+        if i + 1 < len(flat_array):
+            yield flat_array[i] + flat_array[i+1]
+        else:
+            # If there's an odd number of bases, pad with zeros
+            yield flat_array[i] + '0000'
 
 # Main function to illustrate the above functions
 def main():
@@ -98,12 +105,14 @@ def main():
     print(f"Extended kmers:\n{extended_kmers}")
 
     # Step 5: Convert extended kmers matrix to ACTGN format
-    actgn_sequences = matrix_to_ACTGN(extended_kmers)
-    print(f"ACTGN sequences:\n{actgn_sequences}")
+    actg_sequences = matrix_to_ACTG(extended_kmers)
+    print(f"ACTG sequences:\n{actg_sequences}")
 
-    # Step 6: Convert back to sequence format
-    reconstructed_sequence = hexadecimal_to_sequence(hex_array)
-    print(f"Reconstructed sequence: {reconstructed_sequence}")
+    # Step 6: Showing the send to the GFM
+    # Iterate through the generator and print each pair of encoded bases
+    for i, encoded_pair in enumerate(convert_and_send_bases(extended_kmers)):
+        print(f"Iteration {i + 1}: {encoded_pair}")
+    
 
 if __name__ == "__main__":
     main()
