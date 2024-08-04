@@ -40,14 +40,6 @@ package proj_pkg;
     // Sorter and Hasher parameters
     parameter HASHER_SORTER_SIGNATURE = 32;
 
-
-
-    // Kmer buffer and Hasher parameters
-    parameter KMER_BUFFER_HASHER_BASE_BITS = BASE_LEN;
-    parameter KMER_BUFFER_HASHER_GENOME_BTYE = 2 * BASE_LEN; // = GENOME_BTYE
-    // Length of each kmer in bytes
-    parameter KMER_BUFFER_HASHER_KMER_LEN = 8;
-
     // FM and Extender parameters
     // Number of bytes to read
     parameter FM_EXTENDER_BASES_READ_COUNT = 256; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BASES_READ_COUNT * 2

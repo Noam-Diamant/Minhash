@@ -1,10 +1,10 @@
 `timescale 1ns / 1ps
 import proj_pkg::*;  // Include the package
-module murmur_4bytes_tb;
+module proj_hasher_tb;
 
-    parameter KMER_LEN = proj_pkg::KMER_BUFFER_HASHER_KMER_LEN;
-    parameter BASE_BITS = proj_pkg::KMER_BUFFER_HASHER_BASE_BITS;
-    parameter HASHER_DATA_BITS = KMER_LEN * BASE_BITS;
+    parameter KMER_LEN = proj_pkg::KMER_LEN;
+    parameter BASE_BITS = proj_pkg::BASE_LEN;
+    parameter HASHER_DATA_BITS = proj_pkg::HASHER_SORTER_SIGNATURE;
   
   reg [HASHER_DATA_BITS-1:0]  seed_tb;
   reg [HASHER_DATA_BITS-1:0]  kmer_tb;
