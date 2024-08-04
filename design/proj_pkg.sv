@@ -47,5 +47,6 @@ package proj_pkg;
     } signature_index_pack;
 
     // Extender parameters
-    parameter EXTENDER_OUT_PART_LEN = 4;
+    parameter EXTENDER_OUT_PART_COUNT = 2;
+    parameter EXTENDER_OUT_PART_LEN = EXTENDER_OUT_PART_COUNT * BASE_LEN;
 endpackage
