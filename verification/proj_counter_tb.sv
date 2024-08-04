@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 import proj_pkg::*;
 
-module proj_fm_counter_tb();
+module proj_counter_tb();
 
     // Parameters
     localparam CLK_PERIOD = 10;  // 10 ns clock period
@@ -14,7 +14,7 @@ module proj_fm_counter_tb();
 
 
     // Instantiate the Unit Under Test (UUT)
-    proj_fm_counter dut (
+    proj_counter dut (
         .index(index),
         .in_clk(clk),
         .in_rst_n(rst_n),

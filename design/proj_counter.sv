@@ -1,6 +1,6 @@
 import proj_pkg::*;  // Include the package
 
-module proj_fm_counter
+module proj_counter
 #(
     // Size of each buffer in the FM
     parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE,
