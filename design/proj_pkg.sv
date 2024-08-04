@@ -6,29 +6,37 @@ package proj_pkg;
     // Generic parameters
     // Base length
     parameter BASE_LEN = 2;
-    // Each byte is 8 bits
-    parameter GENOME_BTYE = 2 * BASE_LEN;
-    // Kmer size in Bytes
+    // Kmer length in Bases
     parameter KMER_LEN = 4;
+    // Fragment length in bases
+    parameter FRAG_LEN = 8;
+
+    // FM parameters
+    parameter FM_DATA_BITS = BASE_LEN;
+    // Number of buffers in the FM
+    parameter FM_BUFFER_COUNT = 2;
+    // Number of RAMs in each buffer
+    parameter FM_RAMS_COUNT = 2;
+    // Number of entries in each RAM
+    parameter FM_ENTRIES_COUNT = 8;
+    // Size of the offset in each entry
+    parameter FM_OFFSET_COUNT = 2;
+    // Size of each buffer
+    parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
+    // Size of the  FM - Extender fragment, in bits
+    parameter FM_EXTENDER_FRAG_LEN_BITS = BASE_LEN * FRAG_LEN;
+    // Length of a certain index
+    parameter INDICE_LEN = $clog2(FM_BUFFER_SIZE);
+    // Length of a certain signed index
+    parameter SIGNED_INDICE_LEN = INDICE_LEN+1;
+
+
 
     // Kmer buffer and Hasher parameters
     parameter KMER_BUFFER_HASHER_BASE_BITS = BASE_LEN;
     parameter KMER_BUFFER_HASHER_GENOME_BTYE = 2 * BASE_LEN; // = GENOME_BTYE
     // Length of each kmer in bytes
     parameter KMER_BUFFER_HASHER_KMER_LEN = 8;
-
-    // FM parameters
-    parameter FM_GENOME_BTYE = GENOME_BTYE;
-    // Number of buffers in the FM
-    parameter FM_BUFFER_COUNT = 2;
-    // Number of RAMs in each buffer
-    parameter FM_RAMS_COUNT = 2;
-    // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 1;
-    // Size of the offset in each entry
-    parameter FM_OFFSET_COUNT = 2;
-    // Size of each buffer
-    parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
 
     // FM and Extender parameters
     // Number of bytes to read

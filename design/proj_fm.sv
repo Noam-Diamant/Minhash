@@ -3,15 +3,14 @@ import proj_pkg::*;  // Include the package
 
 module proj_fm #(
     // Module parameters
-    parameter BUFFER_COUNT = 2,        // Number of buffers in the FM
-    parameter RAMS = 2,                // Number of RAMs in each buffer
-    parameter ENTRIES = 2,             // Number of entries in each RAM
-    parameter OFFSET = 2,              // Size of the offset in each entry
-    parameter DATA_BITS = 2,           // Width of each memory cell
-    parameter READ_BASES_COUNT = 2,    // Number of bytes to read
-    parameter INDICE_LEN = 5,          // Length of the index
-    parameter SIGNED_INDICE_LEN = INDICE_LEN + 1,  // Length of signed index
-    parameter FRAG_LEN = 4             // Length of the fragment
+    parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT,        // Number of buffers in the FM
+    parameter RAMS = proj_pkg::FM_RAMS_COUNT,                // Number of RAMs in each buffer
+    parameter ENTRIES = proj_pkg::FM_ENTRIES_COUNT,             // Number of entries in each RAM
+    parameter OFFSET = proj_pkg::FM_OFFSET_COUNT,              // Size of the offset in each entry
+    parameter DATA_BITS = proj_pkg::FM_DATA_BITS,           // Width of each memory cell
+    parameter INDICE_LEN = proj_pkg::INDICE_LEN,          // Length of the index
+    parameter SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN,  // Length of signed index
+    parameter FRAG_LEN = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS            // Length of the fragment - in bits!
 ) (
     // Module ports
     input  wire                        in_clk,    // Clock signal
@@ -73,7 +72,7 @@ module proj_fm #(
         
         for (int i = 0; i < FRAG_LEN - zeros_count; i++) begin
             if ((raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin
-                padded_fragment[i + zeros_count] = FMbuffers[rd_idx][(raddr + i)>> $clog2(DATA_BITS)][i[0]];
+                padded_fragment[i + (zeros_count<<$clog2(DATA_BITS))] = FMbuffers[rd_idx][raddr +(i>>$clog2(DATA_BITS))][i[0]];
             end
         end
     end

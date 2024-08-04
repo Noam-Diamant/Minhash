@@ -4,17 +4,16 @@ import proj_pkg::*;
 module proj_fm_tb();
 
     // Parameters
-    localparam BUFFER_COUNT = 2;
-    localparam RAMS = 2;
-    localparam ENTRIES = 2;
-    localparam OFFSET = 2;
-    localparam DATA_BITS = 2;
-    localparam READ_BASES_COUNT = 2;
-    localparam INDICE_LEN = $clog2(RAMS * ENTRIES *OFFSET);
-    localparam SIGNED_INDICE_LEN = INDICE_LEN + 1;
-    localparam FRAG_LEN = 4;
-    localparam FM_BUFFER_SIZE = RAMS * ENTRIES *OFFSET;
-    localparam KMER_BUFFER_SIZE = 4;
+    localparam BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT;       // Number of buffers in the FM
+    localparam RAMS = proj_pkg::FM_RAMS_COUNT;               // Number of RAMs in each buffer
+    localparam ENTRIES = proj_pkg::FM_ENTRIES_COUNT;             // Number of entries in each RAM
+    localparam OFFSET = proj_pkg::FM_OFFSET_COUNT;              // Size of the offset in each entry
+    localparam DATA_BITS = proj_pkg::FM_DATA_BITS;           // Width of each memory cell
+    localparam INDICE_LEN = proj_pkg::INDICE_LEN;          // Length of the index
+    localparam SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN;  // Length of signed index
+    localparam FRAG_LEN = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS;            // Length of the fragment - in bits!
+    localparam FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE;
+    localparam KMER_BUFFER_SIZE = proj_pkg::KMER_LEN;
     localparam TESTS_NUM = 10;
 
     // Signals
@@ -33,7 +32,6 @@ module proj_fm_tb();
         .ENTRIES(ENTRIES),
         .OFFSET(OFFSET),
         .DATA_BITS(DATA_BITS),
-        .READ_BASES_COUNT(READ_BASES_COUNT),
         .INDICE_LEN(INDICE_LEN),
         .SIGNED_INDICE_LEN(SIGNED_INDICE_LEN),
         .FRAG_LEN(FRAG_LEN)
@@ -67,10 +65,10 @@ module proj_fm_tb();
 
         // Write to the first buffer
         for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
-            @(posedge in_clk);
+            @(negedge in_clk);
             in_wdata = $random & ((1 << DATA_BITS) - 1);
         end
-        // Wait 4 cycles after writing to the first buffer
+        // Wait KMER_BUFFER_SIZE cycles after writing to the first buffer
         repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
         // Assert chg_idx on the negedge of the clock
         @(negedge in_clk);
@@ -82,24 +80,24 @@ module proj_fm_tb();
         // Test reading from both buffers
         for (int i = 0; i < BUFFER_COUNT; i++) begin
             frag_idx = 0;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             // Test negative index
             frag_idx = -2;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
         end
 
 
         // Write to the second buffer
         for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
-            @(posedge in_clk);
+            @(negedge in_clk);
             in_wdata = $random & ((1 << DATA_BITS) - 1);
         end
-        // Wait 4 cycles after writing to the first buffer
+        // Wait KMER_BUFFER_SIZE cycles after writing to the first buffer
         repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
         // Assert chg_idx on the negedge of the clock
         @(negedge in_clk);
@@ -110,14 +108,14 @@ module proj_fm_tb();
         // Test reading from both buffers
         for (int i = 0; i < BUFFER_COUNT; i++) begin
             frag_idx = 0;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             // Test negative index
             frag_idx = -2;
-            @(posedge in_clk);
+            @(negedge in_clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
         end
 
