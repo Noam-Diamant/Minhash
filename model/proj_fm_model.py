@@ -75,18 +75,21 @@ def simulate_proj_fm_ram():
 
     time = 10
     for cycle in range(8):
-        print(f"Time={time}: Starting cycle {cycle+1}. wr_idx: {dut.wr_idx}, rd_idx: {dut.rd_idx}")
-
+        #print(f"Time={time}: Starting cycle {cycle+1}. wr_idx: {dut.wr_idx}, rd_idx: {dut.rd_idx}")
+        print(f"Starting cycle {cycle+1}. wr_idx: {dut.wr_idx}, rd_idx: {dut.rd_idx}")
         for i in range(RAMS * ENTRIES * OFFSET):
             if (i%4 == 0 and cycle+1 != 1):
                 frag_idx = random.randint(-RAMS * ENTRIES * OFFSET//4, RAMS * ENTRIES * OFFSET // 2)
-                print(f"Time={time}: Now the input index for the fragmnet is: {frag_idx}")
+                #print(f"Time={time}: Now the input index for the fragmnet is: {frag_idx}")
+                print(f"Now the input index for the fragmnet is: {frag_idx}")
             in_wdata = random.randint(0,3)
-            print(f"Time={time}: Wrote data: {in_wdata:02b}")
+            #print(f"Time={time}: Wrote data: {in_wdata:02b}")
+            print(f"Wrote data: {in_wdata:02b}")
             time += 10
             if (cycle+1 != 1):
                 out_rdata = dut.clock_cycle(in_wdata, frag_idx)
-                print(f"Time={time}: Read data: {out_rdata}")
+                #print(f"Time={time}: Read data: {out_rdata}")
+                print(f"Read data: {out_rdata}")
             else:
                 out_rdata = dut.clock_cycle(in_wdata, frag_idx="NO_FRAG")
                 print("First cycle, there is no read operation!")
