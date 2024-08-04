@@ -10,6 +10,8 @@ module proj_fm_counter
 (
     // Output data
     output wire [FM_BUFFER_SIZE-1:0] index,
+    // Output the end of sorting a certain FM buffer
+    output logic finished_count,
     // Clock signal
     input wire in_clk,
     // Reset signal (active low)
@@ -29,6 +31,7 @@ module proj_fm_counter
 
     // Check if write address reached the end of the buffer
     assign end_of_count = (out_index == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
+    assign finished_count = end_of_count;
 
     // Increment write address or wrap around to 0
     assign idx_next = end_of_count ? 1'b0 : out_index + 1'b1;

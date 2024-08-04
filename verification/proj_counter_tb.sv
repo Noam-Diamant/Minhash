@@ -10,12 +10,15 @@ module proj_fm_counter_tb();
     logic clk;
     logic rst_n;
     logic [proj_pkg::FM_BUFFER_SIZE-1:0] index;
+    logic finished_count;
+
 
     // Instantiate the Unit Under Test (UUT)
-    proj_fm_counter uut (
+    proj_fm_counter dut (
         .index(index),
         .in_clk(clk),
-        .in_rst_n(rst_n)
+        .in_rst_n(rst_n),
+        .finished_count(finished_count)
     );
 
     // Clock generation
