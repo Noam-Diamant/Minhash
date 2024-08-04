@@ -3,8 +3,8 @@ import proj_pkg::*;
 
 module proj_sorter_tb;
     // Parameters
-    localparam INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT;
-    localparam INDICE_LEN = proj_pkg::SORTER_INDICE_LEN;
+    localparam INDICES_COUNT = proj_pkg::SORTER_EXTENDER_INDICES_COUNT;
+    localparam INDICE_LEN = proj_pkg::INDICE_LEN;
     localparam SIGNATURE_LEN = proj_pkg::HASHER_SORTER_SIGNATURE;
 
     // Inputs

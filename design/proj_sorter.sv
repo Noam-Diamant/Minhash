@@ -2,8 +2,8 @@ import proj_pkg::*;  // Include the project package
 
 module proj_sorter #(
     // Module parameters, using values from the project package
-    parameter INDICES_COUNT = proj_pkg::HASHER_EXTENDER_INDICES_COUNT,
-    parameter INDICE_LEN = proj_pkg::SORTER_INDICE_LEN,
+    parameter INDICES_COUNT = proj_pkg::SORTER_EXTENDER_INDICES_COUNT,
+    parameter INDICE_LEN = proj_pkg::INDICE_LEN,
     parameter SIGNATURE_LEN = proj_pkg::HASHER_SORTER_SIGNATURE
 )(
     // Module inputs and outputs

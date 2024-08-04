@@ -34,6 +34,12 @@ package proj_pkg;
     parameter KMER_BUFFER_BITS = BASE_LEN;
     parameter KMER_BUFFER_LEN = KMER_LEN;
 
+    // Sorter and Extender parameters
+    parameter SORTER_EXTENDER_INDICES_COUNT = 4;
+
+    // Sorter and Hasher parameters
+    parameter HASHER_SORTER_SIGNATURE = 32;
+
 
 
     // Kmer buffer and Hasher parameters
@@ -52,12 +58,7 @@ package proj_pkg;
     parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BASES_READ_COUNT * 2; // Memory fragment length in bases.
     parameter EXTENDER_MEM_LEN = EXTENDER_MEM_LEN_BASES * BASE_LEN;
 
-    // Sorter and Extender parameters
-    parameter HASHER_EXTENDER_INDICES_COUNT = 4;
-    parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BASES_READ_COUNT * 2);
 
-    // Sorter and Hasher parameters
-    parameter HASHER_SORTER_SIGNATURE = 32;
 
     // Sorter parameters and structures
     parameter SORTER_INDICE_LEN = 8;
