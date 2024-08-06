@@ -9,7 +9,7 @@ module proj_sorter #(
     // Module inputs and outputs
     input wire [SIGNATURE_LEN-1:0] in_signature,
     input wire [INDICE_LEN-1:0] in_index,
-    output wire [INDICES_COUNT-1:0][8-1:0] out_smallest_idx,
+    output wire [INDICES_COUNT-1:0][INDICE_LEN-1:0] out_smallest_idx,
     input wire in_rst_n,
     input wire in_clk
 );
