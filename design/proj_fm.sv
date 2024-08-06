@@ -33,7 +33,7 @@ module proj_fm #(
     logic [ADDR_BITS-1:0] waddr, waddr_next;
     logic [DATA_BITS-1:0] wdata;
     logic [BUFFER_COUNT-1:0][FM_BUFFER_SIZE-1:0][DATA_BITS-1:0] FMbuffers;
-    logic end_addr, hold_addr, rst_addr;
+    logic end_addr, hold_cond, rst_addr;
     logic wr_idx, rd_idx;
     logic [FRAG_LEN-1:0] padded_fragment;
     logic [INDICE_LEN-1:0] raddr, zeros_count;
@@ -41,7 +41,7 @@ module proj_fm #(
     logic we;
 
     // Input assignments
-    assign wdata = in_wdata;
+    assign wdata = hold_cond ? FMbuffers[wr_idx][waddr] : in_wdata;
     assign rst_n = in_rst_n;
     assign clk = in_clk;
 
@@ -51,10 +51,10 @@ module proj_fm #(
     // Address and control logic
     assign waddr_next = end_addr ? 1'b0 : waddr + 1'b1;
     assign end_addr = (waddr == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;
-    assign hold_addr = end_addr & ~chg_idx;
+    assign hold_cond = end_addr & ~chg_idx;
     assign rst_addr = end_addr & chg_idx;
     assign rd_idx = ~wr_idx;
-    assign we = ~hold_addr || end_addr;
+    assign we = ~hold_cond || end_addr;
 
     // Fragment preparation logic
     always_comb begin
@@ -89,7 +89,7 @@ module proj_fm #(
             end
             
             // Write address logic
-            if (hold_addr) begin
+            if (hold_cond) begin
                 waddr <= waddr;
             end else if (rst_addr) begin
                 waddr <= '0;
