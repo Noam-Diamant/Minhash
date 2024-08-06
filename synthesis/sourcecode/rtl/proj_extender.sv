@@ -6,16 +6,16 @@ import proj_pkg::*;
 
 // Module declaration with parameters
 module proj_extender #(
-    parameter KMER_LEN = 4,
-    parameter FRAG_LEN = 8,
-    parameter BASE_LEN = proj_pkg::BASE_LEN,
-    parameter INDICES_COUNT = 3,
-    parameter INDICE_LEN = 5,
-    parameter FRAG_PART = 2,
-    parameter SIGNED_INDICE_LEN = INDICE_LEN + 1
+    parameter FRAG_LEN_BITS = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS,
+    parameter FRAG_SIZE = proj_pkg::FRAG_LEN,
+    parameter KMER_SIZE = proj_pkg::KMER_LEN,
+    parameter INDICES_COUNT = proj_pkg::SORTER_EXTENDER_INDICES_COUNT,
+    parameter INDICE_LEN = proj_pkg::INDICE_LEN,
+    parameter SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN,
+    parameter FRAG_PART = proj_pkg::EXTENDER_OUT_PART_LEN
 )(
     // Input ports
-    input logic [FRAG_LEN-1:0] in_fragment,
+    input logic [FRAG_LEN_BITS-1:0] in_fragment,
     input logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices,
     input wire rst_n,
     input wire clk,
@@ -24,7 +24,7 @@ module proj_extender #(
     output logic [FRAG_PART-1:0] out_gfm
 );
     // Local parameters
-    localparam FRAG_PARTS_COUNT = FRAG_LEN / FRAG_PART;
+    localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART));
     localparam FRAG_PARTS_COUNT_BITS = $clog2(FRAG_PARTS_COUNT);
     localparam INDICES_COUNT_BITS = $clog2(INDICES_COUNT);
 
@@ -48,7 +48,7 @@ module proj_extender #(
     // Calculate next indices index
     assign indices_idx_next = rst_frag_parts_idx ? indices_idx + 1'b1 : indices_idx;
     // Calculate output index
-    assign out_index = {1'b0, curr_index} - SIGNED_INDICE_LEN'(((FRAG_LEN - KMER_LEN) / 2));
+    assign out_index = {1'b0, curr_index} - SIGNED_INDICE_LEN'(((FRAG_SIZE - KMER_SIZE) >> 1));
 
     // Sequential logic for fragment parts index
     always_ff @(posedge clk) begin

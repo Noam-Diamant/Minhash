@@ -5,53 +5,48 @@ package proj_pkg;
 
     // Generic parameters
     // Base length
-    parameter BASE_LEN = 4;
-    // Each byte is 8 bits
-    parameter GENOME_BTYE = 2 * BASE_LEN;
-    // Kmer size in Bytes
+    parameter BASE_LEN = 2;
+    // Kmer length in Bases
     parameter KMER_LEN = 4;
-
-    // Kmer buffer and Hasher parameters
-    parameter KMER_BUFFER_HASHER_BASE_BITS = BASE_LEN;
-    parameter KMER_BUFFER_HASHER_GENOME_BTYE = 2 * BASE_LEN; // = GENOME_BTYE
-    // Length of each kmer in bytes
-    parameter KMER_BUFFER_HASHER_KMER_LEN = 8;
+    // Fragment length in bases
+    parameter FRAG_LEN = 8;
 
     // FM parameters
-    parameter FM_GENOME_BTYE = GENOME_BTYE;
+    parameter FM_DATA_BITS = BASE_LEN;
     // Number of buffers in the FM
     parameter FM_BUFFER_COUNT = 2;
     // Number of RAMs in each buffer
     parameter FM_RAMS_COUNT = 2;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 1;
+    parameter FM_ENTRIES_COUNT = 8;
     // Size of the offset in each entry
     parameter FM_OFFSET_COUNT = 2;
     // Size of each buffer
     parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
+    // Size of the  FM - Extender fragment, in bits
+    parameter FM_EXTENDER_FRAG_LEN_BITS = BASE_LEN * FRAG_LEN;
+    // Length of a certain index
+    parameter INDICE_LEN = $clog2(FM_BUFFER_SIZE);
+    // Length of a certain signed index
+    parameter SIGNED_INDICE_LEN = INDICE_LEN+1;
 
-    // FM and Extender parameters
-    // Number of bytes to read
-    parameter FM_EXTENDER_BYTES_READ_COUNT = 2; // Length of the memory packet from the FM in bytes. in bases this is: FM_EXTENDER_BYTES_READ_COUNT * 2
-
-    // Extender parameters
-    parameter EXTENDER_KMER_LEN = KMER_LEN;
-    parameter EXTENDER_FRAG_LEN = 8;
-    parameter EXTENDER_MEM_LEN_BASES = FM_EXTENDER_BYTES_READ_COUNT * 2; // Memory fragment length in bases.
-    parameter EXTENDER_MEM_LEN = EXTENDER_MEM_LEN_BASES * BASE_LEN;
+    // Kmer Buffer parametres
+    parameter KMER_BUFFER_BITS = BASE_LEN;
+    parameter KMER_BUFFER_LEN = KMER_LEN;
 
     // Sorter and Extender parameters
-    parameter HASHER_EXTENDER_INDICES_COUNT = 4;
-    parameter HASHER_EXTENDER_INDICE_LEN = $clog2(FM_EXTENDER_BYTES_READ_COUNT * 2);
+    parameter SORTER_EXTENDER_INDICES_COUNT = 4;
 
     // Sorter and Hasher parameters
     parameter HASHER_SORTER_SIGNATURE = 32;
 
     // Sorter parameters and structures
-    parameter SORTER_INDICE_LEN = 8;
-      typedef struct packed {
+    typedef struct packed {
     logic [HASHER_SORTER_SIGNATURE-1:0] signature;
-    logic [SORTER_INDICE_LEN-1:0]  index;
-      } signature_index_pack;
+    logic [INDICE_LEN-1:0]  index;
+    } signature_index_pack;
 
+    // Extender parameters
+    parameter EXTENDER_OUT_PART_COUNT = 2;
+    parameter EXTENDER_OUT_PART_LEN = EXTENDER_OUT_PART_COUNT * BASE_LEN;
 endpackage
