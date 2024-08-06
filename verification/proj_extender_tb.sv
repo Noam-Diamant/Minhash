@@ -10,6 +10,9 @@ module proj_extender_tb;
     localparam INDICE_LEN = proj_pkg::INDICE_LEN;
     localparam SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN;
     localparam FRAG_PART = proj_pkg::EXTENDER_OUT_PART_LEN;
+    localparam FRAG_PART_ONE_HOT = proj_pkg::EXTENDER_OUT_PART_LEN_ONE_HOT;
+    localparam BASE_LEN = proj_pkg::BASE_LEN;
+    localparam ONE_HOT_LEN = proj_pkg::ONE_HOT_LEN;
 
     // TB parameters
     localparam MEM_WIDTH = 32;
@@ -17,21 +20,21 @@ module proj_extender_tb;
     localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART));
 
     // Declare input and output signals
-    logic [FRAG_LEN-1:0] in_fragment;
+    logic [FRAG_LEN_BITS-1:0] in_fragment;
     logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices;
     logic rst_n;
     logic clk;
     logic signed [SIGNED_INDICE_LEN-1:0] out_index;
-    logic [FRAG_PART-1:0] out_gfm;
+    logic [FRAG_PART_ONE_HOT-1:0] out_gfm;
 
     // Declare external memory and padded fragment
     logic [MEM_WIDTH-1:0] ext_mem;
-    logic [FRAG_LEN-1:0] padded_fragment;
+    logic [FRAG_LEN_BITS-1:0] padded_fragment;
 
     // Implement padding logic
     always_comb begin
         padded_fragment = '0; // Initialize with zeros
-        for (int i = 0; i < FRAG_LEN; i++) begin
+        for (int i = 0; i < FRAG_LEN_BITS; i++) begin
             // Check if index is within valid range
             if ((out_index + i >= 0) && (out_index + i < MEM_WIDTH)) begin
                 padded_fragment[i] = ext_mem[out_index + i];
@@ -54,7 +57,10 @@ module proj_extender_tb;
         .INDICES_COUNT(INDICES_COUNT),
         .INDICE_LEN(INDICE_LEN),
         .SIGNED_INDICE_LEN(SIGNED_INDICE_LEN),
-        .FRAG_PART(FRAG_PART)
+        .FRAG_PART(FRAG_PART),
+        .FRAG_PART_ONE_HOT(FRAG_PART_ONE_HOT),
+        .BASE_LEN(BASE_LEN),
+        .ONE_HOT_LEN(ONE_HOT_LEN)
     ) dut (
         .in_fragment(in_fragment),
         .in_kmer_indices(in_kmer_indices),
@@ -121,7 +127,7 @@ module proj_extender_tb;
         $display("  Current kmer_indices[%0d]: 0x%h", kmer_index, in_kmer_indices[kmer_index]);
         $display("  out_index: 0x%h", out_index);
         $display("  in_fragment: 0x%h", in_fragment);
-        $display("  out_gfm: 0x%h", out_gfm);
+        $display("  out_gfm (one-hot): 0x%h", out_gfm);
         $display("");  // Add a blank line for readability
     endfunction
 
