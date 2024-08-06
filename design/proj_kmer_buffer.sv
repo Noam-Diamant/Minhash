@@ -24,6 +24,7 @@ module proj_kmer_buffer #(
 
     // Determine if buffer is full
     assign buffer_full = (buffer_count == KMER_LEN - 1) ? 1'b1 : 1'b0;
+    assign full = buffer_full;
 
     // Generate next state of k-mer buffer
     generate
@@ -44,17 +45,6 @@ module proj_kmer_buffer #(
           kmer_buffer <= '0;  // Reset buffer on start_over signal
         end else begin
           kmer_buffer <= kmer_buffer_nxt;  // Update buffer with next state
-        end
-    end
-
-    // Update full flag on clock edge
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (~rst_n) begin
-          full <= '0;  // Reset full flag on active-low reset
-        end else if (start_over) begin
-          full <= '0;  // Reset full flag on start_over signal
-        end else if (buffer_full) begin
-          full <= full;  // Maintain full state when buffer is full
         end
     end
 

@@ -22,9 +22,10 @@ module proj_extender_tb;
     // Declare input and output signals
     logic [FRAG_LEN_BITS-1:0] in_fragment;
     logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices;
+    logic valid_indices;
     logic rst_n;
     logic clk;
-    logic signed [SIGNED_INDICE_LEN-1:0] out_index;
+    logic [SIGNED_INDICE_LEN-1:0] out_index;
     logic [FRAG_PART_ONE_HOT-1:0] out_gfm;
 
     // Declare external memory and padded fragment
@@ -64,6 +65,7 @@ module proj_extender_tb;
     ) dut (
         .in_fragment(in_fragment),
         .in_kmer_indices(in_kmer_indices),
+        .valid_indices(valid_indices),
         .rst_n(rst_n),
         .clk(clk),
         .out_index(out_index),
@@ -75,10 +77,11 @@ module proj_extender_tb;
         #5 clk = ~clk;
     end
 
-    // Modify the test procedure
+    // Test procedure
     initial begin
         clk = 0;
         rst_n = 0;
+        valid_indices = 0;
         #10 rst_n = 1;
 
         // Initialize external memory with random data
@@ -102,8 +105,15 @@ module proj_extender_tb;
 
             // Generate new random indices for each test
             for (int i = 0; i < INDICES_COUNT; i++) begin
+                @(negedge clk);
                 in_kmer_indices[i] = $urandom_range(0, 31);
             end
+
+            // Assert valid_indices for one clock cycle
+            @(negedge clk);
+            valid_indices = 1;
+            @(negedge clk);
+            valid_indices = 0;
 
             // Wait for the module to process all fragment parts and indices
             for (int i = 0; i < INDICES_COUNT; i++) begin
@@ -127,7 +137,7 @@ module proj_extender_tb;
         $display("  Current kmer_indices[%0d]: 0x%h", kmer_index, in_kmer_indices[kmer_index]);
         $display("  out_index: 0x%h", out_index);
         $display("  in_fragment: 0x%h", in_fragment);
-        $display("  out_gfm (one-hot): 0x%h", out_gfm);
+        $display("  out_gfm (one-hot) - part %0d of the in_fragment: 0b%b (binary), 0x%h (hexadecimal)",dut.frag_parts_idx + 1, out_gfm, out_gfm);
         $display("");  // Add a blank line for readability
     endfunction
 

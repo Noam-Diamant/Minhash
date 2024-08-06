@@ -20,6 +20,7 @@ module proj_extender #(
     // Input ports
     input logic [FRAG_LEN_BITS-1:0] in_fragment,
     input logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices,
+    input wire valid_indices,
     input wire rst_n,
     input wire clk,
     // Output ports
@@ -39,6 +40,7 @@ module proj_extender #(
     logic [INDICES_COUNT_BITS-1:0] indices_idx;
     logic [INDICES_COUNT_BITS-1:0] indices_idx_next;
     logic [FRAG_PART-1:0] frag_part;
+    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices_r;
 
     // Combinational logic
     // Reset fragment parts index when it reaches the maximum
@@ -46,7 +48,7 @@ module proj_extender #(
     // Calculate next fragment parts index
     assign frag_parts_idx_next = rst_frag_parts_idx ? 1'b0 : frag_parts_idx + 1'b1;
     // Select current index from input indices
-    assign curr_index = in_kmer_indices[indices_idx];
+    assign curr_index = in_kmer_indices_r[indices_idx];
     // Extract fragment part for output
     assign frag_part = in_fragment[FRAG_PART*frag_parts_idx +: FRAG_PART];
 
@@ -75,6 +77,13 @@ module proj_extender #(
             frag_parts_idx <= '0;
         end else begin
             frag_parts_idx <= frag_parts_idx_next;
+        end
+    end
+
+    // Sequential logic for indices sample
+    always_ff @(posedge clk or negedge rst_n) begin : index_sample
+        if (valid_indices) begin
+            in_kmer_indices_r <= in_kmer_indices;
         end
     end
 

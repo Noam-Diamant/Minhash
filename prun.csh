@@ -1,1 +1,1 @@
-xrun ./design/proj_pkg.sv ./design/proj_hasher.sv ./design/proj_fm.sv ./design/proj_extender.sv ./design/proj_counter.sv ./design/proj_sorter.sv ./design/proj_kmer_buffer.sv -sv ./verification/proj_fm_tb.sv -access +rw-c -INPUT ./simulation.tcl
+xrun ./design/proj_pkg.sv ./design/proj_hasher.sv ./design/proj_fm.sv ./design/proj_extender.sv ./design/proj_counter.sv ./design/proj_sorter.sv ./design/proj_kmer_buffer.sv -sv ./verification/proj_extender_tb.sv -access +rw-c -INPUT ./simulation.tcl

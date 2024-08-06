@@ -11,6 +11,8 @@ module proj_sorter #(
     input wire [INDICE_LEN-1:0] in_index,
     output wire [INDICES_COUNT-1:0][INDICE_LEN-1:0] out_smallest_idx,
     input wire in_rst_n,
+    input wire end_sorting,
+    output wire sort_valid,
     input wire in_clk
 );
     // Internal signals
@@ -48,9 +50,11 @@ module proj_sorter #(
     genvar j;
     generate
         for (j = 0; j < INDICES_COUNT; j++) begin 
-            assign out_smallest_idx[j] = smallest_idx_curr[j].index;
+            assign out_smallest_idx[j] = end_sorting ? smallest_idx_curr[j].index : 'x;
         end
     endgenerate
+
+    assign sort_valid = end_sorting ? 1'b1 : 1'b0;
 
     // Sequential logic for updating current smallest indices
     always_ff @(posedge clk or negedge rst_n) begin

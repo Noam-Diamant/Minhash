@@ -8,13 +8,15 @@ module proj_sorter_tb;
     localparam SIGNATURE_LEN = proj_pkg::HASHER_SORTER_SIGNATURE;
 
     // Inputs
-    logic [32-1:0] in_signature;
-    logic [8-1:0] in_index;
+    logic [SIGNATURE_LEN-1:0] in_signature;
+    logic [INDICE_LEN-1:0] in_index;
     logic in_rst_n;
     logic in_clk;
+    logic end_sorting;
 
     // Outputs
-    logic [INDICES_COUNT-1:0][8-1:0] out_smallest_idx;
+    logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] out_smallest_idx;
+    logic sort_valid;
 
     // Instantiate the Unit Under Test (UUT)
     proj_sorter #(
@@ -26,7 +28,9 @@ module proj_sorter_tb;
         .in_index(in_index),
         .out_smallest_idx(out_smallest_idx),
         .in_rst_n(in_rst_n),
-        .in_clk(in_clk)
+        .in_clk(in_clk),
+        .end_sorting(end_sorting),
+        .sort_valid(sort_valid)
     );
 
     // Clock generation
@@ -39,6 +43,7 @@ module proj_sorter_tb;
         in_index = 0;
         in_rst_n = 0;
         in_clk = 0;
+        end_sorting = 0;
 
         // Reset
         #10 in_rst_n = 1;
@@ -49,6 +54,12 @@ module proj_sorter_tb;
             in_index = i;
             #10;
         end
+        end_sorting = 1;
+        in_signature = 32'hA0A0A0A0;
+        in_index = 10;
+        #10;
+        end_sorting = 0;
+        #10;
 
         // Test case 2: Insert values in ascending order
         for (int i = 1; i <= 10; i++) begin
@@ -56,6 +67,12 @@ module proj_sorter_tb;
             in_index = i;
             #10;
         end
+        end_sorting = 1;
+        in_signature = 32'hA0A0A0A0;
+        in_index = 10;
+        #10;
+        end_sorting = 0;
+        #10;
 
         // Test case 3: Insert random values
         for (int i = 0; i < 20; i++) begin
@@ -63,6 +80,10 @@ module proj_sorter_tb;
             in_index = $urandom_range(0, 255);
             #10;
         end
+        end_sorting = 1;
+        #10;
+        end_sorting = 0;
+        #10;
 
         // Test case 4: Reset and insert new values
         in_rst_n = 0;
@@ -73,6 +94,10 @@ module proj_sorter_tb;
             in_index = $urandom_range(0, 255);
             #10;
         end
+        end_sorting = 1;
+        #10;
+        end_sorting = 0;
+        #10;
 
         // End simulation
         #100;
@@ -81,14 +106,17 @@ module proj_sorter_tb;
 
     // Monitor
     always @(posedge in_clk) begin
-        $display("Time=%0t, in_signature=%h, in_index=%h", $time, in_signature, in_index);
-        for (int i = 0; i < INDICES_COUNT; i++) begin
-            $display("  out_smallest_idx[%0d]=%h", i, out_smallest_idx[i]);
+        $display("Time=%0t, in_signature=%h, in_index=%h, end_sorting=%b, sort_valid=%b", 
+                 $time, in_signature, in_index, end_sorting, sort_valid);
+        if (sort_valid) begin
+            for (int i = 0; i < INDICES_COUNT; i++) begin
+                $display("  out_smallest_idx[%0d]=%h", i, out_smallest_idx[i]);
+            end
+            $display("--------------------");
         end
-        $display("--------------------");
     end
 
-    // // Checker
+    // Checker
     always @(posedge in_clk) begin
         if (in_rst_n) begin
             for (int i = 1; i < INDICES_COUNT; i++) begin
@@ -99,4 +127,9 @@ module proj_sorter_tb;
         end
     end
 
+    // Check sort_valid
+    always @(posedge in_clk) begin
+        assert(sort_valid == end_sorting)
+        else $error("sort_valid mismatch: sort_valid=%b, end_sorting=%b", sort_valid, end_sorting);
+    end
 endmodule
