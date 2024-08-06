@@ -70,7 +70,7 @@ module proj_extender #(
     assign out_index = {1'b0, curr_index} - SIGNED_INDICE_LEN'(((FRAG_SIZE - KMER_SIZE) >> 1));
 
     // Sequential logic for fragment parts index
-    always_ff @(posedge clk) begin : parts_index
+    always_ff @(posedge clk or negedge rst_n) begin : parts_index
         if (~rst_n) begin
             frag_parts_idx <= '0;
         end else begin
@@ -79,7 +79,7 @@ module proj_extender #(
     end
 
     // Sequential logic for indices index
-    always_ff @(posedge clk) begin : indices_index
+    always_ff @(posedge clk or negedge rst_n) begin : indices_index
         if (~rst_n) begin
             indices_idx <= '0;
         end else begin

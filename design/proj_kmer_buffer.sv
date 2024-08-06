@@ -37,7 +37,7 @@ module proj_kmer_buffer #(
     assign out_kmer = kmer_buffer;
 
     // Update k-mer buffer on clock edge
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
           kmer_buffer <= '0;  // Reset buffer on active-low reset
         end else if (start_over) begin
@@ -48,7 +48,7 @@ module proj_kmer_buffer #(
     end
 
     // Update full flag on clock edge
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
           full <= '0;  // Reset full flag on active-low reset
         end else if (start_over) begin
@@ -59,7 +59,7 @@ module proj_kmer_buffer #(
     end
 
     // Update buffer count on clock edge
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
           buffer_count <= '0;  // Reset count on active-low reset
         end else if (start_over) begin

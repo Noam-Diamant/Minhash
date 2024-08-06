@@ -53,7 +53,7 @@ module proj_sorter #(
     endgenerate
 
     // Sequential logic for updating current smallest indices
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         for (int i = 0; i < INDICES_COUNT; i++) begin
             if (~rst_n) begin
                 // Reset values

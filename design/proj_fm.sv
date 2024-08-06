@@ -18,7 +18,8 @@ module proj_fm #(
     input  wire [DATA_BITS-1:0]        in_wdata,  // Input data
     input  wire                        chg_idx,   // Change index signal
     input  logic [SIGNED_INDICE_LEN-1:0] frag_idx, // Fragment index
-    output wire [FRAG_LEN-1:0]         out_rdata  // Output data
+    output wire [FRAG_LEN-1:0]         out_rdata, // Output data
+    output wire                        out_wait // wait signal for the module before the ACMI
 );
 
     // Local parameters
@@ -47,6 +48,8 @@ module proj_fm #(
 
     // Output assignment
     assign out_rdata = padded_fragment;
+
+    assign out_wait = hold_cond;
 
     // Address and control logic
     assign waddr_next = end_addr ? 1'b0 : waddr + 1'b1;
@@ -78,7 +81,7 @@ module proj_fm #(
     end
 
     // Sequential logic
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
             wr_idx <= '0;
             waddr <= '0;
