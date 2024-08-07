@@ -1,32 +1,32 @@
 `timescale 1ns / 1ps
-import proj_pkg::*;  // Include the package
 
 module proj_fm #(
     // Module parameters
-    parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT,        // Number of buffers in the FM
-    parameter RAMS = proj_pkg::FM_RAMS_COUNT,                // Number of RAMs in each buffer
-    parameter ENTRIES = proj_pkg::FM_ENTRIES_COUNT,             // Number of entries in each RAM
-    parameter OFFSET = proj_pkg::FM_OFFSET_COUNT,              // Size of the offset in each entry
-    parameter DATA_BITS = proj_pkg::FM_DATA_BITS,           // Width of each memory cell
-    parameter INDICE_LEN = proj_pkg::INDICE_LEN,          // Length of the index
-    parameter SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN,  // Length of signed index
-    parameter FRAG_LEN = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS            // Length of the fragment - in bits!
+    parameter BUFFER_COUNT = 2,        // FM_BUFFER_COUNT
+    parameter RAMS = 2,                // FM_RAMS_COUNT
+    parameter ENTRIES = 8,             // FM_ENTRIES_COUNT
+    parameter OFFSET = 2,              // FM_OFFSET_COUNT
+    parameter DATA_BITS = 2,           // FM_DATA_BITS
+    parameter INDICE_LEN = 6,          // $clog2(FM_BUFFER_SIZE) = $clog2(2 * 8 * 2) = 6
+    parameter SIGNED_INDICE_LEN = 7,   // INDICE_LEN + 1
+    parameter FRAG_LEN = 16            // FM_EXTENDER_FRAG_LEN_BITS = BASE_LEN * FRAG_LEN = 2 * 8
 ) (
     // Module ports
-    input  wire                        in_clk,    // Clock signal
-    input  wire                        in_rst_n,  // Reset signal (active low)
+    input  wire                        clk,    // Clock signal
+    input  wire                        rst_n,  // Reset signal (active low)
     input  wire [DATA_BITS-1:0]        in_wdata,  // Input data
     input  wire                        chg_idx,   // Change index signal
     input  logic [SIGNED_INDICE_LEN-1:0] frag_idx, // Fragment index
-    output wire [FRAG_LEN-1:0]         out_rdata  // Output data
+    output wire [FRAG_LEN-1:0]         out_rdata, // Output data
+    output wire                        out_wait // wait signal for the module before the ACMI
 );
 
     // Local parameters
-    localparam FM_BUFFER_SIZE = RAMS * ENTRIES * OFFSET;
-    localparam RAM_ADDR_BITS = $clog2(RAMS);
-    localparam ENTRIES_ADDR_BITS = $clog2(ENTRIES);
-    localparam OFFSET_ADDR_BITS = $clog2(OFFSET);
-    localparam ADDR_BITS = RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS;
+    localparam FM_BUFFER_SIZE = 32;  // RAMS * ENTRIES * OFFSET = 2 * 8 * 2
+    localparam RAM_ADDR_BITS = 1;    // $clog2(RAMS) = $clog2(2)
+    localparam ENTRIES_ADDR_BITS = 3; // $clog2(ENTRIES) = $clog2(8)
+    localparam OFFSET_ADDR_BITS = 1;  // $clog2(OFFSET) = $clog2(2)
+    localparam ADDR_BITS = 5;         // RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS
 
     // Internal signals
     logic clk, rst_n;
@@ -42,11 +42,11 @@ module proj_fm #(
 
     // Input assignments
     assign wdata = hold_cond ? FMbuffers[wr_idx][waddr] : in_wdata;
-    assign rst_n = in_rst_n;
-    assign clk = in_clk;
 
     // Output assignment
     assign out_rdata = padded_fragment;
+
+    assign out_wait = hold_cond;
 
     // Address and control logic
     assign waddr_next = end_addr ? 1'b0 : waddr + 1'b1;
@@ -69,16 +69,23 @@ module proj_fm #(
         end else begin
             raddr = frag_idx[INDICE_LEN-1:0];
         end
+    end
         
-        for (int i = 0; i < FRAG_LEN - zeros_count; i++) begin
-            if ((raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin
-                padded_fragment[i + (zeros_count<<$clog2(DATA_BITS))] = FMbuffers[rd_idx][raddr +(i>>$clog2(DATA_BITS))][i[0]];
+    genvar i;
+    generate
+        for (i = 0; i < 16; i++) begin : gen_padded_fragment  // FRAG_LEN is 16
+            always_comb begin
+                if (i < (16 - zeros_count) && (raddr + i >= 0) && (raddr + i < 32)) begin  // FM_BUFFER_SIZE is 32
+                    padded_fragment[i + (zeros_count << 1)] = FMbuffers[rd_idx][raddr + (i >> 1)][i[0]];
+                end else begin
+                    padded_fragment[i + (zeros_count << 1)] = 1'b0;
+                end
             end
         end
-    end
+    endgenerate
 
     // Sequential logic
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
             wr_idx <= '0;
             waddr <= '0;

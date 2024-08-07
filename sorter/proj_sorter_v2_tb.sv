@@ -1,3 +1,5 @@
+`timescale  1ns/1ps
+
 module sorter_v2_tb;
   // Parameters
   parameter SIGNATURE_WIDTH = 32;
@@ -7,6 +9,7 @@ module sorter_v2_tb;
 
   // Inputs
   reg clock;
+  reg reset;
   reg [SIGNATURE_WIDTH-1:0] signature_in;
   reg [INDEX_WIDTH-1:0] index_in;
 
@@ -21,9 +24,10 @@ module sorter_v2_tb;
     .LOG_COMPARATORS(LOG_COMPARATORS)
   ) uut (
     .clock(clock),
+    .reset(reset),
     .signature_in(signature_in),
     .index_in(index_in),
-    .indices_out(indices_out)
+    .indices(indices_out)
   );
 
   // Clock generation
@@ -35,24 +39,24 @@ module sorter_v2_tb;
   initial begin
     // Initialize inputs
     clock = 0;
+    reset = 1;
     signature_in = 0;
     index_in = 0;
 
+    // Apply reset
+    #10 reset = 0;
     // Apply test vectors
     @(posedge clock);
     signature_in = 32'h00000010;
     index_in = 10'd1;
-    #5;
     
     @(posedge clock);
     signature_in = 32'h00000008;
     index_in = 10'd2;
-    #5;
 
     @(posedge clock);
     signature_in = 32'h00000020;
     index_in = 10'd3;
-    #5;
 
     @(posedge clock);
     signature_in = 32'h00000005;
@@ -72,12 +76,10 @@ module sorter_v2_tb;
     @(posedge clock);
     signature_in = 32'h00000035;
     index_in = 10'd7;
-    #5;
 
     @(posedge clock);
     signature_in = 32'h00000045;
     index_in = 10'd8;
-    #5;
 
     @(posedge clock);
     signature_in = 32'h00000055;
@@ -90,9 +92,5 @@ module sorter_v2_tb;
     $finish;
   end
 
-  // Monitor outputs
-  initial begin
-    $monitor("Time=%0t | signature_in=%h | index_in=%d | indices_out=%p", $time, signature_in, index_in, indices_out);
-  end
 
 endmodule

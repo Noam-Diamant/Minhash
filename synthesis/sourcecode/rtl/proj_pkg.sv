@@ -10,6 +10,8 @@ package proj_pkg;
     parameter KMER_LEN = 4;
     // Fragment length in bases
     parameter FRAG_LEN = 8;
+    // single one hot encoding base len
+    parameter ONE_HOT_LEN = 4;
 
     // FM parameters
     parameter FM_DATA_BITS = BASE_LEN;
@@ -49,4 +51,5 @@ package proj_pkg;
     // Extender parameters
     parameter EXTENDER_OUT_PART_COUNT = 2;
     parameter EXTENDER_OUT_PART_LEN = EXTENDER_OUT_PART_COUNT * BASE_LEN;
+    parameter EXTENDER_OUT_PART_LEN_ONE_HOT = EXTENDER_OUT_PART_COUNT * ONE_HOT_LEN;
 endpackage

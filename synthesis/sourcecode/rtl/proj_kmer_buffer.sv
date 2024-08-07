@@ -1,10 +1,9 @@
 `timescale 1ns / 1ps
-import proj_pkg::*;  // Include the project package
 
 module proj_kmer_buffer #(
-    parameter DATA_BITS = proj_pkg::KMER_BUFFER_BITS,    // Number of bits for each nucleotide
-    parameter KMER_LEN = proj_pkg::KMER_BUFFER_LEN,    // Length of the k-mer
-    parameter OUT_KMER = KMER_LEN * DATA_BITS  // Total bits in the output k-mer
+    parameter DATA_BITS = 2,    // proj_pkg::KMER_BUFFER_BITS (which is equal to BASE_LEN)
+    parameter KMER_LEN = 4,     // proj_pkg::KMER_BUFFER_LEN
+    parameter OUT_KMER = 8      // KMER_LEN * DATA_BITS = 4 * 2
 )(
     input wire clk,             // Clock input
     input wire rst_n,           // Active-low reset
@@ -24,6 +23,7 @@ module proj_kmer_buffer #(
 
     // Determine if buffer is full
     assign buffer_full = (buffer_count == KMER_LEN - 1) ? 1'b1 : 1'b0;
+    assign full = buffer_full;
 
     // Generate next state of k-mer buffer
     generate
@@ -37,7 +37,7 @@ module proj_kmer_buffer #(
     assign out_kmer = kmer_buffer;
 
     // Update k-mer buffer on clock edge
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
           kmer_buffer <= '0;  // Reset buffer on active-low reset
         end else if (start_over) begin
@@ -47,19 +47,8 @@ module proj_kmer_buffer #(
         end
     end
 
-    // Update full flag on clock edge
-    always_ff @(posedge clk) begin
-        if (~rst_n) begin
-          full <= '0;  // Reset full flag on active-low reset
-        end else if (start_over) begin
-          full <= '0;  // Reset full flag on start_over signal
-        end else if (buffer_full) begin
-          full <= full;  // Maintain full state when buffer is full
-        end
-    end
-
     // Update buffer count on clock edge
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
           buffer_count <= '0;  // Reset count on active-low reset
         end else if (start_over) begin

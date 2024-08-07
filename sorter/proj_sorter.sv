@@ -11,28 +11,22 @@ module sorter
     input wire [INDEX_WIDTH-1:0] index_in,
     
     output reg valid_out,
-    output reg [(NUM_COMPARATORS*INDEX_WIDTH)-1:0] indices_out // Packed array
+    output reg [INDEX_WIDTH-1:0] indices[NUM_COMPARATORS-1:0]
   );
 
   // Internal storage for signatures and indices
   reg [SIGNATURE_WIDTH-1:0] signatures[NUM_COMPARATORS-1:0];
-  reg [INDEX_WIDTH-1:0] indices[NUM_COMPARATORS-1:0];
   reg [LOG_COMPARATORS-1:0] positions[NUM_COMPARATORS-1:0];
 
   wire [NUM_COMPARATORS-1:0] is_smaller;
   wire [LOG_COMPARATORS-1:0] new_position;
   reg replace = 1'b0;
-
-  //reg [SIGNATURE_WIDTH-1:0] signature_read;
-  //reg [INDEX_WIDTH-1:0] index_read;
-  //reg [LOG_COMPARATORS-1:0] position_read;
-  //integer file, status;
     
     integer i = 0;
     initial begin
         for (i = 0; i < NUM_COMPARATORS; i++) begin
             signatures[i] = {SIGNATURE_WIDTH{1'b1}}; // Initializes to unity (all 1s)
-            indices[i] = 10'b0000000000;
+            indices[i] = 0;
             positions[i] = i;
         end
     end
@@ -53,7 +47,7 @@ module sorter
   endgenerate
 
   always @* begin
-    replace = 1'b0;
+    //replace = 1'b0;
     for (integer k = 0; k < NUM_COMPARATORS; k = k + 1) begin
       if (is_smaller[k]) begin
         if (positions[k] == 3'b000) begin
@@ -68,7 +62,7 @@ module sorter
   end
 
   // Instantiate bit_sum outside always block
-  bit_sum #(
+  bit_sum #( 
     .NUM_COMPARATORS(NUM_COMPARATORS),
     .LOG_COMPARATORS(LOG_COMPARATORS)
   ) bit_sum_instance (
@@ -84,12 +78,6 @@ module sorter
     end
   end
 
-  // Output logic
-  always @* begin
-    for (i = 0; i < NUM_COMPARATORS; i = i + 1) begin
-      indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH] = indices[i];
-    end
-  end
 
 endmodule
 

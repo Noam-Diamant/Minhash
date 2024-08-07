@@ -1,9 +1,9 @@
-import proj_pkg::*;  // Include the package
+// import proj_pkg::*;  // Include the package
 
 module proj_counter
 #(
     // Size of each buffer in the FM
-    parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE
+    parameter FM_BUFFER_SIZE = 8
 )
 (
     // Output data
@@ -11,21 +11,18 @@ module proj_counter
     // Output the end of sorting a certain FM buffer
     output logic finished_count,
     // Clock signal
-    input wire in_clk,
+    input wire clk,
     // Reset signal (active low)
-    input wire in_rst_n
+    input wire rst_n
 );
     // Internal signals
-    logic clk;
-    logic rst_n;
     logic [FM_BUFFER_SIZE-1:0] out_index;
     logic end_of_count;
     logic [FM_BUFFER_SIZE-1:0] idx_next;
     logic rst_index;
 
     // Assign input signals to internal signals
-    assign rst_n = in_rst_n;
-    assign clk = in_clk;
+
 
     // Check if write address reached the end of the buffer
     assign end_of_count = (out_index == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;

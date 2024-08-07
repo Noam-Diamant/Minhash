@@ -9,7 +9,7 @@ module sorter_tb;
   reg [INDEX_WIDTH-1:0] index_in;
    
   wire valid_out;
-  wire [(NUM_COMPARATORS*INDEX_WIDTH)-1:0] indices_out;
+  wire [INDEX_WIDTH-1:0] indices_out[NUM_COMPARATORS-1:0];
 
   sorter #(
     .SIGNATURE_WIDTH(SIGNATURE_WIDTH),
@@ -21,7 +21,7 @@ module sorter_tb;
     .signature_in(signature_in),
     .index_in(index_in),
     .valid_out(valid_out),
-    .indices_out(indices_out)
+    .indices(indices_out)
   );
 
   initial begin
@@ -35,10 +35,10 @@ module sorter_tb;
     index_in = 0;
 
         // Check results
-    $display("Indices in:");
-    for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
-      $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
-    end
+    //$display("Indices in:");
+    //for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
+    //  $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
+    //end
     
     // Apply stimulus
     #10;
@@ -68,10 +68,10 @@ module sorter_tb;
     index_in = 10'b0000000101;
 
     // Check results
-    $display("Indices in:");
-    for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
-      $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
-    end
+    //$display("Indices in:");
+    //for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
+    //  $display("indices_in[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
+    //end
 
     #10;
     signature_in = 32'h9abcdef0;
@@ -81,10 +81,10 @@ module sorter_tb;
 
     
     // Check results
-    $display("Indices out:");
-    for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
-      $display("indices_out[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
-    end
+    //$display("Indices out:");
+    //for (integer i = 0; i < NUM_COMPARATORS; i = i + 1) begin
+    //  $display("indices_out[%0d] = %b", i, indices_out[(i+1)*INDEX_WIDTH-1 -: INDEX_WIDTH]);
+    //end
 
     #10;
     valid_in = 0;
