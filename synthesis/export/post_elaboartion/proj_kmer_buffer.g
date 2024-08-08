@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Wed Aug 07 19:52:39 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Thu Aug 08 14:00:50 UTC 2024
 
 # This file contains the Genus script for design:proj_kmer_buffer
 
@@ -25,7 +25,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 64bcebc2-ecfb-4063-8383-c292e1efb27a
+set_db -quiet flow_metrics_snapshot_uuid 2a90b91b-512a-4dfa-be19-8b5fbce0151f
 set_db -quiet phys_use_segment_parasitics true
 set_db -quiet probabilistic_extraction true
 set_db -quiet ple_correlation_factors {1.9000 2.0000}
@@ -151,7 +151,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 19:52:40 07-Aug 2024
+## Written on 14:00:51 08-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -206,7 +206,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 64bcebc2-ecfb-4063-8383-c292e1efb27a}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 2a90b91b-512a-4dfa-be19-8b5fbce0151f}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

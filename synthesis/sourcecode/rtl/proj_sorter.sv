@@ -1,69 +1,55 @@
-
-module proj_sorter #(
-    // Module parameters, using values from the project package
-    parameter INDICES_COUNT = 4,   // proj_pkg::SORTER_EXTENDER_INDICES_COUNT
-    parameter INDICE_LEN = 6,      // proj_pkg::INDICE_LEN
-    parameter SIGNATURE_LEN = 32   // proj_pkg::HASHER_SORTER_SIGNATURE
-)(
-    // Module inputs and outputs
+`timescale 1ns / 1ps
+module proj_sorter 
+  #(
+    // Use parameters from the proj_pkg package
+    parameter INDICES_COUNT = 4, // Number of smallest signatures to retain
+    parameter INDICE_LEN = 8, // Width of index
+    parameter SIGNATURE_LEN = 32 // Width of signature
+   )
+   (
+    input wire clk,
+    input wire rst_n,
     input wire [SIGNATURE_LEN-1:0] in_signature,
     input wire [INDICE_LEN-1:0] in_index,
-    output wire [INDICES_COUNT-1:0][INDICE_LEN-1:0] out_smallest_idx,
-    input wire rst_n,
-    input wire end_sorting,
-    output wire sort_valid,
-    input wire clk
-);
-    // Internal signals
-    signature_index_pack [INDICES_COUNT-1:0] smallest_idx_next;
-    signature_index_pack [INDICES_COUNT-1:0] smallest_idx_curr;
-    signature_index_pack [INDICES_COUNT-1-1:0] equation_result_bigger;
-
-    signature_index_pack new_pack;
-
-    // Assign input values to internal signals
-    assign new_pack.signature = in_signature;
-    assign new_pack.index = in_index;
-
-    // Compare and assign the smallest signature and its index
-    assign smallest_idx_next[0].signature = (smallest_idx_curr[0].signature < new_pack.signature) ? smallest_idx_curr[0].signature : new_pack.signature;
-    assign smallest_idx_next[0].index = (smallest_idx_curr[0].signature < new_pack.signature) ? smallest_idx_curr[0].index : new_pack.index;
-    assign equation_result_bigger[0].signature = (smallest_idx_curr[0].signature < new_pack.signature) ? new_pack.signature : smallest_idx_curr[0].signature;
-    assign equation_result_bigger[0].index = (smallest_idx_curr[0].signature < new_pack.signature) ? new_pack.index : smallest_idx_curr[0].index;
-
-    // Generate block for comparing and sorting signatures
-    genvar i;
-    generate
-        for (i = 1; i < INDICES_COUNT; i++) begin
-            assign smallest_idx_next[i].signature = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? smallest_idx_curr[i].signature : equation_result_bigger[i-1].signature;
-            assign smallest_idx_next[i].index = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? smallest_idx_curr[i].index : equation_result_bigger[i-1].index;
-            assign equation_result_bigger[i].signature = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].signature : smallest_idx_curr[i].signature;
-            assign equation_result_bigger[i].index = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].index : smallest_idx_curr[i].index;
-        end
-    endgenerate
-
-    // Assign sorted indices to output
+    output wire [INDICES_COUNT-1:0][INDICE_LEN-1:0] out_smallest_idx
+  );
+  // Internal storage for signatures and indices
+  reg [SIGNATURE_LEN-1:0] signatures[INDICES_COUNT-1:0];
+  reg [INDICE_LEN-1:0] indices[INDICES_COUNT-1:0];
+  reg [SIGNATURE_LEN-1:0] largest_signature;
+  reg [INDICE_LEN-1:0] smallest_position;
+  // Assign output
+  generate
     genvar j;
-    generate
-        for (j = 0; j < INDICES_COUNT; j++) begin 
-            assign out_smallest_idx[j] = end_sorting ? smallest_idx_curr[j].index : 'x;
-        end
-    endgenerate
-
-    assign sort_valid = end_sorting ? 1'b1 : 1'b0;
-
-    // Sequential logic for updating current smallest indices
-    always_ff @(posedge clk or negedge rst_n) begin
-        for (int i = 0; i < INDICES_COUNT; i++) begin
-            if (~rst_n) begin
-                // Reset values
-                smallest_idx_curr[i].signature <= '1;
-                smallest_idx_curr[i].index <= '0;
-            end else begin
-                // Update with new values
-                smallest_idx_curr[i].signature <= smallest_idx_next[i].signature;
-                smallest_idx_curr[i].index <= smallest_idx_next[i].index;
-            end
-        end 
+    for (j = 0; j < INDICES_COUNT; j = j+1) begin
+      assign out_smallest_idx[j] = indices[j];
     end
+  endgenerate
+  integer i;
+  // Reset and initialization
+  always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+      for (i = 0; i < INDICES_COUNT; i = i+1) begin
+        indices[i] <= {INDICE_LEN{1'b0}}; // Initialize to 0
+        signatures[i] <= {SIGNATURE_LEN{1'b1}}; // Initialize to max value (all 1s)
+      end
+      largest_signature <= {SIGNATURE_LEN{1'b1}};
+      smallest_position <= 0;
+    end else begin
+      // Insert the new signature if it's smaller than the largest in the current list
+      if (in_signature < largest_signature) begin
+        signatures[smallest_position] <= in_signature;
+        indices[smallest_position] <= in_index;
+        // Recalculate the largest signature and its position
+        largest_signature <= signatures[0];
+        smallest_position <= 0;
+        for (i = 1; i < INDICES_COUNT; i = i+1) begin
+          if (signatures[i] > largest_signature) begin
+            largest_signature <= signatures[i];
+            smallest_position <= i;
+          end
+        end
+      end
+    end
+  end
 endmodule

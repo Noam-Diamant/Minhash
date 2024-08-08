@@ -286,20 +286,20 @@
 "object":"/designs/proj_kmer_buffer/instances_seq/kmer_buffer_reg[1][0]",
 "type":"instance"},
 {"index": "1", 
- "date": "Wed Aug 07 19:53:04 UTC 2024",
- "seconds": 1723060384.1568458,
+ "date": "Thu Aug 08 14:01:15 UTC 2024",
+ "seconds": 1723125675.112192,
  "netlist": "fv/proj_kmer_buffer/fv_map.v.gz", 
  "netlist_exists": "1", 
  "netlist_normalize": "/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/fv/proj_kmer_buffer/fv_map.v.gz", 
- "netlist_mtime": "1723060382", 
- "netlist_timestamp": "Wed Aug 07 19:53:02 UTC 2024", 
+ "netlist_mtime": "1723125673", 
+ "netlist_timestamp": "Thu Aug 08 14:01:13 UTC 2024", 
  "netlist_size": "703", 
- "netlist_cksum": "1541835045", 
+ "netlist_cksum": "1621265929", 
  "design_name": "proj_kmer_buffer", 
  "synth_workdir": "/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace", 
  "synthesis_command":"",
  "current_label": "fv_map", 
  "previous_label": "rtl", 
- "write_verif_file_runtime": 1.840625 
+ "write_verif_file_runtime": 1.953892 
  }
 ]
