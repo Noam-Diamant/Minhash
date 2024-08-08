@@ -1,4 +1,4 @@
 proj_counter.sv
 proj_fm.sv
 proj_kmer_buffer.sv
-proj_sorter.sv
+proj_extender.sv

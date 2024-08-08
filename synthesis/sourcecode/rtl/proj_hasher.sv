@@ -35,29 +35,5 @@ module proj_hasher
     signature = key_rotated ^ k_multiplied;
     signature = signature * m + n;
   end
-  
-endmodule
 
-module ROL13
-  #(
-    parameter HASHER_DATA_BITS = 32
-  )(
-    input wire [HASHER_DATA_BITS-1:0] roll_in,
-    output wire [HASHER_DATA_BITS-1:0] roll_out
-  );
-  
-  assign roll_out = {roll_in[HASHER_DATA_BITS-14:0], roll_in[HASHER_DATA_BITS-1:HASHER_DATA_BITS-14]}; // ROL13
-  
-endmodule
-
-module ROL15
-  #(
-    parameter HASHER_DATA_BITS = 32
-  )( 
-    input wire [HASHER_DATA_BITS-1:0] roll_in,
-    output wire [HASHER_DATA_BITS-1:0] roll_out
-  );
-  
-  assign roll_out = {roll_in[HASHER_DATA_BITS-16:0], roll_in[HASHER_DATA_BITS-1:HASHER_DATA_BITS-16]}; // ROL15
-  
 endmodule

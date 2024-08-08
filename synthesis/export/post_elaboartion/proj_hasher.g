@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Wed Aug 07 20:12:19 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Thu Aug 08 20:31:43 UTC 2024
 
 # This file contains the Genus script for design:proj_hasher
 
@@ -19,13 +19,13 @@ set_db -quiet resistance_per_unit_length_mmmc {}
 set_db -quiet lp_insert_clock_gating true
 set_db -quiet timing_adjust_tns_of_complex_flops false
 set_db -quiet hdl_language sv
-set_db -quiet tinfo_tstamp_file .rs_itaerg.tstamp
+set_db -quiet tinfo_tstamp_file .rs_noaant.tstamp
 set_db -quiet metric_enable true
 set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid ad8fdc63-4185-4687-8296-f34cdb45ec26
+set_db -quiet flow_metrics_snapshot_uuid bf63c16e-d671-4866-89c5-87c0c8278f64
 set_db -quiet phys_use_segment_parasitics true
 set_db -quiet probabilistic_extraction true
 set_db -quiet ple_correlation_factors {1.9000 2.0000}
@@ -47,11 +47,11 @@ set_db -quiet dft_scanbit_waveform_analysis false
 # END DFT SECTION
 set_db -quiet design:proj_hasher .seq_reason_deleted_internal {}
 set_db -quiet design:proj_hasher .seq_mbci_coverage 0.0
-set_db -quiet design:proj_hasher .hdl_filelist {{default {-sv -f} {SYNTHESIS} {/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/../dut_src_list.txt} {} {}}}
+set_db -quiet design:proj_hasher .hdl_filelist {{default {-sv -f} {SYNTHESIS} {/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/../dut_src_list.txt} {} {}}}
 set_db -quiet design:proj_hasher .hdl_user_name proj_hasher
 set_db -quiet design:proj_hasher .verification_directory fv/proj_hasher
-set_db -quiet design:proj_hasher .arch_filename /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv
-set_db -quiet design:proj_hasher .entity_filename /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv
+set_db -quiet design:proj_hasher .arch_filename /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv
+set_db -quiet design:proj_hasher .entity_filename /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv
 set_db -quiet port:proj_hasher/clk .original_name clk
 set_db -quiet port:proj_hasher/rst_n .original_name rst_n
 set_db -quiet {port:proj_hasher/seed[31]} .original_name {seed[31]}
@@ -165,10 +165,10 @@ set_db -quiet hinst:proj_hasher/mul_28_35 .rtlop_info {{} 0 0 0 3 0 47 0 2 1 1 0
 set_db -quiet design:proj_hasher .set_boundary_change_new {start restore}
 set_db -quiet design:proj_hasher .set_boundary_change_new {finish restore}
 # END GLO TBR TABLE
-set_db -quiet hinst:proj_hasher/g1 .file_row_col {{/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 35 29}}
-set_db -quiet hinst:proj_hasher/mul_36_27 .file_row_col {{/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 36 27}}
-set_db -quiet hinst:proj_hasher/add_36_31 .file_row_col {{/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 36 31}}
-set_db -quiet hinst:proj_hasher/mul_28_35 .file_row_col {{/data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 28 35}}
+set_db -quiet hinst:proj_hasher/g1 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 35 29}}
+set_db -quiet hinst:proj_hasher/mul_36_27 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 36 27}}
+set_db -quiet hinst:proj_hasher/add_36_31 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 36 31}}
+set_db -quiet hinst:proj_hasher/mul_28_35 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv 28 35}}
 # there is no file_row_col attribute information available
 set_db -quiet source_verbose true
 #############################################################
@@ -176,7 +176,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 20:12:21 07-Aug 2024
+## Written on 20:31:45 08-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -231,7 +231,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid ad8fdc63-4185-4687-8296-f34cdb45ec26}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid bf63c16e-d671-4866-89c5-87c0c8278f64}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

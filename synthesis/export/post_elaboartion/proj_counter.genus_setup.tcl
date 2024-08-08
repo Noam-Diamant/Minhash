@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 08/06/2024 13:59:23
+#   on 08/08/2024 16:19:39
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -34,12 +34,12 @@ if {[::legacy::find -design design:proj_counter] ne ""} {
 
 # Design
 ################################################################################
-read_netlist -top proj_counter /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.v
-read_metric -id current /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.metrics.json
+read_netlist -top proj_counter /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.v
+read_metric -id current /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.metrics.json
 
-phys::read_script /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.g
+phys::read_script /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.g
 
-phys::read_lec_taf /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.lec.taf.gz
+phys::read_lec_taf /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_counter.lec.taf.gz
 puts "\n** Restoration Completed **\n"
 
 

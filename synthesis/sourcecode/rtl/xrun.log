@@ -1,0 +1,19 @@
+xrun(64): 21.09-s007: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	21.09-s007: Started on Jul 27, 2024 at 18:20:40 UTC
+xrun
+	./design/proj_pkg.sv
+	./design/proj_hasher.sv
+	./design/proj_fm.sv
+	./design/proj_extender.sv
+	./design/proj_counter.sv
+	-sv
+	./verification/proj_counter_tb.sv
+	-access +rw-c
+	-INPUT ./simulation.tcl
+xrun: *E,FILEMIS: Cannot find the provided file ./design/proj_pkg.sv.
+xrun: *E,FILEMIS: Cannot find the provided file ./design/proj_hasher.sv.
+xrun: *E,FILEMIS: Cannot find the provided file ./design/proj_fm.sv.
+xrun: *E,FILEMIS: Cannot find the provided file ./design/proj_extender.sv.
+xrun: *E,FILEMIS: Cannot find the provided file ./design/proj_counter.sv.
+xrun: *E,FILEMIS: Cannot find the provided file ./verification/proj_counter_tb.sv.
+TOOL:	xrun(64)	21.09-s007: Exiting on Jul 27, 2024 at 18:20:41 UTC  (total: 00:00:01)

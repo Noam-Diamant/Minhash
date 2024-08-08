@@ -129,9 +129,11 @@ check_timing_intent
 check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
 
 ###################################################################################
-## Define cost groups (reg2reg, in2reg, reg2out, in2out)
+## Define cost groups
 ###################################################################################
-enics_default_cost_groups
+#enics_default_cost_groups
+define_cost_group -name in2out -design $design(TOPLEVEL)
+path_group -from [all_inputs] -to [all_outputs] -group in2out -name in2out
 enics_report_timing $design(synthesis_reports)
 
 
@@ -174,13 +176,11 @@ if {$phys_synth_type == "floorplan"} {
     enics_report_timing $design(synthesis_reports)
     enics_start_stage "post_syn_opt"
     if {$phys_synth_type == "lef"} {
-        syn_opt -physical
+        syn_opt
     } else {
-        syn_opt 
+        syn_opt
     }
 }
-
-
 
 #############################
 #     Post Synthesis Reports

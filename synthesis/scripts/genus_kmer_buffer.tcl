@@ -174,13 +174,11 @@ if {$phys_synth_type == "floorplan"} {
     enics_report_timing $design(synthesis_reports)
     enics_start_stage "post_syn_opt"
     if {$phys_synth_type == "lef"} {
-        syn_opt -physical
+        syn_opt
     } else {
-        syn_opt 
+        syn_opt
     }
 }
-
-
 
 #############################
 #     Post Synthesis Reports
@@ -200,6 +198,8 @@ foreach rpt $post_synth_reports {
     $rpt
     $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
 }
+
+report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL).timing.rpt
 
 #############################
 #   Exporting the Design

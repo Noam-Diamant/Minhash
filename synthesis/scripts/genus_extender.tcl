@@ -165,7 +165,7 @@ if {$phys_synth_type == "floorplan"} {
     enics_start_stage "post_syn_opt"
     syn_opt -physical
 } else {
-    # Synthesize to generics (non physical-aware)
+    # Synthesize to generics (non physical-aware)S
     enics_start_stage "syn_generic"
     syn_generic 
     # Map to technology (non physical-aware)
@@ -174,7 +174,7 @@ if {$phys_synth_type == "floorplan"} {
     enics_report_timing $design(synthesis_reports)
     enics_start_stage "post_syn_opt"
     if {$phys_synth_type == "lef"} {
-        syn_opt -physical
+        syn_opt
     } else {
         syn_opt 
     }

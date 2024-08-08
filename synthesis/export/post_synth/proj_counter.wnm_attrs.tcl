@@ -1,0 +1,17 @@
+catch {set_db port:proj_counter/clk .original_name clk}
+catch {set_db port:proj_counter/rst_n .original_name rst_n}
+catch {set_db {port:proj_counter/index[7]} .original_name {index[7]}}
+catch {set_db {port:proj_counter/index[6]} .original_name {index[6]}}
+catch {set_db {port:proj_counter/index[5]} .original_name {index[5]}}
+catch {set_db {port:proj_counter/index[4]} .original_name {index[4]}}
+catch {set_db {port:proj_counter/index[3]} .original_name {index[3]}}
+catch {set_db {port:proj_counter/index[2]} .original_name {index[2]}}
+catch {set_db {port:proj_counter/index[1]} .original_name {index[1]}}
+catch {set_db {port:proj_counter/index[0]} .original_name {index[0]}}
+catch {set_db port:proj_counter/finished_count .original_name finished_count}
+catch {set_db {pin:proj_counter/out_index_reg[2]/Q} .original_name {out_index[2]/q}}
+catch {set_db {pin:proj_counter/out_index_reg[1]/Q} .original_name {out_index[1]/q}}
+catch {set_db {pin:proj_counter/out_index_reg[0]/Q} .original_name {out_index[0]/q}}
+catch {set_db {inst:proj_counter/out_index_reg[2]} .original_name {{out_index[2]}}}
+catch {set_db {inst:proj_counter/out_index_reg[1]} .original_name {{out_index[1]}}}
+catch {set_db {inst:proj_counter/out_index_reg[0]} .original_name {{out_index[0]}}}

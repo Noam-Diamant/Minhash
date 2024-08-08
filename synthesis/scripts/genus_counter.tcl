@@ -174,7 +174,7 @@ if {$phys_synth_type == "floorplan"} {
     enics_report_timing $design(synthesis_reports)
     enics_start_stage "post_syn_opt"
     if {$phys_synth_type == "lef"} {
-        syn_opt -physical
+        syn_opt
     } else {
         syn_opt 
     }

@@ -1,0 +1,35 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[17:13:59.206289] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Thu Aug 08 17:13:59 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     10237
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[17:13:59.362864] Periodic Lic check successful
+[17:13:59.362881] Feature usage summary:
+[17:13:59.362882] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 7s, ST: 7s, FG: 7s, CPU: 100.0%}, MEM {curr: 3.7G, peak: 3.7G, phys curr: 0.1G, phys peak: 0.1G}, SYS {load: 1.4, cpu: 2, total: 7.5G, free: 2.7G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 8s, ST: 7s, FG: 7s, CPU: 100.0%}, MEM {curr: 3.7G, peak: 3.7G, phys curr: 0.1G, phys peak: 0.1G}, SYS {load: 1.4, cpu: 2, total: 7.5G, free: 2.7G}
+Abnormal exit.

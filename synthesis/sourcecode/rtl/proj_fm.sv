@@ -4,12 +4,12 @@ module proj_fm #(
     // Module parameters
     parameter BUFFER_COUNT = 2,        // FM_BUFFER_COUNT
     parameter RAMS = 2,                // FM_RAMS_COUNT
-    parameter ENTRIES = 8,             // FM_ENTRIES_COUNT
-    parameter OFFSET = 2,              // FM_OFFSET_COUNT
+    parameter ENTRIES = 2,             // FM_ENTRIES_COUNT
+    parameter OFFSET = 1,              // FM_OFFSET_COUNT
     parameter DATA_BITS = 2,           // FM_DATA_BITS
-    parameter INDICE_LEN = 6,          // $clog2(FM_BUFFER_SIZE) = $clog2(2 * 8 * 2) = 6
-    parameter SIGNED_INDICE_LEN = 7,   // INDICE_LEN + 1
-    parameter FRAG_LEN = 16            // FM_EXTENDER_FRAG_LEN_BITS = BASE_LEN * FRAG_LEN = 2 * 8
+    parameter INDICE_LEN = 2,          // $clog2(FM_BUFFER_SIZE) = $clog2(2 * 8 * 2) = 6
+    parameter SIGNED_INDICE_LEN = 3,   // INDICE_LEN + 1
+    parameter FRAG_LEN = 2            // FM_EXTENDER_FRAG_LEN_BITS = BASE_LEN * FRAG_LEN = 2 * 8
 ) (
     // Module ports
     input  wire                        clk,    // Clock signal

@@ -12,7 +12,7 @@ module proj_extender #(
     parameter INDICES_COUNT = 4,
     parameter INDICE_LEN = 3,
     parameter SIGNED_INDICE_LEN = 4,
-    parameter FRAG_PART_ONE_HOT = 4,
+    parameter FRAG_PART_ONE_HOT = 8,
     parameter BASE_LEN = 2,
     parameter ONE_HOT_LEN = 4,
     parameter FRAG_PART = 4
@@ -80,11 +80,12 @@ module proj_extender #(
         end
 
         // Sequential logic for indices sample
-    always @(posedge clk or negedge rst_n)
+    always @(posedge clk)
         if (valid_indices) begin
             in_kmer_indices_r <= in_kmer_indices;
+        end else begin
+            in_kmer_indices_r <= in_kmer_indices_r;
         end
-
         // Sequential logic for indices index 
     always @(posedge clk or negedge rst_n)      
         if (~rst_n) begin
