@@ -131,9 +131,7 @@ check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check
 ###################################################################################
 ## Define cost groups
 ###################################################################################
-#enics_default_cost_groups
-define_cost_group -name in2out -design $design(TOPLEVEL)
-path_group -from [all_inputs] -to [all_outputs] -group in2out -name in2out
+enics_default_cost_groups
 enics_report_timing $design(synthesis_reports)
 
 
@@ -200,6 +198,7 @@ foreach rpt $post_synth_reports {
     $rpt
     $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
 }
+report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL).timing.rpt
 
 #############################
 #   Exporting the Design

@@ -200,6 +200,7 @@ foreach rpt $post_synth_reports {
     $rpt
     $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
 }
+report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL).timing.rpt
 
 #############################
 #   Exporting the Design
