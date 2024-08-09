@@ -259,20 +259,20 @@
 "object":"/designs/proj_hasher/instances_hier/const_mul_28_35/pins_out/Z[0]",
 "type":"pin"},
 {"index": "1", 
- "date": "Thu Aug 08 17:06:06 UTC 2024",
- "seconds": 1723136766.324185,
+ "date": "Fri Aug 09 08:57:40 UTC 2024",
+ "seconds": 1723193860.5148408,
  "netlist": "fv/proj_hasher/fv_map.v.gz", 
  "netlist_exists": "1", 
  "netlist_normalize": "/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/fv/proj_hasher/fv_map.v.gz", 
- "netlist_mtime": "1723136764", 
- "netlist_timestamp": "Thu Aug 08 17:06:04 UTC 2024", 
+ "netlist_mtime": "1723193858", 
+ "netlist_timestamp": "Fri Aug 09 08:57:38 UTC 2024", 
  "netlist_size": "25442", 
- "netlist_cksum": "3805626926", 
+ "netlist_cksum": "3489001249", 
  "design_name": "proj_hasher", 
  "synth_workdir": "/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace", 
  "synthesis_command":"",
  "current_label": "fv_map", 
  "previous_label": "rtl", 
- "write_verif_file_runtime": 2.276853 
+ "write_verif_file_runtime": 1.8849319999999998 
  }
 ]

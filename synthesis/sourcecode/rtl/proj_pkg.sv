@@ -43,6 +43,8 @@ package proj_pkg;
     parameter HASHER_SORTER_SIGNATURE = 32;
 
     // Sorter parameters and structures
+    parameter SORTER_POSITION_LEN = $clog2(SORTER_EXTENDER_INDICES_COUNT);
+    parameter POSITION_LEN = SORTER_POSITION_LEN;
     typedef struct packed {
     logic [HASHER_SORTER_SIGNATURE-1:0] signature;
     logic [INDICE_LEN-1:0]  index;

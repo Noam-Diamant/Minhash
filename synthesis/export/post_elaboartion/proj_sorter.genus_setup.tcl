@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 08/08/2024 11:23:24
+#   on 08/09/2024 12:47:33
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -34,12 +34,12 @@ if {[::legacy::find -design design:proj_sorter] ne ""} {
 
 # Design
 ################################################################################
-read_netlist -top proj_sorter /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.v
-read_metric -id current /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.metrics.json
+read_netlist -top proj_sorter /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.v
+read_metric -id current /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.metrics.json
 
-phys::read_script /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.g
+phys::read_script /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.g
 
-phys::read_lec_taf /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.lec.taf.gz
+phys::read_lec_taf /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.lec.taf.gz
 puts "\n** Restoration Completed **\n"
 
 
@@ -77,8 +77,8 @@ set _cell_area_ [::legacy::get_attribute cell_area design:proj_sorter]
 if {[regexp {^-?[0-9.]+$} $_cell_area_]} {
   set _cell_area_ [format %.0f $_cell_area_]
 }
-if {$_cell_area_ != "6622"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 6622,  current cell area: $_cell_area_"
+if {$_cell_area_ != "7509"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 7509,  current cell area: $_cell_area_"
 }
 unset _cell_area_
 # net area
@@ -86,7 +86,7 @@ set _net_area_ [::legacy::get_attribute net_area design:proj_sorter]
 if {[regexp {^-?[0-9.]+$} $_net_area_]} {
   set _net_area_ [format %.0f $_net_area_]
 }
-if {$_net_area_ != "31"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 31,  current net area: $_net_area_"
+if {$_net_area_ != "20"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 20,  current net area: $_net_area_"
 }
 unset _net_area_

@@ -27,8 +27,8 @@ module proj_sorter_tb;
         .in_signature(in_signature),
         .in_index(in_index),
         .out_smallest_idx(out_smallest_idx),
-        .in_rst_n(in_rst_n),
-        .in_clk(in_clk),
+        .rst_n(in_rst_n),
+        .clk(in_clk),
         .end_sorting(end_sorting),
         .sort_valid(sort_valid)
     );

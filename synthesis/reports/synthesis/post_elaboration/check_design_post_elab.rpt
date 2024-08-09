@@ -5,142 +5,92 @@ No subdesign's name is greater than 1.5k in length.
 
  Feedthrough Module(s)
  -------------------------
-No feed through module in 'proj_kmer_buffer'
+No feed through module in 'proj_sorter'
 
   Unresolved References & Empty Modules
   ------------------------------------- 
-No unresolved references in design 'proj_kmer_buffer'
+No unresolved references in design 'proj_sorter'
 
-No empty modules in design 'proj_kmer_buffer'
+No empty modules in design 'proj_sorter'
 
  Unloaded Pin(s), Port(s)
  -------------------------
-No unloaded sequential element in 'proj_kmer_buffer'
+No unloaded sequential element in 'proj_sorter'
 
-No unloaded port in 'proj_kmer_buffer'
+No unloaded port in 'proj_sorter'
 
  Unloaded Combinational Pin(s)
  -------------------------------
-No unloaded combinational element in 'proj_kmer_buffer'
+design 'proj_sorter' has the following unloaded combinational elements
+pin:proj_sorter/sub_55_43/g20/z
+Total number of unloaded combinational elements in design 'proj_sorter' : 1
 
  Assigns
  ------- 
-Total number of assign statements in design 'proj_kmer_buffer' : 0
+Total number of assign statements in design 'proj_sorter' : 0
 
  Undriven Port(s)/Pin(s)
  ------------------------
-No undriven combinational pin in 'proj_kmer_buffer'
+No undriven combinational pin in 'proj_sorter'
 
-No undriven sequential pin in 'proj_kmer_buffer'
+No undriven sequential pin in 'proj_sorter'
 
-No undriven hierarchical pin in 'proj_kmer_buffer'
+No undriven hierarchical pin in 'proj_sorter'
 
-No undriven port in 'proj_kmer_buffer'
+No undriven port in 'proj_sorter'
 
  Multidriven Port(s)/Pin(s)
 --------------------------
 
-No multidriven combinational pin in 'proj_kmer_buffer'
+No multidriven combinational pin in 'proj_sorter'
 
-No multidriven sequential pin in 'proj_kmer_buffer'
+No multidriven sequential pin in 'proj_sorter'
 
-No multidriven hierarchical pin in 'proj_kmer_buffer'
+No multidriven hierarchical pin in 'proj_sorter'
 
-No multidriven ports in 'proj_kmer_buffer'
+No multidriven ports in 'proj_sorter'
 
-No multidriven unloaded nets in 'proj_kmer_buffer'
+No multidriven unloaded nets in 'proj_sorter'
 
   Constant Pin(s)
   ----------------
-No constant combinational pin(s) in design 'proj_kmer_buffer'
+No constant combinational pin(s) in design 'proj_sorter'
 
-No constant sequential pin(s) in design 'proj_kmer_buffer'
+No constant sequential pin(s) in design 'proj_sorter'
 
-design 'proj_kmer_buffer' has the following constant input hierarchical pin(s)
-hpin:proj_kmer_buffer/add_31_44/B 	 (fanout : 2)
-hpin:proj_kmer_buffer/mul_103_27/B[2] 	 (fanout : 30)
-hpin:proj_kmer_buffer/mul_103_27/B[1] 	 (fanout : 31)
-hpin:proj_kmer_buffer/mul_103_27/B[0] 	 (fanout : 32)
-hpin:proj_kmer_buffer/add_103_31/B[31] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[30] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[29] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[28] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[27] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[26] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[25] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[24] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[23] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[22] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[21] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[20] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[19] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[18] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[17] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[16] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[15] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[14] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[13] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[12] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[11] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[10] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[9] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[8] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[7] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[6] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[5] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[4] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[3] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[2] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[1] 	 (fanout : 2)
-hpin:proj_kmer_buffer/add_103_31/B[0] 	 (fanout : 2)
-hpin:proj_kmer_buffer/mul_95_35/B[28] 	 (fanout : 3)
-hpin:proj_kmer_buffer/mul_95_35/B[27] 	 (fanout : 10)
-hpin:proj_kmer_buffer/mul_95_35/B[26] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[25] 	 (fanout : 14)
-hpin:proj_kmer_buffer/mul_95_35/B[24] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[23] 	 (fanout : 16)
-hpin:proj_kmer_buffer/mul_95_35/B[22] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[21] 	 (fanout : 18)
-hpin:proj_kmer_buffer/mul_95_35/B[20] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[19] 	 (fanout : 20)
-hpin:proj_kmer_buffer/mul_95_35/B[18] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[17] 	 (fanout : 22)
-hpin:proj_kmer_buffer/mul_95_35/B[16] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[15] 	 (fanout : 24)
-hpin:proj_kmer_buffer/mul_95_35/B[14] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[13] 	 (fanout : 26)
-hpin:proj_kmer_buffer/mul_95_35/B[12] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[11] 	 (fanout : 28)
-hpin:proj_kmer_buffer/mul_95_35/B[10] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[9] 	 (fanout : 30)
-hpin:proj_kmer_buffer/mul_95_35/B[8] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[7] 	 (fanout : 32)
-hpin:proj_kmer_buffer/mul_95_35/B[6] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[5] 	 (fanout : 34)
-hpin:proj_kmer_buffer/mul_95_35/B[4] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[3] 	 (fanout : 36)
-hpin:proj_kmer_buffer/mul_95_35/B[2] 	 (fanout : 5)
-hpin:proj_kmer_buffer/mul_95_35/B[1] 	 (fanout : 38)
-hpin:proj_kmer_buffer/mul_95_35/B[0] 	 (fanout : 34)
-hpin:proj_kmer_buffer/mux_34_40/in_0 	 (fanout : 1)
-hpin:proj_kmer_buffer/mux_34_40/in_1 	 (fanout : 1)
-Total number of constant hierarchical pins in design 'proj_kmer_buffer' : 67
+design 'proj_sorter' has the following constant input hierarchical pin(s)
+hpin:proj_sorter/add_41_35_I2/A[2] 	 (fanout : 1)
+hpin:proj_sorter/add_41_35_I2/A[1] 	 (fanout : 2)
+hpin:proj_sorter/sub_55_43/A[2] 	 (fanout : 2)
+hpin:proj_sorter/sub_55_43/A[1] 	 (fanout : 2)
+hpin:proj_sorter/sub_55_43/A[0] 	 (fanout : 2)
+hpin:proj_sorter/mux_40_68/in_0 	 (fanout : 1)
+hpin:proj_sorter/mux_40_68/in_1 	 (fanout : 1)
+hpin:proj_sorter/mux_40_23/in_0 	 (fanout : 1)
+hpin:proj_sorter/mux_40_23/in_1 	 (fanout : 1)
+hpin:proj_sorter/mux_40_27/in_0 	 (fanout : 1)
+hpin:proj_sorter/mux_40_27/in_1 	 (fanout : 1)
+hpin:proj_sorter/mux_40_29/in_0 	 (fanout : 1)
+hpin:proj_sorter/mux_40_29/in_1 	 (fanout : 1)
+hpin:proj_sorter/mux_67_25/in_0 	 (fanout : 1)
+hpin:proj_sorter/mux_67_25/in_1 	 (fanout : 1)
+Total number of constant hierarchical pins in design 'proj_sorter' : 15
 
-No constant connected ports in design 'proj_kmer_buffer'
+No constant connected ports in design 'proj_sorter'
 
   Preserved instances(s)
   ----------------
-No preserved combinational instance(s) in design 'proj_kmer_buffer'
-No preserved sequential instance(s) in design 'proj_kmer_buffer'
-No preserved hierarchical instance(s) in design 'proj_kmer_buffer'
+No preserved combinational instance(s) in design 'proj_sorter'
+No preserved sequential instance(s) in design 'proj_sorter'
+No preserved hierarchical instance(s) in design 'proj_sorter'
 
   Physical only instances(s)
   ----------------
-No physical only instance(s) in design 'proj_kmer_buffer'
+No physical only instance(s) in design 'proj_sorter'
 
   Logical only instance(s) and linked libcells
     -----------------------------------------
-No logical only instance(s) in design 'proj_kmer_buffer'
+No logical only instance(s) in design 'proj_sorter'
 
 Libcells with no corresponding LEF
 ----------------------------------
@@ -210,7 +160,7 @@ Unresolved References                        0
 Empty Modules                                0
 Unloaded Port(s)                             0
 Unloaded Sequential Pin(s)                   0
-Unloaded Combinational Pin(s)                0
+Unloaded Combinational Pin(s)                1
 Assigns                                      0
 Undriven Port(s)                             0
 Undriven Leaf Pin(s)                         0
@@ -221,7 +171,7 @@ Multidriven hierarchical Pin(s)              0
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
 Constant Leaf Pin(s)                         0
-Constant hierarchical Pin(s)                67
+Constant hierarchical Pin(s)                15
 Preserved leaf instance(s)                   0
 Preserved hierarchical instance(s)           0
 Feedthrough Modules(s)                       0

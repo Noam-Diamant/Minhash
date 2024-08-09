@@ -131,7 +131,7 @@ check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check
 ###################################################################################
 ## Define cost groups
 ###################################################################################
-enics_default_cost_groups
+enics_in2out_cost_groups
 enics_report_timing $design(synthesis_reports)
 
 

@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Thu Aug 08 16:56:56 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Fri Aug 09 09:21:21 UTC 2024
 
 # This file contains the Genus script for design:proj_extender
 
@@ -17,7 +17,7 @@ set_db -quiet db_units 2000
 set_db -quiet capacitance_per_unit_length_mmmc {}
 set_db -quiet resistance_per_unit_length_mmmc {}
 set_db -quiet lp_insert_clock_gating true
-set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 67 0.0 53.999797} {to_generic 5 72 3 58} {first_condense 1 73 0 59} {PBS_Generic_Opt-Post 6 73 3.9963460000000026 58.996143000000004} {{PBS_Generic-Postgen HBO Optimizations} 0 73 0.0 58.996143000000004} {PBS_TechMap-Start 0 81 0.0 66.996143} {{PBS_TechMap-Premap HBO Optimizations} 0 81 0.0 66.996143} {first_condense 1 82 0 68} {reify 1 83 0 69} {global_incr_map 1 84 0 69} {{PBS_Techmap-Global Mapping} 3 84 1.9088589999999925 68.905002} {{PBS_TechMap-Datapath Postmap Operations} 3 87 3.0 71.905002} {{PBS_TechMap-Postmap HBO Optimizations} 0 87 -9.999999974752427e-7 71.905001} {{PBS_TechMap-Postmap Clock Gating} 0 87 0.0 71.905001} {{PBS_TechMap-Postmap Cleanup} 7 94 6.999804999999995 78.904806} {PBS_Techmap-Post_MBCI 0 94 0.0 78.904806} {incr_opt 1 95 0 79} }
+set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 63 0.0 51.999291} {to_generic 4 67 3 55} {first_condense 1 68 0 56} {PBS_Generic_Opt-Post 5 68 3.961902000000002 55.961193} {{PBS_Generic-Postgen HBO Optimizations} 0 68 0.0 55.961193} {PBS_TechMap-Start 0 76 0.0 63.961193} {{PBS_TechMap-Premap HBO Optimizations} 0 76 0.0 63.961193} {first_condense 1 77 0 64} {reify 1 78 0 65} {global_incr_map 0 78 0 65} {{PBS_Techmap-Global Mapping} 2 78 1.8069899999999919 65.768183} {{PBS_TechMap-Datapath Postmap Operations} 2 80 2.0 67.768183} {{PBS_TechMap-Postmap HBO Optimizations} 0 80 -6.999999999379725e-5 67.768113} {{PBS_TechMap-Postmap Clock Gating} 0 80 0.0 67.768113} {{PBS_TechMap-Postmap Cleanup} 8 88 6.999212 74.767325} {PBS_Techmap-Post_MBCI 0 88 0.0 74.767325} {incr_opt 0 88 0 75} }
 set_db -quiet timing_adjust_tns_of_complex_flops false
 set_db -quiet hdl_language sv
 set_db -quiet tinfo_tstamp_file .rs_noaant.tstamp
@@ -26,7 +26,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 08a52327-33ab-423e-b59d-d8e307a46124
+set_db -quiet flow_metrics_snapshot_uuid 0102ed39-b395-430c-af65-20a15acbc7e1
 set_db -quiet detailed_sdc_messages true
 set_db -quiet timing_report_fields {timing_point flags arc edge cell fanout transition delay arrival}
 set_db -quiet syn_generic_effort low
@@ -109,7 +109,7 @@ set_db -quiet dft_scanbit_waveform_analysis false
 set_db -quiet design:proj_extender .seq_reason_deleted_internal {{{frag_parts_idx_reg[-1]} {{constant 0}} {frag_parts_idx[-1]}} {{frag_parts_idx_reg[0]} {{constant 0}} {frag_parts_idx[0]}}}
 set_db -quiet design:proj_extender .max_transition 350.0
 set_db -quiet design:proj_extender .max_fanout 16.000
-set_db -quiet design:proj_extender .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 488} {cell_count 66} {utilization  0.00} {runtime 5 72 3 58} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 348} {cell_count 52} {utilization  0.00} {runtime 1 73 0 59} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 340} {cell_count 50} {utilization  0.00} {runtime 1 82 0 68} }{reify {wns 99} {tns 0} {vep 0} {area 196} {cell_count 46} {utilization  0.00} {runtime 1 83 0 69} }{global_incr_map {wns 46} {tns 0} {vep 0} {area 180} {cell_count 44} {utilization  0.00} {runtime 1 84 0 69} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 180} {cell_count 44} {utilization  0.00} {runtime 1 95 0 79} }}
+set_db -quiet design:proj_extender .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 488} {cell_count 66} {utilization  0.00} {runtime 4 67 3 55} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 348} {cell_count 52} {utilization  0.00} {runtime 1 68 0 56} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 340} {cell_count 50} {utilization  0.00} {runtime 1 77 0 64} }{reify {wns 99} {tns 0} {vep 0} {area 196} {cell_count 46} {utilization  0.00} {runtime 1 78 0 65} }{global_incr_map {wns 46} {tns 0} {vep 0} {area 180} {cell_count 44} {utilization  0.00} {runtime 0 78 0 65} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 180} {cell_count 44} {utilization  0.00} {runtime 0 88 0 75} }}
 set_db -quiet design:proj_extender .seq_mbci_coverage 0.0
 set_db -quiet design:proj_extender .hdl_filelist {{default {-sv -f} {SYNTHESIS} {/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/../dut_src_list.txt} {} {}}}
 set_db -quiet design:proj_extender .hdl_user_name proj_extender
@@ -512,7 +512,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 16:56:58 08-Aug 2024
+## Written on 09:21:22 09-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -567,7 +567,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 08a52327-33ab-423e-b59d-d8e307a46124}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 0102ed39-b395-430c-af65-20a15acbc7e1}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

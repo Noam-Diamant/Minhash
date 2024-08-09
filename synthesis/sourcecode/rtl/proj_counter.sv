@@ -3,7 +3,7 @@
 module proj_counter
 #(
     // Size of each buffer in the FM
-    parameter FM_BUFFER_SIZE = 8
+    parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE
 )
 (
     // Output data

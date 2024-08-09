@@ -1,6 +1,6 @@
 #################################################################################
 #
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Thu Aug 08 11:23:21 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Fri Aug 09 12:47:31 UTC 2024
 #
 #################################################################################
 
@@ -43,7 +43,7 @@ create_delay_corner -name default_emulate_delay_corner \
 
 ## constraint_mode
 create_constraint_mode -name default_emulate_constraint_mode \
-    -sdc_files { /data/project/tsmc65/users/itaerg/ws/Final-Project/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.default_emulate_constraint_mode.sdc }
+    -sdc_files { /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/post_elaboartion/proj_sorter.default_emulate_constraint_mode.sdc }
 
 ## analysis_view
 create_analysis_view -name default_emulate_view \
