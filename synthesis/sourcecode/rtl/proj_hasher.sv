@@ -2,9 +2,9 @@
 
 module proj_hasher
   #(
-    parameter KMER_LEN = 4,            // proj_pkg::KMER_LEN
-    parameter DATA_BITS = 2,           // proj_pkg::BASE_LEN
-    parameter HASHER_DATA_BITS = 32    // proj_pkg::HASHER_SORTER_SIGNATURE
+    parameter KMER_LEN = proj_pkg::KMER_LEN,
+    parameter DATA_BITS = proj_pkg::BASE_LEN,
+    parameter HASHER_DATA_BITS = proj_pkg::HASHER_SORTER_SIGNATURE
   )(
     input  wire                        clk,    // Clock signal
     input  wire                        rst_n,  // Reset signal (active low)

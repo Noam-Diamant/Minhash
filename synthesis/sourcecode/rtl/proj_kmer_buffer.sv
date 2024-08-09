@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
 
 module proj_kmer_buffer #(
-    parameter DATA_BITS = 2,    // proj_pkg::KMER_BUFFER_BITS (which is equal to BASE_LEN)
-    //parameter KMER_LEN = 4,     // proj_pkg::KMER_BUFFER_LEN
-    parameter OUT_KMER = 8      // KMER_LEN * DATA_BITS = 4 * 2
-
-    parameter KMER_LEN = 16,            // proj_pkg::KMER_LEN
-    parameter HASHER_DATA_BITS = 32    // proj_pkg::HASHER_SORTER_SIGNATURE
+    parameter DATA_BITS = proj_pkg::KMER_BUFFER_BITS,    // Number of bits for each nucleotide
+    parameter KMER_LEN = proj_pkg::KMER_BUFFER_LEN,    // Length of the k-mer
+    parameter OUT_KMER = KMER_LEN * DATA_BITS  // Total bits in the output k-mer
+    parameter HASHER_DATA_BITS = proj_pkg::HASHER_SORTER_SIGNATURE
 )(
     input wire clk,             // Clock input
     input wire rst_n,           // Active-low reset

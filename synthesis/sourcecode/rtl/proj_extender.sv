@@ -6,16 +6,16 @@
 
 // Module declaration with parameters
 module proj_extender #(
-    parameter FRAG_LEN_BITS = 8,
-    parameter FRAG_SIZE = 8,
-    parameter KMER_SIZE = 4,
-    parameter INDICES_COUNT = 4,
-    parameter INDICE_LEN = 3,
-    parameter SIGNED_INDICE_LEN = 4,
-    parameter FRAG_PART_ONE_HOT = 8,
-    parameter BASE_LEN = 2,
-    parameter ONE_HOT_LEN = 4,
-    parameter FRAG_PART = 4
+    parameter FRAG_LEN_BITS = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS,
+    parameter FRAG_SIZE = proj_pkg::FRAG_LEN,
+    parameter KMER_SIZE = proj_pkg::KMER_LEN,
+    parameter INDICES_COUNT = proj_pkg::SORTER_EXTENDER_INDICES_COUNT,
+    parameter INDICE_LEN = proj_pkg::INDICE_LEN,
+    parameter SIGNED_INDICE_LEN = proj_pkg::SIGNED_INDICE_LEN,
+    parameter FRAG_PART_ONE_HOT = proj_pkg::EXTENDER_OUT_PART_LEN_ONE_HOT,
+    parameter BASE_LEN = proj_pkg::BASE_LEN,
+    parameter ONE_HOT_LEN = proj_pkg::ONE_HOT_LEN,
+    parameter FRAG_PART = proj_pkg::EXTENDER_OUT_PART_LEN
 )(
     // Input ports
     input logic [FRAG_LEN_BITS-1:0] in_fragment,
