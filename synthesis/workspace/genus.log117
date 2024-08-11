@@ -1,0 +1,2907 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[13:48:02.206225] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Sun Aug 11 13:48:02 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     26598
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[13:48:02.271643] Periodic Lic check successful
+[13:48:02.271672] Feature usage summary:
+[13:48:02.271673] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (15 seconds elapsed).
+
+WARNING: This version of the tool is 688 days old.
+@genus:root: 1> source ../scripts/genus_extender.tcl
+Sourcing '../scripts/genus_extender.tcl' (Sun Aug 11 13:48:27 UTC 2024)...
+#@ Begin verbose source ../scripts/genus_extender.tcl
+@file(genus_extender.tcl) 2: set debug_file "debug.txt"
+@file(genus_extender.tcl) 3: set design(TOPLEVEL) "proj_extender" 
+@file(genus_extender.tcl) 4: set runtype "synthesis"
+@file(genus_extender.tcl) 7: set mmmc_or_simple "simple"; # "simple" - using "read_libs"
+@file(genus_extender.tcl) 9: set phys_synth_type "lef" ;  # "none"   - don't read any physical data
+@file(genus_extender.tcl) 15: source ../scripts/procedures.tcl -quiet
+@file(genus_extender.tcl) 16: enics_start_stage "start"
+*****************************************
+*****************************************
+**   ENICSINFO: Starting stage start   **
+*****************************************
+*****************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: This session is running on Hostname : ip-10-0-112-224.eu-central-1.compute.internal
+ENICSINFO: The log file is genus.log117 and the command file is genus.cmd117
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 20: source ../inputs/proj.defines -quiet
+@file(genus_extender.tcl) 23: source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'design_process_node' = 65
+@file(genus_extender.tcl) 24: source ../inputs/libraries.$SC_TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'route_design_with_via_in_pin' = true
+@file(genus_extender.tcl) 25: source ../inputs/libraries.$SRAM_TECHNOLOGY.tcl -quiet
+@file(genus_extender.tcl) 26: if {$design(FULLCHIP_OR_MACRO)=="FULLCHIP"} {
+    source ../inputs/libraries.$IO_TECHNOLOGY.tcl -quiet
+}
+@file(genus_extender.tcl) 34: set df [open $debug_file a]
+@file(genus_extender.tcl) 35: puts $df "\n******************************************"
+@file(genus_extender.tcl) 36: puts $df "* Debug values after everything was loaded *"
+@file(genus_extender.tcl) 37: puts $df "******************************************"
+@file(genus_extender.tcl) 38: foreach dic {paths tech tech_files design} {
+    foreach key [array names $dic] {
+        puts $df "${dic}(${key}) = \t[set ${dic}([set key])]"
+    }
+}
+@file(genus_extender.tcl) 44: close $df
+@file(genus_extender.tcl) 50: set_db source_verbose true ; # Sourcing files will be reported as verbose
+  Setting attribute of root '/': 'source_verbose' = true
+@file(genus_extender.tcl) 51: set_db information_level 9 ; # The log file will report everything
+  Setting attribute of root '/': 'information_level' = 9
+@file(genus_extender.tcl) 52: suppress_messages "PHYS-90"
+  Setting attribute of message 'PHYS-90': 'max_print' = 0
+@file(genus_extender.tcl) 57: enics_start_stage "init_design"
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage init_design   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 59: if {$mmmc_or_simple=="mmmc"} {
+    read_mmmc $design(mmmc_view_file)
+} else {
+    set_db init_lib_search_path $paths(LIB_paths) 
+    suppress_messages $tech(SC_LIB_SUPPRESS_MESSAGES_GENUS)
+    read_libs $tech_files(ALL_WC_LIBS)
+}
+  Setting attribute of root '/': 'init_lib_search_path' = /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/
+  Setting attribute of message 'LBR-9': 'max_print' = 0
+  Setting attribute of message 'LBR-76': 'max_print' = 0
+  Setting attribute of message 'LBR-40': 'max_print' = 0
+  Setting attribute of message 'LBR-436': 'max_print' = 0
+  Setting attribute of message 'LBR-170': 'max_print' = 0
+
+Threads Configured:2
+
+  Message Summary for Library all 3 libraries:
+  ********************************************
+  An unsupported construct was detected in this library. [LBR-40]: 258
+  ********************************************
+ 
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'.
+@file(genus_extender.tcl) 67: suppress_messages "LBR-415"
+  Setting attribute of message 'LBR-415': 'max_print' = 0
+@file(genus_extender.tcl) 72: if {$phys_synth_type == "none"} {
+   enics_message "Physical Synthesis is disabled"
+   read_qrc $tech_files(QRCTECH_FILE_WC)
+} else {
+    suppress_messages $tech(SC_LEF_SUPPRESS_MESSAGES_GENUS)
+    read_physical -lef $tech_files(ALL_LEFS)
+    if {$phys_synth_type == "floorplan"} { 
+        # You need to read a .def file for the floorplan to enable physical synthesis 
+        read_def $design(floorplan_def)
+    }
+}
+  Setting attribute of message 'PHYS-279': 'max_print' = 0
+  Setting attribute of message 'PHYS-129': 'max_print' = 0
+  Setting attribute of message 'PHYS-15': 'max_print' = 0
+  Setting attribute of message 'PHYS-12': 'max_print' = 0
+  Setting attribute of message 'LBR-162': 'max_print' = 0
+  Setting attribute of message 'LBR-155': 'max_print' = 0
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lef/sc9_cln65lp_base_lvt.lef' is ignored.
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lef/sc9_cln65lp_base_hvt.lef' is ignored.
+
+  According to lef_library, there are total 10 routing layers [ V(5) / H(5) ]
+
+Info    : Setting the maximum print count of this message to 10 if information_level is less than 9. [LBR-161]
+        : To print all the warning messages, set the information_level to 9.
+  Libraries have 1950 usable logic and 582 usable sequential lib-cells.
+@file(genus_extender.tcl) 87: enics_start_stage "read_rtl"
+********************************************
+********************************************
+**   ENICSINFO: Starting stage read_rtl   **
+********************************************
+********************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 89: set_db init_hdl_search_path $design(hdl_search_paths)
+  Setting attribute of root '/': 'init_hdl_search_path' = . /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl
+@file(genus_extender.tcl) 90: set_db hdl_language v2001 -quiet
+@file(genus_extender.tcl) 93: suppress_messages "CDFG-250"
+  Setting attribute of message 'CDFG-250': 'max_print' = 0
+@file(genus_extender.tcl) 95: suppress_messages "CWD-19 CWD-36"
+  Setting attribute of message 'CWD-19': 'max_print' = 0
+  Setting attribute of message 'CWD-36': 'max_print' = 0
+@file(genus_extender.tcl) 97: suppress_messages "CDFG-771"
+  Setting attribute of message 'CDFG-771': 'max_print' = 0
+@file(genus_extender.tcl) 98: read_hdl -language sv -f $design(read_hdl_list)
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_pkg.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_sorter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_top.sv'
+@file(genus_extender.tcl) 103: enics_start_stage "elaborate"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage elaborate   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 105: set_db hdl_track_filename_row_col true -quiet; # helps with debug
+Info   : Enabled hdl_track_filename_row_col attribute.
+       : Setting this attribute to 'true' can have an impact on the run time. Use this attribute only when filename, line number, and column information are needed in reports.
+@file(genus_extender.tcl) 106: set_db lp_insert_clock_gating true 
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+@file(genus_extender.tcl) 108: elaborate $design(TOPLEVEL) ;#-update
+                  INLINE_INFO: Skipping marking small hierarchies inline as the variable 'hdl_dissolve_primitive_instance_hierarchy_threshold' has not been set to a positive value.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'proj_extender' from file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'proj_extender' with default parameters value.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'default' in module 'proj_extender' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv' on line 58.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'default' in module 'proj_extender' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv' on line 58.
+Info    : Optimized the MUX created for array read / write or variable shifter. [CDFG-893]
+        : Optimized mux for Array Read for variable 'N122' at line 53 col 24, in Module 'proj_extender' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv' on line 53.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'proj_extender'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+--------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |         0.00 | 
+--------------------------------------------------------
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: proj_extender, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: proj_extender, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_elab
+---------------------------------------------------------
+| Transform          | Accepts | Rejects | Runtime (ms) | 
+---------------------------------------------------------
+| hlo_clip_mux_input |       0 |       0 |         0.00 | 
+| hlo_clip           |       0 |       0 |         0.00 | 
+---------------------------------------------------------
+        Computing net loads.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(genus_extender.tcl) 110: enics_start_stage "post_elaboration"
+****************************************************
+****************************************************
+**   ENICSINFO: Starting stage post_elaboration   **
+****************************************************
+****************************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 112: check_design -unresolved
+
+
+ 	 Check Design Report (c)
+	 ------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_extender'
+
+No empty modules in design 'proj_extender'
+
+  Done Checking the design.
+@file(genus_extender.tcl) 113: check_design -all > $design(synthesis_reports)/post_elaboration/check_design_post_elab.rpt
+
+@file(genus_extender.tcl) 114: if {[check_design -status]} {
+    Puts "ENICSINFO: ############# There is an issue with check_design. You better look at it! ###########"
+}
+@file(genus_extender.tcl) 118: write_design -base_name $design(export_dir)/post_elaboartion/$design(TOPLEVEL)
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Warning : The design is not fully mapped. [PHYS-93]
+        : The original design intent derived from the RTL may no longer be available upon restoration.
+Exporting design data for 'proj_extender' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_elaboartion/proj_extender...
+%# Begin write_design (08/11 13:48:49, mem=4899.51M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_elaboartion/proj_extender.mmmc.tcl has been written.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+Finished SDC export (command execution time mm:ss (real) = 00:02).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_elaboartion/proj_extender.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_elaboartion/proj_extender.default_emulate_constraint_mode.sdc has been written
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_elaboartion/proj_extender.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_extender' (command execution time mm:ss cpu = 00:01, real = 00:02).
+.
+%# End write_design (08/11 13:48:51, total cpu=08:00:01, real=08:00:02, peak res=787.00M, current mem=4899.51M)
+@file(genus_extender.tcl) 126: set_db detailed_sdc_messages true ; # helps read_sdc debug
+  Setting attribute of root '/': 'detailed_sdc_messages' = true
+@file(genus_extender.tcl) 127: read_sdc $design(functional_sdc) -stop_on_errors 
+            Reading file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../inputs/proj.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      4 , failed      0 (runtime  0.01)
+ "all_outputs"              - successful      3 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.01)
+ "current_design"           - successful      2 , failed      0 (runtime  0.01)
+ "get_lib_pins"             - successful      1 , failed      0 (runtime  0.02)
+ "get_ports"                - successful      3 , failed      0 (runtime  0.01)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.01)
+ "set_ideal_network"        - successful      2 , failed      0 (runtime  0.01)
+ "set_input_delay"          - successful      1 , failed      0 (runtime  0.01)
+ "set_input_transition"     - successful      1 , failed      0 (runtime  0.01)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.01)
+ "set_max_delay"            - successful      1 , failed      0 (runtime  0.00)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.01)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.00)
+ "set_output_delay"         - successful      1 , failed      0 (runtime  0.00)
+read_sdc completed in 00:00:01 (hh:mm:ss)
+@file(genus_extender.tcl) 128: check_timing_intent
+        Computing net loads.
+        Tracing clock networks.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:48:52 pm
+  Module:                 proj_extender
+  Technology libraries:   sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c 1
+                          physical_cells 
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+
+@file(genus_extender.tcl) 129: check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
+@file(genus_extender.tcl) 134: enics_default_cost_groups
+@file(genus_extender.tcl) 135: enics_report_timing $design(synthesis_reports)
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing arrivals and requireds.
+@file(genus_extender.tcl) 142: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_min_flops 8
+  Setting attribute of design 'proj_extender': 'lp_clock_gating_min_flops' = 8
+@file(genus_extender.tcl) 143: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_style latch 
+  Setting attribute of design 'proj_extender': 'lp_clock_gating_style' = latch
+@file(genus_extender.tcl) 148: enics_start_stage "synthesis"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage synthesis   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 151: set_db syn_generic_effort low
+  Setting attribute of root '/': 'syn_generic_effort' = low
+@file(genus_extender.tcl) 152: set_db syn_map_effort low
+  Setting attribute of root '/': 'syn_map_effort' = low
+@file(genus_extender.tcl) 153: set_db syn_opt_effort low
+  Setting attribute of root '/': 'syn_opt_effort' = low
+@file(genus_extender.tcl) 154: suppress_messages "ST-110 ST-112"
+  Setting attribute of message 'ST-110': 'max_print' = 0
+  Setting attribute of message 'ST-112': 'max_print' = 0
+@file(genus_extender.tcl) 156: if {$phys_synth_type == "floorplan"} {
+    # Synthesize to generics and place generics in floorplan
+    enics_start_stage "syn_generic"
+    syn_generic -physical
+    # Map to technology
+    enics_start_stage "technology_mapping"
+    syn_map -physical
+    enics_report_timing $design(synthesis_reports) 
+    # Post synthesis optimization
+    enics_start_stage "post_syn_opt"
+    syn_opt -physical
+} else {
+    # Synthesize to generics (non physical-aware)
+    enics_start_stage "syn_generic"
+    syn_generic 
+    # Map to technology (non physical-aware)
+    enics_start_stage "technology_mapping"
+    syn_map 
+    enics_report_timing $design(synthesis_reports)
+    enics_start_stage "post_syn_opt"
+    if {$phys_synth_type == "lef"} {
+        syn_opt
+    } else {
+        syn_opt 
+    }
+}
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage syn_generic   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 11/08/2024 13:48
+ENICSINFO: ----------------------------------
+      Running additional step before syn_gen...
+
+
+Stage: pre_early_cg
+------------------------------------------------
+| Transform | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------
+------------------------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_extender, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'proj_extender' to generic gates using 'low' effort.
+PBS_Generic-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+TNS Restructuring config: no_value at stage: generic applied.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_extender, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.001s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         1.00 | 
+------------------------------------------------------
+Starting mux data reorder optimization [v1.0] (stage: post_to_gen_setup, startdef: proj_extender, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: pre_hlo_rtlopt
+--------------------------------------------
+| Trick | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------
+--------------------------------------------
+Starting infer macro optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed infer macro optimization (accepts: 0, rejects: 2, runtime: 0.000s)
+Starting decode mux sandwich optimization [v2.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed decode mux sandwich optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting decode mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed decode mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chop wide muxes [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed chop wide muxes (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting constant-data mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed constant-data mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chain-to-tree inequality transform [v2.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed chain-to-tree inequality transform (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting reconvergence optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed reconvergence optimization (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting logic restructure optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed logic restructure optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common select mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed common select mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting identity transform [v3.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed identity transform (accepts: 0, rejects: 1, runtime: 0.000s)
+Starting reduce operator chain [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed reduce operator chain (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting optimize datapath elements [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed optimize datapath elements (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting datapath recasting [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed datapath recasting (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip mux common data inputs [v1.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: pre_rtlopt, startdef: proj_extender, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_rtlopt
+----------------------------------------------------------------
+| Transform                 | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------------
+| hlo_infer_macro           |       0 |       2 |         0.00 | 
+| hlo_decode_mux_sandwich   |       0 |       0 |         0.00 | 
+| hlo_mux_decode            |       0 |       0 |         0.00 | 
+| hlo_chop_mux              |       0 |       0 |         0.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         0.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         0.00 | 
+| hlo_constant_mux_opt      |       0 |       0 |         0.00 | 
+| hlo_inequality_transform  |       0 |       0 |         1.00 | 
+| hlo_reconv_opt            |       0 |       0 |         1.00 | 
+| hlo_restructure           |       0 |       0 |         0.00 | 
+| hlo_common_select_muxopto |       0 |       0 |         0.00 | 
+| hlo_identity_transform    |       0 |       1 |         0.00 | 
+| hlo_reduce_operator_chain |       0 |       0 |         0.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         0.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         1.00 | 
+| hlo_optimize_datapath     |       0 |       0 |         1.00 | 
+| hlo_datapath_recast       |       0 |       0 |         0.00 | 
+| hlo_clip_mux_input        |       0 |       0 |         0.00 | 
+| hlo_clip                  |       0 |       0 |         0.00 | 
+----------------------------------------------------------------
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_hlo_rtlopt
+--------------------------------------------------
+| Trick       | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------
+| ume_runtime |       0 |       0 |         0.00 | 
+--------------------------------------------------
+Number of big hc bmuxes before = 0
+              Info: total 3 bmuxes found, 3 are converted to onehot form, and 0 are kept as binary form
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : Pre-processing optimizations applied to datapath logic in 'proj_extender':
+          live_trim(1) 
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'proj_extender'.
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_1'
+CSAGen Prep Share:0 Re-Write:0 Speculation: 0
+    MaxCSA: weighted_instance_count is 16 
+MaxCSA: Successfully built Maximal CSA Expression Expr0
+CDN_DP_region_0_1 level = 0 loads = 0 drivers = 0
+CDN_DP_region_0_1_c0 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = slow         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ skipped
+CDN_DP_region_0_1_c1 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = fast         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c2 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c3 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c4 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c5 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c6 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c7 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+Best config: CDN_DP_region_0_1_c7 in proj_extender: area: 719086536 ,dp = 1 mux = 1 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+  Smallest config area : 719086536.  Fastest config wns;  0
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Summary table of configs (Best config is CDN_DP_region_0_1_c7)
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>                     0                  1                  2                  3                  4                  5                  6                  7            
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>           Area        719086536          719086536          719086536          719086536          719086536          719086536          719086536          719086536  
+##>            WNS         +6977.30           +6977.30           +6977.30           +6977.30           +6977.30           +6977.30           +6977.30           +6977.30  
+##>            TNS                0                  0                  0                  0                  0                  0                  0                  0  
+##>    Num Rewrite                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Num Factor                0                  0                  0                  0                  0                  0                  0                  0  
+##>      Num Share                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num CmultCse                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num Downsize                0                  0                  0                  0                  0                  0                  0                  0  
+##>  Num Speculate                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Runtime(s)                0                  0                  0                  0                  0                  0                  0                  0  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>
+##>
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Optimization Step DEBUG Table for config CDN_DP_region_0_1_c7
+##>
+##>                          Step                        Area   ( % Chg)        WNS (Change)        TNS (Change)          Runtime (s)        Comment                   
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>EquationExtraction              START              719086536 (      )     6977.30 (        )             0 (        )              
+##> rewrite                        START             1117710594 (+55.43)     6860.50 ( -116.80)             0 (       0)              (a,ar) Expr0_from --> Expr0_to
+##>                                  END             1680473970 (+50.35)     6869.00 (   +8.50)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##> speculate_in_gdef              START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>  pre_speculate_mux_merge       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>canonicalize_by_names           START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_csa_one_  START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>datapath_csa_factoring_one_gde  START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>dpopt_share_one_def             START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_share     START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>dp_combine_const_mult_with_com  START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>dp_operator_level_decompositio  START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>selective_flatten_dp_config     START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##> speculate_in_gdef              START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>  pre_speculate_mux_merge       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>context_based_simplify          START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>group_csa_final_adder_dp        START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>dpopt_flatten_critical_muxes_i  START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>create_score                    START              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)              
+##>                                  END              719086536 ( +0.00)     6977.30 (   +0.00)             0 (       0)           0  
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Committed config: CDN_DP_region_0_1_c7
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 7 for module 'CDN_DP_region_0_1_c7'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_0'
+CSAGen Prep Share:0 Re-Write:0 Speculation: 0
+    MaxCSA: weighted_instance_count is 2 
+MaxCSA: Successfully built Maximal CSA Expression Expr1
+    MaxCSA: weighted_instance_count is 4 
+MaxCSA: Successfully built Maximal CSA Expression Expr2
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c7' to a form more suitable for further optimization.
+      Timing increment_unsigned...
+        Done timing increment_unsigned.
+      Timing increment_unsigned_25...
+        Done timing increment_unsigned_25.
+      Timing increment_unsigned_25_32...
+        Done timing increment_unsigned_25_32.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c1' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_43...
+        Done timing increment_unsigned_25_43.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c2' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_54...
+        Done timing increment_unsigned_25_54.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c3' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_65...
+        Done timing increment_unsigned_25_65.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c4' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_76...
+        Done timing increment_unsigned_25_76.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c5' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_87...
+        Done timing increment_unsigned_25_87.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c6' to a form more suitable for further optimization.
+      Timing increment_unsigned_25_98...
+        Done timing increment_unsigned_25_98.
+CDN_DP_region_0_0 level = 0 loads = 0 drivers = 0
+CDN_DP_region_0_0_c0 in proj_extender: area: 273565530 ,dp = 2 mux = 3 sg = slow         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ skipped
+CDN_DP_region_0_0_c1 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = fast         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c2 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c3 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c4 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c5 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c6 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c7 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+Best config: CDN_DP_region_0_0_c7 in proj_extender: area: 218852424 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+  Smallest config area : 218852424.  Fastest config wns;  0
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Summary table of configs (Best config is CDN_DP_region_0_0_c7)
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>                     0                  1                  2                  3                  4                  5                  6                  7            
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>           Area        273565530          218852424          218852424          218852424          218852424          218852424          218852424          218852424  
+##>            WNS         +4548.40           +4548.40           +4548.40           +4548.40           +4548.40           +4548.40           +4548.40           +4548.40  
+##>            TNS                0                  0                  0                  0                  0                  0                  0                  0  
+##>    Num Rewrite                0                  1                  1                  1                  1                  1                  1                  1  
+##>     Num Factor                0                  0                  0                  0                  0                  0                  0                  0  
+##>      Num Share                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num CmultCse                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num Downsize                0                  0                  0                  0                  0                  0                  0                  0  
+##>  Num Speculate                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Runtime(s)                0                  0                  0                  0                  0                  0                  0                  0  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>
+##>
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Optimization Step DEBUG Table for config CDN_DP_region_0_0_c7
+##>
+##>                          Step                        Area   ( % Chg)        WNS (Change)        TNS (Change)          Runtime (s)        Comment                   
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>EquationExtraction              START              273565530 (      )     4548.40 (        )             0 (        )              
+##> rewrite                        START              320462478 (+17.14)     4535.50 (  -12.90)             0 (       0)              (a,ar) Expr1_from --> Expr1_to
+##>                                  END              343910952 ( +7.32)     4535.50 (   +0.00)             0 (       0)           0  
+##> rewrite                        START              343910952 ( +0.00)     4535.50 (   +0.00)             0 (       0)              (a,ar) Expr2_from --> Expr2_to
+##>                                  END              429888690 (+25.00)     4535.50 (   +0.00)             0 (       0)           0  
+##>                                  END              273565530 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START              273565530 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START              273565530 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>  rewrite                       START              273565530 ( +0.00)     4548.40 (   +0.00)             0 (       0)              (a,csaa) inc_with_select --> inc_ci
+##>                                  END              234484740 (-14.29)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 (-14.29)     4548.40 (   +0.00)             0 (       0)           0  
+##> speculate_in_gdef              START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>  pre_speculate_mux_merge       START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 (-14.29)     4548.40 (   +0.00)             0 (       0)           0  
+##>canonicalize_by_names           START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_csa_one_  START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>datapath_csa_factoring_one_gde  START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>dpopt_share_one_def             START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_share     START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>dp_combine_const_mult_with_com  START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>dp_operator_level_decompositio  START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>selective_flatten_dp_config     START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##> speculate_in_gdef              START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>  pre_speculate_mux_merge       START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              234484740 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>context_based_simplify          START              226668582 ( -3.33)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              218852424 ( -3.45)     4548.40 (   +0.00)             0 (       0)           0  
+##>group_csa_final_adder_dp        START              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>dpopt_flatten_critical_muxes_i  START              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>                                  END              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>create_score                    START              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)              
+##>                                  END              218852424 ( +0.00)     4548.40 (   +0.00)             0 (       0)           0  
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Committed config: CDN_DP_region_0_0_c7
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 7 for module 'CDN_DP_region_0_0_c7'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(1), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info:  Ungrouped 0 dp-cluster instances.  0 cluster instances were left intact, to aid verification.
+              Prepare netlist for verification ...
+              Prepare netlist for verification Done.
+Info    : Done optimizing datapath logic. [DPOPT-2]
+        : Done optimizing datapath logic in 'proj_extender'.
+      Removing temporary intermediate hierarchies under proj_extender
+Number of big hc bmuxes after = 0
+Starting logic reduction [v1.0] (stage: post_rtlopt, startdef: proj_extender, recur: true)
+Completed logic reduction (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux data reorder optimization [v1.0] (stage: post_rtlopt, startdef: proj_extender, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.001s)
+
+Stage: post_rtlopt
+----------------------------------------------------------
+| Transform           | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------
+| hlo_logic_reduction |       0 |       0 |         0.00 | 
+| hlo_mux_reorder     |       0 |       0 |         1.00 | 
+----------------------------------------------------------
+              Optimizing muxes in design 'proj_extender'.
+              Post blast muxes in design 'proj_extender'.
+Starting mux speculation [v1.0] (stage: post_muxopt, startdef: proj_extender, recur: true)
+Starting speculation optimization
+Completed speculation optimization (accepts:0)
+Completed mux speculation (accepts: 0, rejects: 0, runtime: 0.015s)
+
+Stage: post_muxopt
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_speculation |       0 |       0 |        15.00 | 
+------------------------------------------------------
+==================================
+Stage : to_generic 
+==================================
+  =================
+   Message Summary
+  =================
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|    Id     |  Sev   |Count |                                                                                                Message Text                                                                                                 |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| CDFG-472  |Warning |    2 |Unreachable statements for case item.                                                                                                                                                                        |
+| CDFG-818  |Warning |    1 |Using default parameter value for module elaboration.                                                                                                                                                        |
+| CDFG-893  |Info    |    1 |Optimized the MUX created for array read / write or variable shifter.                                                                                                                                        |
+| DPOPT-1   |Info    |    1 |Optimizing datapath logic.                                                                                                                                                                                   |
+| DPOPT-2   |Info    |    1 |Done optimizing datapath logic.                                                                                                                                                                              |
+| DPOPT-3   |Info    |    2 |Implementing datapath configurations.                                                                                                                                                                        |
+| DPOPT-4   |Info    |    2 |Done implementing datapath configurations.                                                                                                                                                                   |
+| DPOPT-6   |Info    |    1 |Pre-processed datapath logic.                                                                                                                                                                                |
+| ELAB-1    |Info    |    1 |Elaborating Design.                                                                                                                                                                                          |
+| ELAB-3    |Info    |    1 |Done Elaborating Design.                                                                                                                                                                                     |
+| LBR-161   |Info    |    1 |Setting the maximum print count of this message to 10 if information_level is less than 9.                                                                                                                   |
+| LBR-412   |Info    |    3 |Created nominal operating condition.                                                                                                                                                                         |
+|           |        |      |The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively)                              |
+|           |        |      | , or by the default PVT values (1.0,1.0,1.0).                                                                                                                                                               |
+| PHYS-93   |Warning |    1 |The design is not fully mapped.                                                                                                                                                                              |
+|           |        |      |The original design intent derived from the RTL may no longer be available upon restoration.                                                                                                                 |
+| PHYS-106  |Warning |    2 |Site already defined before, duplicated site will be ignored.                                                                                                                                                |
+| PHYS-752  |Info    |    1 |Partition Based Synthesis execution skipped.                                                                                                                                                                 |
+| RTLOPT-40 |Info    |    7 |Transformed datapath macro.                                                                                                                                                                                  |
+| SYNTH-1   |Info    |    1 |Synthesizing.                                                                                                                                                                                                |
+| TIM-1000  |Info    |    1 |Multimode clock gating check is disabled.                                                                                                                                                                    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+      Mapping 'proj_extender'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'inc_ADD_UNS_OP' of datapath component 'increment_unsigned_25_32'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'inc_add_49_77' of datapath component 'increment_unsigned_27'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'sub_72_43' of datapath component 'sub_unsigned_rtlopto_model_2'.
+Inserting clock-gating logic .....
+        
+        New clock gate fanout statistics
+        =================================================
+        Fanout Size           Num CGs     Total FFs 
+        -------------------------------------------------
+        16 to 63                  1       28
+        =================================================
+
+Info    : Could not find any user created clock-gating module. [POPT-12]
+        : Looking for Integrated clock-gating cell in library.
+Clock Gating Status
+===================
+Category                                Number    Percentage
+------------------------------------------------------------------
+Gated flip-flops                        28		 91%
+Ungated flip-flops
+  Cannot map to requested logic         0		  0%
+  Enable signal is constant             2		  6%
+  Excluded from clock-gating            0		  0%
+  User preserved                        0		  0%
+  Libcell unusable                      0		  0%
+  Timing exception in enable logic      0		  0%
+  Register bank width too small         1		  3%
+Total flip-flops                        31		100%
+Total CG Modules                        1
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+        : This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false.
+    Automatically cost grouped 2 clock gate paths.
+          Analyzing hierarchical boundaries
+          Aggressive hierarchical optimization: disabled
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) proj_extender...
+          Done structuring (delay-based) proj_extender
+Multi-threaded Virtual Mapping    (2 threads, 2 of 2 CPUs usable)
+          Structuring (delay-based) logic partition in proj_extender...
+          Done structuring (delay-based) logic partition in proj_extender
+        Mapping logic partition in proj_extender...
+          Structuring (delay-based) logic partition in proj_extender...
+          Done structuring (delay-based) logic partition in proj_extender
+        Mapping logic partition in proj_extender...
+==================================
+Stage : first_condense 
+==================================
+  =================
+   Message Summary
+  =================
+-------------------------------------------------------------------------------------------------------------------------
+|   Id    |Sev  |Count |                                         Message Text                                           |
+-------------------------------------------------------------------------------------------------------------------------
+| GB-6    |Info |    3 |A datapath component has been ungrouped.                                                        |
+| POPT-12 |Info |    1 |Could not find any user created clock-gating module.                                            |
+|         |     |      |Looking for Integrated clock-gating cell in library.                                            |
+| POPT-96 |Info |    1 |One or more cost groups were automatically created for clock gate enable paths.                 |
+|         |     |      |This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false. |
+-------------------------------------------------------------------------------------------------------------------------
+ 
+Global mapping target info
+==========================
+Cost Group 'reg2out' target slack:   238 ps
+Target path end-point (Port: proj_extender/out_index[6])
+
+          Pin                      Type          Fanout Load Arrival   
+                                                        (fF)   (ps)    
+-----------------------------------------------------------------------
+(clock clk)              <<<  launch                               0 R 
+cb_seqi
+  indices_idx_reg[1]/clk                                               
+  indices_idx_reg[1]/q   (u)  unmapped_d_flop         6 22.2           
+cb_seqi/g114_in_0 
+cb_oseqi/cb_seqi_g114_in_0 
+  g310/in_1                                                            
+  g310/z                 (u)  unmapped_nand2          7 26.6           
+  g276/in_0                                                            
+  g276/z                 (u)  unmapped_complex2       1  3.8           
+  g277/in_3                                                            
+  g277/z                 (u)  unmapped_nand4          4 14.8           
+  g243/in_0                                                            
+  g243/z                 (u)  unmapped_or3            5 18.5           
+  g233/in_1                                                            
+  g233/z                 (u)  unmapped_or2            2  7.4           
+  g228/in_0                                                            
+  g228/z                 (u)  unmapped_or2            1  3.7           
+  g229/in_1                                                            
+  g229/z                 (u)  unmapped_nand2          1  4.9           
+cb_oseqi/out_index[6] 
+out_index[6]             <<<  interconnect                             
+                              out port                                 
+(proj.sdc_line_17_45_1)       ext delay                                
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                   capture                          10000 R 
+                              uncertainty                              
+-----------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/indices_idx_reg[1]/clk
+End-point    : out_index[6]
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 6114ps.
+ 
+Cost Group 'in2out' target slack:   148 ps
+Target path end-point (Port: proj_extender/out_gfm[3])
+
+         Pin                     Type        Fanout Load Arrival  
+                                                    (fF)   (ps)   
+------------------------------------------------------------------
+(proj.sdc_line_15_10_1)      ext delay                            
+in_fragment[5]          (u)  in port              1  3.8          
+cb_oseqi/in_fragment[5] 
+  g299/in_0                                                       
+  g299/z                (u)  unmapped_nand2       1  3.7          
+  g300/in_1                                                       
+  g300/z                (u)  unmapped_nand2       4 15.2          
+  g323/in_1                                                       
+  g323/z                (u)  unmapped_and2        1  4.9          
+cb_oseqi/out_gfm[3] 
+out_gfm[3]              <<<  interconnect                         
+                             out port                             
+(proj.sdc_line_17_56_1)      ext delay                            
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                             path_delay                           
+                             uncertainty                          
+------------------------------------------------------------------
+Exception    : 'path_delays/proj.sdc_line_18'    9000ps
+Cost Group   : 'in2out' (path_group 'in2out')
+Start-point  : in_fragment[5]
+End-point    : out_gfm[3]
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 4691ps.
+ 
+Cost Group 'in2reg' target slack:   236 ps
+Target path end-point (Pin: in_kmer_indices_r_reg[3][6]/d)
+
+              Pin                          Type         Fanout Load Arrival   
+                                                               (fF)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                       <<<  launch                             0 R 
+(proj.sdc_line_15_37_1)                ext delay                              
+in_kmer_indices[3][6]             (u)  in port               1  3.8           
+cb_seqi/in_kmer_indices[3][6] 
+  in_kmer_indices_r_reg[3][6]/d   <<<  unmapped_d_flop                        
+  in_kmer_indices_r_reg[3][6]/clk      setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                            capture                        10000 R 
+                                       uncertainty                            
+------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : in_kmer_indices[3][6]
+End-point    : cb_seqi/in_kmer_indices_r_reg[3][6]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7874ps.
+ 
+Cost Group 'reg2reg' target slack:   296 ps
+Target path end-point (Pin: indices_idx_reg[1]/d)
+
+           Pin                       Type         Fanout Load Arrival   
+                                                         (fF)   (ps)    
+------------------------------------------------------------------------
+(clock clk)                 <<<  launch                             0 R 
+cb_seqi
+  frag_parts_idx_reg[0]/clk                                             
+  frag_parts_idx_reg[0]/q   (u)  unmapped_d_flop      13 53.2           
+cb_seqi/g180_in_1 
+cb_oseqi/cb_seqi_g180_in_1 
+  g180/in_1                                                             
+  g180/z                    (u)  unmapped_nand2        2  7.4           
+  g279/in_0                                                             
+  g279/z                    (u)  unmapped_or2          1  3.7           
+  g280/in_1                                                             
+  g280/z                    (u)  unmapped_nand2        1  3.8           
+cb_oseqi/cb_seqi_g182_z 
+cb_seqi/g182_z 
+  indices_idx_reg[1]/d      <<<  unmapped_d_flop                        
+  indices_idx_reg[1]/clk         setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                        10000 R 
+                                 uncertainty                            
+------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/frag_parts_idx_reg[0]/clk
+End-point    : cb_seqi/indices_idx_reg[1]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 8447ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   232 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+         Pin                          Type          Fanout Load Arrival   
+                                                           (fF)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)               <<<    launch                               0 R 
+(proj.sdc_line_15_44_1)          ext delay                                
+valid_indices                    in port                 1  3.4           
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E        <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK                setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                          10000 R 
+                                 uncertainty                              
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : valid_indices
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 7734ps.
+ 
+
+Test connection status for design: proj_extender
+================================================
+Connected 0 out of 0 clock-gating instances.
+
+State Retention Synthesis Status
+================================
+
+Category                        Flops   Percentage
+--------------------------------------------------
+Total instances                    31        100.0
+Excluded from State Retention      31        100.0
+    - Will not convert             31        100.0
+      - Preserved                   0          0.0
+      - Power intent excluded      31        100.0
+    - Could not convert             0          0.0
+      - Scan type                   0          0.0
+      - No suitable cell            0          0.0
+State Retention instances           0          0.0
+--------------------------------------------------
+
+PBS_Generic_Opt-Post - Elapsed_Time 5, CPU_Time 4.9785109999999975
+stamp 'PBS_Generic_Opt-Post' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) | 100.0(100.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+PBS_Generic-Postgen HBO Optimizations - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Postgen HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) | 100.0(100.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>Main Thread Summary:
+##>----------------------------------------------------------------------------------------
+##>STEP                           Elapsed       WNS       TNS     Insts      Area    Memory
+##>----------------------------------------------------------------------------------------
+##>G:Initial                            0         -         -       122       922       791
+##>G:Setup                              0         -         -         -         -         -
+##>G:Launch ST                          0         -         -         -         -         -
+##>G:Design Partition                   0         -         -         -         -         -
+##>G:Create Partition Netlists          0         -         -         -         -         -
+##>G:Init Power                         0         -         -         -         -         -
+##>G:Budgeting                          0         -         -         -         -         -
+##>G:Derenv-DB                          0         -         -         -         -         -
+##>G:Debug Outputs                      0         -         -         -         -         -
+##>G:ST loading                         0         -         -         -         -         -
+##>G:Distributed                        0         -         -         -         -         -
+##>G:Timer                              0         -         -         -         -         -
+##>G:Assembly                           0         -         -         -         -         -
+##>G:DFT                                0         -         -         -         -         -
+##>G:Const Prop                         0         -         -       121       803      1101
+##>G:Misc                               5
+##>----------------------------------------------------------------------------------------
+##>Total Elapsed                        5
+##>========================================================================================
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'proj_extender' to generic gates.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_gen
+******************************************************
+******************************************************
+**   ENICSINFO: Starting stage technology_mapping   **
+******************************************************
+******************************************************
+ENICSINFO: Current time is: 11/08/2024 13:49
+ENICSINFO: ----------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'proj_extender' using 'low' effort.
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+Configuring mapper costing (none)
+TNS Restructuring config: no_value at stage: map applied.
+PBS_TechMap-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  45.3( 41.7) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  54.7( 58.3) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+PBS_TechMap-Premap HBO Optimizations - Elapsed_Time 1, CPU_Time 0.0
+stamp 'PBS_TechMap-Premap HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  45.3( 38.5) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  54.7( 53.8) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  7.7) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed mapping optimization to kick in.
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+      Mapping 'proj_extender'...
+        Preparing the circuit
+          Pruning unused logic
+          Analyzing hierarchical boundaries
+          Aggressive hierarchical optimization: disabled
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) proj_extender...
+          Done structuring (delay-based) proj_extender
+Multi-threaded Virtual Mapping    (2 threads, 2 of 2 CPUs usable)
+          Structuring (delay-based) logic partition in proj_extender...
+          Done structuring (delay-based) logic partition in proj_extender
+        Mapping logic partition in proj_extender...
+          Structuring (delay-based) logic partition in proj_extender...
+          Done structuring (delay-based) logic partition in proj_extender
+        Mapping logic partition in proj_extender...
+==================================
+Stage : first_condense 
+==================================
+  =================
+   Message Summary
+  =================
+-----------------------------------------------------------------------
+|    Id    |Sev  |Count |                Message Text                 |
+-----------------------------------------------------------------------
+| PHYS-752 |Info |    1 |Partition Based Synthesis execution skipped. |
+| SYNTH-2  |Info |    1 |Done synthesizing.                           |
+| SYNTH-4  |Info |    1 |Mapping.                                     |
+-----------------------------------------------------------------------
+ 
+Global mapping target info
+==========================
+Cost Group 'reg2out' target slack:   238 ps
+Target path end-point (Port: proj_extender/out_index[6])
+
+          Pin                      Type          Fanout Load Arrival   
+                                                        (fF)   (ps)    
+-----------------------------------------------------------------------
+(clock clk)              <<<  launch                               0 R 
+cb_seqi
+  indices_idx_reg[1]/clk                                               
+  indices_idx_reg[1]/q   (u)  unmapped_d_flop         6 22.2           
+cb_seqi/g310_in_1 
+cb_oseqi/cb_seqi_g310_in_1 
+  g316/in_1                                                            
+  g316/z                 (u)  unmapped_complex2       7 26.6           
+  g389/in_0                                                            
+  g389/z                 (u)  unmapped_complex2       1  3.8           
+  g390/in_3                                                            
+  g390/z                 (u)  unmapped_nand4          4 14.8           
+  g384/in_0                                                            
+  g384/z                 (u)  unmapped_or3            5 18.5           
+  g233/in_1                                                            
+  g233/z                 (u)  unmapped_or2            2  7.4           
+  g372/in_0                                                            
+  g372/z                 (u)  unmapped_or2            1  3.7           
+  g373/in_1                                                            
+  g373/z                 (u)  unmapped_nand2          1  4.9           
+cb_oseqi/out_index[6] 
+out_index[6]             <<<  interconnect                             
+                              out port                                 
+(proj.sdc_line_17_45_1)       ext delay                                
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                   capture                          10000 R 
+                              uncertainty                              
+-----------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/indices_idx_reg[1]/clk
+End-point    : out_index[6]
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 6126ps.
+ 
+Cost Group 'in2out' target slack:   148 ps
+Target path end-point (Port: proj_extender/out_gfm[3])
+
+         Pin                     Type        Fanout Load Arrival  
+                                                    (fF)   (ps)   
+------------------------------------------------------------------
+(proj.sdc_line_15_10_1)      ext delay                            
+in_fragment[5]          (u)  in port              1  3.8          
+cb_oseqi/in_fragment[5] 
+  g429/in_1                                                       
+  g429/z                (u)  unmapped_nand2       1  3.7          
+  g430/in_1                                                       
+  g430/z                (u)  unmapped_nand2       4 15.2          
+  g435/in_1                                                       
+  g435/z                (u)  unmapped_and2        1  4.9          
+cb_oseqi/out_gfm[3] 
+out_gfm[3]              <<<  interconnect                         
+                             out port                             
+(proj.sdc_line_17_56_1)      ext delay                            
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                             path_delay                           
+                             uncertainty                          
+------------------------------------------------------------------
+Exception    : 'path_delays/proj.sdc_line_18'    9000ps
+Cost Group   : 'in2out' (path_group 'in2out')
+Start-point  : in_fragment[5]
+End-point    : out_gfm[3]
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 4690ps.
+ 
+Cost Group 'in2reg' target slack:   236 ps
+Target path end-point (Pin: in_kmer_indices_r_reg[3][6]/d)
+
+              Pin                          Type         Fanout Load Arrival   
+                                                               (fF)   (ps)    
+------------------------------------------------------------------------------
+(clock clk)                       <<<  launch                             0 R 
+(proj.sdc_line_15_37_1)                ext delay                              
+in_kmer_indices[3][6]             (u)  in port               1  3.8           
+cb_seqi/in_kmer_indices[3][6] 
+  in_kmer_indices_r_reg[3][6]/d   <<<  unmapped_d_flop                        
+  in_kmer_indices_r_reg[3][6]/clk      setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                            capture                        10000 R 
+                                       uncertainty                            
+------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : in_kmer_indices[3][6]
+End-point    : cb_seqi/in_kmer_indices_r_reg[3][6]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7874ps.
+ 
+Cost Group 'reg2reg' target slack:   296 ps
+Target path end-point (Pin: indices_idx_reg[1]/d)
+
+           Pin                       Type         Fanout Load Arrival   
+                                                         (fF)   (ps)    
+------------------------------------------------------------------------
+(clock clk)                 <<<  launch                             0 R 
+cb_seqi
+  frag_parts_idx_reg[0]/clk                                             
+  frag_parts_idx_reg[0]/q   (u)  unmapped_d_flop      13 53.2           
+  g180/in_1                                                             
+  g180/z                    (u)  unmapped_nand2        2  7.4           
+  g338/in_0                                                             
+  g338/z                    (u)  unmapped_or2          1  3.7           
+  g339/in_1                                                             
+  g339/z                    (u)  unmapped_nand2        1  3.8           
+  indices_idx_reg[1]/d      <<<  unmapped_d_flop                        
+  indices_idx_reg[1]/clk         setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                        10000 R 
+                                 uncertainty                            
+------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/frag_parts_idx_reg[0]/clk
+End-point    : cb_seqi/indices_idx_reg[1]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 8442ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   232 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+         Pin                          Type          Fanout Load Arrival   
+                                                           (fF)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)               <<<    launch                               0 R 
+(proj.sdc_line_15_44_1)          ext delay                                
+valid_indices                    in port                 1  3.4           
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E        <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK                setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                          10000 R 
+                                 uncertainty                              
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : valid_indices
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 7734ps.
+ 
+Multi-threaded Technology Mapping (2 threads, 2 of 2 CPUs usable)
+          Restructuring (delay-based) logic partition in proj_extender...
+          Done restructuring (delay-based) logic partition in proj_extender
+        Optimizing logic partition in proj_extender...
+          Restructuring (delay-based) logic partition in proj_extender...
+          Done restructuring (delay-based) logic partition in proj_extender
+        Optimizing logic partition in proj_extender...
+ 
+Global mapping timing result
+============================
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+           Pin                      Type         Fanout Load Slew Delay Arrival   
+                                                        (fF) (ps)  (ps)   (ps)    
+----------------------------------------------------------------------------------
+(clock clk)                     launch                                        0 R 
+cb_seqi
+  frag_parts_idx_reg[0]/CK                                      0    +0       0 R 
+  frag_parts_idx_reg[0]/Q       DFFRPQ_X3M_A9TL       7 33.0  171  +357     357 R 
+  g360/A                                                             +0     357   
+  g360/CO                       ADDH_X1M_A9TL         1  4.7   95  +176     533 R 
+  g358/A                                                             +0     533   
+  g358/Y                        XOR2_X0P7M_A9TL       1  3.6  229  +124     658 R 
+  indices_idx_reg[1]/D     <<<  DFFRPQ_X2M_A9TL                      +0     658   
+  indices_idx_reg[1]/CK         setup                           0  +122     780 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                     capture                                   10000 R 
+                                uncertainty                         -50    9950 R 
+----------------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Timing slack :    9170ps 
+Start-point  : cb_seqi/frag_parts_idx_reg[0]/CK
+End-point    : cb_seqi/indices_idx_reg[1]/D
+
+              Pin                          Type          Fanout Load Slew Delay Arrival   
+                                                                (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------------------
+(clock clk)                           launch                                          0 R 
+(proj.sdc_line_15_25_1)               ext delay                           +2000    2000 F 
+in_kmer_indices[1][4]                 in port                 1  3.1   42    +5    2005 F 
+cb_seqi/in_kmer_indices[1][4] 
+  in_kmer_indices_r_reg[1][4]/B  <<<  A2DFFQ_X0P5M_A9TL                      +0    2005   
+  in_kmer_indices_r_reg[1][4]/CK      setup                             0  +138    2143 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                           capture                                     10000 R 
+                                      uncertainty                           -50    9950 R 
+------------------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Timing slack :    7807ps 
+Start-point  : in_kmer_indices[1][4]
+End-point    : cb_seqi/in_kmer_indices_r_reg[1][4]/B
+
+         Pin                          Type          Fanout Load Slew Delay Arrival   
+                                                           (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------------
+(clock clk)                      launch                                          0 R 
+(proj.sdc_line_15_44_1)          ext delay                           +2000    2000 F 
+valid_indices                    in port                 1  3.4   43    +6    2006 F 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E        <<< (P)  PREICG_X0P5B_A9TR                      +0    2006   
+  RC_CGIC_INST/CK                setup                             0  +210    2216 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                      capture                                     10000 R 
+                                 uncertainty                           -50    9950 R 
+-------------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    7734ps 
+Start-point  : valid_indices
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                  launch                                        0 R 
+cb_seqi
+  indices_idx_reg[0]/CK                                      0    +0       0 R 
+  indices_idx_reg[0]/Q       DFFRPQ_X2M_A9TL       5 16.3  130  +329     329 R 
+cb_seqi/g310_in_0 
+cb_oseqi/cb_seqi_g310_in_0 
+  g622/BN                                                         +0     329   
+  g622/Y                     NOR2XB_X2M_A9TL       7 18.6  286  +272     601 R 
+  g602/A1                                                         +0     601   
+  g602/Y                     AOI22_X1M_A9TL        1  3.4  137  +164     765 F 
+  g588/A                                                          +0     765   
+  g588/Y                     AND2_X1M_A9TL         4 12.0  132  +199     964 F 
+  g583/C                                                          +0     964   
+  g583/Y                     AND3_X1M_A9TL         3  8.2   98  +203    1167 F 
+  g582/A                                                          +0    1167   
+  g582/Y                     NAND3_X1M_A9TL        2  7.1  230  +162    1329 R 
+  g578/A                                                          +0    1329   
+  g578/Y                     XOR2_X0P7M_A9TL       1  4.9  286  +188    1517 R 
+cb_oseqi/out_index[6] 
+out_index[6]            <<<  interconnect                  286    +0    1517 R 
+                             out port                             +0    1517 R 
+(proj.sdc_line_17_45_1)      ext delay                         +2000    3517 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                  capture                                   10000 R 
+                             uncertainty                         -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Timing slack :    6433ps 
+Start-point  : cb_seqi/indices_idx_reg[0]/CK
+End-point    : out_index[6]
+
+         Pin                     Type        Fanout Load Slew Delay Arrival   
+                                                    (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------
+(proj.sdc_line_15_13_1)      ext delay                        +2000    2000 F 
+in_fragment[2]               in port              1  4.9   45    +8    2008 F 
+cb_oseqi/in_fragment[2] 
+  g617/A0                                                        +0    2008   
+  g617/Y                     AOI22_X2M_A9TL       4 12.0  235  +172    2180 R 
+  g615/A                                                         +0    2180   
+  g615/Y                     INV_X2M_A9TL         1  3.5   66   +64    2244 F 
+  g598/B                                                         +0    2244   
+  g598/Y                     NOR2_X1B_A9TL        1  4.9  180  +134    2378 R 
+cb_oseqi/out_gfm[6] 
+out_gfm[6]              <<<  interconnect                 180    +0    2378 R 
+                             out port                            +0    2378 R 
+(proj.sdc_line_17_53_1)      ext delay                        +2000    4378 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                             path_delay                                9000   
+                             uncertainty                        -50    8950 R 
+------------------------------------------------------------------------------
+Exception    : 'path_delays/proj.sdc_line_18'    9000ps
+Cost Group   : 'in2out' (path_group 'in2out')
+Timing slack :    4572ps 
+Start-point  : in_fragment[2]
+End-point    : out_gfm[6]
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+ global_map                  519        0 
+
+             Cost Group            Target    Slack    Diff.  Constr.
+--------------------------------------------------------------------
+                 in2out               148     4572              9000     (launch clock period: 10000)
+                reg2out               238     6433             10000 
+    cg_enable_group_clk               232     7734             10000 
+                 in2reg               236     7807             10000 
+                reg2reg               296     9170             10000 
+
+ 
+Global incremental target info
+==============================
+Cost Group 'reg2out' target slack:   158 ps
+Target path end-point (Port: proj_extender/out_index[6])
+
+         Pin                     Type         Fanout Load Arrival   
+                                                     (fF)   (ps)    
+--------------------------------------------------------------------
+(clock clk)             <<<  launch                             0 R 
+cb_seqi
+  indices_idx_reg[0]/CK                                             
+  indices_idx_reg[0]/Q       DFFRPQ_X2M_A9TL       5 16.3           
+cb_seqi/g310_in_0 
+cb_oseqi/cb_seqi_g310_in_0 
+  g622/BN                                                           
+  g622/Y                     NOR2XB_X2M_A9TL       7 18.6           
+  g602/A1                                                           
+  g602/Y                     AOI22_X1M_A9TL        1  3.4           
+  g588/A                                                            
+  g588/Y                     AND2_X1M_A9TL         4 12.0           
+  g583/C                                                            
+  g583/Y                     AND3_X1M_A9TL         3  8.2           
+  g582/A                                                            
+  g582/Y                     NAND3_X1M_A9TL        2  7.1           
+  g578/A                                                            
+  g578/Y                     XOR2_X0P7M_A9TL       1  4.9           
+cb_oseqi/out_index[6] 
+out_index[6]            <<<  interconnect                           
+                             out port                               
+(proj.sdc_line_17_45_1)      ext delay                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                        10000 R 
+                             uncertainty                            
+--------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/indices_idx_reg[0]/CK
+End-point    : out_index[6]
+
+The global mapper estimates a slack for this path of 5435ps.
+ 
+Cost Group 'in2out' target slack:    98 ps
+Target path end-point (Port: proj_extender/out_gfm[1])
+
+         Pin                     Type        Fanout Load Arrival  
+                                                    (fF)   (ps)   
+------------------------------------------------------------------
+(proj.sdc_line_15_14_1)      ext delay                            
+in_fragment[1]               in port              1  4.9          
+cb_oseqi/in_fragment[1] 
+  g621/A0                                                         
+  g621/Y                     AOI22_X2M_A9TL       4 12.0          
+  g619/A                                                          
+  g619/Y                     INV_X2M_A9TL         1  3.5          
+  g594/B                                                          
+  g594/Y                     NOR2_X1B_A9TL        1  4.9          
+cb_oseqi/out_gfm[1] 
+out_gfm[1]              <<<  interconnect                         
+                             out port                             
+(proj.sdc_line_17_58_1)      ext delay                            
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+                             path_delay                           
+                             uncertainty                          
+------------------------------------------------------------------
+Exception    : 'path_delays/proj.sdc_line_18'    9000ps
+Cost Group   : 'in2out' (path_group 'in2out')
+Start-point  : in_fragment[1]
+End-point    : out_gfm[1]
+
+The global mapper estimates a slack for this path of 4573ps.
+ 
+Cost Group 'in2reg' target slack:   156 ps
+Target path end-point (Pin: in_kmer_indices_r_reg[3][6]/B (A2DFFQ_X0P5M_A9TL/B))
+
+              Pin                          Type          Fanout Load Arrival   
+                                                                (fF)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                      <<<  launch                               0 R 
+(proj.sdc_line_15_37_1)               ext delay                                
+in_kmer_indices[3][6]                 in port                 1  3.1           
+cb_seqi/in_kmer_indices[3][6] 
+  in_kmer_indices_r_reg[3][6]/B  <<<  A2DFFQ_X0P5M_A9TL                        
+  in_kmer_indices_r_reg[3][6]/CK      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                           capture                          10000 R 
+                                      uncertainty                              
+-------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : in_kmer_indices[3][6]
+End-point    : cb_seqi/in_kmer_indices_r_reg[3][6]/B
+
+The global mapper estimates a slack for this path of 7807ps.
+ 
+Cost Group 'reg2reg' target slack:   197 ps
+Target path end-point (Pin: indices_idx_reg[1]/D (DFFRPQ_X2M_A9TL/D))
+
+           Pin                      Type         Fanout Load Arrival   
+                                                        (fF)   (ps)    
+-----------------------------------------------------------------------
+(clock clk)                <<<  launch                             0 R 
+cb_seqi
+  frag_parts_idx_reg[0]/CK                                             
+  frag_parts_idx_reg[0]/Q       DFFRPQ_X3M_A9TL       7 33.0           
+  g360/A                                                               
+  g360/CO                       ADDH_X1M_A9TL         1  4.7           
+  g358/A                                                               
+  g358/Y                        XOR2_X0P7M_A9TL       1  3.6           
+  indices_idx_reg[1]/D     <<<  DFFRPQ_X2M_A9TL                        
+  indices_idx_reg[1]/CK         setup                                  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                        10000 R 
+                                uncertainty                            
+-----------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/frag_parts_idx_reg[0]/CK
+End-point    : cb_seqi/indices_idx_reg[1]/D
+
+The global mapper estimates a slack for this path of 8171ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   155 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+         Pin                          Type          Fanout Load Arrival   
+                                                           (fF)   (ps)    
+--------------------------------------------------------------------------
+(clock clk)               <<<    launch                               0 R 
+(proj.sdc_line_15_44_1)          ext delay                                
+valid_indices                    in port                 1  3.4           
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E        <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK                setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                      capture                          10000 R 
+                                 uncertainty                              
+--------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : valid_indices
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+The global mapper estimates a slack for this path of 7734ps.
+ 
+ 
+Global incremental timing result
+================================
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                  launch                                        0 R 
+cb_seqi
+  indices_idx_reg[0]/CK                                      0    +0       0 R 
+  indices_idx_reg[0]/Q       DFFRPQ_X1M_A9TL       5 16.3  238  +396     396 R 
+  g360/B                                                          +0     396   
+  g360/CO                    ADDH_X1M_A9TL         1  4.7   96  +194     591 R 
+  g358/A                                                          +0     591   
+  g358/Y                     XOR2_X0P7M_A9TL       1  3.5  236  +123     714 R 
+  indices_idx_reg[1]/D  <<<  DFFRPQ_X1M_A9TL                      +0     714   
+  indices_idx_reg[1]/CK      setup                           0  +130     844 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                  capture                                   10000 R 
+                             uncertainty                         -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Timing slack :    9106ps 
+Start-point  : cb_seqi/indices_idx_reg[0]/CK
+End-point    : cb_seqi/indices_idx_reg[1]/D
+
+              Pin                          Type          Fanout Load Slew Delay Arrival   
+                                                                (fF) (ps)  (ps)   (ps)    
+------------------------------------------------------------------------------------------
+(clock clk)                           launch                                          0 R 
+(proj.sdc_line_15_25_1)               ext delay                           +2000    2000 F 
+in_kmer_indices[1][4]                 in port                 1  3.1   42    +5    2005 F 
+cb_seqi/in_kmer_indices[1][4] 
+  in_kmer_indices_r_reg[1][4]/B  <<<  A2DFFQ_X0P5M_A9TL                      +0    2005   
+  in_kmer_indices_r_reg[1][4]/CK      setup                             0  +138    2143 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                           capture                                     10000 R 
+                                      uncertainty                           -50    9950 R 
+------------------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Timing slack :    7807ps 
+Start-point  : in_kmer_indices[1][4]
+End-point    : cb_seqi/in_kmer_indices_r_reg[1][4]/B
+
+         Pin                          Type          Fanout Load Slew Delay Arrival   
+                                                           (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------------
+(clock clk)                      launch                                          0 R 
+(proj.sdc_line_15_44_1)          ext delay                           +2000    2000 F 
+valid_indices                    in port                 1  3.4   43    +6    2006 F 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E        <<< (P)  PREICG_X0P5B_A9TR                      +0    2006   
+  RC_CGIC_INST/CK                setup                             0  +210    2216 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                      capture                                     10000 R 
+                                 uncertainty                           -50    9950 R 
+-------------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    7734ps 
+Start-point  : valid_indices
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                  launch                                        0 R 
+cb_seqi
+  indices_idx_reg[0]/CK                                      0    +0       0 R 
+  indices_idx_reg[0]/Q       DFFRPQ_X1M_A9TL       5 16.3  238  +396     396 R 
+cb_seqi/g310_in_0 
+cb_oseqi/cb_seqi_g310_in_0 
+  g622/BN                                                         +0     396   
+  g622/Y                     NOR2XB_X2M_A9TL       7 18.6  288  +308     704 R 
+  g602/A1                                                         +0     704   
+  g602/Y                     AOI22_X1M_A9TL        1  3.4  137  +164     868 F 
+  g588/A                                                          +0     868   
+  g588/Y                     AND2_X1M_A9TL         4 12.0  132  +199    1067 F 
+  g583/C                                                          +0    1067   
+  g583/Y                     AND3_X1M_A9TL         3  8.2   98  +203    1270 F 
+  g582/A                                                          +0    1270   
+  g582/Y                     NAND3_X1M_A9TL        2  7.1  230  +162    1433 R 
+  g578/A                                                          +0    1433   
+  g578/Y                     XOR2_X0P7M_A9TL       1  4.9  286  +188    1620 R 
+cb_oseqi/out_index[6] 
+out_index[6]            <<<  interconnect                  286    +0    1620 R 
+                             out port                             +0    1620 R 
+(proj.sdc_line_17_45_1)      ext delay                         +2000    3620 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                  capture                                   10000 R 
+                             uncertainty                         -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Timing slack :    6330ps 
+Start-point  : cb_seqi/indices_idx_reg[0]/CK
+End-point    : out_index[6]
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(proj.sdc_line_15_13_1)      ext delay                         +2000    2000 F 
+in_fragment[2]               in port               1  4.9   45    +8    2008 F 
+cb_oseqi/in_fragment[2] 
+  g617/A0                                                         +0    2008   
+  g617/Y                     AOI22_X2M_A9TL        4 10.3  214  +159    2167 R 
+  g627/BN                                                         +0    2167   
+  g627/Y                     NOR2XB_X1M_A9TL       1  4.9  181  +224    2391 R 
+cb_oseqi/out_gfm[6] 
+out_gfm[6]              <<<  interconnect                  181    +0    2391 R 
+                             out port                             +0    2391 R 
+(proj.sdc_line_17_53_1)      ext delay                         +2000    4391 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                             path_delay                                 9000   
+                             uncertainty                         -50    8950 R 
+-------------------------------------------------------------------------------
+Exception    : 'path_delays/proj.sdc_line_18'    9000ps
+Cost Group   : 'in2out' (path_group 'in2out')
+Timing slack :    4559ps 
+Start-point  : in_fragment[2]
+End-point    : out_gfm[6]
+
+ 
+==================================
+Stage : global_incr_map 
+==================================
+  =================
+   Message Summary
+  =================
+---------------------------------------------------------------------
+|  Id  |Sev  |Count |                 Message Text                  |
+---------------------------------------------------------------------
+| PA-7 |Info |    4 |Resetting power analysis results.              |
+|      |     |      |All computed switching activities are removed. |
+---------------------------------------------------------------------
+ 
+Global incremental optimization status
+======================================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+ global_incr                 510        0 
+
+             Cost Group            Target    Slack    Diff.  Constr.
+--------------------------------------------------------------------
+                 in2out                98     4559              9000     (launch clock period: 10000)
+                reg2out               158     6330             10000 
+    cg_enable_group_clk               155     7734             10000 
+                 in2reg               156     7807             10000 
+                reg2reg               197     9106             10000 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+
+Test connection status for design: proj_extender
+================================================
+Connected 0 out of 0 clock-gating instances.
+
+State Retention Synthesis Status
+================================
+
+Category                        Flops   Percentage
+--------------------------------------------------
+Total instances                    31        100.0
+Excluded from State Retention      31        100.0
+    - Will not convert             31        100.0
+      - Preserved                   0          0.0
+      - Power intent excluded      31        100.0
+    - Could not convert             0          0.0
+      - Scan type                   0          0.0
+      - No suitable cell            0          0.0
+State Retention instances           0          0.0
+--------------------------------------------------
+
+INFO: skipping constant propagation
+PBS_Techmap-Global Mapping - Elapsed_Time 3, CPU_Time 2.8290099999999967
+stamp 'PBS_Techmap-Global Mapping' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  36.1( 31.2) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  43.5( 43.8) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  6.2) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  20.5( 18.8) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+Warning : Command 'commit_power_intent' cannot proceed as there is no power intent loaded. [CPI-506]
+        : Command 'commit_power_intent' requires a valid power_intent to be loaded.
+Info    : Wrote formal verification information. [CFM-5]
+        : Wrote 'fv/proj_extender/fv_map.fv.json' for netlist 'fv/proj_extender/fv_map.v.gz'.
+Info    : Existing dofile found. Copied as fv/proj_extender/rtl_to_fv_map.do~.
+Info    : Forcing flat compare. [CFM-212]
+        : The design hierarchies are too small to qualify for hierarchical comparison. Set the attribute wlec_hier_comp_threshold accordingly for hier compare.
+Info    : Wrote dofile. [CFM-1]
+        : Dofile is 'fv/proj_extender/rtl_to_fv_map.do'.
+        : Alias mapping flow is enabled.
+        Computing net loads.
+PBS_TechMap-Datapath Postmap Operations - Elapsed_Time 2, CPU_Time 2.000000000000007
+stamp 'PBS_TechMap-Datapath Postmap Operations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  31.5( 27.8) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  38.0( 38.9) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  5.6) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  17.9( 16.7) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:02(00:00:02) |  12.7( 11.1) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_TechMap-Postmap HBO Optimizations - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Postmap HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  31.5( 27.8) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  38.0( 38.9) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  5.6) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  17.9( 16.7) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:02(00:00:02) |  12.7( 11.1) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+ Doing ConstProp on design:proj_extender ... 
+
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+
+Test connection status for design: proj_extender
+================================================
+Connected 0 out of 0 clock-gating instances.
+  Decloning clock-gating logic from design:proj_extender
+Info    : Could not declone clock-gating instances. [POPT-51]
+        : There is only one clock-gating instance in the design 'design:proj_extender'.
+        : The design should have 2 or more clock-gating instances for decloning.
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 1
+Total number of clock-gating instances after : 1
+Time taken by ConstProp Step: 00:00:00
+PBS_TechMap-Postmap Clock Gating - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Postmap Clock Gating' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  31.5( 27.8) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  38.0( 38.9) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  5.6) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  17.9( 16.7) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:02(00:00:02) |  12.7( 11.1) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+-------------------------------------------------------------------------------
+ hi_fo_buf                   510        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       hi_fo_buf         0  (        0 /        0 )  0.00
+
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_delay                  510        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+    plc_st_fence         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+      plc_laf_st         0  (        0 /        0 )  0.00
+ plc_laf_st_fence         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+ 
+Local TNS optimization status
+=============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_tns                    510        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+       crit_upsz         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       crit_dnsz         0  (        0 /        0 )  0.00
+             dup         0  (        0 /        0 )  0.00
+        setup_dn         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+PBS_TechMap-Postmap Cleanup - Elapsed_Time 6, CPU_Time 5.999663999999996
+stamp 'PBS_TechMap-Postmap Cleanup' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  22.8( 20.8) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  27.5( 29.2) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  4.2) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  13.0( 12.5) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:02(00:00:02) |   9.2(  8.3) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:10(00:01:12) |  00:00:05(00:00:06) |  27.5( 25.0) |   13:49:23 (Aug11) |   1.10 GB | PBS_TechMap-Postmap Cleanup
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_Techmap-Post_MBCI - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Techmap-Post_MBCI' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:48(00:00:48) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:48:59 (Aug11) |  791.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:04(00:00:05) |  21.8( 20.8) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:53(00:00:53) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:04 (Aug11) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:00) |  00:00:06(00:00:07) |  26.3( 29.2) |   13:49:11 (Aug11) |   1.10 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:59(00:01:01) |  00:00:00(00:00:01) |   0.0(  4.2) |   13:49:12 (Aug11) |   1.10 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:01:04) |  00:00:02(00:00:03) |  12.4( 12.5) |   13:49:15 (Aug11) |   1.10 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:02(00:00:02) |   8.8(  8.3) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:01:06) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:49:17 (Aug11) |   1.10 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:10(00:01:12) |  00:00:05(00:00:06) |  26.3( 25.0) |   13:49:23 (Aug11) |   1.10 GB | PBS_TechMap-Postmap Cleanup
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:11(00:01:12) |  00:00:01(00:00:00) |   4.4(  0.0) |   13:49:23 (Aug11) |   1.10 GB | PBS_Techmap-Post_MBCI
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+##>=================== Cadence Confidential (Mapping-Logical) ===================
+##>Main Thread Summary:
+##>----------------------------------------------------------------------------------------
+##>STEP                           Elapsed       WNS       TNS     Insts      Area    Memory
+##>----------------------------------------------------------------------------------------
+##>M:Initial                            0         -         -       121       803      1096
+##>M:Pre Cleanup                        1         -         -       121       803      1096
+##>M:Setup                              0         -         -         -         -         -
+##>M:Launch ST                          0         -         -         -         -         -
+##>M:Design Partition                   0         -         -         -         -         -
+##>M:Create Partition Netlists          0         -         -         -         -         -
+##>M:Init Power                         0         -         -         -         -         -
+##>M:Budgeting                          0         -         -         -         -         -
+##>M:Derenv-DB                          0         -         -         -         -         -
+##>M:Debug Outputs                      0         -         -         -         -         -
+##>M:ST loading                         0         -         -         -         -         -
+##>M:Distributed                        0         -         -         -         -         -
+##>M:Timer                              0         -         -         -         -         -
+##>M:Assembly                           0         -         -         -         -         -
+##>M:DFT                                0         -         -         -         -         -
+##>M:DP Operations                      2         -         -        83       362      1099
+##>M:Const Prop                         0      4559         0        83       362      1099
+##>M:Cleanup                            6      4559         0        83       362      1104
+##>M:MBCI                               0         -         -        83       362      1104
+##>M:Const Gate Removal                 0         -         -         -         -         -
+##>M:Misc                               4
+##>----------------------------------------------------------------------------------------
+##>Total Elapsed                       13
+##>========================================================================================
+Info    : Done mapping. [SYNTH-5]
+        : Done mapping 'proj_extender'.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_map
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+************************************************
+************************************************
+**   ENICSINFO: Starting stage post_syn_opt   **
+************************************************
+************************************************
+ENICSINFO: Current time is: 11/08/2024 13:49
+ENICSINFO: ----------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Incrementally optimizing. [SYNTH-7]
+        : Incrementally optimizing 'proj_extender' using 'low' effort.
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+
+Test connection status for design: proj_extender
+================================================
+Connected 0 out of 0 clock-gating instances.
+  Decloning clock-gating logic from design:proj_extender
+Forcing hierarchical CG on for clock_gating declone -hier
+Info    : Could not declone clock-gating instances. [POPT-51]
+        : There is only one clock-gating instance in the design 'design:proj_extender'.
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 1
+Total number of clock-gating instances after : 1
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_iopt                   510        0         0         0        0        0
+-------------------------------------------------------------------------------
+ const_prop                  510        0         0         0        0        0
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_delay                  510        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+    plc_st_fence         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+      plc_laf_st         0  (        0 /        0 )  0.00
+ plc_laf_st_fence         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+==================================
+Stage : incr_opt 
+==================================
+  =================
+   Message Summary
+  =================
+----------------------------------------------------------------------------------------------------------------------------
+|   Id    |  Sev   |Count |                                         Message Text                                           |
+----------------------------------------------------------------------------------------------------------------------------
+| CFM-1   |Info    |    1 |Wrote dofile.                                                                                   |
+| CFM-5   |Info    |    1 |Wrote formal verification information.                                                          |
+| CFM-212 |Info    |    1 |Forcing flat compare.                                                                           |
+| CPI-506 |Warning |    1 |Command 'commit_power_intent' cannot proceed as there is no power intent loaded.                |
+| PA-7    |Info    |    4 |Resetting power analysis results.                                                               |
+|         |        |      |All computed switching activities are removed.                                                  |
+| POPT-51 |Info    |    2 |Could not declone clock-gating instances.                                                       |
+|         |        |      |The design should have 2 or more clock-gating instances for decloning.                          |
+| POPT-96 |Info    |    2 |One or more cost groups were automatically created for clock gate enable paths.                 |
+|         |        |      |This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false. |
+| SYNTH-5 |Info    |    1 |Done mapping.                                                                                   |
+| SYNTH-7 |Info    |    1 |Incrementally optimizing.                                                                       |
+----------------------------------------------------------------------------------------------------------------------------
+Info    : Done incrementally optimizing. [SYNTH-8]
+        : Done incrementally optimizing 'proj_extender'.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_opt
+@file(genus_extender.tcl) 188: enics_report_timing $design(synthesis_reports) 
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+@file(genus_extender.tcl) 189: set post_synth_reports [list \
+    report_area \
+    report_gates \
+    report_hierarchy \
+    report_clock_gating \
+    report_design_rules \
+    report_dp \
+    report_qor \
+]
+@file(genus_extender.tcl) 198: foreach rpt $post_synth_reports {
+    enics_message "$rpt" medium
+    $rpt
+    $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
+}
+
+ENICSINFO: report_area
+----------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:24 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+   Instance   Module  Cell Count  Cell Area  Net Area   Total Area 
+-------------------------------------------------------------------
+proj_extender                 83    362.520   147.594      510.114 
+
+ENICSINFO: report_gates
+-----------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:24 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+                                      
+       Gate        Instances   Area                        Library                      
+----------------------------------------------------------------------------------------
+A2DFFQ_X0P5M_A9TL         28  201.600    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+ADDH_X1M_A9TL              1    4.680    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AND2_X1M_A9TL             10   18.000    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AND3_X1M_A9TL              1    2.520    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AO22_X1M_A9TL              1    3.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AOI221_X1M_A9TL            1    3.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AOI22_X1M_A9TL            12   30.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AOI22_X2M_A9TL             4   17.280    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+DFFRPQ_X1M_A9TL            2   17.280    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+DFFRPQ_X2M_A9TL            1    9.000    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X0P5M_A9TL             1    1.080    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X1M_A9TL               1    1.080    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X4M_A9TL               1    2.520    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND2_X1M_A9TL             1    1.440    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND3_X1M_A9TL             1    2.160    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NOR2XB_X1M_A9TL            5   10.800    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NOR2XB_X2M_A9TL            2    5.760    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NOR2_X1B_A9TL              2    2.880    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NOR2_X2M_A9TL              1    2.520    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+OAI21B_X1M_A9TL            2    5.760    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+PREICG_X0P5B_A9TR          1    6.480    sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 
+XNOR2_X0P7M_A9TL           2    6.480    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+XOR2_X0P7M_A9TL            2    6.480    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+----------------------------------------------------------------------------------------
+total                     83  362.520                                                   
+
+
+                    Library                    Instances   Area  Instances % 
+-----------------------------------------------------------------------------
+sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c        82 356.040        98.8 
+sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c         1   6.480         1.2 
+
+                                                      
+            Type             Instances   Area  Area % 
+------------------------------------------------------
+sequential                          31 227.880   62.9 
+inverter                             3   4.680    1.3 
+clock_gating_integrated_cell         1   6.480    1.8 
+logic                               48 123.480   34.1 
+physical_cells                       0   0.000    0.0 
+------------------------------------------------------
+total                               83 362.520  100.0 
+
+
+ENICSINFO: report_hierarchy
+---------------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:24 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+ 
+  Hierarchy Report Format : 
+ 
+    level instance ( module ) <status>
+ 
+    status :    preserve_<value> -- indicating preserve hierachy or inherited_preserve value
+           :    blackbox --  indicating  unresolved instance
+ 
+==================================================================
+
+ 0 proj_extender
+  1 RC_CG_HIER_INST0 ( RC_CG_MOD ) 
+
+ENICSINFO: report_clock_gating
+------------------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:25 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+Summary
+-------
+Info   : ACTP-0001 [ACTPInfo] Activity propagation started for stim#0 netlist
+       : proj_extender
+Info   : ACTP-0009 [ACTPInfo] Activity Propagation Progress Report :   0%   1%   2%   3%   4%   5%   6%   7%   8%   9%  10%  11%  12%  13%  14%  15%  16%  17%  18%  19%  20%  21%  22%  23%  24%  25%  26%  27%  28%  29%  30%  31%  32%  33%  34%  35%  36%  37%  38%  39%  40%  41%  42%  43%  44%  45%  46%  47%  48%  49%  50%  51%  52%  53%  54%  55%  56%  57%  58%  59%  60%  61%  62%  63%  64%  65%  66%  67%  68%  69%  70%  71%  72%  73%  74%  75%  76%  77%  78%  79%  80%  81%  82%  83%  84%  85%  86%  87%  88%  89%  90%  91%  92%  93%  94%  95%  96%  97%  98%  99% 100%
+Info   : ACTP-0001 Activity propagation ended for stim#0
+--------------------------------------------------------------------------
+            Category            Number     %    Average Toggle Saving %   
+--------------------------------------------------------------------------
+ Total Clock Gating Instances        1  100.00                         -  
+--------------------------------------------------------------------------
+ RC Clock Gating Instances           1  100.00                     50.00  
+ Non-RC Clock Gating Instances       0    0.00                      0.00  
+--------------------------------------------------------------------------
+ RC Gated Flip-flops                28   90.32                     50.00  
+ Non-RC Gated Flip-flops             0    0.00                      0.00  
+--------------------------------------------------------------------------
+ Total Gated Flip-flops             28   90.32                         -  
+ Total Ungated Flip-flops            3    9.68                         -  
+ Enable signal is constant           2   66.67                         -  
+ Register bank width too small       1   33.33                         -  
+--------------------------------------------------------------------------
+ Total Flip-flops                   31  100.00                         -  
+--------------------------------------------------------------------------
+
+
+Multibit Flip-flop Summary
+--------------------------
+-------------------------------------------------------
+Width     Number     Bits     RC Gated     Ungated     
+-------------------------------------------------------
+1-bit     31         31       28 (90.32%)  3 (9.68%)   
+-------------------------------------------------------
+
+
+
+
+
+ENICSINFO: report_design_rules
+------------------------------
+        Initializing DRC engine.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:25 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+Max_transition design rule: no violations.
+
+
+Max_capacitance design rule: no violations.
+
+
+Max_fanout design rule: no violations.
+
+
+
+
+ENICSINFO: report_dp
+--------------------
+Beginning report datapath command
+Command: report datapath 
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:25 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+      Type       CellArea Percentage 
+-------------------------------------
+datapath modules     0.00       0.00 
+external muxes       0.00       0.00 
+others             362.52     100.00 
+-------------------------------------
+total              362.52     100.00 
+
+Beginning report datapath command
+
+ENICSINFO: report_qor
+---------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:49:25 pm
+  Module:                 proj_extender
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+Timing
+--------
+
+Clock  Period 
+--------------
+clk   10000.0 
+
+
+        Cost          Critical         Violating 
+       Group         Path Slack  TNS     Paths   
+-------------------------------------------------
+cg_enable_group_clk      7734.2   0.0          0 
+clk                    No paths   0.0            
+default                No paths   0.0            
+in2out                   4559.3   0.0          0 
+in2reg                   7806.6   0.0          0 
+reg2out                  6329.8   0.0          0 
+reg2reg                  9105.8   0.0          0 
+-------------------------------------------------
+Total                             0.0          0 
+
+Instance Count
+--------------
+Leaf Instance Count             83 
+Physical Instance count          0 
+Sequential Instance Count       32 
+Combinational Instance Count    51 
+Hierarchical Instance Count      1 
+
+Area
+----
+Cell Area                          362.520
+Physical Cell Area                 0.000
+Total Cell Area (Cell+Physical)    362.520
+Net Area                           147.594
+Total Area (Cell+Physical+Net)     510.114
+
+Max Fanout                         28 (rc_gclk)
+Min Fanout                         0 (n_2)
+Average Fanout                     2.0
+Terms to net ratio                 2.5680
+Terms to instance ratio            3.8675
+Runtime                            72.805368 seconds
+Elapsed Runtime                    83 seconds
+Genus peak memory usage            6890.72 
+Innovus peak memory usage          no_value 
+Hostname                           ip-10-0-112-224.eu-central-1.compute.internal
+@file(genus_extender.tcl) 203: report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL)_worst_timing.rpt
+@file(genus_extender.tcl) 209: enics_start_stage "export_design"
+*************************************************
+*************************************************
+**   ENICSINFO: Starting stage export_design   **
+*************************************************
+*************************************************
+ENICSINFO: Current time is: 11/08/2024 13:49
+ENICSINFO: ----------------------------------
+@file(genus_extender.tcl) 210: write_db $design(TOPLEVEL) -to_file "$design(export_dir)/post_synth/$design(TOPLEVEL).db" 
+Finished exporting design database to file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.db' for 'proj_extender' (command execution time mm:ss cpu = 00:00, real = 00:01).
+@file(genus_extender.tcl) 211: write_design -base_name "$design(export_dir)/post_synth/$design(TOPLEVEL)" -innovus
+Warning : This command will be obsolete in a next major release. [TUI-37]
+        : Option '-innovus' is being obsoleted. Use 'write_db -common' for saving design databases to operate with other Cadence tools. Use 'write_design' in future releases for saving files for operations with non-Cadence tools.
+
+(write_design): Writing Innovus content. Constraint interface is: 'mmmc2'
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Exporting design data for 'proj_extender' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender...
+%# Begin write_design (08/11 13:49:26, mem=5204.25M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+No loop breaker instances found (cdn_loop_breaker).
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.mmmc.tcl has been written.
+Finished SDC export (command execution time mm:ss (real) = 00:02).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.default_emulate_constraint_mode.sdc has been written
+Info    : Innovus executable found. [INVS-8] [launch_innovus]
+        : Using the Innovus executable specified by the user path (/apps/cadence/INNOVUS/21.15/tools/bin/innovus)
+        : The specified Innovus executable will be used for the Innovus batch jobs.
+
+Number of user defined NDR nets found: 0
+
+Number of NDR nets found: 0
+Number of nets with minimum layer assignments: 0
+
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.invs_setup.tcl in an Innovus session.
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_extender/post_synth/proj_extender.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_extender' (command execution time mm:ss cpu = 00:06, real = 00:08).
+.
+%# End write_design (08/11 13:49:34, total cpu=08:00:06, real=08:00:08, peak res=1136.20M, current mem=5217.25M)
+@file(genus_extender.tcl) 212: write_hdl > $design(postsyn_netlist)
+@file(genus_extender.tcl) 213: write_sdf > "$design(export_dir)/post_synth/$design(TOPLEVEL).sdf"
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -setuphold has changed from split to merge_always. Specify '-setuphold split' to preserve the behavior of the previous release.
+        : Specify the option explicitly.
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -recrem has changed from split to merge_always. Specify '-recrem split' to preserve the behavior of the previous release.
+#@ End verbose source ../scripts/genus_extender.tcl
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 198s, ST: 82s, FG: 82s, CPU: 5.1%}, MEM {curr: 5.1G, peak: 6.7G, phys curr: 1.1G, phys peak: 1.1G}, SYS {load: 1.4, cpu: 2, total: 7.5G, free: 3.6G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 199s, ST: 82s, FG: 82s, CPU: 5.1%}, MEM {curr: 5.1G, peak: 6.7G, phys curr: 1.1G, phys peak: 1.1G}, SYS {load: 1.4, cpu: 2, total: 7.5G, free: 3.6G}
+Abnormal exit.
