@@ -29,7 +29,6 @@ module proj_fm #(
     localparam ADDR_BITS = RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS;
 
     // Internal signals
-    logic clk, rst_n;
     logic [ADDR_BITS-1:0] waddr, waddr_next;
     logic [DATA_BITS-1:0] wdata;
     logic [BUFFER_COUNT-1:0][FM_BUFFER_SIZE-1:0][DATA_BITS-1:0] FMbuffers;

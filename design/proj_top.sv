@@ -4,7 +4,6 @@ module proj_top (
     input wire clk,
     input wire rst_n,
     input wire [BASE_LEN-1:0] in_data,
-    input wire start,
     output wire [FRAG_LEN-1:0] out_fragment,
     output wire out_wait
 );
@@ -27,13 +26,13 @@ module proj_top (
         .chg_idx(counter_finished),
         .frag_idx(extender_index),
         .out_rdata(fm_fragment),
-        .out_wait(out_wait)  // Connect if needed
+        .out_wait(out_wait)
     );
     // Counter module
     proj_counter u_counter (
         .clk(clk),
         .rst_n(rst_n),
-        .start(start),
+        .start(kmer_buffer_full),
         .index(counter_index),
         .finished_count(counter_finished)
     );

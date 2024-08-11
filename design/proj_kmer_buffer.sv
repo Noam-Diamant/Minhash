@@ -14,8 +14,8 @@ module proj_kmer_buffer #(
     output logic full           // Indicates when the buffer is full
 );
     // Internal signals
-    logic [KMER_LEN-1:0][DATA_BITS-1:0] kmer_buffer;     // Current k-mer buffer
-    logic [KMER_LEN-1:0][DATA_BITS-1:0] kmer_buffer_nxt; // Next state of k-mer buffer
+    logic [KMER_LEN*DATA_BITS-1:0] kmer_buffer;     // Current k-mer buffer
+    logic [KMER_LEN*DATA_BITS-1:0] kmer_buffer_nxt; // Next state of k-mer buffer
     logic [$clog2(KMER_LEN)-1:0] buffer_count;           // Current count of nucleotides in buffer
     logic [$clog2(KMER_LEN)-1:0] buffer_count_nxt;       // Next state of buffer count
 
@@ -28,8 +28,9 @@ module proj_kmer_buffer #(
 
     // Generate next state of k-mer buffer
     generate
-        for (genvar i = 1; i < KMER_LEN; i++) begin
-          assign kmer_buffer_nxt[0] = in_data;           // New data goes to index 0
+        for (genvar i = 2; i < KMER_LEN; i++) begin
+          assign kmer_buffer_nxt[0] = in_data[0]; 
+          assign kmer_buffer_nxt[1] = in_data[1];      
           assign kmer_buffer_nxt[i] = kmer_buffer[i-1];  // Shift existing data
         end
     endgenerate

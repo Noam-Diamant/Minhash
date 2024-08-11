@@ -14,7 +14,7 @@
 ./design/proj_kmer_buffer.sv
 ./design/proj_top.sv
 -sv
-./verification/proj_hasher_tb.sv
+./verification/proj_kmer_buffer_tb.sv
 -CDSLIB
 ./xcelium.d/run.lnx8664.21.09.d/cdsrun.lib
 -HDLVAR

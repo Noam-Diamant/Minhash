@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 08/11/2024 11:19:03
+#   on 08/11/2024 13:53:22
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -56,8 +56,8 @@ set _slk_ [::legacy::get_attribute slack design:proj_sorter]
 if {[regexp {^-?[0-9.]+$} $_slk_]} {
   set _slk_ [format %.1f $_slk_]
 }
-if {$_slk_ != "110.5"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 110.5,  current slack: $_slk_"
+if {$_slk_ != "223.4"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 223.4,  current slack: $_slk_"
 }
 unset _slk_
 # multi-mode slack
@@ -75,8 +75,8 @@ set _cell_area_ [::legacy::get_attribute cell_area design:proj_sorter]
 if {[regexp {^-?[0-9.]+$} $_cell_area_]} {
   set _cell_area_ [format %.0f $_cell_area_]
 }
-if {$_cell_area_ != "6476"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 6476,  current cell area: $_cell_area_"
+if {$_cell_area_ != "2772"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 2772,  current cell area: $_cell_area_"
 }
 unset _cell_area_
 # net area
@@ -84,7 +84,7 @@ set _net_area_ [::legacy::get_attribute net_area design:proj_sorter]
 if {[regexp {^-?[0-9.]+$} $_net_area_]} {
   set _net_area_ [format %.0f $_net_area_]
 }
-if {$_net_area_ != "3185"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 3185,  current net area: $_net_area_"
+if {$_net_area_ != "1272"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden net area: 1272,  current net area: $_net_area_"
 }
 unset _net_area_
