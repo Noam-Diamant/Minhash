@@ -1,0 +1,2821 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[23:48:17.206281] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Sat Aug 10 23:48:17 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     7324
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[23:48:17.372712] Periodic Lic check successful
+[23:48:17.372728] Feature usage summary:
+[23:48:17.372729] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (16 seconds elapsed).
+
+WARNING: This version of the tool is 687 days old.
+@genus:root: 1> source ../scripts/genus_counter.tcl
+Sourcing '../scripts/genus_counter.tcl' (Sat Aug 10 23:49:46 UTC 2024)...
+#@ Begin verbose source ../scripts/genus_counter.tcl
+@file(genus_counter.tcl) 2: set debug_file "debug.txt"
+@file(genus_counter.tcl) 3: set design(TOPLEVEL) "proj_counter" 
+@file(genus_counter.tcl) 4: set runtype "synthesis"
+@file(genus_counter.tcl) 7: set mmmc_or_simple "simple"; # "simple" - using "read_libs"
+@file(genus_counter.tcl) 9: set phys_synth_type "lef" ;  # "none"   - don't read any physical data
+@file(genus_counter.tcl) 15: source ../scripts/procedures.tcl -quiet
+@file(genus_counter.tcl) 16: enics_start_stage "start"
+*****************************************
+*****************************************
+**   ENICSINFO: Starting stage start   **
+*****************************************
+*****************************************
+ENICSINFO: Current time is: 10/08/2024 23:49
+ENICSINFO: This session is running on Hostname : ip-10-0-112-224.eu-central-1.compute.internal
+ENICSINFO: The log file is genus.log93 and the command file is genus.cmd93
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 20: source ../inputs/proj.defines -quiet
+@file(genus_counter.tcl) 23: source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'design_process_node' = 65
+@file(genus_counter.tcl) 24: source ../inputs/libraries.$SC_TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'route_design_with_via_in_pin' = true
+@file(genus_counter.tcl) 25: source ../inputs/libraries.$SRAM_TECHNOLOGY.tcl -quiet
+@file(genus_counter.tcl) 26: if {$design(FULLCHIP_OR_MACRO)=="FULLCHIP"} {
+    source ../inputs/libraries.$IO_TECHNOLOGY.tcl -quiet
+}
+@file(genus_counter.tcl) 34: set df [open $debug_file a]
+@file(genus_counter.tcl) 35: puts $df "\n******************************************"
+@file(genus_counter.tcl) 36: puts $df "* Debug values after everything was loaded *"
+@file(genus_counter.tcl) 37: puts $df "******************************************"
+@file(genus_counter.tcl) 38: foreach dic {paths tech tech_files design} {
+    foreach key [array names $dic] {
+        puts $df "${dic}(${key}) = \t[set ${dic}([set key])]"
+    }
+}
+@file(genus_counter.tcl) 44: close $df
+@file(genus_counter.tcl) 50: set_db source_verbose true ; # Sourcing files will be reported as verbose
+  Setting attribute of root '/': 'source_verbose' = true
+@file(genus_counter.tcl) 51: set_db information_level 9 ; # The log file will report everything
+  Setting attribute of root '/': 'information_level' = 9
+@file(genus_counter.tcl) 52: suppress_messages "PHYS-90"
+  Setting attribute of message 'PHYS-90': 'max_print' = 0
+@file(genus_counter.tcl) 57: enics_start_stage "init_design"
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage init_design   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 10/08/2024 23:49
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 59: if {$mmmc_or_simple=="mmmc"} {
+    read_mmmc $design(mmmc_view_file)
+} else {
+    set_db init_lib_search_path $paths(LIB_paths) 
+    suppress_messages $tech(SC_LIB_SUPPRESS_MESSAGES_GENUS)
+    read_libs $tech_files(ALL_WC_LIBS)
+}
+  Setting attribute of root '/': 'init_lib_search_path' = /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/
+  Setting attribute of message 'LBR-9': 'max_print' = 0
+  Setting attribute of message 'LBR-76': 'max_print' = 0
+  Setting attribute of message 'LBR-40': 'max_print' = 0
+  Setting attribute of message 'LBR-436': 'max_print' = 0
+  Setting attribute of message 'LBR-170': 'max_print' = 0
+
+Threads Configured:2
+
+  Message Summary for Library all 3 libraries:
+  ********************************************
+  An unsupported construct was detected in this library. [LBR-40]: 258
+  ********************************************
+ 
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'.
+@file(genus_counter.tcl) 67: suppress_messages "LBR-415"
+  Setting attribute of message 'LBR-415': 'max_print' = 0
+@file(genus_counter.tcl) 72: if {$phys_synth_type == "none"} {
+   enics_message "Physical Synthesis is disabled"
+   read_qrc $tech_files(QRCTECH_FILE_WC)
+} else {
+    suppress_messages $tech(SC_LEF_SUPPRESS_MESSAGES_GENUS)
+    read_physical -lef $tech_files(ALL_LEFS)
+    if {$phys_synth_type == "floorplan"} { 
+        # You need to read a .def file for the floorplan to enable physical synthesis 
+        read_def $design(floorplan_def)
+    }
+}
+  Setting attribute of message 'PHYS-279': 'max_print' = 0
+  Setting attribute of message 'PHYS-129': 'max_print' = 0
+  Setting attribute of message 'PHYS-15': 'max_print' = 0
+  Setting attribute of message 'PHYS-12': 'max_print' = 0
+  Setting attribute of message 'LBR-162': 'max_print' = 0
+  Setting attribute of message 'LBR-155': 'max_print' = 0
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lef/sc9_cln65lp_base_lvt.lef' is ignored.
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lef/sc9_cln65lp_base_hvt.lef' is ignored.
+
+  According to lef_library, there are total 10 routing layers [ V(5) / H(5) ]
+
+Info    : Setting the maximum print count of this message to 10 if information_level is less than 9. [LBR-161]
+        : To print all the warning messages, set the information_level to 9.
+  Libraries have 1950 usable logic and 582 usable sequential lib-cells.
+@file(genus_counter.tcl) 87: enics_start_stage "read_rtl"
+********************************************
+********************************************
+**   ENICSINFO: Starting stage read_rtl   **
+********************************************
+********************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 89: set_db init_hdl_search_path $design(hdl_search_paths)
+  Setting attribute of root '/': 'init_hdl_search_path' = . /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl
+@file(genus_counter.tcl) 90: set_db hdl_language v2001 -quiet
+@file(genus_counter.tcl) 93: suppress_messages "CDFG-250"
+  Setting attribute of message 'CDFG-250': 'max_print' = 0
+@file(genus_counter.tcl) 95: suppress_messages "CWD-19 CWD-36"
+  Setting attribute of message 'CWD-19': 'max_print' = 0
+  Setting attribute of message 'CWD-36': 'max_print' = 0
+@file(genus_counter.tcl) 97: suppress_messages "CDFG-771"
+  Setting attribute of message 'CDFG-771': 'max_print' = 0
+@file(genus_counter.tcl) 98: read_hdl -language sv -f $design(read_hdl_list)
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_pkg.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_sorter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_top.sv'
+@file(genus_counter.tcl) 103: enics_start_stage "elaborate"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage elaborate   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 105: set_db hdl_track_filename_row_col true -quiet; # helps with debug
+Info   : Enabled hdl_track_filename_row_col attribute.
+       : Setting this attribute to 'true' can have an impact on the run time. Use this attribute only when filename, line number, and column information are needed in reports.
+@file(genus_counter.tcl) 106: set_db lp_insert_clock_gating true 
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+@file(genus_counter.tcl) 108: elaborate $design(TOPLEVEL) ;#-update
+                  INLINE_INFO: Skipping marking small hierarchies inline as the variable 'hdl_dissolve_primitive_instance_hierarchy_threshold' has not been set to a positive value.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'proj_counter' from file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'proj_counter' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'proj_counter'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+--------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |         0.00 | 
+--------------------------------------------------------
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: proj_counter, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: proj_counter, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_elab
+---------------------------------------------------------
+| Transform          | Accepts | Rejects | Runtime (ms) | 
+---------------------------------------------------------
+| hlo_clip_mux_input |       0 |       0 |         0.00 | 
+| hlo_clip           |       0 |       0 |         0.00 | 
+---------------------------------------------------------
+        Computing net loads.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(genus_counter.tcl) 110: enics_start_stage "post_elaboration"
+****************************************************
+****************************************************
+**   ENICSINFO: Starting stage post_elaboration   **
+****************************************************
+****************************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 112: check_design -unresolved
+
+
+ 	 Check Design Report (c)
+	 ------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_counter'
+
+No empty modules in design 'proj_counter'
+
+  Done Checking the design.
+@file(genus_counter.tcl) 113: check_design -all > $design(synthesis_reports)/post_elaboration/check_design_post_elab.rpt
+
+@file(genus_counter.tcl) 114: if {[check_design -status]} {
+    Puts "ENICSINFO: ############# There is an issue with check_design. You better look at it! ###########"
+}
+@file(genus_counter.tcl) 118: write_design -base_name $design(export_dir)/post_elaboartion/$design(TOPLEVEL)
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Warning : The design is not fully mapped. [PHYS-93]
+        : The original design intent derived from the RTL may no longer be available upon restoration.
+Exporting design data for 'proj_counter' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_elaboartion/proj_counter...
+%# Begin write_design (08/10 23:50:09, mem=4890.57M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_elaboartion/proj_counter.mmmc.tcl has been written.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+Finished SDC export (command execution time mm:ss (real) = 00:01).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_elaboartion/proj_counter.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_elaboartion/proj_counter.default_emulate_constraint_mode.sdc has been written
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_elaboartion/proj_counter.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_counter' (command execution time mm:ss cpu = 00:00, real = 00:02).
+.
+%# End write_design (08/10 23:50:11, total cpu=08:00:00, real=08:00:02, peak res=779.10M, current mem=4890.57M)
+@file(genus_counter.tcl) 126: set_db detailed_sdc_messages true ; # helps read_sdc debug
+  Setting attribute of root '/': 'detailed_sdc_messages' = true
+@file(genus_counter.tcl) 127: read_sdc $design(functional_sdc) -stop_on_errors 
+            Reading file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../inputs/proj.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      4 , failed      0 (runtime  0.00)
+ "all_outputs"              - successful      3 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.01)
+ "current_design"           - successful      2 , failed      0 (runtime  0.01)
+ "get_lib_pins"             - successful      1 , failed      0 (runtime  0.02)
+ "get_ports"                - successful      3 , failed      0 (runtime  0.01)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.01)
+ "set_ideal_network"        - successful      2 , failed      0 (runtime  0.01)
+ "set_input_delay"          - successful      1 , failed      0 (runtime  0.01)
+ "set_input_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.01)
+ "set_max_delay"            - successful      1 , failed      0 (runtime  0.01)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.01)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.01)
+ "set_output_delay"         - successful      1 , failed      0 (runtime  0.00)
+read_sdc completed in 00:00:00 (hh:mm:ss)
+@file(genus_counter.tcl) 128: check_timing_intent
+        Computing net loads.
+        Tracing clock networks.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:11 pm
+  Module:                 proj_counter
+  Technology libraries:   sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c 1
+                          physical_cells 
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+-------------------------------------------------------------------------------
+Timing exceptions with no effect
+
+The following timing exceptions are not currently affecting timing in the       
+design.  Either no paths in the design satisfy the exception's path             
+specification, or all paths that satisfy the path specification also satisfy an 
+exception with a higher priority.  You can improve runtime and memory usage by  
+removing these exceptions if they are not truly needed.  To see if there is a   
+path in the design that satisfies the path specification for an exception, or   
+to see what other exception is overriding an exception because of priority, use 
+the command:                                                                    
+  report timing -paths [eval [::legacy::get_attribute paths <exception>]]
+
+exception:proj_counter/proj.sdc_line_18
+-------------------------------------------------------------------------------
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 1
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          1
+
+@file(genus_counter.tcl) 129: check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
+@file(genus_counter.tcl) 134: enics_default_cost_groups
+@file(genus_counter.tcl) 135: enics_report_timing $design(synthesis_reports)
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing arrivals and requireds.
+@file(genus_counter.tcl) 142: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_min_flops 8
+  Setting attribute of design 'proj_counter': 'lp_clock_gating_min_flops' = 8
+@file(genus_counter.tcl) 143: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_style latch 
+  Setting attribute of design 'proj_counter': 'lp_clock_gating_style' = latch
+@file(genus_counter.tcl) 148: enics_start_stage "synthesis"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage synthesis   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 151: set_db syn_generic_effort low
+  Setting attribute of root '/': 'syn_generic_effort' = low
+@file(genus_counter.tcl) 152: set_db syn_map_effort low
+  Setting attribute of root '/': 'syn_map_effort' = low
+@file(genus_counter.tcl) 153: set_db syn_opt_effort low
+  Setting attribute of root '/': 'syn_opt_effort' = low
+@file(genus_counter.tcl) 154: suppress_messages "ST-110 ST-112"
+  Setting attribute of message 'ST-110': 'max_print' = 0
+  Setting attribute of message 'ST-112': 'max_print' = 0
+@file(genus_counter.tcl) 156: if {$phys_synth_type == "floorplan"} {
+    # Synthesize to generics and place generics in floorplan
+    enics_start_stage "syn_generic"
+    syn_generic -physical
+    # Map to technology
+    enics_start_stage "technology_mapping"
+    syn_map -physical
+    enics_report_timing $design(synthesis_reports) 
+    # Post synthesis optimization
+    enics_start_stage "post_syn_opt"
+    syn_opt -physical
+} else {
+    # Synthesize to generics (non physical-aware)
+    enics_start_stage "syn_generic"
+    syn_generic 
+    # Map to technology (non physical-aware)
+    enics_start_stage "technology_mapping"
+    syn_map 
+    enics_report_timing $design(synthesis_reports)
+    enics_start_stage "post_syn_opt"
+    if {$phys_synth_type == "lef"} {
+        syn_opt
+    } else {
+        syn_opt 
+    }
+}
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage syn_generic   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+      Running additional step before syn_gen...
+
+
+Stage: pre_early_cg
+------------------------------------------------
+| Transform | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------
+------------------------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_counter, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'proj_counter' to generic gates using 'low' effort.
+PBS_Generic-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+TNS Restructuring config: no_value at stage: generic applied.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_counter, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Starting mux data reorder optimization [v1.0] (stage: post_to_gen_setup, startdef: proj_counter, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.001s)
+
+Stage: post_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         1.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: pre_hlo_rtlopt
+--------------------------------------------
+| Trick | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------
+--------------------------------------------
+Starting infer macro optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed infer macro optimization (accepts: 0, rejects: 2, runtime: 0.001s)
+Starting decode mux sandwich optimization [v2.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed decode mux sandwich optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting decode mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed decode mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chop wide muxes [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed chop wide muxes (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting constant-data mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed constant-data mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chain-to-tree inequality transform [v2.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed chain-to-tree inequality transform (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting reconvergence optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed reconvergence optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting logic restructure optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed logic restructure optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common select mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed common select mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting identity transform [v3.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed identity transform (accepts: 0, rejects: 1, runtime: 0.000s)
+Starting reduce operator chain [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed reduce operator chain (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting optimize datapath elements [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed optimize datapath elements (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting datapath recasting [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed datapath recasting (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip mux common data inputs [v1.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: pre_rtlopt, startdef: proj_counter, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_rtlopt
+----------------------------------------------------------------
+| Transform                 | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------------
+| hlo_infer_macro           |       0 |       2 |         1.00 | 
+| hlo_decode_mux_sandwich   |       0 |       0 |         0.00 | 
+| hlo_mux_decode            |       0 |       0 |         0.00 | 
+| hlo_chop_mux              |       0 |       0 |         0.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         0.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         0.00 | 
+| hlo_constant_mux_opt      |       0 |       0 |         0.00 | 
+| hlo_inequality_transform  |       0 |       0 |         1.00 | 
+| hlo_reconv_opt            |       0 |       0 |         0.00 | 
+| hlo_restructure           |       0 |       0 |         0.00 | 
+| hlo_common_select_muxopto |       0 |       0 |         0.00 | 
+| hlo_identity_transform    |       0 |       1 |         0.00 | 
+| hlo_reduce_operator_chain |       0 |       0 |         0.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         0.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         1.00 | 
+| hlo_optimize_datapath     |       0 |       0 |         0.00 | 
+| hlo_datapath_recast       |       0 |       0 |         0.00 | 
+| hlo_clip_mux_input        |       0 |       0 |         0.00 | 
+| hlo_clip                  |       0 |       0 |         0.00 | 
+----------------------------------------------------------------
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_hlo_rtlopt
+--------------------------------------------------
+| Trick       | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------
+| ume_runtime |       0 |       0 |         0.00 | 
+--------------------------------------------------
+Number of big hc bmuxes before = 0
+              Info: total 3 bmuxes found, 3 are converted to onehot form, and 0 are kept as binary form
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : No pre-processing optimizations applied to datapath logic in 'proj_counter'.
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'proj_counter'.
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_0'
+CSAGen Prep Share:0 Re-Write:1 Speculation: 0
+    MaxCSA: weighted_instance_count is 60 
+MaxCSA: Successfully built Maximal CSA Expression Expr0
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c7' to a form more suitable for further optimization.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c1' to a form more suitable for further optimization.
+      Timing increment_unsigned...
+        Done timing increment_unsigned.
+      Timing increment_unsigned_23...
+        Done timing increment_unsigned_23.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c2' to a form more suitable for further optimization.
+      Timing increment_unsigned_31...
+        Done timing increment_unsigned_31.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c3' to a form more suitable for further optimization.
+      Timing increment_unsigned_39...
+        Done timing increment_unsigned_39.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c4' to a form more suitable for further optimization.
+      Timing increment_unsigned_47...
+        Done timing increment_unsigned_47.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c5' to a form more suitable for further optimization.
+      Timing increment_unsigned_55...
+        Done timing increment_unsigned_55.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 1 datapath macros in module 'CDN_DP_region_0_0_c6' to a form more suitable for further optimization.
+      Timing increment_unsigned_63...
+        Done timing increment_unsigned_63.
+CDN_DP_region_0_0 level = 0 loads = 0 drivers = 0
+CDN_DP_region_0_0_c0 in proj_counter: area: 2047833396 ,dp = 2 mux = 3 sg = slow         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ skipped
+CDN_DP_region_0_0_c1 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = fast         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c2 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c3 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c4 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c5 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c6 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c7 in proj_counter: area: 2446457454 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+Best config: CDN_DP_region_0_0_c6 in proj_counter: area: 1344379176 ,dp = 2 mux = 2 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+  Smallest config area : 1344379176.  Fastest config wns;  0
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Summary table of configs (Best config is CDN_DP_region_0_0_c6)
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>                     0                  1                  2                  3                  4                  5                  6                  7            
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>           Area       2047833396         1344379176         1344379176         1344379176         1344379176         1344379176         1344379176         2446457454  
+##>            WNS         +7252.30           +7261.30           +7261.30           +7261.30           +7261.30           +7261.30           +7261.30           +6642.00  
+##>            TNS                0                  0                  0                  0                  0                  0                  0                  0  
+##>    Num Rewrite                0                  1                  1                  1                  1                  1                  1                  2  
+##>     Num Factor                0                  0                  0                  0                  0                  0                  0                  0  
+##>      Num Share                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num CmultCse                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num Downsize                0                  0                  0                  0                  0                  0                  0                  0  
+##>  Num Speculate                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Runtime(s)                0                  0                  0                  0                  0                  0                  0                  1  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>
+##>
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Optimization Step DEBUG Table for config CDN_DP_region_0_0_c6
+##>
+##>                          Step                        Area   ( % Chg)        WNS (Change)        TNS (Change)          Runtime (s)        Comment                   
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>createMaxCarrySave              START             2047833396 (      )    107381434.70 (        )             0 (        )              
+##> datapath_rewrite_one_def       START             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)              
+##>                                  END             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)              
+##>                                  END             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)           0  
+##>  rewrite                       START             2047833396 ( +0.00)    107381434.70 (   +0.00)             0 (       0)              (a,csaa) inc_with_select --> inc_ci
+##>                                  END             1602312390 (-21.76)    107381443.70 (   +9.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)              
+##>                                  END             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)              
+##>                                  END             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1602312390 (-21.76)    107381443.70 (   +9.00)             0 (       0)           0  
+##> dpopt_share_one_def            START             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)              
+##>                                  END             1602312390 ( +0.00)    107381443.70 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START             1602312390 ( +0.00)    214748364.70 (+107366921.00)             0 (       0)              
+##>                                  END             1500702336 ( -6.34)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1500702336 (-26.72)    214748364.70 (+107366930.00)             0 (       0)           0  
+##>canonicalize_by_names           START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_csa_one_  START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_csa_factoring_one_gde  START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dpopt_share_one_def             START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_share     START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dp_combine_const_mult_with_com  START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dp_operator_level_decompositio  START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>selective_flatten_dp_config     START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> dpopt_share_one_def            START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>context_based_simplify          START             1500702336 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1344379176 (-10.42)    214748364.70 (   +0.00)             0 (       0)           0  
+##>group_csa_final_adder_dp        START             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dpopt_flatten_critical_muxes_i  START             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             1344379176 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>create_score                    START             1344379176 ( +0.00)     7261.30 (-214741103.40)             0 (       0)              
+##>                                  END             1344379176 ( +0.00)     7261.30 (   +0.00)             0 (       0)           0  
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Committed config: CDN_DP_region_0_0_c6
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 6 for module 'CDN_DP_region_0_0_c6'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(1), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info:  Ungrouped 0 dp-cluster instances.  0 cluster instances were left intact, to aid verification.
+              Prepare netlist for verification ...
+              Prepare netlist for verification Done.
+Info    : Done optimizing datapath logic. [DPOPT-2]
+        : Done optimizing datapath logic in 'proj_counter'.
+      Removing temporary intermediate hierarchies under proj_counter
+Number of big hc bmuxes after = 0
+Starting logic reduction [v1.0] (stage: post_rtlopt, startdef: proj_counter, recur: true)
+Completed logic reduction (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux data reorder optimization [v1.0] (stage: post_rtlopt, startdef: proj_counter, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_rtlopt
+----------------------------------------------------------
+| Transform           | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------
+| hlo_logic_reduction |       0 |       0 |         0.00 | 
+| hlo_mux_reorder     |       0 |       0 |         0.00 | 
+----------------------------------------------------------
+              Optimizing muxes in design 'proj_counter'.
+              Post blast muxes in design 'proj_counter'.
+Starting mux speculation [v1.0] (stage: post_muxopt, startdef: proj_counter, recur: true)
+Starting speculation optimization
+Completed speculation optimization (accepts:0)
+Completed mux speculation (accepts: 0, rejects: 0, runtime: 0.004s)
+
+Stage: post_muxopt
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_speculation |       0 |       0 |         4.00 | 
+------------------------------------------------------
+==================================
+Stage : to_generic 
+==================================
+  =================
+   Message Summary
+  =================
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|    Id     |  Sev   |Count |                                                                                                Message Text                                                                                                 |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| CDFG-818  |Warning |    1 |Using default parameter value for module elaboration.                                                                                                                                                        |
+| DPOPT-1   |Info    |    1 |Optimizing datapath logic.                                                                                                                                                                                   |
+| DPOPT-2   |Info    |    1 |Done optimizing datapath logic.                                                                                                                                                                              |
+| DPOPT-3   |Info    |    1 |Implementing datapath configurations.                                                                                                                                                                        |
+| DPOPT-4   |Info    |    1 |Done implementing datapath configurations.                                                                                                                                                                   |
+| DPOPT-6   |Info    |    1 |Pre-processed datapath logic.                                                                                                                                                                                |
+| ELAB-1    |Info    |    1 |Elaborating Design.                                                                                                                                                                                          |
+| ELAB-3    |Info    |    1 |Done Elaborating Design.                                                                                                                                                                                     |
+| LBR-161   |Info    |    1 |Setting the maximum print count of this message to 10 if information_level is less than 9.                                                                                                                   |
+| LBR-412   |Info    |    3 |Created nominal operating condition.                                                                                                                                                                         |
+|           |        |      |The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively)                              |
+|           |        |      | , or by the default PVT values (1.0,1.0,1.0).                                                                                                                                                               |
+| PHYS-93   |Warning |    1 |The design is not fully mapped.                                                                                                                                                                              |
+|           |        |      |The original design intent derived from the RTL may no longer be available upon restoration.                                                                                                                 |
+| PHYS-106  |Warning |    2 |Site already defined before, duplicated site will be ignored.                                                                                                                                                |
+| PHYS-752  |Info    |    1 |Partition Based Synthesis execution skipped.                                                                                                                                                                 |
+| RTLOPT-40 |Info    |    7 |Transformed datapath macro.                                                                                                                                                                                  |
+| SYNTH-1   |Info    |    1 |Synthesizing.                                                                                                                                                                                                |
+| TIM-1000  |Info    |    1 |Multimode clock gating check is disabled.                                                                                                                                                                    |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+      Mapping 'proj_counter'...
+        Preparing the circuit
+          Pruning unused logic
+Multi-threaded constant propagation [1|0] ...
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'inc_ADD_UNS_OP' of datapath component 'increment_unsigned_63'.
+Inserting clock-gating logic .....
+        
+        New clock gate fanout statistics
+        =================================================
+        Fanout Size           Num CGs     Total FFs 
+        -------------------------------------------------
+        4 to 15                   1       15
+        =================================================
+
+Info    : Could not find any user created clock-gating module. [POPT-12]
+        : Looking for Integrated clock-gating cell in library.
+Clock Gating Status
+===================
+Category                                Number    Percentage
+------------------------------------------------------------------
+Gated flip-flops                        15		 88%
+Ungated flip-flops
+  Cannot map to requested logic         0		  0%
+  Enable signal is constant             1		  6%
+  Excluded from clock-gating            0		  0%
+  User preserved                        0		  0%
+  Libcell unusable                      0		  0%
+  Timing exception in enable logic      0		  0%
+  Register bank width too small         1		  6%
+Total flip-flops                        17		100%
+Total CG Modules                        1
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+        : This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false.
+    Automatically cost grouped 2 clock gate paths.
+          Analyzing hierarchical boundaries
+          Aggressive hierarchical optimization: disabled
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) proj_counter...
+          Done structuring (delay-based) proj_counter
+Multi-threaded Virtual Mapping    (2 threads, 2 of 2 CPUs usable)
+          Structuring (delay-based) logic partition in proj_counter...
+          Done structuring (delay-based) logic partition in proj_counter
+        Mapping logic partition in proj_counter...
+          Structuring (delay-based) logic partition in proj_counter...
+          Done structuring (delay-based) logic partition in proj_counter
+        Mapping logic partition in proj_counter...
+==================================
+Stage : first_condense 
+==================================
+  =================
+   Message Summary
+  =================
+-------------------------------------------------------------------------------------------------------------------------
+|   Id    |Sev  |Count |                                         Message Text                                           |
+-------------------------------------------------------------------------------------------------------------------------
+| GB-6    |Info |    1 |A datapath component has been ungrouped.                                                        |
+| POPT-12 |Info |    1 |Could not find any user created clock-gating module.                                            |
+|         |     |      |Looking for Integrated clock-gating cell in library.                                            |
+| POPT-96 |Info |    1 |One or more cost groups were automatically created for clock gate enable paths.                 |
+|         |     |      |This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false. |
+-------------------------------------------------------------------------------------------------------------------------
+ 
+Global mapping target info
+==========================
+Cost Group 'reg2out' target slack:   238 ps
+Target path end-point (Port: proj_counter/finished_count)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+cb_seqi
+  out_index_reg[11]/clk                                               
+  out_index_reg[11]/q   (u)  unmapped_d_flop         5 20.1           
+cb_seqi/index[11] 
+cb_oseqi/cb_seqi_index[11] 
+  g350/in_3                                                           
+  g350/z                (u)  unmapped_nand4          1  3.7           
+  g344/in_2                                                           
+  g344/z                (u)  unmapped_complex6       3 11.1           
+  g345/in_0                                                           
+  g345/z                (u)  unmapped_not            1  4.9           
+cb_oseqi/finished_count 
+finished_count          <<<  interconnect                             
+                             out port                                 
+(proj.sdc_line_17_15_1)      ext delay                                
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/out_index_reg[11]/clk
+End-point    : finished_count
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 6401ps.
+ 
+Cost Group 'in2reg' target slack:   296 ps
+Target path end-point (Pin: count_enabled_reg/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+(proj.sdc_line_15_1_1)       ext delay                                
+start                   (u)  in port                 2  7.6           
+cb_oseqi/start 
+  g347/in_0                                                           
+  g347/z                (u)  unmapped_complex2      17 62.9           
+  g341/in_0                                                           
+  g341/z                (u)  unmapped_complex2       1  3.8           
+cb_oseqi/cb_seqi_g149_z 
+cb_seqi/g149_z 
+  g171/sel0                                                           
+  g171/z                (u)  unmapped_bmux3          1  3.8           
+  count_enabled_reg/d   <<<  unmapped_d_flop                          
+  count_enabled_reg/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : start
+End-point    : cb_seqi/count_enabled_reg/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7549ps.
+ 
+Cost Group 'reg2reg' target slack:   236 ps
+Target path end-point (Pin: out_index_reg[13]/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+cb_seqi
+  out_index_reg[11]/clk                                               
+  out_index_reg[11]/q   (u)  unmapped_d_flop         5 19.7           
+cb_seqi/index[11] 
+cb_oseqi/cb_seqi_index[11] 
+  g350/in_3                                                           
+  g350/z                (u)  unmapped_nand4          1  3.8           
+  g344/in_2                                                           
+  g344/z                (u)  unmapped_complex6       3 11.4           
+  g342/in_0                                                           
+  g342/z                (u)  unmapped_nand2          3 11.1           
+  g340/in_1                                                           
+  g340/z                (u)  unmapped_complex2       3 11.1           
+  g332/in_0                                                           
+  g332/z                (u)  unmapped_complex2       4 14.8           
+  g326/in_0                                                           
+  g326/z                (u)  unmapped_complex3       5 18.5           
+  g314/in_0                                                           
+  g314/z                (u)  unmapped_complex4       8 29.6           
+  g295/in_0                                                           
+  g295/z                (u)  unmapped_complex3       2  7.4           
+  g284/in_0                                                           
+  g284/z                (u)  unmapped_or2            1  3.7           
+  g285/in_1                                                           
+  g285/z                (u)  unmapped_nand2          1  3.8           
+  g361/in_0                                                           
+  g361/z                (u)  unmapped_and2           1  3.8           
+cb_oseqi/cb_seqi_g151_z 
+cb_seqi/g151_z 
+  g172/data0                                                          
+  g172/z                (u)  unmapped_bmux3          1  3.8           
+  out_index_reg[13]/d   <<<  unmapped_d_flop                          
+  out_index_reg[13]/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/out_index_reg[11]/clk
+End-point    : cb_seqi/out_index_reg[13]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7533ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   232 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+         Pin                         Type          Fanout Load Arrival   
+                                                          (fF)   (ps)    
+-------------------------------------------------------------------------
+(clock clk)              <<<    launch                               0 R 
+(proj.sdc_line_15_1_1)          ext delay                                
+start                    (u)    in port                 2  7.4           
+cb_oseqi/start 
+  g347/in_0                                                              
+  g347/z                 (u)    unmapped_complex2      17 64.6           
+  g339/in_1                                                              
+  g339/z                 (u)    unmapped_complex3       1  3.4           
+cb_oseqi/RC_CG_HIER_INST0_enable 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E       <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK               setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                          10000 R 
+                                uncertainty                              
+-------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : start
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7476ps.
+ 
+
+Test connection status for design: proj_counter
+===============================================
+Connected 0 out of 0 clock-gating instances.
+
+State Retention Synthesis Status
+================================
+
+Category                        Flops   Percentage
+--------------------------------------------------
+Total instances                    17        100.0
+Excluded from State Retention      17        100.0
+    - Will not convert             17        100.0
+      - Preserved                   0          0.0
+      - Power intent excluded      17        100.0
+    - Could not convert             0          0.0
+      - Scan type                   0          0.0
+      - No suitable cell            0          0.0
+State Retention instances           0          0.0
+--------------------------------------------------
+
+PBS_Generic_Opt-Post - Elapsed_Time 5, CPU_Time 3.9307230000000004
+stamp 'PBS_Generic_Opt-Post' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) | 100.0(100.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+PBS_Generic-Postgen HBO Optimizations - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Postgen HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) | 100.0(100.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>=================== Cadence Confidential (Generic-Logical) ===================
+##>Main Thread Summary:
+##>----------------------------------------------------------------------------------------
+##>STEP                           Elapsed       WNS       TNS     Insts      Area    Memory
+##>----------------------------------------------------------------------------------------
+##>G:Initial                            1         -         -       154       828       780
+##>G:Setup                              0         -         -         -         -         -
+##>G:Launch ST                          0         -         -         -         -         -
+##>G:Design Partition                   0         -         -         -         -         -
+##>G:Create Partition Netlists          0         -         -         -         -         -
+##>G:Init Power                         0         -         -         -         -         -
+##>G:Budgeting                          0         -         -         -         -         -
+##>G:Derenv-DB                          0         -         -         -         -         -
+##>G:Debug Outputs                      0         -         -         -         -         -
+##>G:ST loading                         0         -         -         -         -         -
+##>G:Distributed                        0         -         -         -         -         -
+##>G:Timer                              0         -         -         -         -         -
+##>G:Assembly                           0         -         -         -         -         -
+##>G:DFT                                0         -         -         -         -         -
+##>G:Const Prop                         0         -         -       107       618      1095
+##>G:Misc                               4
+##>----------------------------------------------------------------------------------------
+##>Total Elapsed                        5
+##>========================================================================================
+Info    : Done synthesizing. [SYNTH-2]
+        : Done synthesizing 'proj_counter' to generic gates.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_gen
+******************************************************
+******************************************************
+**   ENICSINFO: Starting stage technology_mapping   **
+******************************************************
+******************************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Mapping. [SYNTH-4]
+        : Mapping 'proj_counter' using 'low' effort.
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+Configuring mapper costing (none)
+TNS Restructuring config: no_value at stage: map applied.
+PBS_TechMap-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  36.0( 41.7) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  64.0( 58.3) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+PBS_TechMap-Premap HBO Optimizations - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Premap HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  36.0( 41.7) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  64.0( 58.3) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed mapping optimization to kick in.
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+      Mapping 'proj_counter'...
+        Preparing the circuit
+          Pruning unused logic
+          Analyzing hierarchical boundaries
+          Aggressive hierarchical optimization: disabled
+          Propagating constants
+        Done preparing the circuit
+          Structuring (delay-based) proj_counter...
+          Done structuring (delay-based) proj_counter
+Multi-threaded Virtual Mapping    (2 threads, 2 of 2 CPUs usable)
+          Structuring (delay-based) logic partition in proj_counter...
+          Done structuring (delay-based) logic partition in proj_counter
+        Mapping logic partition in proj_counter...
+          Structuring (delay-based) logic partition in proj_counter...
+          Done structuring (delay-based) logic partition in proj_counter
+        Mapping logic partition in proj_counter...
+==================================
+Stage : first_condense 
+==================================
+  =================
+   Message Summary
+  =================
+-----------------------------------------------------------------------
+|    Id    |Sev  |Count |                Message Text                 |
+-----------------------------------------------------------------------
+| PHYS-752 |Info |    1 |Partition Based Synthesis execution skipped. |
+| SYNTH-2  |Info |    1 |Done synthesizing.                           |
+| SYNTH-4  |Info |    1 |Mapping.                                     |
+-----------------------------------------------------------------------
+ 
+Global mapping target info
+==========================
+Cost Group 'reg2out' target slack:   238 ps
+Target path end-point (Port: proj_counter/finished_count)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+cb_seqi
+  out_index_reg[11]/clk                                               
+  out_index_reg[11]/q   (u)  unmapped_d_flop         5 20.1           
+cb_seqi/index[11] 
+cb_oseqi/cb_seqi_index[11] 
+  g400/in_3                                                           
+  g400/z                (u)  unmapped_nand4          1  3.7           
+  g398/in_2                                                           
+  g398/z                (u)  unmapped_complex6       3 11.1           
+cb_oseqi/cb_seqi_g344_z 
+g385/in_0                                                             
+g385/z                  (u)  unmapped_not            1  4.9           
+finished_count          <<<  interconnect                             
+                             out port                                 
+(proj.sdc_line_17_15_1)      ext delay                                
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/out_index_reg[11]/clk
+End-point    : finished_count
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 6389ps.
+ 
+Cost Group 'in2reg' target slack:   296 ps
+Target path end-point (Pin: count_enabled_reg/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+(proj.sdc_line_15_1_1)       ext delay                                
+start                   (u)  in port                 2  7.6           
+cb_oseqi/start 
+  g385/in_0                                                           
+  g385/z                (u)  unmapped_complex2      17 62.9           
+cb_oseqi/cb_seqi_g347_z 
+cb_seqi/g347_z 
+  g341/in_1                                                           
+  g341/z                (u)  unmapped_complex2       1  3.8           
+  g564/sel0                                                           
+  g564/z                (u)  unmapped_bmux3          1  3.8           
+  count_enabled_reg/d   <<<  unmapped_d_flop                          
+  count_enabled_reg/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : start
+End-point    : cb_seqi/count_enabled_reg/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7549ps.
+ 
+Cost Group 'reg2reg' target slack:   236 ps
+Target path end-point (Pin: out_index_reg[14]/d)
+
+         Pin                      Type          Fanout Load Arrival   
+                                                       (fF)   (ps)    
+----------------------------------------------------------------------
+(clock clk)             <<<  launch                               0 R 
+cb_seqi
+  out_index_reg[11]/clk                                               
+  out_index_reg[11]/q   (u)  unmapped_d_flop         5 19.7           
+cb_seqi/index[11] 
+cb_oseqi/cb_seqi_index[11] 
+  g400/in_3                                                           
+  g400/z                (u)  unmapped_nand4          1  3.8           
+  g398/in_2                                                           
+  g398/z                (u)  unmapped_complex6       3 11.4           
+cb_oseqi/cb_seqi_g344_z 
+cb_seqi/g344_z 
+  g342/in_0                                                           
+  g342/z                (u)  unmapped_nand2          3 11.1           
+  g340/in_0                                                           
+  g340/z                (u)  unmapped_complex2       3 11.1           
+  g332/in_0                                                           
+  g332/z                (u)  unmapped_complex2       3 11.1           
+  g325/in_0                                                           
+  g325/z                (u)  unmapped_complex2       3 11.1           
+  g561/in_0                                                           
+  g561/z                (u)  unmapped_complex2       4 14.8           
+  g315/in_1                                                           
+  g315/z                (u)  unmapped_or2            3 11.1           
+  g367/in_0                                                           
+  g367/z                (u)  unmapped_complex2       3 11.1           
+  g560/in_0                                                           
+  g560/z                (u)  unmapped_complex2       5 18.5           
+  g303/in_1                                                           
+  g303/z                (u)  unmapped_or2            3 11.1           
+  g557/in_0                                                           
+  g557/z                (u)  unmapped_complex2       3 11.1           
+  g556/in_0                                                           
+  g556/z                (u)  unmapped_complex2       2  7.4           
+  g499/in_0                                                           
+  g499/z                (u)  unmapped_or2            1  3.7           
+  g500/in_1                                                           
+  g500/z                (u)  unmapped_nand2          1  3.8           
+  g555/in_0                                                           
+  g555/z                (u)  unmapped_and2           1  3.8           
+  g565/data0                                                          
+  g565/z                (u)  unmapped_bmux3          1  3.8           
+  out_index_reg[14]/d   <<<  unmapped_d_flop                          
+  out_index_reg[14]/clk      setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                          10000 R 
+                             uncertainty                              
+----------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/out_index_reg[11]/clk
+End-point    : cb_seqi/out_index_reg[14]/d
+
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7367ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   232 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+         Pin                         Type          Fanout Load Arrival   
+                                                          (fF)   (ps)    
+-------------------------------------------------------------------------
+(clock clk)              <<<    launch                               0 R 
+(proj.sdc_line_15_1_1)          ext delay                                
+start                    (u)    in port                 2  7.4           
+cb_oseqi/start 
+  g385/in_0                                                              
+  g385/z                 (u)    unmapped_complex2      17 64.6           
+  g397/in_1                                                              
+  g397/z                 (u)    unmapped_complex3       1  3.4           
+cb_oseqi/RC_CG_HIER_INST0_enable 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E       <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK               setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                     capture                          10000 R 
+                                uncertainty                              
+-------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : start
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(u) : Net has unmapped pin(s).
+
+The global mapper estimates a slack for this path of 7523ps.
+ 
+Multi-threaded Technology Mapping (2 threads, 2 of 2 CPUs usable)
+          Restructuring (delay-based) logic partition in proj_counter...
+          Done restructuring (delay-based) logic partition in proj_counter
+        Optimizing logic partition in proj_counter...
+          Restructuring (delay-based) logic partition in proj_counter...
+          Done restructuring (delay-based) logic partition in proj_counter
+        Optimizing logic partition in proj_counter...
+ 
+Global mapping timing result
+============================
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+       Pin                       Type          Fanout Load Slew Delay Arrival   
+                                                      (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------------
+(clock clk)                 launch                                          0 R 
+(proj.sdc_line_15)          ext delay                           +2000    2000 R 
+rst_n                (i)    in port                 2  0.0    0    +0    2000 R 
+cb_oseqi/rst_n (i)
+  g420/A                                                           +0    2000   
+  g420/Y                    NAND2_X1A_A9TL          5 17.6  318  +187    2187 F 
+  g419/A                                                           +0    2187   
+  g419/Y                    INV_X2M_A9TL            1  3.5   95  +101    2288 R 
+  g418/B                                                           +0    2288   
+  g418/Y                    NAND3XXB_X1M_A9TL       1  3.4  156  +106    2394 F 
+cb_oseqi/RC_CG_HIER_INST0_enable 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E   <<< (P)  PREICG_X0P5B_A9TR                      +0    2394   
+  RC_CGIC_INST/CK           setup                             0  +253    2647 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                     10000 R 
+                            uncertainty                           -50    9950 R 
+--------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    7303ps 
+Start-point  : rst_n
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(i) : Net is ideal.
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                 launch                                         0 R 
+(proj.sdc_line_15)          ext delay                          +2000    2000 R 
+rst_n                  (i)  in port                2  0.0    0    +0    2000 R 
+cb_oseqi/rst_n (i)
+  g420/A                                                          +0    2000   
+  g420/Y                    NAND2_X1A_A9TL         5 17.6  318  +187    2187 F 
+cb_oseqi/cb_seqi_g343_z 
+cb_seqi/g343_z 
+  g792/A                                                          +0    2187   
+  g792/Y                    INV_X4M_A9TL          14 34.2  174  +189    2376 R 
+  g790/B                                                          +0    2376   
+  g790/Y                    NAND2_X1B_A9TL         1  4.0  144  +117    2493 F 
+  count_enabled_reg/SE <<<  SDFFRPQ_X1M_A9TL                      +0    2493   
+  count_enabled_reg/CK      setup                            0  +201    2694 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                                    10000 R 
+                            uncertainty                          -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Timing slack :    7256ps 
+Start-point  : rst_n
+End-point    : cb_seqi/count_enabled_reg/SE
+
+(i) : Net is ideal.
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                  launch                                        0 R 
+cb_seqi
+  out_index_reg[5]/CK                                        0    +0       0 R 
+  out_index_reg[5]/Q         DFFRPQ_X1M_A9TL       4 11.8  180  +364     364 R 
+cb_seqi/index[5] 
+cb_oseqi/cb_seqi_index[5] 
+  g424/C                                                          +0     364   
+  g424/Y                     AND4_X0P5M_A9TL       1  3.5  122  +214     578 R 
+  g422/D                                                          +0     578   
+  g422/Y                     AND4_X0P5M_A9TL       1  4.2  138  +216     795 R 
+  g421/A                                                          +0     795   
+  g421/Y                     NAND3_X2A_A9TL        3  9.6  141  +115     910 F 
+cb_oseqi/cb_seqi_g344_z 
+g386/A                                                            +0     910   
+g386/Y                       INV_X2M_A9TL          1  4.9   66   +73     982 R 
+finished_count          <<<  interconnect                   66    +0     982 R 
+                             out port                             +0     982 R 
+(proj.sdc_line_17_15_1)      ext delay                         +2000    2982 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                  capture                                   10000 R 
+                             uncertainty                         -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Timing slack :    6968ps 
+Start-point  : cb_seqi/out_index_reg[5]/CK
+End-point    : finished_count
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                 launch                                         0 R 
+cb_seqi
+  out_index_reg[5]/CK                                        0    +0       0 R 
+  out_index_reg[5]/Q        DFFRPQ_X1M_A9TL        4 11.7  130  +342     342 F 
+cb_seqi/index[5] 
+cb_oseqi/cb_seqi_index[5] 
+  g424/C                                                          +0     342   
+  g424/Y                    AND4_X0P5M_A9TL        1  3.5   90  +207     549 F 
+  g422/D                                                          +0     549   
+  g422/Y                    AND4_X0P5M_A9TL        1  4.2  101  +207     756 F 
+  g421/A                                                          +0     756   
+  g421/Y                    NAND3_X2A_A9TL         3  9.9  204  +142     898 R 
+cb_oseqi/cb_seqi_g344_z 
+cb_seqi/g344_z 
+  g791/B                                                          +0     898   
+  g791/Y                    AND2_X1M_A9TL          1  4.9   98  +179    1078 R 
+  g787/B                                                          +0    1078   
+  g787/CO                   ADDH_X1M_A9TL          1  4.9   98  +158    1235 R 
+  g784/B                                                          +0    1235   
+  g784/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    1392 R 
+  g781/B                                                          +0    1392   
+  g781/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    1550 R 
+  g778/B                                                          +0    1550   
+  g778/CO                   ADDH_X1M_A9TL          2  7.2  127  +175    1724 R 
+  g777/B                                                          +0    1724   
+  g777/Y                    AND2_X1M_A9TL          1  3.5   78  +147    1872 R 
+  g773/B                                                          +0    1872   
+  g773/Y                    AND2_X1M_A9TL          1  4.9   98  +147    2019 R 
+  g768/B                                                          +0    2019   
+  g768/CO                   ADDH_X1M_A9TL          1  4.9   98  +158    2176 R 
+  g764/B                                                          +0    2176   
+  g764/CO                   ADDH_X1M_A9TL          2  7.3  128  +175    2352 R 
+  g763/A                                                          +0    2352   
+  g763/Y                    AND3_X1M_A9TL          1  4.9   96  +160    2511 R 
+  g759/B                                                          +0    2511   
+  g759/CO                   ADDH_X1M_A9TL          1  4.9   96  +157    2668 R 
+  g752/B                                                          +0    2668   
+  g752/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    2825 R 
+  g748/B                                                          +0    2825   
+  g748/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    2983 R 
+  g745/B                                                          +0    2983   
+  g745/CO                   ADDH_X1M_A9TL          1  4.9   98  +158    3140 R 
+  g744/A                                                          +0    3140   
+  g744/Y                    XNOR2_X0P7M_A9TL       1  3.5  129   +87    3227 F 
+  g741/C                                                          +0    3227   
+  g741/Y                    NOR3_X1M_A9TL          1  3.5  243  +194    3422 R 
+  out_index_reg[14]/D  <<<  DFFRPQ_X1M_A9TL                       +0    3422   
+  out_index_reg[14]/CK      setup                            0  +132    3553 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                                    10000 R 
+                            uncertainty                          -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Timing slack :    6397ps 
+Start-point  : cb_seqi/out_index_reg[5]/CK
+End-point    : cb_seqi/out_index_reg[14]/D
+
+ 
+ 
+Global mapping status
+=====================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+ global_map                  410        0 
+
+             Cost Group            Target    Slack    Diff.  Constr.
+--------------------------------------------------------------------
+                reg2reg               236     6397             10000 
+                reg2out               238     6968             10000 
+                 in2reg               296     7256             10000 
+    cg_enable_group_clk               232     7303             10000 
+
+ 
+Global incremental target info
+==============================
+Cost Group 'reg2out' target slack:   158 ps
+Target path end-point (Port: proj_counter/finished_count)
+
+         Pin                     Type         Fanout Load Arrival   
+                                                     (fF)   (ps)    
+--------------------------------------------------------------------
+(clock clk)             <<<  launch                             0 R 
+cb_seqi
+  out_index_reg[5]/CK                                               
+  out_index_reg[5]/Q         DFFRPQ_X1M_A9TL       4 11.8           
+cb_seqi/index[5] 
+cb_oseqi/cb_seqi_index[5] 
+  g424/C                                                            
+  g424/Y                     AND4_X0P5M_A9TL       1  3.5           
+  g422/D                                                            
+  g422/Y                     AND4_X0P5M_A9TL       1  4.2           
+  g421/A                                                            
+  g421/Y                     NAND3_X2A_A9TL        3  9.6           
+cb_oseqi/cb_seqi_g344_z 
+g386/A                                                              
+g386/Y                       INV_X2M_A9TL          1  4.9           
+finished_count          <<<  interconnect                           
+                             out port                               
+(proj.sdc_line_17_15_1)      ext delay                              
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                  capture                        10000 R 
+                             uncertainty                            
+--------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Start-point  : cb_seqi/out_index_reg[5]/CK
+End-point    : finished_count
+
+The global mapper estimates a slack for this path of 5969ps.
+ 
+Cost Group 'in2reg' target slack:   155 ps
+Target path end-point (Pin: count_enabled_reg/SE (SDFFRPQ_X1M_A9TL/SE))
+
+         Pin                     Type         Fanout Load Arrival   
+                                                     (fF)   (ps)    
+--------------------------------------------------------------------
+(clock clk)            <<<  launch                              0 R 
+(proj.sdc_line_15)          ext delay                               
+rst_n                  (i)  in port                2  0.0           
+cb_oseqi/rst_n (i)
+  g420/A                                                            
+  g420/Y                    NAND2_X1A_A9TL         5 17.6           
+cb_oseqi/cb_seqi_g343_z 
+cb_seqi/g343_z 
+  g792/A                                                            
+  g792/Y                    INV_X4M_A9TL          14 34.2           
+  g790/B                                                            
+  g790/Y                    NAND2_X1B_A9TL         1  4.0           
+  count_enabled_reg/SE <<<  SDFFRPQ_X1M_A9TL                        
+  count_enabled_reg/CK      setup                                   
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                         10000 R 
+                            uncertainty                             
+--------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Start-point  : rst_n
+End-point    : cb_seqi/count_enabled_reg/SE
+
+(i) : Net is ideal.
+
+The global mapper estimates a slack for this path of 7238ps.
+ 
+Cost Group 'reg2reg' target slack:   156 ps
+Target path end-point (Pin: out_index_reg[14]/D (DFFRPQ_X1M_A9TL/D))
+
+         Pin                     Type         Fanout Load Arrival   
+                                                     (fF)   (ps)    
+--------------------------------------------------------------------
+(clock clk)            <<<  launch                              0 R 
+cb_seqi
+  out_index_reg[5]/CK                                               
+  out_index_reg[5]/Q        DFFRPQ_X1M_A9TL        4 11.7           
+cb_seqi/index[5] 
+cb_oseqi/cb_seqi_index[5] 
+  g424/C                                                            
+  g424/Y                    AND4_X0P5M_A9TL        1  3.5           
+  g422/D                                                            
+  g422/Y                    AND4_X0P5M_A9TL        1  4.2           
+  g421/A                                                            
+  g421/Y                    NAND3_X2A_A9TL         3  9.9           
+cb_oseqi/cb_seqi_g344_z 
+cb_seqi/g344_z 
+  g791/B                                                            
+  g791/Y                    AND2_X1M_A9TL          1  4.9           
+  g787/B                                                            
+  g787/CO                   ADDH_X1M_A9TL          1  4.9           
+  g784/B                                                            
+  g784/CO                   ADDH_X1M_A9TL          1  4.9           
+  g781/B                                                            
+  g781/CO                   ADDH_X1M_A9TL          1  4.9           
+  g778/B                                                            
+  g778/CO                   ADDH_X1M_A9TL          2  7.2           
+  g777/B                                                            
+  g777/Y                    AND2_X1M_A9TL          1  3.5           
+  g773/B                                                            
+  g773/Y                    AND2_X1M_A9TL          1  4.9           
+  g768/B                                                            
+  g768/CO                   ADDH_X1M_A9TL          1  4.9           
+  g764/B                                                            
+  g764/CO                   ADDH_X1M_A9TL          2  7.3           
+  g763/A                                                            
+  g763/Y                    AND3_X1M_A9TL          1  4.9           
+  g759/B                                                            
+  g759/CO                   ADDH_X1M_A9TL          1  4.9           
+  g752/B                                                            
+  g752/CO                   ADDH_X1M_A9TL          1  4.9           
+  g748/B                                                            
+  g748/CO                   ADDH_X1M_A9TL          1  4.9           
+  g745/B                                                            
+  g745/CO                   ADDH_X1M_A9TL          1  4.9           
+  g744/A                                                            
+  g744/Y                    XNOR2_X0P7M_A9TL       1  3.5           
+  g741/C                                                            
+  g741/Y                    NOR3_X1M_A9TL          1  3.5           
+  out_index_reg[14]/D  <<<  DFFRPQ_X1M_A9TL                         
+  out_index_reg[14]/CK      setup                                   
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                         10000 R 
+                            uncertainty                             
+--------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Start-point  : cb_seqi/out_index_reg[5]/CK
+End-point    : cb_seqi/out_index_reg[14]/D
+
+The global mapper estimates a slack for this path of 5424ps.
+ 
+Cost Group 'cg_enable_group_clk' target slack:   153 ps
+Target path end-point (Pin: RC_CG_HIER_INST0/RC_CGIC_INST/E (PREICG_X0P5B_A9TR/E))
+
+       Pin                       Type          Fanout Load Arrival   
+                                                      (fF)   (ps)    
+---------------------------------------------------------------------
+(clock clk)          <<<    launch                               0 R 
+(proj.sdc_line_15)          ext delay                                
+rst_n                (i)    in port                 2  0.0           
+cb_oseqi/rst_n (i)
+  g420/A                                                             
+  g420/Y                    NAND2_X1A_A9TL          5 17.6           
+  g419/A                                                             
+  g419/Y                    INV_X2M_A9TL            1  3.5           
+  g418/B                                                             
+  g418/Y                    NAND3XXB_X1M_A9TL       1  3.4           
+cb_oseqi/RC_CG_HIER_INST0_enable 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E   <<< (P)  PREICG_X0P5B_A9TR                        
+  RC_CGIC_INST/CK           setup                                    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                          10000 R 
+                            uncertainty                              
+---------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Start-point  : rst_n
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(i) : Net is ideal.
+
+The global mapper estimates a slack for this path of 7282ps.
+ 
+ 
+Global incremental timing result
+================================
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+       Pin                       Type          Fanout Load Slew Delay Arrival   
+                                                      (fF) (ps)  (ps)   (ps)    
+--------------------------------------------------------------------------------
+(clock clk)                 launch                                          0 R 
+(proj.sdc_line_15)          ext delay                           +2000    2000 R 
+rst_n                (i)    in port                 2  0.0    0    +0    2000 R 
+cb_oseqi/rst_n (i)
+  g420/A                                                           +0    2000   
+  g420/Y                    NAND2_X1A_A9TL          5 14.0  266  +153    2153 F 
+  g419/A                                                           +0    2153   
+  g419/Y                    INV_X1M_A9TL            1  3.5  114  +130    2283 R 
+  g418/B                                                           +0    2283   
+  g418/Y                    NAND3XXB_X1M_A9TL       1  3.4  152  +110    2394 F 
+cb_oseqi/RC_CG_HIER_INST0_enable 
+RC_CG_HIER_INST0/enable 
+  RC_CGIC_INST/E   <<< (P)  PREICG_X0P5B_A9TR                      +0    2394   
+  RC_CGIC_INST/CK           setup                             0  +252    2646 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+(clock clk)                 capture                                     10000 R 
+                            uncertainty                           -50    9950 R 
+--------------------------------------------------------------------------------
+Cost Group   : 'cg_enable_group_clk' (path_group 'cg_enable_group_clk')
+Timing slack :    7304ps 
+Start-point  : rst_n
+End-point    : RC_CG_HIER_INST0/RC_CGIC_INST/E
+
+(P) : Instance is preserved
+(i) : Net is ideal.
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                 launch                                         0 R 
+(proj.sdc_line_15)          ext delay                          +2000    2000 R 
+rst_n                  (i)  in port                2  0.0    0    +0    2000 R 
+cb_oseqi/rst_n (i)
+  g420/A                                                          +0    2000   
+  g420/Y                    NAND2_X1A_A9TL         5 14.0  266  +153    2153 F 
+cb_oseqi/cb_seqi_g343_z 
+cb_seqi/g343_z 
+  g792/A                                                          +0    2153   
+  g792/Y                    INV_X2M_A9TL          14 34.2  249  +244    2397 R 
+  g790/B                                                          +0    2397   
+  g790/Y                    NAND2_X1B_A9TL         1  4.0  140  +138    2535 F 
+  count_enabled_reg/SE <<<  SDFFRPQ_X1M_A9TL                      +0    2535   
+  count_enabled_reg/CK      setup                            0  +200    2735 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                                    10000 R 
+                            uncertainty                          -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'in2reg' (path_group 'in2reg')
+Timing slack :    7215ps 
+Start-point  : rst_n
+End-point    : cb_seqi/count_enabled_reg/SE
+
+(i) : Net is ideal.
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                  launch                                        0 R 
+cb_seqi
+  out_index_reg[4]/CK                                        0    +0       0 R 
+  out_index_reg[4]/Q         DFFRPQ_X1M_A9TL       4 12.9  194  +372     372 R 
+cb_seqi/index[4] 
+cb_oseqi/cb_seqi_index[4] 
+  g424/D                                                          +0     372   
+  g424/Y                     AND4_X0P5M_A9TL       1  3.5  122  +223     595 R 
+  g422/D                                                          +0     595   
+  g422/Y                     AND4_X0P5M_A9TL       1  3.5  122  +207     801 R 
+  g421/A                                                          +0     801   
+  g421/Y                     NAND3_X1A_A9TL        3  8.4  223  +169     970 F 
+cb_oseqi/cb_seqi_g344_z 
+g386/A                                                            +0     970   
+g386/Y                       INV_X1M_A9TL          1  4.9  120  +134    1104 R 
+finished_count          <<<  interconnect                  120    +0    1104 R 
+                             out port                             +0    1104 R 
+(proj.sdc_line_17_15_1)      ext delay                         +2000    3104 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                  capture                                   10000 R 
+                             uncertainty                         -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2out' (path_group 'reg2out')
+Timing slack :    6846ps 
+Start-point  : cb_seqi/out_index_reg[4]/CK
+End-point    : finished_count
+
+         Pin                     Type         Fanout Load Slew Delay Arrival   
+                                                     (fF) (ps)  (ps)   (ps)    
+-------------------------------------------------------------------------------
+(clock clk)                 launch                                         0 R 
+cb_seqi
+  out_index_reg[4]/CK                                        0    +0       0 R 
+  out_index_reg[4]/Q        DFFRPQ_X1M_A9TL        4 12.9  140  +348     348 F 
+cb_seqi/index[4] 
+cb_oseqi/cb_seqi_index[4] 
+  g424/D                                                          +0     348   
+  g424/Y                    AND4_X0P5M_A9TL        1  3.5   90  +222     570 F 
+  g422/D                                                          +0     570   
+  g422/Y                    AND4_X0P5M_A9TL        1  3.5   90  +200     770 F 
+  g421/A                                                          +0     770   
+  g421/Y                    NAND3_X1A_A9TL         3  8.7  296  +195     966 R 
+cb_oseqi/cb_seqi_g344_z 
+cb_seqi/g344_z 
+  g791/B                                                          +0     966   
+  g791/Y                    AND2_X1M_A9TL          1  4.9  100  +201    1167 R 
+  g787/B                                                          +0    1167   
+  g787/CO                   ADDH_X1M_A9TL          1  4.9   98  +158    1325 R 
+  g784/B                                                          +0    1325   
+  g784/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    1482 R 
+  g781/B                                                          +0    1482   
+  g781/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    1640 R 
+  g778/B                                                          +0    1640   
+  g778/CO                   ADDH_X1M_A9TL          2  7.2  127  +175    1814 R 
+  g777/B                                                          +0    1814   
+  g777/Y                    AND2_X1M_A9TL          1  3.5   80  +147    1962 R 
+  g773/B                                                          +0    1962   
+  g773/Y                    AND2_X1M_A9TL          1  4.9   98  +147    2109 R 
+  g768/B                                                          +0    2109   
+  g768/CO                   ADDH_X1M_A9TL          1  4.9   98  +158    2266 R 
+  g764/B                                                          +0    2266   
+  g764/CO                   ADDH_X1M_A9TL          2  7.3  128  +175    2442 R 
+  g763/A                                                          +0    2442   
+  g763/Y                    AND3_X1M_A9TL          1  4.9   96  +160    2602 R 
+  g759/B                                                          +0    2602   
+  g759/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    2758 R 
+  g752/B                                                          +0    2758   
+  g752/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    2916 R 
+  g748/B                                                          +0    2916   
+  g748/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    3073 R 
+  g745/B                                                          +0    3073   
+  g745/CO                   ADDH_X1M_A9TL          1  4.9   98  +157    3231 R 
+  g744/A                                                          +0    3231   
+  g744/Y                    XNOR2_X0P7M_A9TL       1  3.5  232  +124    3355 R 
+  g741/C                                                          +0    3355   
+  g741/Y                    NOR3_X1M_A9TL          1  3.4  138  +160    3515 F 
+  out_index_reg[14]/D  <<<  DFFRPQ_X1M_A9TL                       +0    3515   
+  out_index_reg[14]/CK      setup                            0  +128    3643 R 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(clock clk)                 capture                                    10000 R 
+                            uncertainty                          -50    9950 R 
+-------------------------------------------------------------------------------
+Cost Group   : 'reg2reg' (path_group 'reg2reg')
+Timing slack :    6307ps 
+Start-point  : cb_seqi/out_index_reg[4]/CK
+End-point    : cb_seqi/out_index_reg[14]/D
+
+ 
+==================================
+Stage : global_incr_map 
+==================================
+  =================
+   Message Summary
+  =================
+---------------------------------------------------------------------
+|  Id  |Sev  |Count |                 Message Text                  |
+---------------------------------------------------------------------
+| PA-7 |Info |    4 |Resetting power analysis results.              |
+|      |     |      |All computed switching activities are removed. |
+---------------------------------------------------------------------
+ 
+Global incremental optimization status
+======================================
+                                   Group   
+                                  Tot Wrst 
+                           Total  Weighted 
+Operation                   Area   Slacks  
+ global_incr                 405        0 
+
+             Cost Group            Target    Slack    Diff.  Constr.
+--------------------------------------------------------------------
+                reg2reg               156     6307             10000 
+                reg2out               158     6846             10000 
+                 in2reg               155     7215             10000 
+    cg_enable_group_clk               153     7304             10000 
+
+
+Scan mapping status report
+==========================
+    Scan mapping: converting flip-flops that pass TDRC.
+    Scan mapping: bypassed.  You have to either 1) set attribute 'dft_scan_map_mode' to 'tdrc_pass' and run 'check_dft_rules' or 2) set attribute 'dft_scan_map_mode' to 'force_all'.
+
+    Scan mapping bypassed because no TDRC data is available: either command 'check_dft_rules' has not been run or TDRC data has been subsequently invalidated.
+
+Test connection status for design: proj_counter
+===============================================
+Connected 0 out of 0 clock-gating instances.
+
+State Retention Synthesis Status
+================================
+
+Category                        Flops   Percentage
+--------------------------------------------------
+Total instances                    17        100.0
+Excluded from State Retention      17        100.0
+    - Will not convert             17        100.0
+      - Preserved                   0          0.0
+      - Power intent excluded      17        100.0
+    - Could not convert             0          0.0
+      - Scan type                   0          0.0
+      - No suitable cell            0          0.0
+State Retention instances           0          0.0
+--------------------------------------------------
+
+INFO: skipping constant propagation
+PBS_Techmap-Global Mapping - Elapsed_Time 2, CPU_Time 1.888229999999993
+stamp 'PBS_Techmap-Global Mapping' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  30.7( 35.7) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  54.6( 50.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |  14.7( 14.3) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+Warning : Command 'commit_power_intent' cannot proceed as there is no power intent loaded. [CPI-506]
+        : Command 'commit_power_intent' requires a valid power_intent to be loaded.
+Info    : Wrote formal verification information. [CFM-5]
+        : Wrote 'fv/proj_counter/fv_map.fv.json' for netlist 'fv/proj_counter/fv_map.v.gz'.
+Info    : Existing dofile found. Copied as fv/proj_counter/rtl_to_fv_map.do~.
+Info    : Forcing flat compare. [CFM-212]
+        : The design hierarchies are too small to qualify for hierarchical comparison. Set the attribute wlec_hier_comp_threshold accordingly for hier compare.
+Info    : Wrote dofile. [CFM-1]
+        : Dofile is 'fv/proj_counter/rtl_to_fv_map.do'.
+        : Alias mapping flow is enabled.
+        Computing net loads.
+PBS_TechMap-Datapath Postmap Operations - Elapsed_Time 2, CPU_Time 2.0
+stamp 'PBS_TechMap-Datapath Postmap Operations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  26.5( 31.2) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  47.2( 43.8) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |  12.7( 12.5) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:02(00:00:02) |  13.5( 12.5) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_TechMap-Postmap HBO Optimizations - Elapsed_Time 0, CPU_Time -1.8999999994662176e-5
+stamp 'PBS_TechMap-Postmap HBO Optimizations' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  26.5( 31.2) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  47.2( 43.8) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |  12.7( 12.5) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:02(00:00:02) |  13.5( 12.5) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) | -01:59:59(00:00:00) |  -0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+ Doing ConstProp on design:proj_counter ... 
+
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+
+Test connection status for design: proj_counter
+===============================================
+Connected 0 out of 0 clock-gating instances.
+  Decloning clock-gating logic from design:proj_counter
+Info    : Could not declone clock-gating instances. [POPT-51]
+        : There is only one clock-gating instance in the design 'design:proj_counter'.
+        : The design should have 2 or more clock-gating instances for decloning.
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 1
+Total number of clock-gating instances after : 1
+Time taken by ConstProp Step: 00:00:00
+PBS_TechMap-Postmap Clock Gating - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_TechMap-Postmap Clock Gating' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  26.5( 31.2) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  47.2( 43.8) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |  12.7( 12.5) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:02(00:00:02) |  13.5( 12.5) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) | -01:59:59(00:00:00) |  -0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+-------------------------------------------------------------------------------
+ hi_fo_buf                   405        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       hi_fo_buf         0  (        0 /        0 )  0.00
+
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_delay                  405        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+    plc_st_fence         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+      plc_laf_st         0  (        0 /        0 )  0.00
+ plc_laf_st_fence         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+ 
+Local TNS optimization status
+=============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_tns                    405        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+       crit_upsz         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+       crit_dnsz         0  (        0 /        0 )  0.00
+             dup         0  (        0 /        0 )  0.00
+        setup_dn         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+PBS_TechMap-Postmap Cleanup - Elapsed_Time 6, CPU_Time 5.999934999999994
+stamp 'PBS_TechMap-Postmap Cleanup' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  18.9( 22.7) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  33.6( 31.8) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |   9.1(  9.1) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:02(00:00:02) |   9.6(  9.1) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) | -01:59:59(00:00:00) |  -0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:12(00:02:14) |  00:00:05(00:00:06) |  28.8( 27.3) |   23:50:40 (Aug10) |   1.10 GB | PBS_TechMap-Postmap Cleanup
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+PBS_Techmap-Post_MBCI - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Techmap-Post_MBCI' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:51(00:01:52) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:18 (Aug10) |  780.9 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:03(00:00:05) |  18.9( 22.7) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic_Opt-Post
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:55(00:01:57) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:23 (Aug10) |   1.10 GB | PBS_Generic-Postgen HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:07(00:00:07) |  33.6( 31.8) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:02(00:02:04) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:30 (Aug10) |   1.09 GB | PBS_TechMap-Premap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:04(00:02:06) |  00:00:01(00:00:02) |   9.1(  9.1) |   23:50:32 (Aug10) |   1.09 GB | PBS_Techmap-Global Mapping
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:02(00:00:02) |   9.6(  9.1) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Datapath Postmap Operations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) | -01:59:59(00:00:00) |  -0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap HBO Optimizations
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:06(00:02:08) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:34 (Aug10) |   1.09 GB | PBS_TechMap-Postmap Clock Gating
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:12(00:02:14) |  00:00:05(00:00:06) |  28.8( 27.3) |   23:50:40 (Aug10) |   1.10 GB | PBS_TechMap-Postmap Cleanup
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:01:12(00:02:14) |  00:00:00(00:00:00) |   0.0(  0.0) |   23:50:40 (Aug10) |   1.10 GB | PBS_Techmap-Post_MBCI
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+##>=================== Cadence Confidential (Mapping-Logical) ===================
+##>Main Thread Summary:
+##>----------------------------------------------------------------------------------------
+##>STEP                           Elapsed       WNS       TNS     Insts      Area    Memory
+##>----------------------------------------------------------------------------------------
+##>M:Initial                            0         -         -       107       618      1090
+##>M:Pre Cleanup                        0         -         -       107       618      1090
+##>M:Setup                              0         -         -         -         -         -
+##>M:Launch ST                          0         -         -         -         -         -
+##>M:Design Partition                   0         -         -         -         -         -
+##>M:Create Partition Netlists          0         -         -         -         -         -
+##>M:Init Power                         0         -         -         -         -         -
+##>M:Budgeting                          0         -         -         -         -         -
+##>M:Derenv-DB                          0         -         -         -         -         -
+##>M:Debug Outputs                      0         -         -         -         -         -
+##>M:ST loading                         0         -         -         -         -         -
+##>M:Distributed                        0         -         -         -         -         -
+##>M:Timer                              0         -         -         -         -         -
+##>M:Assembly                           0         -         -         -         -         -
+##>M:DFT                                0         -         -         -         -         -
+##>M:DP Operations                      2         -         -        66       294      1093
+##>M:Const Prop                         0      6307         0        66       294      1093
+##>M:Cleanup                            6      6307         0        66       294      1098
+##>M:MBCI                               0         -         -        66       294      1098
+##>M:Const Gate Removal                 0         -         -         -         -         -
+##>M:Misc                               2
+##>----------------------------------------------------------------------------------------
+##>Total Elapsed                       10
+##>========================================================================================
+Info    : Done mapping. [SYNTH-5]
+        : Done mapping 'proj_counter'.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_map
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+************************************************
+************************************************
+**   ENICSINFO: Starting stage post_syn_opt   **
+************************************************
+************************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Incrementally optimizing. [SYNTH-7]
+        : Incrementally optimizing 'proj_counter' using 'low' effort.
+Info    : One or more cost groups were automatically created for clock gate enable paths. [POPT-96]
+    Automatically cost grouped 2 clock gate paths.
+
+Test connection status for design: proj_counter
+===============================================
+Connected 0 out of 0 clock-gating instances.
+  Decloning clock-gating logic from design:proj_counter
+Forcing hierarchical CG on for clock_gating declone -hier
+Info    : Could not declone clock-gating instances. [POPT-51]
+        : There is only one clock-gating instance in the design 'design:proj_counter'.
+Clock-gating declone status
+===========================
+Total number of clock-gating instances before: 1
+Total number of clock-gating instances after : 1
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_iopt                   405        0         0         0        0        0
+-------------------------------------------------------------------------------
+ const_prop                  405        0         0         0        0        0
+ 
+Incremental optimization status
+===============================
+                                   Group   
+                                  Tot Wrst     Total - - - - DRC Totals - - - -
+                           Total  Weighted      Neg      Max       Max     Max  
+Operation                   Area   Slacks      Slack    Trans      Cap   Fanout 
+ init_delay                  405        0         0         0        0        0
+
+           Trick     Calls     Accepts   Attempts    Time(secs) 
+-----------------------------------------------------------
+       crit_upsz         0  (        0 /        0 )  0.00
+    plc_bal_star         0  (        0 /        0 )  0.00
+     drc_buftimb         0  (        0 /        0 )  0.00
+          plc_st         0  (        0 /        0 )  0.00
+    plc_st_fence         0  (        0 /        0 )  0.00
+        plc_star         0  (        0 /        0 )  0.00
+      plc_laf_st         0  (        0 /        0 )  0.00
+ plc_laf_st_fence         0  (        0 /        0 )  0.00
+     drc_buftims         0  (        0 /        0 )  0.00
+            fopt         0  (        0 /        0 )  0.00
+   plc_laf_lo_st         0  (        0 /        0 )  0.00
+       plc_lo_st         0  (        0 /        0 )  0.00
+        mb_split         0  (        0 /        0 )  0.00
+
+==================================
+Stage : incr_opt 
+==================================
+  =================
+   Message Summary
+  =================
+----------------------------------------------------------------------------------------------------------------------------
+|   Id    |  Sev   |Count |                                         Message Text                                           |
+----------------------------------------------------------------------------------------------------------------------------
+| CFM-1   |Info    |    1 |Wrote dofile.                                                                                   |
+| CFM-5   |Info    |    1 |Wrote formal verification information.                                                          |
+| CFM-212 |Info    |    1 |Forcing flat compare.                                                                           |
+| CPI-506 |Warning |    1 |Command 'commit_power_intent' cannot proceed as there is no power intent loaded.                |
+| PA-7    |Info    |    4 |Resetting power analysis results.                                                               |
+|         |        |      |All computed switching activities are removed.                                                  |
+| POPT-51 |Info    |    2 |Could not declone clock-gating instances.                                                       |
+|         |        |      |The design should have 2 or more clock-gating instances for decloning.                          |
+| POPT-96 |Info    |    2 |One or more cost groups were automatically created for clock gate enable paths.                 |
+|         |        |      |This feature can be disabled by setting the attribute lp_clock_gating_auto_cost_grouping false. |
+| SYNTH-5 |Info    |    1 |Done mapping.                                                                                   |
+| SYNTH-7 |Info    |    1 |Incrementally optimizing.                                                                       |
+----------------------------------------------------------------------------------------------------------------------------
+Info    : Done incrementally optimizing. [SYNTH-8]
+        : Done incrementally optimizing 'proj_counter'.
+        Computing net loads.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   syn_opt
+@file(genus_counter.tcl) 188: enics_report_timing $design(synthesis_reports) 
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+@file(genus_counter.tcl) 189: set post_synth_reports [list \
+    report_area \
+    report_gates \
+    report_hierarchy \
+    report_clock_gating \
+    report_design_rules \
+    report_dp \
+    report_qor \
+]
+@file(genus_counter.tcl) 198: foreach rpt $post_synth_reports {
+    enics_message "$rpt" medium
+    $rpt
+    $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
+}
+
+ENICSINFO: report_area
+----------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+  Instance   Module  Cell Count  Cell Area  Net Area   Total Area 
+------------------------------------------------------------------
+proj_counter                 66    294.840   109.682      404.522 
+
+ENICSINFO: report_gates
+-----------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+                                      
+       Gate        Instances   Area                        Library                      
+----------------------------------------------------------------------------------------
+ADDH_X1M_A9TL             12   56.160    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AND2_X1M_A9TL              3    5.400    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AND3_X1M_A9TL             13   32.760    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+AND4_X0P5M_A9TL            4   11.520    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+DFFRPQ_X1M_A9TL           16  138.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X0P5M_A9TL             1    1.080    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X1M_A9TL               2    2.160    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+INV_X2M_A9TL               2    2.880    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND2XB_X3M_A9TL           1    3.960    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND2_X1A_A9TL             1    1.440    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND2_X1B_A9TL             1    1.440    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND3XXB_X1M_A9TL          1    2.520    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NAND3_X1A_A9TL             1    2.160    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+NOR3_X1M_A9TL              3    6.480    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+PREICG_X0P5B_A9TR          1    6.480    sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 
+SDFFRPQ_X1M_A9TL           1   10.440    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+XNOR2_X0P7M_A9TL           3    9.720    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
+----------------------------------------------------------------------------------------
+total                     66  294.840                                                   
+
+
+                    Library                    Instances   Area  Instances % 
+-----------------------------------------------------------------------------
+sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c        65 288.360        98.5 
+sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c         1   6.480         1.5 
+
+                                                      
+            Type             Instances   Area  Area % 
+------------------------------------------------------
+sequential                          17 148.680   50.4 
+inverter                             5   6.120    2.1 
+clock_gating_integrated_cell         1   6.480    2.2 
+logic                               43 133.560   45.3 
+physical_cells                       0   0.000    0.0 
+------------------------------------------------------
+total                               66 294.840  100.0 
+
+
+ENICSINFO: report_hierarchy
+---------------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+ 
+  Hierarchy Report Format : 
+ 
+    level instance ( module ) <status>
+ 
+    status :    preserve_<value> -- indicating preserve hierachy or inherited_preserve value
+           :    blackbox --  indicating  unresolved instance
+ 
+==================================================================
+
+ 0 proj_counter
+  1 RC_CG_HIER_INST0 ( RC_CG_MOD ) 
+
+ENICSINFO: report_clock_gating
+------------------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+Summary
+-------
+Info   : ACTP-0001 [ACTPInfo] Activity propagation started for stim#0 netlist
+       : proj_counter
+Info   : ACTP-0009 [ACTPInfo] Activity Propagation Progress Report :   0%   1%   2%   3%   4%   5%   6%   7%   8%   9%  10%  11%  12%  13%  14%  15%  16%  17%  18%  19%  20%  21%  22%  23%  24%  25%  26%  27%  28%  29%  30%  31%  32%  33%  34%  35%  36%  37%  38%  39%  40%  41%  42%  43%  44%  45%  46%  47%  48%  49%  50%  51%  52%  53%  54%  55%  56%  57%  58%  59%  60%  61%  62%  63%  64%  65%  66%  67%  68%  69%  70%  71%  72%  73%  74%  75%  76%  77%  78%  79%  80%  81%  82%  83%  84%  85%  86%  87%  88%  89%  90%  91%  92%  93%  94%  95%  96%  97%  98%  99% 100%
+Info   : ACTP-0001 Activity propagation ended for stim#0
+--------------------------------------------------------------------------
+            Category            Number     %    Average Toggle Saving %   
+--------------------------------------------------------------------------
+ Total Clock Gating Instances        1  100.00                         -  
+--------------------------------------------------------------------------
+ RC Clock Gating Instances           1  100.00                     21.09  
+ Non-RC Clock Gating Instances       0    0.00                      0.00  
+--------------------------------------------------------------------------
+ RC Gated Flip-flops                15   88.24                     21.09  
+ Non-RC Gated Flip-flops             0    0.00                      0.00  
+--------------------------------------------------------------------------
+ Total Gated Flip-flops             15   88.24                         -  
+ Total Ungated Flip-flops            2   11.76                         -  
+ Enable signal is constant           1   50.00                         -  
+ Register bank width too small       1   50.00                         -  
+--------------------------------------------------------------------------
+ Total Flip-flops                   17  100.00                         -  
+--------------------------------------------------------------------------
+
+
+Multibit Flip-flop Summary
+--------------------------
+-------------------------------------------------------
+Width     Number     Bits     RC Gated     Ungated     
+-------------------------------------------------------
+1-bit     17         17       15 (88.24%)  2 (11.76%)  
+-------------------------------------------------------
+
+
+
+
+
+ENICSINFO: report_design_rules
+------------------------------
+        Initializing DRC engine.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+Max_transition design rule: no violations.
+
+
+Max_capacitance design rule: no violations.
+
+
+Max_fanout design rule: no violations.
+
+
+
+
+ENICSINFO: report_dp
+--------------------
+Beginning report datapath command
+Command: report datapath 
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+      Type       CellArea Percentage 
+-------------------------------------
+datapath modules     0.00       0.00 
+external muxes       0.00       0.00 
+others             294.84     100.00 
+-------------------------------------
+total              294.84     100.00 
+
+Beginning report datapath command
+
+ENICSINFO: report_qor
+---------------------
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 10 2024  11:50:41 pm
+  Module:                 proj_counter
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+Timing
+--------
+
+Clock  Period 
+--------------
+clk   10000.0 
+
+
+        Cost          Critical         Violating 
+       Group         Path Slack  TNS     Paths   
+-------------------------------------------------
+cg_enable_group_clk      7304.2   0.0          0 
+clk                    No paths   0.0            
+default                No paths   0.0            
+in2out                 No paths   0.0            
+in2reg                   7214.8   0.0          0 
+reg2out                  6845.7   0.0          0 
+reg2reg                  6307.4   0.0          0 
+-------------------------------------------------
+Total                             0.0          0 
+
+Instance Count
+--------------
+Leaf Instance Count             66 
+Physical Instance count          0 
+Sequential Instance Count       18 
+Combinational Instance Count    48 
+Hierarchical Instance Count      1 
+
+Area
+----
+Cell Area                          294.840
+Physical Cell Area                 0.000
+Total Cell Area (Cell+Physical)    294.840
+Net Area                           109.682
+Total Area (Cell+Physical+Net)     404.522
+
+Max Fanout                         15 (rc_gclk)
+Min Fanout                         0 (n_0)
+Average Fanout                     2.1
+Terms to net ratio                 3.0732
+Terms to instance ratio            3.8182
+Runtime                            73.816521 seconds
+Elapsed Runtime                    144 seconds
+Genus peak memory usage            6883.78 
+Innovus peak memory usage          no_value 
+Hostname                           ip-10-0-112-224.eu-central-1.compute.internal
+@file(genus_counter.tcl) 203: report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL)_worst_timing.rpt
+@file(genus_counter.tcl) 209: enics_start_stage "export_design"
+*************************************************
+*************************************************
+**   ENICSINFO: Starting stage export_design   **
+*************************************************
+*************************************************
+ENICSINFO: Current time is: 10/08/2024 23:50
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 210: write_db $design(TOPLEVEL) -to_file "$design(export_dir)/post_synth/$design(TOPLEVEL).db" 
+Finished exporting design database to file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.db' for 'proj_counter' (command execution time mm:ss cpu = 00:00, real = 00:01).
+@file(genus_counter.tcl) 211: write_design -base_name "$design(export_dir)/post_synth/$design(TOPLEVEL)" -innovus
+Warning : This command will be obsolete in a next major release. [TUI-37]
+        : Option '-innovus' is being obsoleted. Use 'write_db -common' for saving design databases to operate with other Cadence tools. Use 'write_design' in future releases for saving files for operations with non-Cadence tools.
+
+(write_design): Writing Innovus content. Constraint interface is: 'mmmc2'
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Exporting design data for 'proj_counter' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter...
+%# Begin write_design (08/10 23:50:42, mem=5205.31M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+No loop breaker instances found (cdn_loop_breaker).
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.mmmc.tcl has been written.
+Finished SDC export (command execution time mm:ss (real) = 00:01).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.default_emulate_constraint_mode.sdc has been written
+Info    : Innovus executable found. [INVS-8] [launch_innovus]
+        : Using the Innovus executable specified by the user path (/apps/cadence/INNOVUS/21.15/tools/bin/innovus)
+        : The specified Innovus executable will be used for the Innovus batch jobs.
+
+Number of user defined NDR nets found: 0
+
+Number of NDR nets found: 0
+Number of nets with minimum layer assignments: 0
+
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.invs_setup.tcl in an Innovus session.
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_counter/post_synth/proj_counter.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_counter' (command execution time mm:ss cpu = 00:05, real = 00:08).
+.
+%# End write_design (08/10 23:50:50, total cpu=08:00:05, real=08:00:08, peak res=1127.10M, current mem=5216.31M)
+@file(genus_counter.tcl) 212: write_hdl > $design(postsyn_netlist)
+@file(genus_counter.tcl) 213: write_sdf > "$design(export_dir)/post_synth/$design(TOPLEVEL).sdf"
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -setuphold has changed from split to merge_always. Specify '-setuphold split' to preserve the behavior of the previous release.
+        : Specify the option explicitly.
+Warning : Default value for an option has changed in this release. [WSDF-104]
+        : Default value for -recrem has changed from split to merge_always. Specify '-recrem split' to preserve the behavior of the previous release.
+#@ End verbose source ../scripts/genus_counter.tcl
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 390s, ST: 87s, FG: 87s, CPU: 5.2%}, MEM {curr: 5.1G, peak: 6.7G, phys curr: 1.1G, phys peak: 1.1G}, SYS {load: 0.6, cpu: 2, total: 7.5G, free: 4.4G}
+Abnormal exit.

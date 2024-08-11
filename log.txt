@@ -1,0 +1,228 @@
+TOOL:	xrun(64)	21.09-s007: Started on Aug 06, 2024 at 13:43:10 UTC
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+xrun(64): 21.09-s007: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+Recompiling... reason: file './verification/proj_sorter_tb.sv' is newer than expected.
+	expected: Tue Aug  6 13:38:47 2024
+	actual:   Tue Aug  6 13:43:00 2024
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmvlog: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmvlog: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+file: ./verification/proj_sorter_tb.sv
+	module worklib.proj_sorter_tb:sv
+		errors: 0, warnings: 0
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 2
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmelab: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmelab: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		proj_pkg
+		$unit_0x60ca6d33
+		proj_hasher
+		ROL13
+		ROL15
+		proj_fm
+		proj_extender
+		proj_counter
+		proj_kmer_buffer
+		proj_sorter_tb
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmvlog_cg: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmvlog_cg: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+		worklib.proj_sorter_tb:sv <0x35c4ff39>
+			streams:  12, words: 19188
+            assign equation_result_bigger[i].signature = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].signature : smallest_idx_curr[i].signature;
+                                        |
+xmelab: *W,BNDWRN (./design/proj_sorter.sv,44|40): Bit-select or part-select index out of declared bounds.
+            assign equation_result_bigger[i].index = (smallest_idx_curr[i].signature < equation_result_bigger[i-1].signature) ? equation_result_bigger[i-1].index : smallest_idx_curr[i].index;
+                                        |
+xmelab: *W,BNDWRN (./design/proj_sorter.sv,45|40): Bit-select or part-select index out of declared bounds.
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 9       9
+		Verilog packages:        1       1
+		Registers:              67      67
+		Scalar wires:           35       -
+		Vectored wires:         54       -
+		Always blocks:          14      13
+		Initial blocks:          1       1
+		Cont. assignments:      55      47
+		Pseudo assignments:      7       7
+		Assertions:              2       2
+		Compilation units:       1       1
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.proj_hasher:sv
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmsim: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,10): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmsim: *W,DLCVAR (/apps/cadence/IC/6.18.350/tools/dfII/local/cds.lib,12): cds.lib Invalid environment variable ''.
+Loading snapshot worklib.proj_hasher:sv .................... Done
+SVSEED default: 1
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /apps/cadence/XCELIUM/21.09.007/tools/xcelium/files/xmsimrc
+xcelium> # create database for post simulation waveform
+xcelium> database -open -shm dump -compress -incsize 100M -into dump -default
+Created default SHM database dump
+xcelium> probe -database dump -create [scop -tops] -functions -tasks -emptyok -depth all -memories -all
+xmsim: *W,PRFRTNEV: (-FUNCTION) Database must be opened in -EVENT mode to capture calling scope data.
+Created probe 1
+xcelium> 
+xcelium> #run until $finish signal and exit
+xcelium> run 10000
+Time=5000, in_signature=00000000, in_index=00, end_sorting=0, sort_valid=0
+Time=15000, in_signature=a0a0a0a0, in_index=0a, end_sorting=0, sort_valid=0
+Time=25000, in_signature=90909090, in_index=09, end_sorting=0, sort_valid=0
+Time=35000, in_signature=80808080, in_index=08, end_sorting=0, sort_valid=0
+Time=45000, in_signature=70707070, in_index=07, end_sorting=0, sort_valid=0
+Time=55000, in_signature=60606060, in_index=06, end_sorting=0, sort_valid=0
+Time=65000, in_signature=50505050, in_index=05, end_sorting=0, sort_valid=0
+Time=75000, in_signature=40404040, in_index=04, end_sorting=0, sort_valid=0
+Time=85000, in_signature=30303030, in_index=03, end_sorting=0, sort_valid=0
+Time=95000, in_signature=20202020, in_index=02, end_sorting=0, sort_valid=0
+Time=105000, in_signature=10101010, in_index=01, end_sorting=0, sort_valid=0
+Time=115000, in_signature=10101010, in_index=01, end_sorting=1, sort_valid=1
+  out_smallest_idx[0]=01
+  out_smallest_idx[1]=02
+  out_smallest_idx[2]=03
+  out_smallest_idx[3]=04
+--------------------
+Time=125000, in_signature=10101010, in_index=01, end_sorting=0, sort_valid=0
+Time=135000, in_signature=01010101, in_index=01, end_sorting=0, sort_valid=0
+Time=145000, in_signature=02020202, in_index=02, end_sorting=0, sort_valid=0
+Time=155000, in_signature=03030303, in_index=03, end_sorting=0, sort_valid=0
+Time=165000, in_signature=04040404, in_index=04, end_sorting=0, sort_valid=0
+Time=175000, in_signature=05050505, in_index=05, end_sorting=0, sort_valid=0
+Time=185000, in_signature=06060606, in_index=06, end_sorting=0, sort_valid=0
+Time=195000, in_signature=07070707, in_index=07, end_sorting=0, sort_valid=0
+Time=205000, in_signature=08080808, in_index=08, end_sorting=0, sort_valid=0
+Time=215000, in_signature=09090909, in_index=09, end_sorting=0, sort_valid=0
+Time=225000, in_signature=0a0a0a0a, in_index=0a, end_sorting=0, sort_valid=0
+Time=235000, in_signature=a0a0a0a0, in_index=0a, end_sorting=1, sort_valid=1
+  out_smallest_idx[0]=01
+  out_smallest_idx[1]=02
+  out_smallest_idx[2]=03
+  out_smallest_idx[3]=04
+--------------------
+Time=245000, in_signature=a0a0a0a0, in_index=0a, end_sorting=0, sort_valid=0
+Time=255000, in_signature=e6dbb4d4, in_index=0d, end_sorting=0, sort_valid=0
+Time=265000, in_signature=77c761e6, in_index=00, end_sorting=0, sort_valid=0
+Time=275000, in_signature=a4e25044, in_index=1b, end_sorting=0, sort_valid=0
+Time=285000, in_signature=b7c99e8f, in_index=18, end_sorting=0, sort_valid=0
+Time=295000, in_signature=012bff3c, in_index=1f, end_sorting=0, sort_valid=0
+Time=305000, in_signature=3e8a2d87, in_index=0c, end_sorting=0, sort_valid=0
+Time=315000, in_signature=01adb293, in_index=1c, end_sorting=0, sort_valid=0
+Time=325000, in_signature=69904c39, in_index=19, end_sorting=0, sort_valid=0
+Time=335000, in_signature=c11714cf, in_index=12, end_sorting=0, sort_valid=0
+Time=345000, in_signature=26c59ae6, in_index=1e, end_sorting=0, sort_valid=0
+Time=355000, in_signature=6955d9dc, in_index=10, end_sorting=0, sort_valid=0
+Time=365000, in_signature=77d967b4, in_index=03, end_sorting=0, sort_valid=0
+Time=375000, in_signature=50d4a283, in_index=1e, end_sorting=0, sort_valid=0
+Time=385000, in_signature=f2661f86, in_index=13, end_sorting=0, sort_valid=0
+Time=395000, in_signature=9e858796, in_index=1a, end_sorting=0, sort_valid=0
+Time=405000, in_signature=80d7588f, in_index=1d, end_sorting=0, sort_valid=0
+Time=415000, in_signature=98a420ec, in_index=0f, end_sorting=0, sort_valid=0
+Time=425000, in_signature=6807aaa5, in_index=0e, end_sorting=0, sort_valid=0
+Time=435000, in_signature=82379c11, in_index=02, end_sorting=0, sort_valid=0
+Time=445000, in_signature=55a94957, in_index=1d, end_sorting=0, sort_valid=0
+Time=455000, in_signature=55a94957, in_index=1d, end_sorting=1, sort_valid=1
+  out_smallest_idx[0]=01
+  out_smallest_idx[1]=1f
+  out_smallest_idx[2]=1c
+  out_smallest_idx[3]=02
+--------------------
+Time=465000, in_signature=55a94957, in_index=1d, end_sorting=0, sort_valid=0
+Time=475000, in_signature=55a94957, in_index=1d, end_sorting=0, sort_valid=0
+Time=485000, in_signature=ab5636ba, in_index=0a, end_sorting=0, sort_valid=0
+Time=495000, in_signature=fb6b13bf, in_index=16, end_sorting=0, sort_valid=0
+Time=505000, in_signature=182e30fb, in_index=07, end_sorting=0, sort_valid=0
+Time=515000, in_signature=7ada8e16, in_index=1e, end_sorting=0, sort_valid=0
+Time=525000, in_signature=e2c40b39, in_index=00, end_sorting=0, sort_valid=0
+Time=535000, in_signature=a604f909, in_index=03, end_sorting=0, sort_valid=0
+Time=545000, in_signature=3b7aa3df, in_index=10, end_sorting=0, sort_valid=0
+Time=555000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=565000, in_signature=d8e17acf, in_index=05, end_sorting=1, sort_valid=1
+  out_smallest_idx[0]=07
+  out_smallest_idx[1]=10
+  out_smallest_idx[2]=1e
+  out_smallest_idx[3]=03
+--------------------
+Time=575000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=585000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=595000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=605000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=615000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=625000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=635000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=645000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=655000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=665000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Time=675000, in_signature=d8e17acf, in_index=05, end_sorting=0, sort_valid=0
+Simulation complete via $finish(1) at time 680 NS + 0
+./verification/proj_sorter_tb.sv:102         $finish;
+xcelium> exit
+TOOL:	xrun(64)	21.09-s007: Exiting on Aug 06, 2024 at 13:43:12 UTC  (total: 00:00:02)

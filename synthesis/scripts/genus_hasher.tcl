@@ -17,7 +17,7 @@ enics_start_stage "start"
 
 
 # Load the specific definitions for this project
-source ../inputs/$design(TOPLEVEL).defines -quiet
+source ../inputs/proj.defines -quiet
 
 # Load the library paths and definitions for this technology
 source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
@@ -129,7 +129,7 @@ check_timing_intent
 check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
 
 ###################################################################################
-## Define cost groups
+## Define cost groups (reg2reg, in2reg, reg2out, in2out)
 ###################################################################################
 enics_in2out_cost_groups
 enics_report_timing $design(synthesis_reports)
@@ -176,9 +176,11 @@ if {$phys_synth_type == "floorplan"} {
     if {$phys_synth_type == "lef"} {
         syn_opt
     } else {
-        syn_opt
+        syn_opt 
     }
 }
+
+
 
 #############################
 #     Post Synthesis Reports
@@ -198,7 +200,8 @@ foreach rpt $post_synth_reports {
     $rpt
     $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
 }
-report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL).timing.rpt
+report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL)_worst_timing.rpt
+
 
 #############################
 #   Exporting the Design

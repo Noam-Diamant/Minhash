@@ -2,7 +2,7 @@
 `timescale 1ns / 1ps
 
 // Import the project package
-//import proj_pkg::*;
+import proj_pkg::*;
 
 // Module declaration with parameters
 module proj_extender #(
@@ -20,7 +20,7 @@ module proj_extender #(
     // Input ports
     input logic [FRAG_LEN_BITS-1:0] in_fragment,
     input logic [INDICES_COUNT-1:0][INDICE_LEN-1:0] in_kmer_indices,
-    input logic valid_indices,
+    input wire valid_indices,
     input wire rst_n,
     input wire clk,
     // Output ports
@@ -72,26 +72,27 @@ module proj_extender #(
     assign out_index = {1'b0, curr_index} - SIGNED_INDICE_LEN'(((FRAG_SIZE - KMER_SIZE) >> 1));
 
     // Sequential logic for fragment parts index
-    always @(posedge clk or negedge rst_n)
+    always_ff @(posedge clk or negedge rst_n) begin : parts_index
         if (~rst_n) begin
             frag_parts_idx <= '0;
         end else begin
             frag_parts_idx <= frag_parts_idx_next;
         end
+    end
 
-        // Sequential logic for indices sample
-    always @(posedge clk)
+    // Sequential logic for indices sample
+    always_ff @(posedge clk) begin : index_sample
         if (valid_indices) begin
             in_kmer_indices_r <= in_kmer_indices;
-        end else begin
-            in_kmer_indices_r <= in_kmer_indices_r;
         end
-        // Sequential logic for indices index 
-    always @(posedge clk or negedge rst_n)      
+    end
+
+    // Sequential logic for indices index
+    always_ff @(posedge clk or negedge rst_n) begin : indices_index
         if (~rst_n) begin
             indices_idx <= '0;
         end else begin
             indices_idx <= indices_idx_next;
         end
-
+    end
 endmodule

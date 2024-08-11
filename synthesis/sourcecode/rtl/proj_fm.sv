@@ -22,11 +22,11 @@ module proj_fm #(
 );
 
     // Local parameters
-    localparam FM_BUFFER_SIZE = 32;  // RAMS * ENTRIES * OFFSET = 2 * 8 * 2
-    localparam RAM_ADDR_BITS = 1;    // $clog2(RAMS) = $clog2(2)
-    localparam ENTRIES_ADDR_BITS = 3; // $clog2(ENTRIES) = $clog2(8)
-    localparam OFFSET_ADDR_BITS = 1;  // $clog2(OFFSET) = $clog2(2)
-    localparam ADDR_BITS = 5;         // RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS
+    localparam FM_BUFFER_SIZE = RAMS * ENTRIES * OFFSET;
+    localparam RAM_ADDR_BITS = $clog2(RAMS);
+    localparam ENTRIES_ADDR_BITS = $clog2(ENTRIES);
+    localparam OFFSET_ADDR_BITS = $clog2(OFFSET);
+    localparam ADDR_BITS = RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS;
 
     // Internal signals
     logic clk, rst_n;
@@ -73,9 +73,9 @@ module proj_fm #(
         
     genvar i;
     generate
-        for (i = 0; i < 16; i++) begin : gen_padded_fragment  // FRAG_LEN is 16
+        for (i = 0; i < FRAG_LEN*2; i++) begin : gen_padded_fragment  
             always_comb begin
-                if (i < (16 - zeros_count) && (raddr + i >= 0) && (raddr + i < 32)) begin  // FM_BUFFER_SIZE is 32
+                if (i < (FRAG_LEN*2 - zeros_count) && (raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin 
                     padded_fragment[i + (zeros_count << 1)] = FMbuffers[rd_idx][raddr + (i >> 1)][i[0]];
                 end else begin
                     padded_fragment[i + (zeros_count << 1)] = 1'b0;

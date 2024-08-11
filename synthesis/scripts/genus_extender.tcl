@@ -17,7 +17,7 @@ enics_start_stage "start"
 
 
 # Load the specific definitions for this project
-source ../inputs/$design(TOPLEVEL).defines -quiet
+source ../inputs/proj.defines -quiet
 
 # Load the library paths and definitions for this technology
 source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
@@ -165,7 +165,7 @@ if {$phys_synth_type == "floorplan"} {
     enics_start_stage "post_syn_opt"
     syn_opt -physical
 } else {
-    # Synthesize to generics (non physical-aware)S
+    # Synthesize to generics (non physical-aware)
     enics_start_stage "syn_generic"
     syn_generic 
     # Map to technology (non physical-aware)
@@ -200,7 +200,8 @@ foreach rpt $post_synth_reports {
     $rpt
     $rpt > "$design(synthesis_reports)/post_opt/${rpt}.rpt"
 }
-report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL).timing.rpt
+report_timing > $design(export_dir)/post_synth/$design(TOPLEVEL)_worst_timing.rpt
+
 
 #############################
 #   Exporting the Design

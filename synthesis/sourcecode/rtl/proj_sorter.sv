@@ -19,7 +19,6 @@ module proj_sorter #(
     // Internal signals
     signature_index_pack [INDICES_COUNT-1:0] smallest_idx_next;
     signature_index_pack [INDICES_COUNT-1:0] smallest_idx_curr;
-    logic rst_n;
     signature_index_pack new_pack;
     logic [INDICES_COUNT-1:0] count_signatures_smaller_than;
     logic [POSITION_LEN:0] position_smaller_than;

@@ -1,0 +1,36 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:44:50.206233] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Fri Aug 09 15:44:50 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     23905
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[15:44:50.194314] Periodic Lic check successful
+[15:44:50.194331] Feature usage summary:
+[15:44:50.194336] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (59 seconds elapsed).
+
+WARNING: This version of the tool is 686 days old.
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 246s, ST: 23s, FG: 23s, CPU: 6.1%}, MEM {curr: 4.3G, peak: 4.3G, phys curr: 0.3G, phys peak: 0.3G}, SYS {load: 6.0, cpu: 2, total: 7.5G, free: 1.0G}
+Abnormal exit.

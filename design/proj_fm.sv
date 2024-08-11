@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-import proj_pkg::*;  // Include the package
 
 module proj_fm #(
     // Module parameters
@@ -13,8 +12,8 @@ module proj_fm #(
     parameter FRAG_LEN = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS            // Length of the fragment - in bits!
 ) (
     // Module ports
-    input  wire                        in_clk,    // Clock signal
-    input  wire                        in_rst_n,  // Reset signal (active low)
+    input  wire                        clk,    // Clock signal
+    input  wire                        rst_n,  // Reset signal (active low)
     input  wire [DATA_BITS-1:0]        in_wdata,  // Input data
     input  wire                        chg_idx,   // Change index signal
     input  logic [SIGNED_INDICE_LEN-1:0] frag_idx, // Fragment index
@@ -43,8 +42,6 @@ module proj_fm #(
 
     // Input assignments
     assign wdata = hold_cond ? FMbuffers[wr_idx][waddr] : in_wdata;
-    assign rst_n = in_rst_n;
-    assign clk = in_clk;
 
     // Output assignment
     assign out_rdata = padded_fragment;
@@ -72,13 +69,20 @@ module proj_fm #(
         end else begin
             raddr = frag_idx[INDICE_LEN-1:0];
         end
+    end
         
-        for (int i = 0; i < FRAG_LEN - zeros_count; i++) begin
-            if ((raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin
-                padded_fragment[i + (zeros_count<<$clog2(DATA_BITS))] = FMbuffers[rd_idx][raddr +(i>>$clog2(DATA_BITS))][i[0]];
+    genvar i;
+    generate
+        for (i = 0; i < FRAG_LEN*2; i++) begin : gen_padded_fragment  
+            always_comb begin
+                if (i < (FRAG_LEN*2 - zeros_count) && (raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin 
+                    padded_fragment[i + (zeros_count << 1)] = FMbuffers[rd_idx][raddr + (i >> 1)][i[0]];
+                end else begin
+                    padded_fragment[i + (zeros_count << 1)] = 1'b0;
+                end
             end
         end
-    end
+    endgenerate
 
     // Sequential logic
     always_ff @(posedge clk or negedge rst_n) begin

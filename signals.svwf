@@ -1,0 +1,63 @@
+
+#
+# Mnemonic Maps
+#
+mmap new  -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new  -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+array unset createdGroup
+array set createdGroup {}
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.clk}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.count_signatures_smaller_than[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.end_sorting}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.in_clk}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.in_index[4:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.in_rst_n}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.in_signature[31:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.new_pack}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.new_position[1:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.new_position_long[2:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.out_smallest_idx[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.position_smaller_than[2:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.rst_n}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.smallest_idx_curr[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.smallest_idx_next[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{[format {proj_sorter_tb.dut.sort_valid}]}
+	} ]]
+
+waveform xview limits 0 144.883ns

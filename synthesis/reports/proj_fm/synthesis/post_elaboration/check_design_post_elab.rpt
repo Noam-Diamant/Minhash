@@ -1,0 +1,972 @@
+
+ 	 Check Design Report (c)
+	 ------------------- 
+No subdesign's name is greater than 1.5k in length.
+
+ Feedthrough Module(s)
+ -------------------------
+No feed through module in 'proj_fm'
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_fm'
+
+No empty modules in design 'proj_fm'
+
+ Unloaded Pin(s), Port(s)
+ -------------------------
+No unloaded sequential element in 'proj_fm'
+
+No unloaded port in 'proj_fm'
+
+ Unloaded Combinational Pin(s)
+ -------------------------------
+design 'proj_fm' has the following unloaded combinational elements
+pin:proj_fm/add_66_40/g77/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_63/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_610/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_630/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_648/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_666/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_682/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_698/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_712/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_726/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_738/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_750/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_760/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_770/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_778/g2/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_786/g1/z
+pin:proj_fm/mux_FMbuffers[rd_idx]_79_792/g2/z
+Total number of unloaded combinational elements in design 'proj_fm' : 17
+
+ Assigns
+ ------- 
+Encountered an assign statement at port 'port:proj_fm/out_rdata[15]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[14]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[13]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[12]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[11]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[10]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[9]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[8]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[7]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[6]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[5]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[4]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[3]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[2]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[1]' in design proj_fm
+Encountered an assign statement at port 'port:proj_fm/out_rdata[0]' in design proj_fm
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[0]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[0]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[0]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[1]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[0]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[1]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[0]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[1]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[2]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[0]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[1]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[2]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_709/z[0]' in module bmux_382
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[1]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[2]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[3]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_723/z[0]' in module bmux_382_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[1]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[2]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[3]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_735/z[0]' in module bmux_408
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_709/z[1]' in module bmux_382
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[2]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[3]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[4]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_747/z[0]' in module bmux_408_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_723/z[1]' in module bmux_382_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[2]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[3]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[4]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_757/z[0]' in module bmux_430
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_735/z[1]' in module bmux_408
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_709/z[2]' in module bmux_382
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[3]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[4]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[5]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_767/z[0]' in module bmux_430_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_747/z[1]' in module bmux_408_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_723/z[2]' in module bmux_382_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[3]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[4]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[5]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_775/z[0]' in module bmux_258_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_757/z[1]' in module bmux_430
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_735/z[2]' in module bmux_408
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_709/z[3]' in module bmux_382
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[4]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[5]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[6]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_783/z[0]' in module bmux_258_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_767/z[1]' in module bmux_430_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_747/z[2]' in module bmux_408_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_723/z[3]' in module bmux_382_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[4]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[5]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[6]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_789/z' in module bmux_144
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_775/z[1]' in module bmux_258_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_757/z[2]' in module bmux_430
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_735/z[3]' in module bmux_408
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_709/z[4]' in module bmux_382
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_679/z[5]' in module bmux_352
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_645/z[6]' in module bmux_259_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_72/z[7]' in module bmux_280
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_795/z' in module bmux_147
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_783/z[1]' in module bmux_258_2
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_767/z[2]' in module bmux_430_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_747/z[3]' in module bmux_408_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_723/z[4]' in module bmux_382_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_695/z[5]' in module bmux_352_1
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_663/z[6]' in module bmux_259_3
+Encountered an assign statement at hport 'hport:proj_fm/mux_padded_fragment_78_627/z[7]' in module bmux_280_1
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[31]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[30]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[29]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[28]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[27]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[26]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[25]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[24]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[23]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[22]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[21]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[20]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[19]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[18]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[17]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[16]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[15]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[14]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[13]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[12]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[11]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[10]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[9]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[8]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/sub_78_37_I1/Z[7]' in module sub_unsigned
+Encountered an assign statement at hport 'hport:proj_fm/ctl_wr_idx_44_32/out_0[0]' in module case_box
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_63/out_0[0]' in module case_box_286
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_609/out_0[0]' in module case_box_289
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_629/out_0[0]' in module case_box_292
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_647/out_0[0]' in module case_box_295
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_665/out_0[0]' in module case_box_298
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_681/out_0[0]' in module case_box_301
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_697/out_0[0]' in module case_box_304
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_711/out_0[0]' in module case_box_307
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_725/out_0[0]' in module case_box_310
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_737/out_0[0]' in module case_box_313
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_749/out_0[0]' in module case_box_316
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_759/out_0[0]' in module case_box_319
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_769/out_0[0]' in module case_box_322
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_777/out_0[0]' in module case_box_325
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_785/out_0[0]' in module case_box_328
+Encountered an assign statement at hport 'hport:proj_fm/ctl_rd_idx_79_791/out_0[0]' in module case_box_331
+Encountered an assign statement at hport 'hport:proj_fm/ctl_waddr_109_17/out_0[0]' in module case_box_334
+Encountered an assign statement at hport 'hport:proj_fm/ctl_wr_idx_109_17/out_0[1]' in module case_box_337
+Encountered an assign statement at hport 'hport:proj_fm/ctl_wr_idx_109_17/out_0[0]' in module case_box_337
+Encountered an assign statement at hport 'hport:proj_fm/ctl_waddr_109_1181/out_0[0]' in module case_box_340
+Total number of assign statements in design 'proj_fm' : 134
+
+ Undriven Port(s)/Pin(s)
+ ------------------------
+No undriven combinational pin in 'proj_fm'
+
+No undriven sequential pin in 'proj_fm'
+
+No undriven hierarchical pin in 'proj_fm'
+
+No undriven port in 'proj_fm'
+
+ Multidriven Port(s)/Pin(s)
+--------------------------
+
+No multidriven combinational pin in 'proj_fm'
+
+No multidriven sequential pin in 'proj_fm'
+
+The following hierarchical pin(s) in design 'proj_fm' are multidriven
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_21/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_592/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_593/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_594/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_595/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_596/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_597/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_598/in_0
+hpin:proj_fm/mux_81_21/in_0
+hpin:proj_fm/mux_81_599/in_0
+hpin:proj_fm/mux_81_600/in_0
+hpin:proj_fm/mux_81_601/in_0
+hpin:proj_fm/mux_81_602/in_0
+hpin:proj_fm/mux_81_603/in_0
+hpin:proj_fm/mux_81_604/in_0
+hpin:proj_fm/mux_81_605/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_611/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_612/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_613/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_614/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_615/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_616/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_617/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_618/in_0
+hpin:proj_fm/mux_81_619/in_0
+hpin:proj_fm/mux_81_620/in_0
+hpin:proj_fm/mux_81_621/in_0
+hpin:proj_fm/mux_81_622/in_0
+hpin:proj_fm/mux_81_623/in_0
+hpin:proj_fm/mux_81_624/in_0
+hpin:proj_fm/mux_81_625/in_0
+hpin:proj_fm/mux_81_626/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_631/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_632/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_633/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_634/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_635/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_636/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_637/in_0
+hpin:proj_fm/mux_81_638/in_0
+hpin:proj_fm/mux_81_639/in_0
+hpin:proj_fm/mux_81_640/in_0
+hpin:proj_fm/mux_81_641/in_0
+hpin:proj_fm/mux_81_642/in_0
+hpin:proj_fm/mux_81_643/in_0
+hpin:proj_fm/mux_81_644/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_649/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_650/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_651/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_652/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_653/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_654/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_655/in_0
+hpin:proj_fm/mux_81_656/in_0
+hpin:proj_fm/mux_81_657/in_0
+hpin:proj_fm/mux_81_658/in_0
+hpin:proj_fm/mux_81_659/in_0
+hpin:proj_fm/mux_81_660/in_0
+hpin:proj_fm/mux_81_661/in_0
+hpin:proj_fm/mux_81_662/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_667/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_668/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_669/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_670/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_671/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_672/in_0
+hpin:proj_fm/mux_81_673/in_0
+hpin:proj_fm/mux_81_674/in_0
+hpin:proj_fm/mux_81_675/in_0
+hpin:proj_fm/mux_81_676/in_0
+hpin:proj_fm/mux_81_677/in_0
+hpin:proj_fm/mux_81_678/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_683/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_684/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_685/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_686/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_687/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_688/in_0
+hpin:proj_fm/mux_81_689/in_0
+hpin:proj_fm/mux_81_690/in_0
+hpin:proj_fm/mux_81_691/in_0
+hpin:proj_fm/mux_81_692/in_0
+hpin:proj_fm/mux_81_693/in_0
+hpin:proj_fm/mux_81_694/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_699/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_700/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_701/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_702/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_703/in_0
+hpin:proj_fm/mux_81_704/in_0
+hpin:proj_fm/mux_81_705/in_0
+hpin:proj_fm/mux_81_706/in_0
+hpin:proj_fm/mux_81_707/in_0
+hpin:proj_fm/mux_81_708/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_713/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_714/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_715/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_716/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_717/in_0
+hpin:proj_fm/mux_81_718/in_0
+hpin:proj_fm/mux_81_719/in_0
+hpin:proj_fm/mux_81_720/in_0
+hpin:proj_fm/mux_81_721/in_0
+hpin:proj_fm/mux_81_722/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_727/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_728/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_729/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_730/in_0
+hpin:proj_fm/mux_81_731/in_0
+hpin:proj_fm/mux_81_732/in_0
+hpin:proj_fm/mux_81_733/in_0
+hpin:proj_fm/mux_81_734/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_739/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_740/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_741/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_742/in_0
+hpin:proj_fm/mux_81_743/in_0
+hpin:proj_fm/mux_81_744/in_0
+hpin:proj_fm/mux_81_745/in_0
+hpin:proj_fm/mux_81_746/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_751/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_752/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_753/in_0
+hpin:proj_fm/mux_81_754/in_0
+hpin:proj_fm/mux_81_755/in_0
+hpin:proj_fm/mux_81_756/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_761/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_762/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_763/in_0
+hpin:proj_fm/mux_81_764/in_0
+hpin:proj_fm/mux_81_765/in_0
+hpin:proj_fm/mux_81_766/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_771/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_772/in_0
+hpin:proj_fm/mux_81_773/in_0
+hpin:proj_fm/mux_81_774/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_779/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_780/in_0
+hpin:proj_fm/mux_81_781/in_0
+hpin:proj_fm/mux_81_782/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_787/in_0
+hpin:proj_fm/mux_81_788/in_0
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_793/in_0
+hpin:proj_fm/mux_81_794/in_0
+Total number of hierarchical multidriven pin(s) in design 'proj_fm' : 144
+
+The following ports in design 'proj_fm' are multidriven
+port:proj_fm/out_rdata[15]
+port:proj_fm/out_rdata[14]
+port:proj_fm/out_rdata[13]
+port:proj_fm/out_rdata[12]
+port:proj_fm/out_rdata[11]
+port:proj_fm/out_rdata[10]
+port:proj_fm/out_rdata[9]
+port:proj_fm/out_rdata[8]
+port:proj_fm/out_rdata[7]
+port:proj_fm/out_rdata[6]
+port:proj_fm/out_rdata[5]
+port:proj_fm/out_rdata[4]
+port:proj_fm/out_rdata[3]
+port:proj_fm/out_rdata[2]
+port:proj_fm/out_rdata[1]
+port:proj_fm/out_rdata[0]
+Total number of multidriven port(s) in design 'proj_fm' : 16
+
+No multidriven unloaded nets in 'proj_fm'
+
+  Constant Pin(s)
+  ----------------
+No constant combinational pin(s) in design 'proj_fm'
+
+No constant sequential pin(s) in design 'proj_fm'
+
+design 'proj_fm' has the following constant input hierarchical pin(s)
+hpin:proj_fm/sub_78_37_I1/A[5] 	 (fanout : 2)
+hpin:proj_fm/sub_78_37_I1/A[4] 	 (fanout : 2)
+hpin:proj_fm/sub_78_37_I1/A[3] 	 (fanout : 2)
+hpin:proj_fm/sub_78_37_I1/A[2] 	 (fanout : 2)
+hpin:proj_fm/sub_78_37_I1/A[1] 	 (fanout : 2)
+hpin:proj_fm/sub_78_37_I1/A[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_72_I1/A 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I2/A 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I3/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I3/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I4/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I4/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I5/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I5/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I5/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I6/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I6/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I6/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I7/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I7/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I7/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I8/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I8/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I8/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I9/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I9/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I9/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I9/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I10/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I10/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I10/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I10/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I11/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I11/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I11/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I11/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I12/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I12/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I12/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I12/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I13/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I13/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I13/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I13/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I14/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I14/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I14/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I14/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I15/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I15/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I15/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I15/A[0] 	 (fanout : 1)
+hpin:proj_fm/lt_78_52_I16/A[3] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I16/A[2] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I16/A[1] 	 (fanout : 2)
+hpin:proj_fm/lt_78_52_I16/A[0] 	 (fanout : 1)
+hpin:proj_fm/add_52_49/B 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I2/B 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I2/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I2/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I3/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I3/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I3/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I3/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I4/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I4/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I4/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I4/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I5/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I5/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I5/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I5/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I5/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I6/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I6/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I6/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I6/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I6/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I7/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I7/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I7/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I7/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I7/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I8/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I8/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I8/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I8/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I8/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I9/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I9/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I9/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I9/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I9/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I9/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I10/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I10/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I10/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I10/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I10/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I10/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I11/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I11/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I11/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I11/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I11/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I11/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I12/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I12/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I12/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I12/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I12/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I12/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I13/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I13/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I13/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I13/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I13/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I13/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I14/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I14/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I14/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I14/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I14/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I14/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I15/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I15/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I15/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I15/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I15/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I15/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_78_82_I16/B[3] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I16/B[2] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I16/B[1] 	 (fanout : 2)
+hpin:proj_fm/add_78_82_I16/B[0] 	 (fanout : 2)
+hpin:proj_fm/lt_78_86_I16/B[7] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[6] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[5] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[4] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[3] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[2] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[1] 	 (fanout : 1)
+hpin:proj_fm/lt_78_86_I16/B[0] 	 (fanout : 1)
+hpin:proj_fm/add_66_40/B 	 (fanout : 2)
+hpin:proj_fm/mux_53_30/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_53_30/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[6] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[5] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[4] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[3] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[2] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[1] 	 (fanout : 1)
+hpin:proj_fm/mux_zeros_count_65_43/in_0[0] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[6] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[5] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[4] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[3] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[2] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[1] 	 (fanout : 1)
+hpin:proj_fm/mux_raddr_65_43/in_1[0] 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_21/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_592/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_593/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_594/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_595/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_596/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_597/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_598/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_21/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_21/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_599/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_599/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_600/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_600/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_601/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_601/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_602/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_602/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_603/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_603/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_604/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_604/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_605/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_605/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_611/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_612/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_613/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_614/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_615/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_616/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_617/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_618/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_619/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_619/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_620/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_620/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_621/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_621/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_622/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_622/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_623/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_623/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_624/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_624/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_625/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_625/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_626/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_626/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_631/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_632/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_633/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_634/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_635/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_636/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_637/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_638/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_638/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_639/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_639/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_640/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_640/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_641/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_641/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_642/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_642/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_643/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_643/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_644/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_644/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_649/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_650/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_651/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_652/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_653/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_654/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_655/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_656/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_656/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_657/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_657/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_658/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_658/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_659/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_659/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_660/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_660/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_661/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_661/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_662/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_662/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_667/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_668/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_669/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_670/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_671/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_672/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_673/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_673/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_674/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_674/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_675/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_675/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_676/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_676/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_677/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_677/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_678/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_678/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_683/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_684/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_685/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_686/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_687/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_688/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_689/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_689/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_690/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_690/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_691/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_691/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_692/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_692/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_693/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_693/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_694/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_694/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_699/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_700/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_701/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_702/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_703/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_704/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_704/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_705/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_705/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_706/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_706/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_707/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_707/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_708/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_708/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_713/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_714/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_715/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_716/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_717/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_718/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_718/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_719/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_719/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_720/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_720/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_721/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_721/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_722/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_722/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_727/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_728/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_729/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_730/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_731/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_731/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_732/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_732/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_733/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_733/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_734/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_734/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_739/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_740/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_741/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_742/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_743/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_743/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_744/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_744/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_745/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_745/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_746/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_746/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_751/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_752/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_753/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_754/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_754/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_755/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_755/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_756/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_756/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_761/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_762/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_763/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_764/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_764/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_765/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_765/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_766/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_766/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_771/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_772/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_773/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_773/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_774/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_774/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_779/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_780/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_781/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_781/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_81_782/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_782/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_787/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_788/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_788/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_FMbuffers[rd_idx]_79_793/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_794/in_0 	 (fanout : 1)
+hpin:proj_fm/mux_81_794/in_1 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[6] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[5] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[4] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[3] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[2] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[1] 	 (fanout : 1)
+hpin:proj_fm/mux_52_25/in_1[0] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[6] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[5] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[4] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[3] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[2] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[1] 	 (fanout : 1)
+hpin:proj_fm/mux_waddr_101_26/in_1[0] 	 (fanout : 1)
+hpin:proj_fm/sll00161616/A 	 (fanout : 0)
+Total number of constant hierarchical pins in design 'proj_fm' : 474
+
+design 'proj_fm' has the following constant port(s)
+port:proj_fm/out_rdata[15]
+port:proj_fm/out_rdata[14]
+port:proj_fm/out_rdata[13]
+port:proj_fm/out_rdata[12]
+port:proj_fm/out_rdata[11]
+port:proj_fm/out_rdata[10]
+port:proj_fm/out_rdata[9]
+port:proj_fm/out_rdata[8]
+port:proj_fm/out_rdata[7]
+port:proj_fm/out_rdata[6]
+port:proj_fm/out_rdata[5]
+port:proj_fm/out_rdata[4]
+port:proj_fm/out_rdata[3]
+port:proj_fm/out_rdata[2]
+port:proj_fm/out_rdata[1]
+port:proj_fm/out_rdata[0]
+Total number of constant port(s) in design 'proj_fm' : 16
+
+  Preserved instances(s)
+  ----------------
+No preserved combinational instance(s) in design 'proj_fm'
+No preserved sequential instance(s) in design 'proj_fm'
+No preserved hierarchical instance(s) in design 'proj_fm'
+
+  Physical only instances(s)
+  ----------------
+No physical only instance(s) in design 'proj_fm'
+
+  Logical only instance(s) and linked libcells
+    -----------------------------------------
+No logical only instance(s) in design 'proj_fm'
+
+Libcells with no corresponding LEF
+----------------------------------
+No libcell(s) found.
+
+LEF cells with no corresponding libcell
+---------------------------------------
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TH
+Total number cell(s) with only physical (LEF) Info : 51
+
+ Summary
+ ------- 
+
+              Name                       Total
+----------------------------------------------
+Unresolved References                        0
+Empty Modules                                0
+Unloaded Port(s)                             0
+Unloaded Sequential Pin(s)                   0
+Unloaded Combinational Pin(s)               17
+Assigns                                    134
+Undriven Port(s)                             0
+Undriven Leaf Pin(s)                         0
+Undriven hierarchical pin(s)                 0
+Multidriven Port(s)                         16
+Multidriven Leaf Pin(s)                      0
+Multidriven hierarchical Pin(s)            144
+Multidriven unloaded net(s)                  0
+Constant Port(s)                            16
+Constant Leaf Pin(s)                         0
+Constant hierarchical Pin(s)               474
+Preserved leaf instance(s)                   0
+Preserved hierarchical instance(s)           0
+Feedthrough Modules(s)                       0
+Libcells with no LEF cell                    0
+Physical (LEF) cells with no libcell        51
+Subdesigns with long module name             0
+Physical only instance(s)                    0
+Logical only instance(s)                     0
+
+  Done Checking the design.

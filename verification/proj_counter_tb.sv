@@ -19,8 +19,8 @@ module proj_counter_tb();
     )
     dut (
         .index(index),
-        .in_clk(clk),
-        .in_rst_n(rst_n),
+        .clk(clk),
+        .rst_n(rst_n),
         .finished_count(finished_count),
         .start(start)
     );

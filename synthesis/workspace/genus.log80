@@ -1,0 +1,1986 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:11:31.206177] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Fri Aug 09 15:11:31 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     17180
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[15:11:31.368857] Periodic Lic check successful
+[15:11:31.368891] Feature usage summary:
+[15:11:31.368891] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (32 seconds elapsed).
+
+WARNING: This version of the tool is 686 days old.
+@genus:root: 1> source ../scripts/genus_fm.tcl
+Sourcing '../scripts/genus_fm.tcl' (Fri Aug 09 15:13:15 UTC 2024)...
+#@ Begin verbose source ../scripts/genus_fm.tcl
+@file(genus_fm.tcl) 2: set debug_file "debug.txt"
+@file(genus_fm.tcl) 3: set design(TOPLEVEL) "proj_fm" 
+@file(genus_fm.tcl) 4: set runtype "synthesis"
+@file(genus_fm.tcl) 7: set mmmc_or_simple "simple"; # "simple" - using "read_libs"
+@file(genus_fm.tcl) 9: set phys_synth_type "lef" ;  # "none"   - don't read any physical data
+@file(genus_fm.tcl) 15: source ../scripts/procedures.tcl -quiet
+@file(genus_fm.tcl) 16: enics_start_stage "start"
+*****************************************
+*****************************************
+**   ENICSINFO: Starting stage start   **
+*****************************************
+*****************************************
+ENICSINFO: Current time is: 09/08/2024 15:13
+ENICSINFO: This session is running on Hostname : ip-10-0-112-224.eu-central-1.compute.internal
+ENICSINFO: The log file is genus.log80 and the command file is genus.cmd80
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 20: source ../inputs/proj.defines -quiet
+@file(genus_fm.tcl) 23: source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'design_process_node' = 65
+@file(genus_fm.tcl) 24: source ../inputs/libraries.$SC_TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'route_design_with_via_in_pin' = true
+@file(genus_fm.tcl) 25: source ../inputs/libraries.$SRAM_TECHNOLOGY.tcl -quiet
+@file(genus_fm.tcl) 26: if {$design(FULLCHIP_OR_MACRO)=="FULLCHIP"} {
+    source ../inputs/libraries.$IO_TECHNOLOGY.tcl -quiet
+}
+@file(genus_fm.tcl) 34: set df [open $debug_file a]
+@file(genus_fm.tcl) 35: puts $df "\n******************************************"
+@file(genus_fm.tcl) 36: puts $df "* Debug values after everything was loaded *"
+@file(genus_fm.tcl) 37: puts $df "******************************************"
+@file(genus_fm.tcl) 38: foreach dic {paths tech tech_files design} {
+    foreach key [array names $dic] {
+        puts $df "${dic}(${key}) = \t[set ${dic}([set key])]"
+    }
+}
+@file(genus_fm.tcl) 44: close $df
+@file(genus_fm.tcl) 50: set_db source_verbose true ; # Sourcing files will be reported as verbose
+  Setting attribute of root '/': 'source_verbose' = true
+@file(genus_fm.tcl) 51: set_db information_level 9 ; # The log file will report everything
+  Setting attribute of root '/': 'information_level' = 9
+@file(genus_fm.tcl) 52: suppress_messages "PHYS-90"
+  Setting attribute of message 'PHYS-90': 'max_print' = 0
+@file(genus_fm.tcl) 57: enics_start_stage "init_design"
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage init_design   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 09/08/2024 15:13
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 59: if {$mmmc_or_simple=="mmmc"} {
+    read_mmmc $design(mmmc_view_file)
+} else {
+    set_db init_lib_search_path $paths(LIB_paths) 
+    suppress_messages $tech(SC_LIB_SUPPRESS_MESSAGES_GENUS)
+    read_libs $tech_files(ALL_WC_LIBS)
+}
+  Setting attribute of root '/': 'init_lib_search_path' = /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/
+  Setting attribute of message 'LBR-9': 'max_print' = 0
+  Setting attribute of message 'LBR-76': 'max_print' = 0
+  Setting attribute of message 'LBR-40': 'max_print' = 0
+  Setting attribute of message 'LBR-436': 'max_print' = 0
+  Setting attribute of message 'LBR-170': 'max_print' = 0
+
+Threads Configured:2
+
+  Message Summary for Library all 3 libraries:
+  ********************************************
+  An unsupported construct was detected in this library. [LBR-40]: 258
+  ********************************************
+ 
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'.
+@file(genus_fm.tcl) 67: suppress_messages "LBR-415"
+  Setting attribute of message 'LBR-415': 'max_print' = 0
+@file(genus_fm.tcl) 72: if {$phys_synth_type == "none"} {
+   enics_message "Physical Synthesis is disabled"
+   read_qrc $tech_files(QRCTECH_FILE_WC)
+} else {
+    suppress_messages $tech(SC_LEF_SUPPRESS_MESSAGES_GENUS)
+    read_physical -lef $tech_files(ALL_LEFS)
+    if {$phys_synth_type == "floorplan"} { 
+        # You need to read a .def file for the floorplan to enable physical synthesis 
+        read_def $design(floorplan_def)
+    }
+}
+  Setting attribute of message 'PHYS-279': 'max_print' = 0
+  Setting attribute of message 'PHYS-129': 'max_print' = 0
+  Setting attribute of message 'PHYS-15': 'max_print' = 0
+  Setting attribute of message 'PHYS-12': 'max_print' = 0
+  Setting attribute of message 'LBR-162': 'max_print' = 0
+  Setting attribute of message 'LBR-155': 'max_print' = 0
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lef/sc9_cln65lp_base_lvt.lef' is ignored.
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lef/sc9_cln65lp_base_hvt.lef' is ignored.
+
+  According to lef_library, there are total 10 routing layers [ V(5) / H(5) ]
+
+Info    : Setting the maximum print count of this message to 10 if information_level is less than 9. [LBR-161]
+        : To print all the warning messages, set the information_level to 9.
+  Libraries have 1950 usable logic and 582 usable sequential lib-cells.
+@file(genus_fm.tcl) 87: enics_start_stage "read_rtl"
+********************************************
+********************************************
+**   ENICSINFO: Starting stage read_rtl   **
+********************************************
+********************************************
+ENICSINFO: Current time is: 09/08/2024 15:14
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 89: set_db init_hdl_search_path $design(hdl_search_paths)
+  Setting attribute of root '/': 'init_hdl_search_path' = . /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl
+@file(genus_fm.tcl) 90: set_db hdl_language v2001 -quiet
+@file(genus_fm.tcl) 93: suppress_messages "CDFG-250"
+  Setting attribute of message 'CDFG-250': 'max_print' = 0
+@file(genus_fm.tcl) 95: suppress_messages "CWD-19 CWD-36"
+  Setting attribute of message 'CWD-19': 'max_print' = 0
+  Setting attribute of message 'CWD-36': 'max_print' = 0
+@file(genus_fm.tcl) 97: suppress_messages "CDFG-771"
+  Setting attribute of message 'CDFG-771': 'max_print' = 0
+@file(genus_fm.tcl) 98: read_hdl -language sv -f $design(read_hdl_list)
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_pkg.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_sorter.sv'
+@file(genus_fm.tcl) 103: enics_start_stage "elaborate"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage elaborate   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 09/08/2024 15:14
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 105: set_db hdl_track_filename_row_col true -quiet; # helps with debug
+Info   : Enabled hdl_track_filename_row_col attribute.
+       : Setting this attribute to 'true' can have an impact on the run time. Use this attribute only when filename, line number, and column information are needed in reports.
+@file(genus_fm.tcl) 106: set_db lp_insert_clock_gating true 
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+@file(genus_fm.tcl) 108: elaborate $design(TOPLEVEL) ;#-update
+                  INLINE_INFO: Skipping marking small hierarchies inline as the variable 'hdl_dissolve_primitive_instance_hierarchy_threshold' has not been set to a positive value.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'proj_fm' from file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'proj_fm' with default parameters value.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+        : A relational expression can evaluate to a constant when a variable is compared to a value which is outside the bounds of the variable.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Constant relational expression. [CDFG-479]
+        : The '>=' operation evaluates to 'true' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '+' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 79.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression eliminated. [CDFG-738]
+        : Eliminated '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Info    : Common subexpression kept. [CDFG-739]
+        : Kept '-' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 78.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'CDFG-738'.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'CDFG-739'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16431'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16438'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16473'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16480'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16485'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16492'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16497'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16504'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16509'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16516'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16521'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16528'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16533'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16540'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16545'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned_16552'.
+Warning : Signal or variable has multiple drivers, including a constant driver. [CDFG2G-623]
+        : 'padded_fragment' in module 'proj_fm' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv' on line 47, column 24.
+        : Some tools may not accept this HDL.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[0]' in module 'proj_fm'.
+        : This may cause simulation mismatches between the original and synthesized designs.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[1]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[2]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[3]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[4]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[5]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[6]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[7]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[8]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[9]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[10]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[11]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[12]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[13]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[14]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[15]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[16]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[17]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[18]' in module 'proj_fm'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'out_rdata[19]' in module 'proj_fm'.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'CDFG2G-622'.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'proj_fm'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+--------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |         7.00 | 
+--------------------------------------------------------
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: proj_fm, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.107s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: proj_fm, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.011s)
+
+Stage: post_elab
+---------------------------------------------------------
+| Transform          | Accepts | Rejects | Runtime (ms) | 
+---------------------------------------------------------
+| hlo_clip_mux_input |       0 |       0 |       107.00 | 
+| hlo_clip           |       0 |       0 |        11.00 | 
+---------------------------------------------------------
+        Computing net loads.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(genus_fm.tcl) 110: enics_start_stage "post_elaboration"
+****************************************************
+****************************************************
+**   ENICSINFO: Starting stage post_elaboration   **
+****************************************************
+****************************************************
+ENICSINFO: Current time is: 09/08/2024 15:16
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 112: check_design -unresolved
+
+
+ 	 Check Design Report (c)
+	 ------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_fm'
+
+No empty modules in design 'proj_fm'
+
+  Done Checking the design.
+@file(genus_fm.tcl) 113: check_design -all > $design(synthesis_reports)/post_elaboration/check_design_post_elab.rpt
+
+@file(genus_fm.tcl) 114: if {[check_design -status]} {
+    Puts "ENICSINFO: ############# There is an issue with check_design. You better look at it! ###########"
+}
+@file(genus_fm.tcl) 118: write_design -base_name $design(export_dir)/post_elaboartion/$design(TOPLEVEL)
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Warning : The design is not fully mapped. [PHYS-93]
+        : The original design intent derived from the RTL may no longer be available upon restoration.
+Exporting design data for 'proj_fm' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_fm/post_elaboartion/proj_fm...
+%# Begin write_design (08/09 15:17:10, mem=5109.86M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_fm/post_elaboartion/proj_fm.mmmc.tcl has been written.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+Finished SDC export (command execution time mm:ss (real) = 00:14).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_fm/post_elaboartion/proj_fm.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_fm/post_elaboartion/proj_fm.default_emulate_constraint_mode.sdc has been written
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_fm/post_elaboartion/proj_fm.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_fm' (command execution time mm:ss cpu = 00:06, real = 01:32).
+.
+%# End write_design (08/09 15:18:42, total cpu=08:00:06, real=08:01:32, peak res=1011.30M, current mem=5132.86M)
+@file(genus_fm.tcl) 126: set_db detailed_sdc_messages true ; # helps read_sdc debug
+  Setting attribute of root '/': 'detailed_sdc_messages' = true
+@file(genus_fm.tcl) 127: read_sdc $design(functional_sdc) -stop_on_errors 
+            Reading file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../inputs/proj.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      4 , failed      0 (runtime  0.02)
+ "all_outputs"              - successful      3 , failed      0 (runtime  0.02)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.06)
+ "current_design"           - successful      2 , failed      0 (runtime  0.01)
+ "get_lib_pins"             - successful      1 , failed      0 (runtime  0.02)
+ "get_ports"                - successful      3 , failed      0 (runtime  0.01)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.24)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.01)
+ "set_ideal_network"        - successful      2 , failed      0 (runtime  0.01)
+ "set_input_delay"          - successful      1 , failed      0 (runtime  0.00)
+ "set_input_transition"     - successful      1 , failed      0 (runtime  0.01)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.27)
+ "set_max_delay"            - successful      1 , failed      0 (runtime  0.01)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.01)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.01)
+ "set_output_delay"         - successful      1 , failed      0 (runtime  0.02)
+read_sdc completed in 00:00:04 (hh:mm:ss)
+@file(genus_fm.tcl) 128: check_timing_intent
+        Computing net loads.
+        Tracing clock networks.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 09 2024  03:19:01 pm
+  Module:                 proj_fm
+  Technology libraries:   sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c 1
+                          physical_cells 
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+-------------------------------------------------------------------------------
+Nets with multiple drivers
+
+The following nets have multiple drivers and at least one of the drivers is     
+non-tristate:                                                                   
+
+hnet:proj_fm/out_rdata[0]
+hnet:proj_fm/out_rdata[100]
+hnet:proj_fm/out_rdata[101]
+  ... 509 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                     0
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                     512
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:        512
+
+@file(genus_fm.tcl) 129: check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
+@file(genus_fm.tcl) 134: enics_default_cost_groups
+@file(genus_fm.tcl) 135: enics_report_timing $design(synthesis_reports)
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing arrivals and requireds.
+@file(genus_fm.tcl) 142: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_min_flops 8
+  Setting attribute of design 'proj_fm': 'lp_clock_gating_min_flops' = 8
+@file(genus_fm.tcl) 143: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_style latch 
+  Setting attribute of design 'proj_fm': 'lp_clock_gating_style' = latch
+@file(genus_fm.tcl) 148: enics_start_stage "synthesis"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage synthesis   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 09/08/2024 15:19
+ENICSINFO: ----------------------------------
+@file(genus_fm.tcl) 151: set_db syn_generic_effort low
+  Setting attribute of root '/': 'syn_generic_effort' = low
+@file(genus_fm.tcl) 152: set_db syn_map_effort low
+  Setting attribute of root '/': 'syn_map_effort' = low
+@file(genus_fm.tcl) 153: set_db syn_opt_effort low
+  Setting attribute of root '/': 'syn_opt_effort' = low
+@file(genus_fm.tcl) 154: suppress_messages "ST-110 ST-112"
+  Setting attribute of message 'ST-110': 'max_print' = 0
+  Setting attribute of message 'ST-112': 'max_print' = 0
+@file(genus_fm.tcl) 156: if {$phys_synth_type == "floorplan"} {
+    # Synthesize to generics and place generics in floorplan
+    enics_start_stage "syn_generic"
+    syn_generic -physical
+    # Map to technology
+    enics_start_stage "technology_mapping"
+    syn_map -physical
+    enics_report_timing $design(synthesis_reports) 
+    # Post synthesis optimization
+    enics_start_stage "post_syn_opt"
+    syn_opt -physical
+} else {
+    # Synthesize to generics (non physical-aware)
+    enics_start_stage "syn_generic"
+    syn_generic 
+    # Map to technology (non physical-aware)
+    enics_start_stage "technology_mapping"
+    syn_map 
+    enics_report_timing $design(synthesis_reports)
+    enics_start_stage "post_syn_opt"
+    if {$phys_synth_type == "lef"} {
+        syn_opt
+    } else {
+        syn_opt 
+    }
+}
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage syn_generic   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 09/08/2024 15:19
+ENICSINFO: ----------------------------------
+      Running additional step before syn_gen...
+
+
+Stage: pre_early_cg
+------------------------------------------------
+| Transform | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------
+------------------------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_fm, recur: true)
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so a hierarchical instance does not drive any primary outputs anymore. To see the list of deleted hierarchical instances, set the 'information_level' attribute to 2 or above. If the message is truncated set the message attribute 'truncate' to false to see the complete list. To prevent this optimization, set the 'delete_unloaded_insts' root/subdesign attribute to 'false' or 'preserve' instance attribute to 'true'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I3]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I3]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I4]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I4]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I5]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I5]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I6]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I6]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I7]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I7]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I8]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I8]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I9]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I9]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I10]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I10]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I11]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I11]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I12]_79_63
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 32 hierarchical instances. 
+Following instances are deleted as they do not drive any primary output:
+'simulate_inst_0', 'simulate_inst_1', 'simulate_inst_2', 'simulate_inst_3', 
+'simulate_inst_4', 'simulate_inst_5', 'simulate_inst_6', 'simulate_inst_7', 
+'simulate_inst_8', 'simulate_inst_9', 'simulate_inst_10', 
+'simulate_inst_11', 'simulate_inst_12', 'simulate_inst_13', 
+'simulate_inst_14', 'simulate_inst_15', 'simulate_inst_16', 
+'simulate_inst_17', 'simulate_inst_18', 'simulate_inst_19', 
+'simulate_inst_20', 'simulate_inst_21', 'simulate_inst_22', 
+'simulate_inst_23', 'simulate_inst_24', 'simulate_inst_25', 
+'simulate_inst_26', 'simulate_inst_27', 'simulate_inst_28', 
+'simulate_inst_29', 'simulate_inst_30', 'simulate_inst_31'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I12]_79_63
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'GLO-34'.
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I13]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I13]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I14]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I14]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I15]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I15]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[0][add_79_87_I16]_79_63
+          Accepted mux data reorder optimization in module proj_fm for instance(s): mux_FMbuffers[1][add_79_87_I16]_79_63
+Completed mux data reorder optimization (accepts: 28, rejects: 0, runtime: 5.394s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |      28 |       0 |      5394.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'proj_fm' to generic gates using 'low' effort.
+PBS_Generic-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:05:05(00:21:12) |  00:00:00(00:00:00) |   0.0(  0.0) |   15:33:03 (Aug09) |  722.4 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+TNS Restructuring config: no_value at stage: generic applied.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_fm, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 7.474s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |      7474.00 | 
+------------------------------------------------------
+Starting mux data reorder optimization [v1.0] (stage: post_to_gen_setup, startdef: proj_fm, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 3.309s)
+
+Stage: post_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |      3309.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: pre_hlo_rtlopt
+--------------------------------------------
+| Trick | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------
+--------------------------------------------
+Starting infer macro optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed infer macro optimization (accepts: 0, rejects: 4610, runtime: 0.489s)
+Starting decode mux sandwich optimization [v2.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed decode mux sandwich optimization (accepts: 0, rejects: 0, runtime: 0.018s)
+Starting decode mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed decode mux optimization (accepts: 0, rejects: 0, runtime: 0.005s)
+Starting chop wide muxes [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed chop wide muxes (accepts: 0, rejects: 0, runtime: 0.011s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.021s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.149s)
+Starting constant-data mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed constant-data mux optimization (accepts: 0, rejects: 0, runtime: 0.037s)
+Starting chain-to-tree inequality transform [v2.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed chain-to-tree inequality transform (accepts: 0, rejects: 0, runtime: 0.852s)
+Starting reconvergence optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed reconvergence optimization (accepts: 0, rejects: 0, runtime: 0.042s)
+Starting logic restructure optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed logic restructure optimization (accepts: 0, rejects: 0, runtime: 0.048s)
+Starting common select mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed common select mux optimization (accepts: 0, rejects: 2048, runtime: 0.173s)
+Starting identity transform [v3.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed identity transform (accepts: 0, rejects: 0, runtime: 0.443s)
+Starting reduce operator chain [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed reduce operator chain (accepts: 0, rejects: 0, runtime: 0.007s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.022s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.163s)
+Starting optimize datapath elements [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed optimize datapath elements (accepts: 0, rejects: 0, runtime: 0.006s)
+Starting datapath recasting [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed datapath recasting (accepts: 0, rejects: 0, runtime: 0.008s)
+Starting clip mux common data inputs [v1.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.051s)
+Starting clip the non-user hierarchies [v2.0] (stage: pre_rtlopt, startdef: proj_fm, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.009s)
+
+Stage: pre_rtlopt
+----------------------------------------------------------------
+| Transform                 | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------------
+| hlo_infer_macro           |       0 |    4610 |       489.00 | 
+| hlo_decode_mux_sandwich   |       0 |       0 |        18.00 | 
+| hlo_mux_decode            |       0 |       0 |         5.00 | 
+| hlo_chop_mux              |       0 |       0 |        11.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |        21.00 | 
+| hlo_mux_consolidation     |       0 |       0 |       149.00 | 
+| hlo_constant_mux_opt      |       0 |       0 |        37.00 | 
+| hlo_inequality_transform  |       0 |       0 |       852.00 | 
+| hlo_reconv_opt            |       0 |       0 |        42.00 | 
+| hlo_restructure           |       0 |       0 |        48.00 | 
+| hlo_common_select_muxopto |       0 |    2048 |       173.00 | 
+| hlo_identity_transform    |       0 |       0 |       443.00 | 
+| hlo_reduce_operator_chain |       0 |       0 |         7.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |        22.00 | 
+| hlo_mux_consolidation     |       0 |       0 |       163.00 | 
+| hlo_optimize_datapath     |       0 |       0 |         6.00 | 
+| hlo_datapath_recast       |       0 |       0 |         8.00 | 
+| hlo_clip_mux_input        |       0 |       0 |        51.00 | 
+| hlo_clip                  |       0 |       0 |         9.00 | 
+----------------------------------------------------------------
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_hlo_rtlopt
+--------------------------------------------------
+| Trick       | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------
+| ume_runtime |       0 |       0 |         8.00 | 
+--------------------------------------------------
+Number of big hc bmuxes before = 18
+              Info: total 8217 bmuxes found, 8217 are converted to onehot form, and 0 are kept as binary form
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : Pre-processing optimizations applied to datapath logic in 'proj_fm':
+          live_trim(10) 
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned'.
+Info    : A datapath component has been ungrouped. [GB-6]
+        : The instance 'g1' of datapath component 'sub_unsigned'.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'GB-6'.
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'proj_fm'.
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16523' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16523 mux_FMbuffers[rd_idx]_79_16519 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16531' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16531 mux_FMbuffers[rd_idx]_79_16527 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16539' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16539 mux_FMbuffers[rd_idx]_79_16535 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16547' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16547 mux_FMbuffers[rd_idx]_79_16543 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16555' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16555 mux_FMbuffers[rd_idx]_79_16551 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16563' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16563 mux_FMbuffers[rd_idx]_79_16559 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16571' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16571 mux_FMbuffers[rd_idx]_79_16567 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_FMbuffers[rd_idx]_79_16515' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_FMbuffers[rd_idx]_79_16515 mux_FMbuffers[rd_idx]_79_63 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_3167' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_3167 mux_padded_fragment_79_2140 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_5219' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_5219 mux_padded_fragment_79_4192 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_7271' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_7271 mux_padded_fragment_79_6244 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_9323' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_9323 mux_padded_fragment_79_8296 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_11375' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_11375 mux_padded_fragment_79_10348 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_13427' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_13427 mux_padded_fragment_79_12400 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_15479' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_15479 mux_padded_fragment_79_14452 ).
+
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Common Select Mux merge'F_mux_padded_fragment_79_1115' in design 'CDN_DP_region_0_0'.
+	The following set of mux instances are merged ( mux_padded_fragment_79_1115 mux_padded_fragment_79_21 ).
+
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_0'
+CSAGen Prep Share:0 Re-Write:24 Speculation: 0
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP1.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP2.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP3.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP4.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP5.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP6.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP7.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP8.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP9.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP10.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP11.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP12.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP13.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP14.B
+Warning: (CSAGEN-QOR) CSA is rejected due to potential bad sign-cast to unsigned.
+:		sub_78_29_I1 -> SUB_UNS_OP15.B
+    MaxCSA: weighted_instance_count is 10 
+MaxCSA: Successfully built Maximal CSA Expression Expr0
+    MaxCSA: weighted_instance_count is 30 
+MaxCSA: Successfully built Maximal CSA Expression Expr1
+    MaxCSA: weighted_instance_count is 471 
+MaxCSA: Successfully built Maximal CSA Expression Expr2
+    MaxCSA: weighted_instance_count is 1120 
+MaxCSA: Successfully built Maximal CSA Expression Expr3
+      Timing increment_unsigned...
+        Done timing increment_unsigned.
+      Timing increment_unsigned_241...
+        Done timing increment_unsigned_241.
+      Timing csa_tree...
+        Done timing csa_tree.
+      Timing add_signed_carry...
+        Done timing add_signed_carry.
+      Timing csa_tree_247...
+        Done timing csa_tree_247.
+      Timing add_signed_carry_252...
+        Done timing add_signed_carry_252.
+      Timing csa_tree_254...
+        Done timing csa_tree_254.
+      Timing csa_tree_261...
+        Done timing csa_tree_261.
+      Timing csa_tree_268...
+        Done timing csa_tree_268.
+      Timing csa_tree_275...
+        Done timing csa_tree_275.
+      Timing csa_tree_282...
+        Done timing csa_tree_282.
+Info    : Transformed datapath macro. [RTLOPT-40]
+        : Transformed 16 datapath macros in module 'CDN_DP_region_0_0_c7' to a form more suitable for further optimization.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16970' and 'SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16967' and 'SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16964' and 'SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16961' and 'SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16958' and 'SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16955' and 'SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16952' and 'SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16949' and 'SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16946' and 'SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16943' and 'SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16940' and 'SUB_TC_OP16943_Y_SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16937' and 'SUB_TC_OP16940_Y_SUB_TC_OP16943_Y_SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16934' and 'SUB_TC_OP16937_Y_SUB_TC_OP16940_Y_SUB_TC_OP16943_Y_SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP16931' and 'SUB_TC_OP16934_Y_SUB_TC_OP16937_Y_SUB_TC_OP16940_Y_SUB_TC_OP16943_Y_SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+Info    : Accepted resource sharing opportunity. [RTLOPT-30]
+        : Merged instances 'SUB_TC_OP' and 'SUB_TC_OP16931_Y_SUB_TC_OP16934_Y_SUB_TC_OP16937_Y_SUB_TC_OP16940_Y_SUB_TC_OP16943_Y_SUB_TC_OP16946_Y_SUB_TC_OP16949_Y_SUB_TC_OP16952_Y_SUB_TC_OP16955_Y_SUB_TC_OP16958_Y_SUB_TC_OP16961_Y_SUB_TC_OP16964_Y_SUB_TC_OP16967_Y_SUB_TC_OP16970_Y_SUB_TC_OP16973' in 'CDN_DP_region_0_0_c7 in proj_fm'.
+      Timing increment_unsigned_707_776...
+        Done timing increment_unsigned_707_776.
+      Timing increment_unsigned_706_777...
+        Done timing increment_unsigned_706_777.
+      Timing increment_unsigned_707_913...
+        Done timing increment_unsigned_707_913.
+      Timing increment_unsigned_706_914...
+        Done timing increment_unsigned_706_914.
+      Timing lt_unsigned_32991_rtlopto_model_915...
+        Done timing lt_unsigned_32991_rtlopto_model_915.
+      Timing lt_unsigned_32989_rtlopto_model_916...
+        Done timing lt_unsigned_32989_rtlopto_model_916.
+      Timing lt_unsigned_32987_rtlopto_model_917...
+        Done timing lt_unsigned_32987_rtlopto_model_917.
+      Timing lt_unsigned_32985_rtlopto_model_918...
+        Done timing lt_unsigned_32985_rtlopto_model_918.
+      Timing lt_unsigned_32983_rtlopto_model_919...
+        Done timing lt_unsigned_32983_rtlopto_model_919.
+      Timing lt_unsigned_32981_rtlopto_model_920...
+        Done timing lt_unsigned_32981_rtlopto_model_920.
+      Timing lt_unsigned_32979_rtlopto_model_921...
+        Done timing lt_unsigned_32979_rtlopto_model_921.
+      Timing lt_unsigned_32977_rtlopto_model_922...
+        Done timing lt_unsigned_32977_rtlopto_model_922.
+      Timing lt_unsigned_32975_rtlopto_model_923...
+        Done timing lt_unsigned_32975_rtlopto_model_923.
+      Timing lt_unsigned_32973_rtlopto_model_924...
+        Done timing lt_unsigned_32973_rtlopto_model_924.
+      Timing lt_unsigned_32971_rtlopto_model_925...
+        Done timing lt_unsigned_32971_rtlopto_model_925.
+      Timing lt_unsigned_32969_rtlopto_model_926...
+        Done timing lt_unsigned_32969_rtlopto_model_926.
+      Timing lt_unsigned_32967_rtlopto_model_927...
+        Done timing lt_unsigned_32967_rtlopto_model_927.
+      Timing lt_unsigned_32965_rtlopto_model_928...
+        Done timing lt_unsigned_32965_rtlopto_model_928.
+      Timing lt_unsigned_32963_rtlopto_model_929...
+        Done timing lt_unsigned_32963_rtlopto_model_929.
+      Timing lt_unsigned_32961_rtlopto_model_930...
+        Done timing lt_unsigned_32961_rtlopto_model_930.
+      Timing lt_unsigned_32959_rtlopto_model_931...
+        Done timing lt_unsigned_32959_rtlopto_model_931.
+      Timing lt_unsigned_32955_rtlopto_model_932...
+        Done timing lt_unsigned_32955_rtlopto_model_932.
+      Timing increment_unsigned_707_995...
+        Done timing increment_unsigned_707_995.
+      Timing increment_unsigned_706_996...
+        Done timing increment_unsigned_706_996.
+      Timing lt_unsigned_32991_rtlopto_model_997...
+        Done timing lt_unsigned_32991_rtlopto_model_997.
+      Timing lt_unsigned_32989_rtlopto_model_998...
+        Done timing lt_unsigned_32989_rtlopto_model_998.
+      Timing lt_unsigned_32987_rtlopto_model_999...
+        Done timing lt_unsigned_32987_rtlopto_model_999.
+      Timing lt_unsigned_32985_rtlopto_model_1000...
+        Done timing lt_unsigned_32985_rtlopto_model_1000.
+      Timing lt_unsigned_32983_rtlopto_model_1001...
+        Done timing lt_unsigned_32983_rtlopto_model_1001.
+      Timing lt_unsigned_32981_rtlopto_model_1002...
+        Done timing lt_unsigned_32981_rtlopto_model_1002.
+      Timing lt_unsigned_32979_rtlopto_model_1003...
+        Done timing lt_unsigned_32979_rtlopto_model_1003.
+      Timing lt_unsigned_32977_rtlopto_model_1004...
+        Done timing lt_unsigned_32977_rtlopto_model_1004.
+      Timing lt_unsigned_32975_rtlopto_model_1005...
+        Done timing lt_unsigned_32975_rtlopto_model_1005.
+      Timing lt_unsigned_32973_rtlopto_model_1006...
+        Done timing lt_unsigned_32973_rtlopto_model_1006.
+      Timing lt_unsigned_32971_rtlopto_model_1007...
+        Done timing lt_unsigned_32971_rtlopto_model_1007.
+      Timing lt_unsigned_32969_rtlopto_model_1008...
+        Done timing lt_unsigned_32969_rtlopto_model_1008.
+      Timing lt_unsigned_32967_rtlopto_model_1009...
+        Done timing lt_unsigned_32967_rtlopto_model_1009.
+      Timing lt_unsigned_32965_rtlopto_model_1010...
+        Done timing lt_unsigned_32965_rtlopto_model_1010.
+      Timing lt_unsigned_32963_rtlopto_model_1011...
+        Done timing lt_unsigned_32963_rtlopto_model_1011.
+      Timing lt_unsigned_32961_rtlopto_model_1012...
+        Done timing lt_unsigned_32961_rtlopto_model_1012.
+      Timing lt_unsigned_32959_rtlopto_model_1013...
+        Done timing lt_unsigned_32959_rtlopto_model_1013.
+      Timing lt_unsigned_32955_rtlopto_model_1014...
+        Done timing lt_unsigned_32955_rtlopto_model_1014.
+Info    : Optimized a mux chain. [DPOPT-10]
+        : Created Flattened Mux 'F_mux_waddr_99_17' in design 'CDN_DP_region_0_0_c2'.
+	The following set of instances are flattened ( mux_waddr_99_17 mux_waddr_101_26 mux_52_25 ).
+
+      Timing increment_unsigned_707_1079...
+        Done timing increment_unsigned_707_1079.
+      Timing increment_unsigned_706_1080...
+        Done timing increment_unsigned_706_1080.
+      Timing lt_unsigned_32991_rtlopto_model_1081...
+        Done timing lt_unsigned_32991_rtlopto_model_1081.
+      Timing lt_unsigned_32989_rtlopto_model_1082...
+        Done timing lt_unsigned_32989_rtlopto_model_1082.
+      Timing lt_unsigned_32987_rtlopto_model_1083...
+        Done timing lt_unsigned_32987_rtlopto_model_1083.
+      Timing lt_unsigned_32985_rtlopto_model_1084...
+        Done timing lt_unsigned_32985_rtlopto_model_1084.
+      Timing lt_unsigned_32983_rtlopto_model_1085...
+        Done timing lt_unsigned_32983_rtlopto_model_1085.
+      Timing lt_unsigned_32981_rtlopto_model_1086...
+        Done timing lt_unsigned_32981_rtlopto_model_1086.
+      Timing lt_unsigned_32979_rtlopto_model_1087...
+        Done timing lt_unsigned_32979_rtlopto_model_1087.
+      Timing lt_unsigned_32977_rtlopto_model_1088...
+        Done timing lt_unsigned_32977_rtlopto_model_1088.
+      Timing lt_unsigned_32975_rtlopto_model_1089...
+        Done timing lt_unsigned_32975_rtlopto_model_1089.
+      Timing lt_unsigned_32973_rtlopto_model_1090...
+        Done timing lt_unsigned_32973_rtlopto_model_1090.
+      Timing lt_unsigned_32971_rtlopto_model_1091...
+        Done timing lt_unsigned_32971_rtlopto_model_1091.
+      Timing lt_unsigned_32969_rtlopto_model_1092...
+        Done timing lt_unsigned_32969_rtlopto_model_1092.
+      Timing lt_unsigned_32967_rtlopto_model_1093...
+        Done timing lt_unsigned_32967_rtlopto_model_1093.
+      Timing lt_unsigned_32965_rtlopto_model_1094...
+        Done timing lt_unsigned_32965_rtlopto_model_1094.
+      Timing lt_unsigned_32963_rtlopto_model_1095...
+        Done timing lt_unsigned_32963_rtlopto_model_1095.
+      Timing lt_unsigned_32961_rtlopto_model_1096...
+        Done timing lt_unsigned_32961_rtlopto_model_1096.
+      Timing lt_unsigned_32959_rtlopto_model_1097...
+        Done timing lt_unsigned_32959_rtlopto_model_1097.
+      Timing lt_unsigned_32955_rtlopto_model_1098...
+        Done timing lt_unsigned_32955_rtlopto_model_1098.
+      Timing increment_unsigned_707_1161...
+        Done timing increment_unsigned_707_1161.
+      Timing increment_unsigned_706_1162...
+        Done timing increment_unsigned_706_1162.
+      Timing lt_unsigned_32991_rtlopto_model_1163...
+        Done timing lt_unsigned_32991_rtlopto_model_1163.
+      Timing lt_unsigned_32989_rtlopto_model_1164...
+        Done timing lt_unsigned_32989_rtlopto_model_1164.
+      Timing lt_unsigned_32987_rtlopto_model_1165...
+        Done timing lt_unsigned_32987_rtlopto_model_1165.
+      Timing lt_unsigned_32985_rtlopto_model_1166...
+        Done timing lt_unsigned_32985_rtlopto_model_1166.
+      Timing lt_unsigned_32983_rtlopto_model_1167...
+        Done timing lt_unsigned_32983_rtlopto_model_1167.
+      Timing lt_unsigned_32981_rtlopto_model_1168...
+        Done timing lt_unsigned_32981_rtlopto_model_1168.
+      Timing lt_unsigned_32979_rtlopto_model_1169...
+        Done timing lt_unsigned_32979_rtlopto_model_1169.
+      Timing lt_unsigned_32977_rtlopto_model_1170...
+        Done timing lt_unsigned_32977_rtlopto_model_1170.
+      Timing lt_unsigned_32975_rtlopto_model_1171...
+        Done timing lt_unsigned_32975_rtlopto_model_1171.
+      Timing lt_unsigned_32973_rtlopto_model_1172...
+        Done timing lt_unsigned_32973_rtlopto_model_1172.
+      Timing lt_unsigned_32971_rtlopto_model_1173...
+        Done timing lt_unsigned_32971_rtlopto_model_1173.
+      Timing lt_unsigned_32969_rtlopto_model_1174...
+        Done timing lt_unsigned_32969_rtlopto_model_1174.
+      Timing lt_unsigned_32967_rtlopto_model_1175...
+        Done timing lt_unsigned_32967_rtlopto_model_1175.
+      Timing lt_unsigned_32965_rtlopto_model_1176...
+        Done timing lt_unsigned_32965_rtlopto_model_1176.
+      Timing lt_unsigned_32963_rtlopto_model_1177...
+        Done timing lt_unsigned_32963_rtlopto_model_1177.
+      Timing lt_unsigned_32961_rtlopto_model_1178...
+        Done timing lt_unsigned_32961_rtlopto_model_1178.
+      Timing lt_unsigned_32959_rtlopto_model_1179...
+        Done timing lt_unsigned_32959_rtlopto_model_1179.
+      Timing lt_unsigned_32955_rtlopto_model_1180...
+        Done timing lt_unsigned_32955_rtlopto_model_1180.
+      Timing increment_unsigned_707_1243...
+        Done timing increment_unsigned_707_1243.
+      Timing increment_unsigned_706_1244...
+        Done timing increment_unsigned_706_1244.
+      Timing lt_unsigned_32991_rtlopto_model_1245...
+        Done timing lt_unsigned_32991_rtlopto_model_1245.
+      Timing lt_unsigned_32989_rtlopto_model_1246...
+        Done timing lt_unsigned_32989_rtlopto_model_1246.
+      Timing lt_unsigned_32987_rtlopto_model_1247...
+        Done timing lt_unsigned_32987_rtlopto_model_1247.
+      Timing lt_unsigned_32985_rtlopto_model_1248...
+        Done timing lt_unsigned_32985_rtlopto_model_1248.
+      Timing lt_unsigned_32983_rtlopto_model_1249...
+        Done timing lt_unsigned_32983_rtlopto_model_1249.
+      Timing lt_unsigned_32981_rtlopto_model_1250...
+        Done timing lt_unsigned_32981_rtlopto_model_1250.
+      Timing lt_unsigned_32979_rtlopto_model_1251...
+        Done timing lt_unsigned_32979_rtlopto_model_1251.
+      Timing lt_unsigned_32977_rtlopto_model_1252...
+        Done timing lt_unsigned_32977_rtlopto_model_1252.
+      Timing lt_unsigned_32975_rtlopto_model_1253...
+        Done timing lt_unsigned_32975_rtlopto_model_1253.
+      Timing lt_unsigned_32973_rtlopto_model_1254...
+        Done timing lt_unsigned_32973_rtlopto_model_1254.
+      Timing lt_unsigned_32971_rtlopto_model_1255...
+        Done timing lt_unsigned_32971_rtlopto_model_1255.
+      Timing lt_unsigned_32969_rtlopto_model_1256...
+        Done timing lt_unsigned_32969_rtlopto_model_1256.
+      Timing lt_unsigned_32967_rtlopto_model_1257...
+        Done timing lt_unsigned_32967_rtlopto_model_1257.
+      Timing lt_unsigned_32965_rtlopto_model_1258...
+        Done timing lt_unsigned_32965_rtlopto_model_1258.
+      Timing lt_unsigned_32963_rtlopto_model_1259...
+        Done timing lt_unsigned_32963_rtlopto_model_1259.
+      Timing lt_unsigned_32961_rtlopto_model_1260...
+        Done timing lt_unsigned_32961_rtlopto_model_1260.
+      Timing lt_unsigned_32959_rtlopto_model_1261...
+        Done timing lt_unsigned_32959_rtlopto_model_1261.
+      Timing lt_unsigned_32955_rtlopto_model_1262...
+        Done timing lt_unsigned_32955_rtlopto_model_1262.
+      Timing increment_unsigned_707_1325...
+        Done timing increment_unsigned_707_1325.
+      Timing increment_unsigned_706_1326...
+        Done timing increment_unsigned_706_1326.
+      Timing lt_unsigned_32991_rtlopto_model_1327...
+        Done timing lt_unsigned_32991_rtlopto_model_1327.
+      Timing lt_unsigned_32989_rtlopto_model_1328...
+        Done timing lt_unsigned_32989_rtlopto_model_1328.
+      Timing lt_unsigned_32987_rtlopto_model_1329...
+        Done timing lt_unsigned_32987_rtlopto_model_1329.
+      Timing lt_unsigned_32985_rtlopto_model_1330...
+        Done timing lt_unsigned_32985_rtlopto_model_1330.
+      Timing lt_unsigned_32983_rtlopto_model_1331...
+        Done timing lt_unsigned_32983_rtlopto_model_1331.
+      Timing lt_unsigned_32981_rtlopto_model_1332...
+        Done timing lt_unsigned_32981_rtlopto_model_1332.
+      Timing lt_unsigned_32979_rtlopto_model_1333...
+        Done timing lt_unsigned_32979_rtlopto_model_1333.
+      Timing lt_unsigned_32977_rtlopto_model_1334...
+        Done timing lt_unsigned_32977_rtlopto_model_1334.
+      Timing lt_unsigned_32975_rtlopto_model_1335...
+        Done timing lt_unsigned_32975_rtlopto_model_1335.
+      Timing lt_unsigned_32973_rtlopto_model_1336...
+        Done timing lt_unsigned_32973_rtlopto_model_1336.
+      Timing lt_unsigned_32971_rtlopto_model_1337...
+        Done timing lt_unsigned_32971_rtlopto_model_1337.
+      Timing lt_unsigned_32969_rtlopto_model_1338...
+        Done timing lt_unsigned_32969_rtlopto_model_1338.
+      Timing lt_unsigned_32967_rtlopto_model_1339...
+        Done timing lt_unsigned_32967_rtlopto_model_1339.
+      Timing lt_unsigned_32965_rtlopto_model_1340...
+        Done timing lt_unsigned_32965_rtlopto_model_1340.
+      Timing lt_unsigned_32963_rtlopto_model_1341...
+        Done timing lt_unsigned_32963_rtlopto_model_1341.
+      Timing lt_unsigned_32961_rtlopto_model_1342...
+        Done timing lt_unsigned_32961_rtlopto_model_1342.
+      Timing lt_unsigned_32959_rtlopto_model_1343...
+        Done timing lt_unsigned_32959_rtlopto_model_1343.
+      Timing lt_unsigned_32955_rtlopto_model_1344...
+        Done timing lt_unsigned_32955_rtlopto_model_1344.
+CDN_DP_region_0_0 level = 0 loads = 1 drivers = 0
+CDN_DP_region_0_0_c0 in proj_fm: area: 403634215278 ,dp = 46 mux = 8218 sg = slow         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ skipped
+CDN_DP_region_0_0_c1 in proj_fm: area: 389315013822 ,dp = 29 mux = 8218 sg = fast         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c2 in proj_fm: area: 389189955294 ,dp = 29 mux = 8216 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_0_c3 in proj_fm: area: 389315013822 ,dp = 29 mux = 8218 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+CDN_DP_region_0_0_c4 in proj_fm: area: 389315013822 ,dp = 29 mux = 8218 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+CDN_DP_region_0_0_c5 in proj_fm: area: 389315013822 ,dp = 29 mux = 8218 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+CDN_DP_region_0_0_c6 in proj_fm: area: 389315013822 ,dp = 29 mux = 8218 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+CDN_DP_region_0_0_c7 in proj_fm: area: 397576692828 ,dp = 29 mux = 8218 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+Best config: CDN_DP_region_0_0_c2 in proj_fm: area: 389189955294 ,dp = 29 mux = 8216 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+  Smallest config area : 389189955294.  Fastest config wns;  0
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Summary table of configs (Best config is CDN_DP_region_0_0_c2)
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>                     0                  1                  2                  3                  4                  5                  6                  7            
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>           Area     403634215278       389315013822       389189955294       389315013822       389315013822       389315013822       389315013822       397576692828  
+##>            WNS         +4843.30           +4843.30           +4843.30           +4843.30           +4843.30           +4843.30           +4843.30           +4843.30  
+##>            TNS                0                  0                  0                  0                  0                  0                  0                  0  
+##>    Num Rewrite                0                  0                  0                  0                  0                  0                  0                 40  
+##>     Num Factor                0                  0                  0                  0                  0                  0                  0                  0  
+##>      Num Share                0                  0                  0                  0                  0                  0                  0                 15  
+##>   Num CmultCse                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num Downsize                0                  0                  0                  0                  0                  0                  0                  0  
+##>  Num Speculate                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Runtime(s)                0                 25                 25                 25                 25                 23                 28                175  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>
+##>
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Optimization Step DEBUG Table for config CDN_DP_region_0_0_c2
+##>
+##>                          Step                        Area   ( % Chg)        WNS (Change)        TNS (Change)          Runtime (s)        Comment                   
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>createMaxCarrySave              START           403634215278 (      )    107379025.70 (        )             0 (        )              
+##> datapath_rewrite_one_def       START           403634215278 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START           403634215278 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           391003303950 ( -3.13)    107379025.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START           391003303950 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           391003303950 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           391003303950 ( -3.13)    107379025.70 (   +0.00)             0 (       0)           3  
+##> csa_opto                       START           391003303950 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( -0.02)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           390940774686 ( -3.14)    107379025.70 (   +0.00)             0 (       0)           3  
+##>canonicalize_by_names           START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_csa_one_  START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           4  
+##>datapath_csa_factoring_one_gde  START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>dpopt_share_one_def             START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_share     START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>dp_combine_const_mult_with_com  START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>dp_operator_level_decompositio  START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>selective_flatten_dp_config     START           390940774686 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390932958528 ( -0.00)    107379025.70 (   +0.00)             0 (       0)           4  
+##>createMaxCarrySave              START           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           2  
+##> csa_opto                       START           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           390932958528 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           3  
+##>context_based_simplify          START           390870429264 ( -0.02)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           389315013822 ( -0.40)    107379025.70 (   +0.00)             0 (       0)           0  
+##>group_csa_final_adder_dp        START           389315013822 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           389315013822 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>dpopt_flatten_critical_muxes_i  START           389315013822 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           389189955294 ( -0.03)    107379025.70 (   +0.00)             0 (       0)           0  
+##>speculate_in_gdef               START           389189955294 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##> pre_speculate_mux_merge        START           389189955294 ( +0.00)    107379025.70 (   +0.00)             0 (       0)              
+##>                                  END           389189955294 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>                                  END           389189955294 ( +0.00)    107379025.70 (   +0.00)             0 (       0)           0  
+##>create_score                    START           389189955294 ( +0.00)     4843.30 (-107374182.40)             0 (       0)              
+##>                                  END           389189955294 ( +0.00)     4843.30 (   +0.00)             0 (       0)           0  
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Committed config: CDN_DP_region_0_0_c2
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_slow' configuration 2 for module 'CDN_DP_region_0_0_c2'.
+          Optimizations applied to 'very_slow' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_1'
+CSAGen Prep Share:0 Re-Write:0 Speculation: 0
+    MaxCSA: weighted_instance_count is 476 
+MaxCSA: Successfully built Maximal CSA Expression Expr4
+      Timing csa_tree_1473...
+        Done timing csa_tree_1473.
+      Timing lt_unsigned_32955_rtlopto_model_1579...
+        Done timing lt_unsigned_32955_rtlopto_model_1579.
+      Timing lt_unsigned_32955_rtlopto_model_1581...
+        Done timing lt_unsigned_32955_rtlopto_model_1581.
+      Timing lt_unsigned_32955_rtlopto_model_1583...
+        Done timing lt_unsigned_32955_rtlopto_model_1583.
+      Timing lt_unsigned_32955_rtlopto_model_1585...
+        Done timing lt_unsigned_32955_rtlopto_model_1585.
+      Timing lt_unsigned_32955_rtlopto_model_1587...
+        Done timing lt_unsigned_32955_rtlopto_model_1587.
+      Timing lt_unsigned_32955_rtlopto_model_1589...
+        Done timing lt_unsigned_32955_rtlopto_model_1589.
+CDN_DP_region_0_1 level = 1 loads = 0 drivers = 1 is driven by : CDN_DP_region_0_0 
+CDN_DP_region_0_1_c0 in proj_fm: area: 2188524240 ,dp = 8 mux = 0 sg = slow         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ skipped
+CDN_DP_region_0_1_c1 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = fast         worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c2 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_slow    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c3 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c4 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c5 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c6 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+ is current best
+CDN_DP_region_0_1_c7 in proj_fm: area: 4986708804 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+
+Best config: CDN_DP_region_0_1_c6 in proj_fm: area: 1563231600 ,dp = 8 mux = 0 sg = very_fast    worst_clk_period: -1.0000 
+    wns: 0  norm_wns:  -1.0000 
+    fail_endp: -1 
+    tns:  0  tns_per_endp:  -1.0000   norm_tns_per_endp:  -1.0000 
+    tns_sense_max:  -1.0000  tns_sense_avg:  -1.0000   tns_sense_num: -1
+  Smallest config area : 1563231600.  Fastest config wns;  0
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Summary table of configs (Best config is CDN_DP_region_0_1_c6)
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>                     0                  1                  2                  3                  4                  5                  6                  7            
+##>+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>           Area       2188524240         1563231600         1563231600         1563231600         1563231600         1563231600         1563231600         4986708804  
+##>            WNS    +214748364.70      +214748364.70      +214748364.70      +214748364.70      +214748364.70      +214748364.70      +214748364.70      +214748364.70  
+##>            TNS                0                  0                  0                  0                  0                  0                  0                  0  
+##>    Num Rewrite                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Num Factor                0                  0                  0                  0                  0                  0                  0                  0  
+##>      Num Share                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num CmultCse                0                  0                  0                  0                  0                  0                  0                  0  
+##>   Num Downsize                0                  0                  0                  0                  0                  0                  0                  0  
+##>  Num Speculate                0                  0                  0                  0                  0                  0                  0                  0  
+##>     Runtime(s)                0                  0                  0                  0                  0                  0                  0                  7  
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>
+##>
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>Optimization Step DEBUG Table for config CDN_DP_region_0_1_c6
+##>
+##>                          Step                        Area   ( % Chg)        WNS (Change)        TNS (Change)          Runtime (s)        Comment                   
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+##>createMaxCarrySave              START             2188524240 (      )    214748364.70 (        )             0 (        )              
+##> datapath_rewrite_one_def       START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> dpopt_share_one_def            START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>canonicalize_by_names           START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_csa_one_  START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_csa_factoring_one_gde  START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dpopt_share_one_def             START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>datapath_rewrite_post_share     START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dp_combine_const_mult_with_com  START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dp_operator_level_decompositio  START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>selective_flatten_dp_config     START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>createMaxCarrySave              START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##> datapath_rewrite_one_def       START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>  fast_cse_elim                 START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>  fast_cse_elim                 START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> dpopt_share_one_def            START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##> csa_opto                       START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>                                  END             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>context_based_simplify          START             2188524240 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1563231600 (-28.57)    214748364.70 (   +0.00)             0 (       0)           0  
+##>group_csa_final_adder_dp        START             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>dpopt_flatten_critical_muxes_i  START             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>create_score                    START             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)              
+##>                                  END             1563231600 ( +0.00)    214748364.70 (   +0.00)             0 (       0)           0  
+##>+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Committed config: CDN_DP_region_0_1_c6
+Info    : Done implementing datapath configurations. [DPOPT-4]
+        : Selected 'very_fast' configuration 6 for module 'CDN_DP_region_0_1_c6'.
+          Optimizations applied to 'very_fast' configuration:
+            rewriting(0), factoring(0), sharing(0), cmultcse(0), downsizing(0), speculation(0)
+Info:  Ungrouped 0 dp-cluster instances.  0 cluster instances were left intact, to aid verification.
+              Prepare netlist for verification ...
+              Prepare netlist for verification Done.
+Info    : Done optimizing datapath logic. [DPOPT-2]
+        : Done optimizing datapath logic in 'proj_fm'.
+      Removing temporary intermediate hierarchies under proj_fm
+Number of big hc bmuxes after = 18
+Starting logic reduction [v1.0] (stage: post_rtlopt, startdef: proj_fm, recur: true)
+Completed logic reduction (accepts: 0, rejects: 0, runtime: 0.010s)
+Starting mux data reorder optimization [v1.0] (stage: post_rtlopt, startdef: proj_fm, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 3.204s)
+
+Stage: post_rtlopt
+----------------------------------------------------------
+| Transform           | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------
+| hlo_logic_reduction |       0 |       0 |        10.00 | 
+| hlo_mux_reorder     |       0 |       0 |      3204.00 | 
+----------------------------------------------------------
+              Optimizing muxes in design 'proj_fm'.
+              Post blast muxes in design 'proj_fm'.
+Starting mux speculation [v1.0] (stage: post_muxopt, startdef: proj_fm, recur: true)
+Starting speculation optimization
+Completed speculation optimization (accepts:0)
+Completed mux speculation (accepts: 0, rejects: 0, runtime: 1.668s)
+
+Stage: post_muxopt
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_speculation |       0 |       0 |      1668.00 | 
+------------------------------------------------------
+==================================
+Stage : to_generic 
+==================================
+  =================
+   Message Summary
+  =================
+--------------------------------------------------------------------------------
+|     Id     |  Sev   |Count |                  Message Text                   |
+--------------------------------------------------------------------------------
+| CDFG-479   |Info    |   16 |Constant relational expression.                  |
+|            |        |      |A relational expression can evaluate to a        |
+|            |        |      | constant when a variable is compared to a value |
+|            |        |      | which is outside the bounds of the variable.    |
+| CDFG-738   |Info    |   68 |Common subexpression eliminated.                 |
+| CDFG-739   |Info    |   68 |Common subexpression kept.                       |
+| CDFG-818   |Warning |    1 |Using default parameter value for module         |
+|            |        |      | elaboration.                                    |
+| CDFG2G-622 |Warning |  512 |Signal or variable has multiple drivers.         |
+|            |        |      |This may cause simulation mismatches between the |
+|            |        |      | original and synthesized designs.               |
+| CDFG2G-623 |Warning |    1 |Signal or variable has multiple drivers,         |
+|            |        |      | including a constant driver.                    |
+|            |        |      |Some tools may not accept this HDL.              |
+| DPOPT-1    |Info    |    1 |Optimizing datapath logic.                       |
+| DPOPT-2    |Info    |    1 |Done optimizing datapath logic.                  |
+| DPOPT-3    |Info    |    2 |Implementing datapath configurations.            |
+| DPOPT-4    |Info    |    2 |Done implementing datapath configurations.       |
+| DPOPT-6    |Info    |    1 |Pre-processed datapath logic.                    |
+| DPOPT-10   |Info    |   17 |Optimized a mux chain.                           |
+| ELAB-1     |Info    |    1 |Elaborating Design.                              |
+| ELAB-3     |Info    |    1 |Done Elaborating Design.                         |
+| GB-6       |Info    |   32 |A datapath component has been ungrouped.         |
+| GLO-34     |Info    |   30 |Deleting instances not driving any primary       |
+|            |        |      | outputs.                                        |
+|            |        |      |Optimizations such as constant propagation or    |
+|            |        |      | redundancy removal could change the connections |
+|            |        |      | so a hierarchical instance does not drive any   |
+|            |        |      | primary outputs anymore. To see the list of     |
+|            |        |      | deleted hierarchical instances, set the         |
+|            |        |      | 'information_level' attribute to 2 or above. If |
+|            |        |      | the message is truncated set the message        |
+|            |        |      | attribute 'truncate' to false to see the        |
+|            |        |      | complete list. To prevent this optimization,    |
+|            |        |      | set the 'delete_unloaded_insts' root/subdesign  |
+|            |        |      | attribute to 'false' or 'preserve' instance     |
+|            |        |      | attribute to 'true'.                            |
+| LBR-161    |Info    |    1 |Setting the maximum print count of this message  |
+|            |        |      | to 10 if information_level is less than 9.      |
+| LBR-412    |Info    |    3 |Created nominal operating condition.             |
+|            |        |      |The nominal operating condition is represented,  |
+|            |        |      | either by the nominal PVT values specified in   |
+|            |        |      | the library source                              |
+|            |        |      | (via nom_process,nom_voltage and nom_temperatur |
+|            |        |      | e respectively)                                 |
+|            |        |      | , or by the default PVT values (1.0,1.0,1.0).   |
+| PHYS-93    |Warning |    1 |The design is not fully mapped.                  |
+|            |        |      |The original design intent derived from the RTL  |
+|            |        |      | may no longer be available upon restoration.    |
+| PHYS-106   |Warning |    2 |Site already defined before, duplicated site     |
+|            |        |      | will be ignored.                                |
+| PHYS-752   |Info    |    1 |Partition Based Synthesis execution skipped.     |
+| RTLOPT-30  |Info    |   15 |Accepted resource sharing opportunity.           |
+| RTLOPT-40  |Info    |    1 |Transformed datapath macro.                      |
+| SYNTH-1    |Info    |    1 |Synthesizing.                                    |
+| TIM-1000   |Info    |    1 |Multimode clock gating check is disabled.        |
+--------------------------------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Mapper: Libraries have:
+	domain _default_: 1950 combo usable cells and 582 sequential usable cells
+      Mapping 'proj_fm'...
+        Preparing the circuit
+          Pruning unused logic
+Warning : Not obtained requested number of super thread servers. [ST-136]
+        : The tool is running on a 2 cpu machine.
+        : The requested number of cpus are not available on machine.
+Info    : Attempting to launch a super-threading server. [ST-120]
+        : Attempting to Launch server 1 of 2.
+        : The tool is entering super-threading mode and is launching a CPU server process.  This is enabled by the root attribute 'super_thread_servers' or 'auto_super_thread'.
+            : The server is process '27821' on this host.
+Info    : Super thread servers are launched successfully. [ST-128]
+        : 8 out of 2 super thread servers are launched. Minimum 1 active super thread server is required.
+                  Distributing load-lib jobs for hosts : localhost_1_0
+                  Sent load lib to server 'localhost_1_0'.
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 94468s, ST: 891s, FG: 891s, CPU: 97.8%}, MEM {curr: 5.3G, peak: 6.7G, phys curr: 0.6G, phys peak: 1.3G}, SYS {load: 1.9, cpu: 2, total: 7.5G, free: 4.4G}
+
+
+Segmentation Fault accessing address 8.
+Abnormal exit.
+
+Segmentation Fault accessing address 0.

@@ -2,28 +2,22 @@ import proj_pkg::*;  // Include the package
 
 module proj_counter
 #(
-    parameter FM_BUFFER_SIZE = proj_pkg::FM_BUFFER_SIZE
+    parameter INDICE_LEN = proj_pkg::INDICE_LEN
 )
 (
-    output wire [FM_BUFFER_SIZE-1:0] index,
+    output wire [INDICE_LEN-1:0] index,
     output logic finished_count,
-    input wire in_clk,
-    input wire in_rst_n,
+    input wire clk,
+    input wire rst_n,
     input wire start
 );
     // Internal signals
-    logic clk;
-    logic rst_n;
-    logic [FM_BUFFER_SIZE-1:0] out_index;
+    logic [INDICE_LEN-1:0] out_index;
     logic end_of_count;
-    logic [FM_BUFFER_SIZE-1:0] idx_next;
+    logic [INDICE_LEN-1:0] idx_next;
     logic rst_index;
     logic count_enabled;
     logic start_prev;
-
-    // Assign input signals to internal signals
-    assign rst_n = in_rst_n;
-    assign clk = in_clk;
 
     // Check if write address reached the end of the buffer
     assign end_of_count = (out_index == (FM_BUFFER_SIZE-1)) ? 1'b1 : 1'b0;

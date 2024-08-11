@@ -5,3 +5,4 @@ proj_kmer_buffer.sv
 proj_extender.sv
 proj_hasher.sv
 proj_sorter.sv
+proj_top.sv

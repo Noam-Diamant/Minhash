@@ -38,8 +38,8 @@ module proj_fm_tb();
     ) dut (
         .in_wdata(in_wdata),
         .out_rdata(out_rdata),
-        .in_clk(in_clk),
-        .in_rst_n(in_rst_n),
+        .clk(in_clk),
+        .rst_n(in_rst_n),
         .chg_idx(chg_idx),
         .frag_idx(frag_idx)
     );

@@ -3391,3 +3391,7 @@ Warning : Default value for an option has changed in this release. [WSDF-104]
 Warning : Default value for an option has changed in this release. [WSDF-104]
         : Default value for -recrem has changed from split to merge_always. Specify '-recrem split' to preserve the behavior of the previous release.
 #@ End verbose source ../scripts/genus_sorter.tcl
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 5288s, ST: 245s, FG: 245s, CPU: 5.2%}, MEM {curr: 4.6G, peak: 6.7G, phys curr: 1.1G, phys peak: 1.1G}, SYS {load: 0.6, cpu: 2, total: 7.5G, free: 2.2G}
+Abnormal exit.

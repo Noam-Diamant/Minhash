@@ -1,0 +1,26 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-XLMODE
+./xcelium.d/run.lnx8664.21.09.d
+-RUNMODE
+./design/proj_pkg.sv
+./design/proj_hasher.sv
+./design/proj_fm.sv
+./design/proj_extender.sv
+./design/proj_counter.sv
+./design/proj_sorter.sv
+./design/proj_kmer_buffer.sv
+./design/proj_top.sv
+-sv
+./verification/proj_hasher_tb.sv
+-CDSLIB
+./xcelium.d/run.lnx8664.21.09.d/cdsrun.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.21.09.d/hdlrun.var
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./xcelium.d/run.lnx8664.21.09.d/xllibs
+-ALLOWUNBOUND

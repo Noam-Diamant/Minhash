@@ -1,0 +1,61 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[14:24:52.206225] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Fri Aug 09 14:24:52 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     10625
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[14:24:52.390538] Periodic Lic check successful
+[14:24:52.390554] Feature usage summary:
+[14:24:52.390555] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (19 seconds elapsed).
+
+WARNING: This version of the tool is 686 days old.
+@genus:root: 1> source ../scripts/genus_counter.tcl
+Sourcing '../scripts/genus_counter.tcl' (Fri Aug 09 14:25:24 UTC 2024)...
+#@ Begin verbose source ../scripts/genus_counter.tcl
+@file(genus_counter.tcl) 2: set debug_file "debug.txt"
+@file(genus_counter.tcl) 3: set design(TOPLEVEL) "proj_counter" 
+@file(genus_counter.tcl) 4: set runtype "synthesis"
+@file(genus_counter.tcl) 7: set mmmc_or_simple "simple"; # "simple" - using "read_libs"
+@file(genus_counter.tcl) 9: set phys_synth_type "lef" ;  # "none"   - don't read any physical data
+@file(genus_counter.tcl) 15: source ../scripts/procedures.tcl -quiet
+@file(genus_counter.tcl) 16: enics_start_stage "start"
+*****************************************
+*****************************************
+**   ENICSINFO: Starting stage start   **
+*****************************************
+*****************************************
+ENICSINFO: Current time is: 09/08/2024 14:25
+ENICSINFO: This session is running on Hostname : ip-10-0-112-224.eu-central-1.compute.internal
+ENICSINFO: The log file is genus.log73 and the command file is genus.cmd73
+ENICSINFO: ----------------------------------
+@file(genus_counter.tcl) 20: source ../inputs/$design(TOPLEVEL).defines -quiet
+#@ End verbose source ../scripts/genus_counter.tcl
+File '../inputs/proj_counter.defines' does not exist.
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 131s, ST: 19s, FG: 19s, CPU: 5.1%}, MEM {curr: 4.3G, peak: 4.8G, phys curr: 0.3G, phys peak: 0.3G}, SYS {load: 0.9, cpu: 2, total: 7.5G, free: 2.9G}
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 132s, ST: 19s, FG: 19s, CPU: 5.4%}, MEM {curr: 4.3G, peak: 4.8G, phys curr: 0.3G, phys peak: 0.3G}, SYS {load: 0.9, cpu: 2, total: 7.5G, free: 2.9G}
+Abnormal exit.

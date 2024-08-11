@@ -1,0 +1,638 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[13:43:49.206273] Configured Lic search path (21.01-s002): 5280@ip-10-0-87-58.eu-central-1.compute.internal
+
+Version: 21.15-s080_1, built Fri Sep 23 05:57:55 PDT 2022
+Options: 
+Date:    Sun Aug 11 13:43:49 2024
+Host:    ip-10-0-112-224.eu-central-1.compute.internal (x86_64 w/Linux 4.14.336-255.557.amzn2.x86_64) (1core*2cpus*1physical cpu*AMD EPYC 7571 512KB) (7896820KB)
+PID:     25622
+OS:      CentOS Linux release 7.9.2009 (Core)
+
+*** Stack limited to 512 MB. This run may fail due to lack of stack space. ***
+
+
+[13:43:49.406225] Periodic Lic check successful
+[13:43:49.406243] Feature usage summary:
+[13:43:49.406248] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (16 seconds elapsed).
+
+WARNING: This version of the tool is 688 days old.
+@genus:root: 1> source ../scripts/genus_hasher.tcl
+Sourcing '../scripts/genus_hasher.tcl' (Sun Aug 11 13:44:22 UTC 2024)...
+#@ Begin verbose source ../scripts/genus_hasher.tcl
+@file(genus_hasher.tcl) 2: set debug_file "debug.txt"
+@file(genus_hasher.tcl) 3: set design(TOPLEVEL) "proj_hasher" 
+@file(genus_hasher.tcl) 4: set runtype "synthesis"
+@file(genus_hasher.tcl) 7: set mmmc_or_simple "simple"; # "simple" - using "read_libs"
+@file(genus_hasher.tcl) 9: set phys_synth_type "lef" ;  # "none"   - don't read any physical data
+@file(genus_hasher.tcl) 15: source ../scripts/procedures.tcl -quiet
+@file(genus_hasher.tcl) 16: enics_start_stage "start"
+*****************************************
+*****************************************
+**   ENICSINFO: Starting stage start   **
+*****************************************
+*****************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: This session is running on Hostname : ip-10-0-112-224.eu-central-1.compute.internal
+ENICSINFO: The log file is genus.log116 and the command file is genus.cmd116
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 20: source ../inputs/proj.defines -quiet
+@file(genus_hasher.tcl) 23: source ../inputs/libraries.$TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'design_process_node' = 65
+@file(genus_hasher.tcl) 24: source ../inputs/libraries.$SC_TECHNOLOGY.tcl -quiet
+  Setting attribute of root '/': 'route_design_with_via_in_pin' = true
+@file(genus_hasher.tcl) 25: source ../inputs/libraries.$SRAM_TECHNOLOGY.tcl -quiet
+@file(genus_hasher.tcl) 26: if {$design(FULLCHIP_OR_MACRO)=="FULLCHIP"} {
+    source ../inputs/libraries.$IO_TECHNOLOGY.tcl -quiet
+}
+@file(genus_hasher.tcl) 34: set df [open $debug_file a]
+@file(genus_hasher.tcl) 35: puts $df "\n******************************************"
+@file(genus_hasher.tcl) 36: puts $df "* Debug values after everything was loaded *"
+@file(genus_hasher.tcl) 37: puts $df "******************************************"
+@file(genus_hasher.tcl) 38: foreach dic {paths tech tech_files design} {
+    foreach key [array names $dic] {
+        puts $df "${dic}(${key}) = \t[set ${dic}([set key])]"
+    }
+}
+@file(genus_hasher.tcl) 44: close $df
+@file(genus_hasher.tcl) 50: set_db source_verbose true ; # Sourcing files will be reported as verbose
+  Setting attribute of root '/': 'source_verbose' = true
+@file(genus_hasher.tcl) 51: set_db information_level 9 ; # The log file will report everything
+  Setting attribute of root '/': 'information_level' = 9
+@file(genus_hasher.tcl) 52: suppress_messages "PHYS-90"
+  Setting attribute of message 'PHYS-90': 'max_print' = 0
+@file(genus_hasher.tcl) 57: enics_start_stage "init_design"
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage init_design   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 59: if {$mmmc_or_simple=="mmmc"} {
+    read_mmmc $design(mmmc_view_file)
+} else {
+    set_db init_lib_search_path $paths(LIB_paths) 
+    suppress_messages $tech(SC_LIB_SUPPRESS_MESSAGES_GENUS)
+    read_libs $tech_files(ALL_WC_LIBS)
+}
+  Setting attribute of root '/': 'init_lib_search_path' = /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/ /data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/
+  Setting attribute of message 'LBR-9': 'max_print' = 0
+  Setting attribute of message 'LBR-76': 'max_print' = 0
+  Setting attribute of message 'LBR-40': 'max_print' = 0
+  Setting attribute of message 'LBR-436': 'max_print' = 0
+  Setting attribute of message 'LBR-170': 'max_print' = 0
+
+Threads Configured:2
+
+  Message Summary for Library all 3 libraries:
+  ********************************************
+  An unsupported construct was detected in this library. [LBR-40]: 258
+  ********************************************
+ 
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_rvt/r0p0/lib/sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lib/sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'
+            Reading file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lib/sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c.lib'.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 0.900000, 125.000000) in library 'sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c.lib'.
+@file(genus_hasher.tcl) 67: suppress_messages "LBR-415"
+  Setting attribute of message 'LBR-415': 'max_print' = 0
+@file(genus_hasher.tcl) 72: if {$phys_synth_type == "none"} {
+   enics_message "Physical Synthesis is disabled"
+   read_qrc $tech_files(QRCTECH_FILE_WC)
+} else {
+    suppress_messages $tech(SC_LEF_SUPPRESS_MESSAGES_GENUS)
+    read_physical -lef $tech_files(ALL_LEFS)
+    if {$phys_synth_type == "floorplan"} { 
+        # You need to read a .def file for the floorplan to enable physical synthesis 
+        read_def $design(floorplan_def)
+    }
+}
+  Setting attribute of message 'PHYS-279': 'max_print' = 0
+  Setting attribute of message 'PHYS-129': 'max_print' = 0
+  Setting attribute of message 'PHYS-15': 'max_print' = 0
+  Setting attribute of message 'PHYS-12': 'max_print' = 0
+  Setting attribute of message 'LBR-162': 'max_print' = 0
+  Setting attribute of message 'LBR-155': 'max_print' = 0
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_lvt/r0p0/lef/sc9_cln65lp_base_lvt.lef' is ignored.
+Warning : Site already defined before, duplicated site will be ignored. [PHYS-106]
+        : Site 'sc9_cln65lp' read already, this site in file '/data/tsmc/65LP/dig_libs/ARM_FEONLY/arm/tsmc/cln65lp//sc9_base_hvt/r0p0/lef/sc9_cln65lp_base_hvt.lef' is ignored.
+
+  According to lef_library, there are total 10 routing layers [ V(5) / H(5) ]
+
+Info    : Setting the maximum print count of this message to 10 if information_level is less than 9. [LBR-161]
+        : To print all the warning messages, set the information_level to 9.
+  Libraries have 1950 usable logic and 582 usable sequential lib-cells.
+@file(genus_hasher.tcl) 87: enics_start_stage "read_rtl"
+********************************************
+********************************************
+**   ENICSINFO: Starting stage read_rtl   **
+********************************************
+********************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 89: set_db init_hdl_search_path $design(hdl_search_paths)
+  Setting attribute of root '/': 'init_hdl_search_path' = . /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl
+@file(genus_hasher.tcl) 90: set_db hdl_language v2001 -quiet
+@file(genus_hasher.tcl) 93: suppress_messages "CDFG-250"
+  Setting attribute of message 'CDFG-250': 'max_print' = 0
+@file(genus_hasher.tcl) 95: suppress_messages "CWD-19 CWD-36"
+  Setting attribute of message 'CWD-19': 'max_print' = 0
+  Setting attribute of message 'CWD-36': 'max_print' = 0
+@file(genus_hasher.tcl) 97: suppress_messages "CDFG-771"
+  Setting attribute of message 'CDFG-771': 'max_print' = 0
+@file(genus_hasher.tcl) 98: read_hdl -language sv -f $design(read_hdl_list)
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_pkg.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_fm.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_extender.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_sorter.sv'
+            Reading Verilog file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_top.sv'
+@file(genus_hasher.tcl) 103: enics_start_stage "elaborate"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage elaborate   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 105: set_db hdl_track_filename_row_col true -quiet; # helps with debug
+Info   : Enabled hdl_track_filename_row_col attribute.
+       : Setting this attribute to 'true' can have an impact on the run time. Use this attribute only when filename, line number, and column information are needed in reports.
+@file(genus_hasher.tcl) 106: set_db lp_insert_clock_gating true 
+  Setting attribute of root '/': 'lp_insert_clock_gating' = true
+@file(genus_hasher.tcl) 108: elaborate $design(TOPLEVEL) ;#-update
+                  INLINE_INFO: Skipping marking small hierarchies inline as the variable 'hdl_dissolve_primitive_instance_hierarchy_threshold' has not been set to a positive value.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'proj_hasher' from file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'proj_hasher' with default parameters value.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'k' [33] doesn't match the width of right hand side [32] in assignment in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 26.
+        : Review and make sure the mismatch is unintentional. Genus can possibly issue bitwidth mismatch warning for explicit assignments present in RTL as-well-as for implicit assignments inferred by the tool. For example, in case of enum declaration without value, the tool will implicitly assign value to the enum variables. It also issues the warning for any bitwidth mismatch that appears in this implicit assignment.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'k' [33] doesn't match the width of right hand side [32] in assignment in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 28.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'key' [33] doesn't match the width of right hand side [32] in assignment in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 30.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'key' [33] doesn't match the width of right hand side [32] in assignment in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 32.
+Info    : Bitwidth mismatch in assignment. [CDFG-372]
+        : Width of left hand side 'signature' [32] doesn't match the width of right hand side [33] in assignment in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 33.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'clk' is not used in module 'proj_hasher' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 9.
+        : (In port definition within the module, the input port is not used in any assignment statements or conditional expressions for decision statements.
+Info    : Unused module input port. [CDFG-500]
+        : Input port 'rst_n' is not used in module 'proj_hasher' in file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' on line 10.
+Info    : Skipping an invalid binding for a subprogram call. [CWD-21]
+        : The binding 'hdl_bind:CW/CW_mult_unsigned/b1' is invalid for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=3 Z=32) at line 33 in the file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' because the 'avoid' attribute on the binding is set to 'true'.
+Info    : Skipping an invalid binding for a subprogram call. [CWD-21]
+        : The binding 'hdl_bind:CW/CW_mult_unsigned/b1' is invalid for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=29 Z=33) at line 29 in the file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' because the 'avoid' attribute on the binding is set to 'true'.
+Info    : Skipping an invalid binding for a subprogram call. [CWD-21]
+        : The binding 'hdl_bind:CW/CW_mult_unsigned/b1' is invalid for the call to synthetic operator 'MULT_UNS_OP' (pin widths: A=32 B=32 Z=33) at line 27 in the file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_hasher.sv' because the 'avoid' attribute on the binding is set to 'true'.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'proj_hasher'.
+Checking for analog nets...
+Check completed for analog nets.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+--------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |         1.00 | 
+--------------------------------------------------------
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: proj_hasher, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: proj_hasher, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_elab
+---------------------------------------------------------
+| Transform          | Accepts | Rejects | Runtime (ms) | 
+---------------------------------------------------------
+| hlo_clip_mux_input |       0 |       0 |         0.00 | 
+| hlo_clip           |       0 |       0 |         0.00 | 
+---------------------------------------------------------
+        Computing net loads.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(genus_hasher.tcl) 110: enics_start_stage "post_elaboration"
+****************************************************
+****************************************************
+**   ENICSINFO: Starting stage post_elaboration   **
+****************************************************
+****************************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 112: check_design -unresolved
+
+
+ 	 Check Design Report (c)
+	 ------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_hasher'
+
+No empty modules in design 'proj_hasher'
+
+  Done Checking the design.
+@file(genus_hasher.tcl) 113: check_design -all > $design(synthesis_reports)/post_elaboration/check_design_post_elab.rpt
+
+@file(genus_hasher.tcl) 114: if {[check_design -status]} {
+    Puts "ENICSINFO: ############# There is an issue with check_design. You better look at it! ###########"
+}
+@file(genus_hasher.tcl) 118: write_design -base_name $design(export_dir)/post_elaboartion/$design(TOPLEVEL)
+(write_design): Writing Genus content. Constraint interface is 'smsc'
+Warning : The design is not fully mapped. [PHYS-93]
+        : The original design intent derived from the RTL may no longer be available upon restoration.
+Exporting design data for 'proj_hasher' to /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_hasher/post_elaboartion/proj_hasher...
+%# Begin write_design (08/11 13:44:46, mem=4900.51M)
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   write_design
+File /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_hasher/post_elaboartion/proj_hasher.mmmc.tcl has been written.
+Info    : Multimode clock gating check is disabled. [TIM-1000]
+Finished SDC export (command execution time mm:ss (real) = 00:02).
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_hasher/post_elaboartion/proj_hasher.default_emulate_constraint_mode.sdc has been written
+Info: file /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_hasher/post_elaboartion/proj_hasher.default_emulate_constraint_mode.sdc has been written
+** To load the database source /data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../export/proj_hasher/post_elaboartion/proj_hasher.genus_setup.tcl in an Genus(TM) Synthesis Solution session.
+Finished exporting design data for 'proj_hasher' (command execution time mm:ss cpu = 00:01, real = 00:04).
+.
+%# End write_design (08/11 13:44:50, total cpu=08:00:01, real=08:00:04, peak res=796.10M, current mem=4903.51M)
+@file(genus_hasher.tcl) 126: set_db detailed_sdc_messages true ; # helps read_sdc debug
+  Setting attribute of root '/': 'detailed_sdc_messages' = true
+@file(genus_hasher.tcl) 127: read_sdc $design(functional_sdc) -stop_on_errors 
+            Reading file '/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../inputs/proj.sdc'
+Statistics for commands executed by read_sdc:
+ "all_inputs"               - successful      4 , failed      0 (runtime  0.01)
+ "all_outputs"              - successful      3 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.01)
+ "current_design"           - successful      2 , failed      0 (runtime  0.01)
+ "get_lib_pins"             - successful      1 , failed      0 (runtime  0.02)
+ "get_ports"                - successful      3 , failed      0 (runtime  0.01)
+ "remove_from_collection"   - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.01)
+ "set_driving_cell"         - successful      1 , failed      0 (runtime  0.01)
+ "set_ideal_network"        - successful      2 , failed      0 (runtime  0.01)
+ "set_input_delay"          - successful      1 , failed      0 (runtime  0.01)
+ "set_input_transition"     - successful      1 , failed      0 (runtime  0.02)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.02)
+ "set_max_delay"            - successful      1 , failed      0 (runtime  0.01)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.00)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.01)
+ "set_output_delay"         - successful      1 , failed      0 (runtime  0.00)
+read_sdc completed in 00:00:00 (hh:mm:ss)
+@file(genus_hasher.tcl) 128: check_timing_intent
+        Computing net loads.
+        Tracing clock networks.
+        Levelizing the circuit.
+        Computing delays.
+        Computing arrivals and requireds.
+============================================================
+  Generated by:           Genus(TM) Synthesis Solution 21.15-s080_1
+  Generated on:           Aug 11 2024  01:44:50 pm
+  Module:                 proj_hasher
+  Technology libraries:   sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 1
+                          sc9_cln65lp_base_hvt_ss_typical_max_0p90v_125c 1
+                          physical_cells 
+  Operating conditions:   ss_typical_max_0p90v_125c 
+  Interconnect mode:      global
+  Area mode:              physical library
+============================================================
+
+
+Lint summary
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                           0
+ Outputs without clocked external delays                          0
+ Inputs without external driver/transition                        0
+ Outputs without external load                                    0
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:          0
+
+@file(genus_hasher.tcl) 129: check_timing_intent -verbose > $design(synthesis_reports)/post_elaboration/check_timing_post_elab.rpt
+@file(genus_hasher.tcl) 134: enics_in2out_cost_groups
+@file(genus_hasher.tcl) 135: enics_report_timing $design(synthesis_reports)
+  Setting attribute of root '/': 'timing_report_fields' = timing_point flags arc edge cell fanout transition delay arrival
+        Computing arrivals and requireds.
+@file(genus_hasher.tcl) 142: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_min_flops 8
+  Setting attribute of design 'proj_hasher': 'lp_clock_gating_min_flops' = 8
+@file(genus_hasher.tcl) 143: set_db [get_db design:$design(TOPLEVEL)] .lp_clock_gating_style latch 
+  Setting attribute of design 'proj_hasher': 'lp_clock_gating_style' = latch
+@file(genus_hasher.tcl) 148: enics_start_stage "synthesis"
+*********************************************
+*********************************************
+**   ENICSINFO: Starting stage synthesis   **
+*********************************************
+*********************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+@file(genus_hasher.tcl) 151: set_db syn_generic_effort low
+  Setting attribute of root '/': 'syn_generic_effort' = low
+@file(genus_hasher.tcl) 152: set_db syn_map_effort low
+  Setting attribute of root '/': 'syn_map_effort' = low
+@file(genus_hasher.tcl) 153: set_db syn_opt_effort low
+  Setting attribute of root '/': 'syn_opt_effort' = low
+@file(genus_hasher.tcl) 154: suppress_messages "ST-110 ST-112"
+  Setting attribute of message 'ST-110': 'max_print' = 0
+  Setting attribute of message 'ST-112': 'max_print' = 0
+@file(genus_hasher.tcl) 156: if {$phys_synth_type == "floorplan"} {
+    # Synthesize to generics and place generics in floorplan
+    enics_start_stage "syn_generic"
+    syn_generic -physical
+    # Map to technology
+    enics_start_stage "technology_mapping"
+    syn_map -physical
+    enics_report_timing $design(synthesis_reports) 
+    # Post synthesis optimization
+    enics_start_stage "post_syn_opt"
+    syn_opt -physical
+} else {
+    # Synthesize to generics (non physical-aware)
+    enics_start_stage "syn_generic"
+    syn_generic 
+    # Map to technology (non physical-aware)
+    enics_start_stage "technology_mapping"
+    syn_map 
+    enics_report_timing $design(synthesis_reports)
+    enics_start_stage "post_syn_opt"
+    if {$phys_synth_type == "lef"} {
+        syn_opt
+    } else {
+        syn_opt 
+    }
+}
+***********************************************
+***********************************************
+**   ENICSINFO: Starting stage syn_generic   **
+***********************************************
+***********************************************
+ENICSINFO: Current time is: 11/08/2024 13:44
+ENICSINFO: ----------------------------------
+      Running additional step before syn_gen...
+
+
+Stage: pre_early_cg
+------------------------------------------------
+| Transform | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------
+------------------------------------------------
+##Generic Timing Info for library domain: _default_ typical gate delay: 100.2 ps std_slew: 29.9 ps std_load: 3.8 fF
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_hasher, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Info    : Synthesizing. [SYNTH-1]
+        : Synthesizing 'proj_hasher' to generic gates using 'low' effort.
+PBS_Generic-Start - Elapsed_Time 0, CPU_Time 0.0
+stamp 'PBS_Generic-Start' being created for table 'pbs_debug'
+
+  Total Time (Wall) |  Stage Time (Wall)  |   % (Wall)   |    Date - Time     |  Memory   | Stage
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+ 00:00:50(00:01:00) |  00:00:00(00:00:00) |   0.0(  0.0) |   13:44:58 (Aug11) |  802.5 MB | PBS_Generic-Start
+--------------------+---------------------+--------------+--------------------+-----------+----------------------
+Number of threads: 8 * 1   (id: pbs_debug, time_info v1.57)
+Info: (*N*) indicates data that was populated from previously saved time_info database
+Info: CPU time includes time of parent + longest thread
+        Computing net loads.
+TNS Restructuring config: no_value at stage: generic applied.
+Info    : Partition Based Synthesis execution skipped. [PHYS-752]
+        : Design size is less than the partition size '100000' for distributed generic optimization to kick in.
+Starting mux data reorder optimization [v1.0] (stage: pre_to_gen_setup, startdef: proj_hasher, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.004s)
+
+Stage: pre_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         4.00 | 
+------------------------------------------------------
+Starting mux data reorder optimization [v1.0] (stage: post_to_gen_setup, startdef: proj_hasher, recur: true)
+Completed mux data reorder optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_to_gen_setup
+------------------------------------------------------
+| Transform       | Accepts | Rejects | Runtime (ms) | 
+------------------------------------------------------
+| hlo_mux_reorder |       0 |       0 |         0.00 | 
+------------------------------------------------------
+Current PLE settings:
+
+Aspect ratio        : 1.000
+Shrink factor       : 1.000
+Scale of res/length : 1.000
+Scale of cap/length : 1.000
+Net derating factor : 1.000
+Thermal factor      : 1.000
+Via Resistance      : 0.000 ohm (from default)
+Site size           : 2.000 um (from lef [tech+cell])
+
+                                   Capacitance  
+  Layer                             / Length         Data source:
+Name        Direction Utilization  (pF/micron)       default value
+------------------------------------------------
+<default>       U         n/a         0.000250  
+
+** = DEFAULT cap per unit length is used for timing analysis
+
+                                    Resistance   
+  Layer                              / Length         Data source:
+Name        Direction Utilization  (ohm/micron)       default value
+-------------------------------------------------
+<default>       U         n/a          0.000000  
+
+** = DEFAULT res per unit length is used for timing analysis
+
+                                        Area       
+  Layer                               / Length          Data source:
+Name        Direction Utilization     (micron)          lef_library
+---------------------------------------------------
+M1              H         0.00         0.090000    
+M2              V         1.00         0.100000    
+M3              H         1.00         0.100000    
+M4              V         1.00         0.100000    
+M5              H         1.00         0.100000    
+M6              V         1.00         0.100000    
+M7              H         1.00         0.100000    
+M8              V         1.00         0.400000    
+M9              H         1.00         0.400000    
+AP              V         1.00         3.000000 ** 
+
+** = 'AP' is dropped because its width (3) is too large (threshold 2)
+
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: pre_hlo_rtlopt
+--------------------------------------------
+| Trick | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------
+--------------------------------------------
+Starting infer macro optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed infer macro optimization (accepts: 0, rejects: 0, runtime: 0.012s)
+Starting decode mux sandwich optimization [v2.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed decode mux sandwich optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting decode mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed decode mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chop wide muxes [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed chop wide muxes (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting constant-data mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed constant-data mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting chain-to-tree inequality transform [v2.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed chain-to-tree inequality transform (accepts: 0, rejects: 0, runtime: 0.013s)
+Starting reconvergence optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed reconvergence optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting logic restructure optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed logic restructure optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common select mux optimization [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed common select mux optimization (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting identity transform [v3.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed identity transform (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting reduce operator chain [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed reduce operator chain (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting common data mux cascade opt [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed common data mux cascade opt (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting mux input consolidation [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed mux input consolidation (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting optimize datapath elements [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed optimize datapath elements (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting datapath recasting [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed datapath recasting (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting clip mux common data inputs [v1.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: pre_rtlopt, startdef: proj_hasher, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: pre_rtlopt
+----------------------------------------------------------------
+| Transform                 | Accepts | Rejects | Runtime (ms) | 
+----------------------------------------------------------------
+| hlo_infer_macro           |       0 |       0 |        12.00 | 
+| hlo_decode_mux_sandwich   |       0 |       0 |         0.00 | 
+| hlo_mux_decode            |       0 |       0 |         0.00 | 
+| hlo_chop_mux              |       0 |       0 |         1.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         0.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         0.00 | 
+| hlo_constant_mux_opt      |       0 |       0 |         0.00 | 
+| hlo_inequality_transform  |       0 |       0 |        13.00 | 
+| hlo_reconv_opt            |       0 |       0 |         0.00 | 
+| hlo_restructure           |       0 |       0 |         0.00 | 
+| hlo_common_select_muxopto |       0 |       0 |         0.00 | 
+| hlo_identity_transform    |       0 |       0 |         0.00 | 
+| hlo_reduce_operator_chain |       0 |       0 |         0.00 | 
+| hlo_mux_cascade_opt       |       0 |       0 |         1.00 | 
+| hlo_mux_consolidation     |       0 |       0 |         0.00 | 
+| hlo_optimize_datapath     |       0 |       0 |         0.00 | 
+| hlo_datapath_recast       |       0 |       0 |         1.00 | 
+| hlo_clip_mux_input        |       0 |       0 |         0.00 | 
+| hlo_clip                  |       0 |       0 |         0.00 | 
+----------------------------------------------------------------
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_hlo_rtlopt
+--------------------------------------------------
+| Trick       | Accepts | Rejects | Runtime (ms) | 
+--------------------------------------------------
+| ume_runtime |       0 |       0 |         0.00 | 
+--------------------------------------------------
+Number of big hc bmuxes before = 0
+              Info: total 0 bmuxes found, 0 are converted to onehot form, and 0 are kept as binary form
+Info    : Pre-processed datapath logic. [DPOPT-6]
+        : Pre-processing optimizations applied to datapath logic in 'proj_hasher':
+          output_trim(2) 
+Info    : Optimizing datapath logic. [DPOPT-1]
+        : Optimizing datapath logic in 'proj_hasher'.
+Info    : Implementing datapath configurations. [DPOPT-3]
+        : Implementing datapath configurations for 'CDN_DP_region_0_1'
+CSAGen Prep Share:0 Re-Write:0 Speculation: 0
+    MaxCSA: weighted_instance_count is 1152 
+Info    : Skipping an invalid binding for a subprogram call. [CWD-21]
+        : The binding 'hdl_bind:CW/CW_mult_signed/b1' is invalid for the call to synthetic operator 'MULT_TC_OP' (pin widths: A=32 B=32 Z=32) because the 'avoid' attribute on the binding is set to 'true'.

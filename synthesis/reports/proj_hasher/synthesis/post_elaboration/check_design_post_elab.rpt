@@ -1,0 +1,269 @@
+
+ 	 Check Design Report (c)
+	 ------------------- 
+No subdesign's name is greater than 1.5k in length.
+
+ Feedthrough Module(s)
+ -------------------------
+No feed through module in 'proj_hasher'
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'proj_hasher'
+
+No empty modules in design 'proj_hasher'
+
+ Unloaded Pin(s), Port(s)
+ -------------------------
+No unloaded sequential element in 'proj_hasher'
+
+design 'proj_hasher' has the following unloaded port(s)
+port:proj_hasher/clk
+port:proj_hasher/rst_n
+Total number of unloaded ports in design 'proj_hasher' : 2
+
+ Unloaded Combinational Pin(s)
+ -------------------------------
+design 'proj_hasher' has the following unloaded combinational elements
+pin:proj_hasher/mul_29_12/g3351/z
+pin:proj_hasher/mul_27_13/g3408/z
+Total number of unloaded combinational elements in design 'proj_hasher' : 2
+
+ Assigns
+ ------- 
+Total number of assign statements in design 'proj_hasher' : 0
+
+ Undriven Port(s)/Pin(s)
+ ------------------------
+No undriven combinational pin in 'proj_hasher'
+
+No undriven sequential pin in 'proj_hasher'
+
+No undriven hierarchical pin in 'proj_hasher'
+
+No undriven port in 'proj_hasher'
+
+ Multidriven Port(s)/Pin(s)
+--------------------------
+
+No multidriven combinational pin in 'proj_hasher'
+
+No multidriven sequential pin in 'proj_hasher'
+
+No multidriven hierarchical pin in 'proj_hasher'
+
+No multidriven ports in 'proj_hasher'
+
+No multidriven unloaded nets in 'proj_hasher'
+
+  Constant Pin(s)
+  ----------------
+No constant combinational pin(s) in design 'proj_hasher'
+
+No constant sequential pin(s) in design 'proj_hasher'
+
+design 'proj_hasher' has the following constant input hierarchical pin(s)
+hpin:proj_hasher/mul_33_23/B[2] 	 (fanout : 30)
+hpin:proj_hasher/mul_33_23/B[1] 	 (fanout : 31)
+hpin:proj_hasher/mul_33_23/B[0] 	 (fanout : 32)
+hpin:proj_hasher/add_33_27/B[31] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[30] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[29] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[28] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[27] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[26] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[25] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[24] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[23] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[22] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[21] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[20] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[19] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[18] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[17] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[16] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[15] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[14] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[13] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[12] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[11] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[10] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[9] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[8] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[7] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[6] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[5] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[4] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[3] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[2] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[1] 	 (fanout : 2)
+hpin:proj_hasher/add_33_27/B[0] 	 (fanout : 2)
+hpin:proj_hasher/mul_29_12/B[28] 	 (fanout : 3)
+hpin:proj_hasher/mul_29_12/B[27] 	 (fanout : 11)
+hpin:proj_hasher/mul_29_12/B[26] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[25] 	 (fanout : 15)
+hpin:proj_hasher/mul_29_12/B[24] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[23] 	 (fanout : 17)
+hpin:proj_hasher/mul_29_12/B[22] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[21] 	 (fanout : 19)
+hpin:proj_hasher/mul_29_12/B[20] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[19] 	 (fanout : 21)
+hpin:proj_hasher/mul_29_12/B[18] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[17] 	 (fanout : 23)
+hpin:proj_hasher/mul_29_12/B[16] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[15] 	 (fanout : 25)
+hpin:proj_hasher/mul_29_12/B[14] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[13] 	 (fanout : 27)
+hpin:proj_hasher/mul_29_12/B[12] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[11] 	 (fanout : 29)
+hpin:proj_hasher/mul_29_12/B[10] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[9] 	 (fanout : 31)
+hpin:proj_hasher/mul_29_12/B[8] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[7] 	 (fanout : 33)
+hpin:proj_hasher/mul_29_12/B[6] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[5] 	 (fanout : 35)
+hpin:proj_hasher/mul_29_12/B[4] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[3] 	 (fanout : 37)
+hpin:proj_hasher/mul_29_12/B[2] 	 (fanout : 5)
+hpin:proj_hasher/mul_29_12/B[1] 	 (fanout : 39)
+hpin:proj_hasher/mul_29_12/B[0] 	 (fanout : 35)
+hpin:proj_hasher/mul_27_13/B[31] 	 (fanout : 6)
+hpin:proj_hasher/mul_27_13/B[30] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[29] 	 (fanout : 11)
+hpin:proj_hasher/mul_27_13/B[28] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[27] 	 (fanout : 13)
+hpin:proj_hasher/mul_27_13/B[26] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[25] 	 (fanout : 15)
+hpin:proj_hasher/mul_27_13/B[24] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[23] 	 (fanout : 17)
+hpin:proj_hasher/mul_27_13/B[22] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[21] 	 (fanout : 19)
+hpin:proj_hasher/mul_27_13/B[20] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[19] 	 (fanout : 21)
+hpin:proj_hasher/mul_27_13/B[18] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[17] 	 (fanout : 23)
+hpin:proj_hasher/mul_27_13/B[16] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[15] 	 (fanout : 25)
+hpin:proj_hasher/mul_27_13/B[14] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[13] 	 (fanout : 27)
+hpin:proj_hasher/mul_27_13/B[12] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[11] 	 (fanout : 29)
+hpin:proj_hasher/mul_27_13/B[10] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[9] 	 (fanout : 31)
+hpin:proj_hasher/mul_27_13/B[8] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[7] 	 (fanout : 33)
+hpin:proj_hasher/mul_27_13/B[6] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[5] 	 (fanout : 35)
+hpin:proj_hasher/mul_27_13/B[4] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[3] 	 (fanout : 37)
+hpin:proj_hasher/mul_27_13/B[2] 	 (fanout : 5)
+hpin:proj_hasher/mul_27_13/B[1] 	 (fanout : 39)
+hpin:proj_hasher/mul_27_13/B[0] 	 (fanout : 35)
+Total number of constant hierarchical pins in design 'proj_hasher' : 96
+
+No constant connected ports in design 'proj_hasher'
+
+  Preserved instances(s)
+  ----------------
+No preserved combinational instance(s) in design 'proj_hasher'
+No preserved sequential instance(s) in design 'proj_hasher'
+No preserved hierarchical instance(s) in design 'proj_hasher'
+
+  Physical only instances(s)
+  ----------------
+No physical only instance(s) in design 'proj_hasher'
+
+  Logical only instance(s) and linked libcells
+    -----------------------------------------
+No logical only instance(s) in design 'proj_hasher'
+
+Libcells with no corresponding LEF
+----------------------------------
+No libcell(s) found.
+
+LEF cells with no corresponding libcell
+---------------------------------------
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TR
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TL
+lib_cell:default_emulate_libset_max/physical_cells/ENDCAPTIE2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL128_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL16_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL1_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL32_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL4_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL64_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILL8_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE128_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE16_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE2_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE32_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE4_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE64_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/FILLTIE8_A9TH
+lib_cell:default_emulate_libset_max/physical_cells/WELLANTENNATIEPW2_A9TH
+Total number cell(s) with only physical (LEF) Info : 51
+
+ Summary
+ ------- 
+
+              Name                       Total
+----------------------------------------------
+Unresolved References                        0
+Empty Modules                                0
+Unloaded Port(s)                             2
+Unloaded Sequential Pin(s)                   0
+Unloaded Combinational Pin(s)                2
+Assigns                                      0
+Undriven Port(s)                             0
+Undriven Leaf Pin(s)                         0
+Undriven hierarchical pin(s)                 0
+Multidriven Port(s)                          0
+Multidriven Leaf Pin(s)                      0
+Multidriven hierarchical Pin(s)              0
+Multidriven unloaded net(s)                  0
+Constant Port(s)                             0
+Constant Leaf Pin(s)                         0
+Constant hierarchical Pin(s)                96
+Preserved leaf instance(s)                   0
+Preserved hierarchical instance(s)           0
+Feedthrough Modules(s)                       0
+Libcells with no LEF cell                    0
+Physical (LEF) cells with no libcell        51
+Subdesigns with long module name             0
+Physical only instance(s)                    0
+Logical only instance(s)                     0
+
+  Done Checking the design.
