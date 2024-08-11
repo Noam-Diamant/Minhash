@@ -48,6 +48,8 @@ module proj_top (
     );
     // Hasher module
     proj_hasher u_hasher (
+        .clk(clk)
+        .rst_n(rst_n)
         .seed(32'hac718add),
         .kmer(kmer),
         .signature(signature)

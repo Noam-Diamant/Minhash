@@ -21,7 +21,7 @@ module proj_hasher_tb;
     // Initialize Inputs
     seed_tb = 0;
     kmer_tb = 0;
-    #100;
+    #10;
     
     // Apply Test Vectors
     seed_tb = 32'hac718add;
@@ -32,6 +32,16 @@ module proj_hasher_tb;
     // Display the result
     $display("Seed: %h, Kmer: %h, Signature: %h", seed_tb, kmer_tb, signature_tb);
     
+
+    // Test reading from both buffers
+    for (int i = 0; i < HASHER_DATA_BITS; i++) begin
+    kmer_tb =  $random ;
+    
+    #10;
+    
+    // Display the result
+    $display("Seed: %h, Kmer: %h, Signature: %h", seed_tb, kmer_tb, signature_tb);
+    end
     #10;
     $finish;
   end

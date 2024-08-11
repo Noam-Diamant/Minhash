@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+import proj_pkg::*;  // Include the package
 module proj_fm #(
     // Module parameters
     parameter BUFFER_COUNT = proj_pkg::FM_BUFFER_COUNT,        // Number of buffers in the FM
@@ -27,7 +27,6 @@ module proj_fm #(
     localparam ENTRIES_ADDR_BITS = $clog2(ENTRIES);
     localparam OFFSET_ADDR_BITS = $clog2(OFFSET);
     localparam ADDR_BITS = RAM_ADDR_BITS + ENTRIES_ADDR_BITS + OFFSET_ADDR_BITS;
-
     // Internal signals
     logic [ADDR_BITS-1:0] waddr, waddr_next;
     logic [DATA_BITS-1:0] wdata;
@@ -38,10 +37,8 @@ module proj_fm #(
     logic [INDICE_LEN-1:0] raddr, zeros_count;
     logic [SIGNED_INDICE_LEN-1:0] flip_frag_idx;
     logic we;
-
     // Input assignments
     assign wdata = hold_cond ? FMbuffers[wr_idx][waddr] : in_wdata;
-
     // Output assignment
     assign out_rdata = padded_fragment;
 
@@ -54,7 +51,6 @@ module proj_fm #(
     assign rst_addr = end_addr & chg_idx;
     assign rd_idx = ~wr_idx;
     assign we = ~hold_cond || end_addr;
-
     // Fragment preparation logic
     always_comb begin
         padded_fragment = '0;
@@ -68,20 +64,13 @@ module proj_fm #(
         end else begin
             raddr = frag_idx[INDICE_LEN-1:0];
         end
-    end
         
-    genvar i;
-    generate
-        for (i = 0; i < FRAG_LEN*2; i++) begin : gen_padded_fragment  
-            always_comb begin
-                if (i < (FRAG_LEN*2 - zeros_count) && (raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin 
-                    padded_fragment[i + (zeros_count << 1)] = FMbuffers[rd_idx][raddr + (i >> 1)][i[0]];
-                end else begin
-                    padded_fragment[i + (zeros_count << 1)] = 1'b0;
-                end
+        for (int i = 0; i < FRAG_LEN - zeros_count; i++) begin
+            if ((raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin
+                padded_fragment[i + (zeros_count<<$clog2(DATA_BITS))] = FMbuffers[rd_idx][raddr +(i>>$clog2(DATA_BITS))][i[0]];
             end
         end
-    endgenerate
+    end
 
     // Sequential logic
     always_ff @(posedge clk or negedge rst_n) begin
@@ -109,5 +98,4 @@ module proj_fm #(
             end
         end
     end
-
 endmodule

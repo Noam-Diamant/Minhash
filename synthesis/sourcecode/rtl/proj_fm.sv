@@ -57,7 +57,6 @@ module proj_fm #(
 
     // Fragment preparation logic
     always_comb begin
-        padded_fragment = '0;
         zeros_count = '0;
         flip_frag_idx = '0;
         
@@ -68,20 +67,15 @@ module proj_fm #(
         end else begin
             raddr = frag_idx[INDICE_LEN-1:0];
         end
-    end
-        
-    genvar i;
-    generate
-        for (i = 0; i < FRAG_LEN*2; i++) begin : gen_padded_fragment  
-            always_comb begin
+        for (int i = 0; i < FRAG_LEN*2; i++) begin : gen_padded_fragment  
+                padded_fragment = '0;
                 if (i < (FRAG_LEN*2 - zeros_count) && (raddr + i >= 0) && (raddr + i < FM_BUFFER_SIZE)) begin 
                     padded_fragment[i + (zeros_count << 1)] = FMbuffers[rd_idx][raddr + (i >> 1)][i[0]];
                 end else begin
                     padded_fragment[i + (zeros_count << 1)] = 1'b0;
                 end
-            end
         end
-    endgenerate
+    end
 
     // Sequential logic
     always_ff @(posedge clk or negedge rst_n) begin

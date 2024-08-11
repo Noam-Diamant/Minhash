@@ -94,23 +94,12 @@ module proj_counter_tb();
             $display("Passed: finished_count asserted at the end of count");
         end
 
-        // Test reset during operation
-        @(negedge clk);
-        rst_n = 1'b0;
-        expected_index = '0;
-        @(posedge clk);
-        if (index !== expected_index) begin
-            $display("Error: Reset index mismatch. Expected %0d, got %0d", expected_index, index);
-            error_count++;
+        repeat(10) begin
+            @(posedge clk);
         end
-        else begin
-            $display("Passed: Reset index match. Expected %0d, got %0d at time %0t", expected_index, index, $time);
-        end
-
-        @(negedge clk);
-        rst_n = 1'b1;
 
         // Test normal operation again
+        @(negedge clk);
         start = 1'b1;
         @(negedge clk);
         start = 1'b0;

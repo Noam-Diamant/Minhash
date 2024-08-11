@@ -26,11 +26,10 @@ module proj_kmer_buffer #(
     assign buffer_full = (buffer_count == KMER_LEN - 1) ? 1'b1 : 1'b0;
     assign full = buffer_full;
 
+    assign kmer_buffer_nxt[1:0] = in_data;
     // Generate next state of k-mer buffer
     generate
-        for (genvar i = 2; i < KMER_LEN; i++) begin
-          assign kmer_buffer_nxt[0] = in_data[0]; 
-          assign kmer_buffer_nxt[1] = in_data[1];      
+        for (genvar i = 2; i < KMER_LEN; i++) begin : nxt_block   
           assign kmer_buffer_nxt[i] = kmer_buffer[i-1];  // Shift existing data
         end
     endgenerate

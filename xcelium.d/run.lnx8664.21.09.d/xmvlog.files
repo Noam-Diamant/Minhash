@@ -9,5 +9,4 @@
 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_counter.sv
 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_sorter.sv
 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_kmer_buffer.sv
-/data/project/tsmc65/users/noaant/ws/Minhash/design/proj_top.sv
-/data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_hasher_tb.sv
+/data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_fm_tb.sv

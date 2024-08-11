@@ -18,9 +18,9 @@ package proj_pkg;
     // Number of buffers in the FM
     parameter FM_BUFFER_COUNT = 2;
     // Number of RAMs in each buffer
-    parameter FM_RAMS_COUNT = 2;
+    parameter FM_RAMS_COUNT = 8;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 8;
+    parameter FM_ENTRIES_COUNT = 2;
     // Size of the offset in each entry
     parameter FM_OFFSET_COUNT = 2;
     // Size of each buffer

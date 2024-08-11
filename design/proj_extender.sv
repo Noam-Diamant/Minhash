@@ -1,9 +1,7 @@
 // Timescale directive for simulation
 `timescale 1ns / 1ps
-
 // Import the project package
 import proj_pkg::*;
-
 // Module declaration with parameters
 module proj_extender #(
     parameter FRAG_LEN_BITS = proj_pkg::FM_EXTENDER_FRAG_LEN_BITS,
@@ -31,7 +29,6 @@ module proj_extender #(
     localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART_ONE_HOT));
     localparam FRAG_PARTS_COUNT_BITS = $clog2(FRAG_PARTS_COUNT);
     localparam INDICES_COUNT_BITS = $clog2(INDICES_COUNT);
-
     // Internal signals
     logic [FRAG_PARTS_COUNT_BITS-1:0] frag_parts_idx;
     logic [FRAG_PARTS_COUNT_BITS-1:0] frag_parts_idx_next;
@@ -65,15 +62,15 @@ module proj_extender #(
             end
         end
     endgenerate
-
     // Calculate next indices index
     assign indices_idx_next = rst_frag_parts_idx ? indices_idx + 1'b1 : indices_idx;
     // Calculate output index
     assign out_index = {1'b0, curr_index} - SIGNED_INDICE_LEN'(((FRAG_SIZE - KMER_SIZE) >> 1));
-
     // Sequential logic for fragment parts index
     always_ff @(posedge clk or negedge rst_n) begin : parts_index
         if (~rst_n) begin
+            frag_parts_idx <= '0;
+        end else if (valid_indices) begin
             frag_parts_idx <= '0;
         end else begin
             frag_parts_idx <= frag_parts_idx_next;
@@ -90,6 +87,8 @@ module proj_extender #(
     // Sequential logic for indices index
     always_ff @(posedge clk or negedge rst_n) begin : indices_index
         if (~rst_n) begin
+            indices_idx <= '0;
+        end else if (valid_indices) begin
             indices_idx <= '0;
         end else begin
             indices_idx <= indices_idx_next;
