@@ -327,7 +327,7 @@ XOR3_X1P4M_A9TL             1      10.080    sc9_cln65lp_base_lvt_ss_typical_max
 XOR3_X2M_A9TL               1      12.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
 XOR3_X3M_A9TL               6      84.240    sc9_cln65lp_base_lvt_ss_typical_max_0p90v_125c 
 --------------------------------------------------------------------------------------------
-total                   39711  124588.080                                                   
+total                    39711 111609.080                                                   
 
 
                     Library                    Instances    Area    Instances % 
@@ -339,12 +339,12 @@ sc9_cln65lp_base_rvt_ss_typical_max_0p90v_125c      6896  21875.040        17.4
                                                          
             Type             Instances    Area    Area % 
 ---------------------------------------------------------
-sequential                        3779  35640.360   28.6 
+sequential                        3779  25640.360   28.6 
 inverter                          4435   6857.280    5.5 
 buffer                             214    483.480    0.4 
 clock_gating_integrated_cell         3     19.440    0.0 
 logic                            31280  81587.520   65.5 
 physical_cells                       0      0.000    0.0 
 ---------------------------------------------------------
-total                            39711 124588.080  100.0 
+total                            39711 111609.080  100.0 
 
