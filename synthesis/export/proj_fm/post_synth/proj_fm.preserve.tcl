@@ -241,4 +241,5 @@ catch {set_db base_cell:SDFFYQ_X1M_A9TH .dont_touch true}
 catch {set_db base_cell:SDFFYQ_X2M_A9TH .dont_touch true}
 catch {set_db base_cell:SDFFYQ_X3M_A9TH .dont_touch true}
 catch {set_db base_cell:SDFFYQ_X4M_A9TH .dont_touch true}
+catch {set_db hinst:proj_fm/RC_CG_HIER_INST0 .dont_touch_hports true}
 catch {set_db {hnet:proj_fm/FMbuffers[rd_idx]} .dont_touch delete_ok}

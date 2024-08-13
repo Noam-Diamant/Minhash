@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:40:44 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:29:08 UTC 2024
 
 # This file contains the Genus script for design:proj_counter
 
@@ -25,7 +25,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 29d82c7a-c5fb-4eb8-aa42-daddb7032530
+set_db -quiet flow_metrics_snapshot_uuid f78357bc-cdbe-4c81-894a-76e301023947
 set_db -quiet phys_use_segment_parasitics true
 set_db -quiet probabilistic_extraction true
 set_db -quiet ple_correlation_factors {1.9000 2.0000}
@@ -55,6 +55,8 @@ set_db -quiet design:proj_counter .entity_filename /data/project/tsmc65/users/no
 set_db -quiet port:proj_counter/clk .original_name clk
 set_db -quiet port:proj_counter/rst_n .original_name rst_n
 set_db -quiet port:proj_counter/start .original_name start
+set_db -quiet {port:proj_counter/index[8]} .original_name {index[8]}
+set_db -quiet {port:proj_counter/index[7]} .original_name {index[7]}
 set_db -quiet {port:proj_counter/index[6]} .original_name {index[6]}
 set_db -quiet {port:proj_counter/index[5]} .original_name {index[5]}
 set_db -quiet {port:proj_counter/index[4]} .original_name {index[4]}
@@ -102,6 +104,16 @@ set_db -quiet {inst:proj_counter/out_index_reg[6]} .orig_hdl_instantiated false
 set_db -quiet {inst:proj_counter/out_index_reg[6]} .single_bit_orig_name {out_index[6]}
 set_db -quiet {inst:proj_counter/out_index_reg[6]} .gint_phase_inversion false
 set_db -quiet {pin:proj_counter/out_index_reg[6]/q} .original_name {out_index[6]/q}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .original_name {{out_index[7]}}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .single_bit_orig_name {out_index[7]}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .gint_phase_inversion false
+set_db -quiet {pin:proj_counter/out_index_reg[7]/q} .original_name {out_index[7]/q}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .original_name {{out_index[8]}}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .single_bit_orig_name {out_index[8]}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .gint_phase_inversion false
+set_db -quiet {pin:proj_counter/out_index_reg[8]/q} .original_name {out_index[8]/q}
 set_db -quiet inst:proj_counter/count_enabled_reg .original_name count_enabled
 set_db -quiet inst:proj_counter/count_enabled_reg .orig_hdl_instantiated false
 set_db -quiet inst:proj_counter/count_enabled_reg .single_bit_orig_name count_enabled
@@ -142,12 +154,15 @@ set_db -quiet {inst:proj_counter/out_index_reg[3]} .file_row_col {{/data/project
 set_db -quiet {inst:proj_counter/out_index_reg[4]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet {inst:proj_counter/out_index_reg[6]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet inst:proj_counter/count_enabled_reg .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
-set_db -quiet inst:proj_counter/g32 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
+set_db -quiet inst:proj_counter/g36 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
 set_db -quiet inst:proj_counter/start_prev_reg .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 35}}
-set_db -quiet inst:proj_counter/g8 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
-set_db -quiet inst:proj_counter/g9 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
-set_db -quiet inst:proj_counter/g43 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g47 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g48 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g49 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g50 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
 # there is no file_row_col attribute information available
 set_db -quiet source_verbose true
 #############################################################
@@ -155,7 +170,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 13:40:45 11-Aug 2024
+## Written on 19:29:09 11-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -210,7 +225,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 29d82c7a-c5fb-4eb8-aa42-daddb7032530}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid f78357bc-cdbe-4c81-894a-76e301023947}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

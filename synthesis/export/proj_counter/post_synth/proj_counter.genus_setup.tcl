@@ -2,7 +2,7 @@
 #
 # Genus(TM) Synthesis Solution setup file
 # Created by Genus(TM) Synthesis Solution 21.15-s080_1
-#   on 08/11/2024 13:41:26
+#   on 08/11/2024 19:29:52
 #
 # This file can only be run in Genus Common UI mode.
 #
@@ -56,8 +56,8 @@ set _slk_ [::legacy::get_attribute slack design:proj_counter]
 if {[regexp {^-?[0-9.]+$} $_slk_]} {
   set _slk_ [format %.1f $_slk_]
 }
-if {$_slk_ != "6682.5"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 6682.5,  current slack: $_slk_"
+if {$_slk_ != "6901.6"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden slack: 6901.6,  current slack: $_slk_"
 }
 unset _slk_
 # multi-mode slack
@@ -75,8 +75,8 @@ set _cell_area_ [::legacy::get_attribute cell_area design:proj_counter]
 if {[regexp {^-?[0-9.]+$} $_cell_area_]} {
   set _cell_area_ [format %.0f $_cell_area_]
 }
-if {$_cell_area_ != "160"} {
-   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 160,  current cell area: $_cell_area_"
+if {$_cell_area_ != "191"} {
+   mesg_send [::legacy::find -message /messages/PHYS/PHYS-92] "golden cell area: 191,  current cell area: $_cell_area_"
 }
 unset _cell_area_
 # net area

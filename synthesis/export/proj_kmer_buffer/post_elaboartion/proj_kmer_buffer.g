@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:42:51 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:14:06 UTC 2024
 
 # This file contains the Genus script for design:proj_kmer_buffer
 
@@ -25,7 +25,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 42623e40-ed09-4e36-825e-569817a1694f
+set_db -quiet flow_metrics_snapshot_uuid d3c2ed78-ccd1-43e8-9be6-3537ff175f84
 set_db -quiet phys_use_segment_parasitics true
 set_db -quiet probabilistic_extraction true
 set_db -quiet ple_correlation_factors {1.9000 2.0000}
@@ -65,51 +65,195 @@ set_db -quiet {port:proj_kmer_buffer/out_kmer[2][1]} .original_name {out_kmer[2]
 set_db -quiet {port:proj_kmer_buffer/out_kmer[2][0]} .original_name {out_kmer[2][0]}
 set_db -quiet {port:proj_kmer_buffer/out_kmer[3][1]} .original_name {out_kmer[3][1]}
 set_db -quiet {port:proj_kmer_buffer/out_kmer[3][0]} .original_name {out_kmer[3][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[4][1]} .original_name {out_kmer[4][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[4][0]} .original_name {out_kmer[4][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[5][1]} .original_name {out_kmer[5][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[5][0]} .original_name {out_kmer[5][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[6][1]} .original_name {out_kmer[6][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[6][0]} .original_name {out_kmer[6][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[7][1]} .original_name {out_kmer[7][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[7][0]} .original_name {out_kmer[7][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[8][1]} .original_name {out_kmer[8][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[8][0]} .original_name {out_kmer[8][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[9][1]} .original_name {out_kmer[9][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[9][0]} .original_name {out_kmer[9][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[10][1]} .original_name {out_kmer[10][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[10][0]} .original_name {out_kmer[10][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[11][1]} .original_name {out_kmer[11][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[11][0]} .original_name {out_kmer[11][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[12][1]} .original_name {out_kmer[12][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[12][0]} .original_name {out_kmer[12][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[13][1]} .original_name {out_kmer[13][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[13][0]} .original_name {out_kmer[13][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[14][1]} .original_name {out_kmer[14][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[14][0]} .original_name {out_kmer[14][0]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[15][1]} .original_name {out_kmer[15][1]}
+set_db -quiet {port:proj_kmer_buffer/out_kmer[15][0]} .original_name {out_kmer[15][0]}
 set_db -quiet port:proj_kmer_buffer/full .original_name full
 set_db -quiet module:proj_kmer_buffer/add_unsigned .logical_hier false
 set_db -quiet hinst:proj_kmer_buffer/add_23_44 .rtlop_info {{} 0 0 0 3 0 7 0 2 1 1 0}
 set_db -quiet module:proj_kmer_buffer/bmux .logical_hier false
 set_db -quiet module:proj_kmer_buffer/bmux_1 .logical_hier false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][0]} .original_name {{kmer_buffer[0][0]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][0]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][0]} .single_bit_orig_name {kmer_buffer[0][0]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][0]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[0][0]/q} .original_name {kmer_buffer[0][0]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][1]} .original_name {{kmer_buffer[0][1]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][1]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][1]} .single_bit_orig_name {kmer_buffer[0][1]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][1]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[0][1]/q} .original_name {kmer_buffer[0][1]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][0]} .original_name {{kmer_buffer[1][0]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][0]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][0]} .single_bit_orig_name {kmer_buffer[1][0]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][0]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[1][0]/q} .original_name {kmer_buffer[1][0]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][1]} .original_name {{kmer_buffer[1][1]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][1]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][1]} .single_bit_orig_name {kmer_buffer[1][1]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][1]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[1][1]/q} .original_name {kmer_buffer[1][1]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][0]} .original_name {{kmer_buffer[2][0]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][0]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][0]} .single_bit_orig_name {kmer_buffer[2][0]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][0]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[2][0]/q} .original_name {kmer_buffer[2][0]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][1]} .original_name {{kmer_buffer[2][1]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][1]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][1]} .single_bit_orig_name {kmer_buffer[2][1]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][1]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[2][1]/q} .original_name {kmer_buffer[2][1]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][0]} .original_name {{kmer_buffer[3][0]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][0]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][0]} .single_bit_orig_name {kmer_buffer[3][0]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][0]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[3][0]/q} .original_name {kmer_buffer[3][0]/q}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][1]} .original_name {{kmer_buffer[3][1]}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][1]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][1]} .single_bit_orig_name {kmer_buffer[3][1]}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][1]} .gint_phase_inversion false
-set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[3][1]/q} .original_name {kmer_buffer[3][1]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0]} .original_name {{kmer_buffer[0]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0]} .single_bit_orig_name {kmer_buffer[0]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[0]/q} .original_name {kmer_buffer[0]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1]} .original_name {{kmer_buffer[1]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1]} .single_bit_orig_name {kmer_buffer[1]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[1]/q} .original_name {kmer_buffer[1]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2]} .original_name {{kmer_buffer[2]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2]} .single_bit_orig_name {kmer_buffer[2]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[2]/q} .original_name {kmer_buffer[2]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3]} .original_name {{kmer_buffer[3]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3]} .single_bit_orig_name {kmer_buffer[3]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[3]/q} .original_name {kmer_buffer[3]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[4]} .original_name {{kmer_buffer[4]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[4]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[4]} .single_bit_orig_name {kmer_buffer[4]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[4]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[4]/q} .original_name {kmer_buffer[4]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[5]} .original_name {{kmer_buffer[5]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[5]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[5]} .single_bit_orig_name {kmer_buffer[5]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[5]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[5]/q} .original_name {kmer_buffer[5]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[6]} .original_name {{kmer_buffer[6]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[6]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[6]} .single_bit_orig_name {kmer_buffer[6]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[6]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[6]/q} .original_name {kmer_buffer[6]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[7]} .original_name {{kmer_buffer[7]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[7]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[7]} .single_bit_orig_name {kmer_buffer[7]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[7]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[7]/q} .original_name {kmer_buffer[7]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[8]} .original_name {{kmer_buffer[8]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[8]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[8]} .single_bit_orig_name {kmer_buffer[8]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[8]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[8]/q} .original_name {kmer_buffer[8]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[9]} .original_name {{kmer_buffer[9]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[9]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[9]} .single_bit_orig_name {kmer_buffer[9]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[9]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[9]/q} .original_name {kmer_buffer[9]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[10]} .original_name {{kmer_buffer[10]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[10]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[10]} .single_bit_orig_name {kmer_buffer[10]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[10]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[10]/q} .original_name {kmer_buffer[10]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[11]} .original_name {{kmer_buffer[11]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[11]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[11]} .single_bit_orig_name {kmer_buffer[11]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[11]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[11]/q} .original_name {kmer_buffer[11]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[12]} .original_name {{kmer_buffer[12]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[12]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[12]} .single_bit_orig_name {kmer_buffer[12]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[12]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[12]/q} .original_name {kmer_buffer[12]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[13]} .original_name {{kmer_buffer[13]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[13]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[13]} .single_bit_orig_name {kmer_buffer[13]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[13]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[13]/q} .original_name {kmer_buffer[13]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[14]} .original_name {{kmer_buffer[14]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[14]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[14]} .single_bit_orig_name {kmer_buffer[14]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[14]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[14]/q} .original_name {kmer_buffer[14]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[15]} .original_name {{kmer_buffer[15]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[15]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[15]} .single_bit_orig_name {kmer_buffer[15]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[15]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[15]/q} .original_name {kmer_buffer[15]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[16]} .original_name {{kmer_buffer[16]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[16]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[16]} .single_bit_orig_name {kmer_buffer[16]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[16]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[16]/q} .original_name {kmer_buffer[16]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[17]} .original_name {{kmer_buffer[17]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[17]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[17]} .single_bit_orig_name {kmer_buffer[17]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[17]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[17]/q} .original_name {kmer_buffer[17]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[18]} .original_name {{kmer_buffer[18]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[18]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[18]} .single_bit_orig_name {kmer_buffer[18]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[18]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[18]/q} .original_name {kmer_buffer[18]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[19]} .original_name {{kmer_buffer[19]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[19]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[19]} .single_bit_orig_name {kmer_buffer[19]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[19]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[19]/q} .original_name {kmer_buffer[19]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[20]} .original_name {{kmer_buffer[20]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[20]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[20]} .single_bit_orig_name {kmer_buffer[20]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[20]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[20]/q} .original_name {kmer_buffer[20]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[21]} .original_name {{kmer_buffer[21]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[21]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[21]} .single_bit_orig_name {kmer_buffer[21]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[21]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[21]/q} .original_name {kmer_buffer[21]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[22]} .original_name {{kmer_buffer[22]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[22]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[22]} .single_bit_orig_name {kmer_buffer[22]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[22]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[22]/q} .original_name {kmer_buffer[22]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[23]} .original_name {{kmer_buffer[23]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[23]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[23]} .single_bit_orig_name {kmer_buffer[23]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[23]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[23]/q} .original_name {kmer_buffer[23]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[24]} .original_name {{kmer_buffer[24]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[24]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[24]} .single_bit_orig_name {kmer_buffer[24]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[24]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[24]/q} .original_name {kmer_buffer[24]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[25]} .original_name {{kmer_buffer[25]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[25]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[25]} .single_bit_orig_name {kmer_buffer[25]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[25]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[25]/q} .original_name {kmer_buffer[25]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[26]} .original_name {{kmer_buffer[26]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[26]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[26]} .single_bit_orig_name {kmer_buffer[26]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[26]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[26]/q} .original_name {kmer_buffer[26]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[27]} .original_name {{kmer_buffer[27]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[27]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[27]} .single_bit_orig_name {kmer_buffer[27]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[27]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[27]/q} .original_name {kmer_buffer[27]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[28]} .original_name {{kmer_buffer[28]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[28]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[28]} .single_bit_orig_name {kmer_buffer[28]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[28]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[28]/q} .original_name {kmer_buffer[28]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[29]} .original_name {{kmer_buffer[29]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[29]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[29]} .single_bit_orig_name {kmer_buffer[29]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[29]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[29]/q} .original_name {kmer_buffer[29]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[30]} .original_name {{kmer_buffer[30]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[30]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[30]} .single_bit_orig_name {kmer_buffer[30]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[30]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[30]/q} .original_name {kmer_buffer[30]/q}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[31]} .original_name {{kmer_buffer[31]}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[31]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[31]} .single_bit_orig_name {kmer_buffer[31]}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[31]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/kmer_buffer_reg[31]/q} .original_name {kmer_buffer[31]/q}
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[0]} .original_name {{buffer_count[0]}}
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[0]} .orig_hdl_instantiated false
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[0]} .single_bit_orig_name {buffer_count[0]}
@@ -120,6 +264,16 @@ set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[1]} .orig_hdl_instantiated
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[1]} .single_bit_orig_name {buffer_count[1]}
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[1]} .gint_phase_inversion false
 set_db -quiet {pin:proj_kmer_buffer/buffer_count_reg[1]/q} .original_name {buffer_count[1]/q}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[2]} .original_name {{buffer_count[2]}}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[2]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[2]} .single_bit_orig_name {buffer_count[2]}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[2]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/buffer_count_reg[2]/q} .original_name {buffer_count[2]/q}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[3]} .original_name {{buffer_count[3]}}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[3]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[3]} .single_bit_orig_name {buffer_count[3]}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[3]} .gint_phase_inversion false
+set_db -quiet {pin:proj_kmer_buffer/buffer_count_reg[3]/q} .original_name {buffer_count[3]/q}
 # BEGIN PMBIST SECTION
 # END PMBIST SECTION
 # BEGIN PHYSICAL ANNOTATION SECTION
@@ -132,18 +286,44 @@ set_db -quiet inst:proj_kmer_buffer/g1 .file_row_col {{/data/project/tsmc65/user
 set_db -quiet hinst:proj_kmer_buffer/add_23_44 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 23 44}}
 set_db -quiet hinst:proj_kmer_buffer/mux_26_40 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 26 40}}
 set_db -quiet hinst:proj_kmer_buffer/mux_buffer_count_57_22 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 57 22}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0][1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1][1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2][1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
-set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3][1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 17 52}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[2]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[3]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[4]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[5]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[6]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[7]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[8]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[9]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[10]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[11]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[12]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[13]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[14]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[15]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[16]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[17]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[18]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[19]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[20]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[21]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[22]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[23]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[24]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[25]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[26]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[27]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[28]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[29]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[30]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
+set_db -quiet {inst:proj_kmer_buffer/kmer_buffer_reg[31]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 38 23}}
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 58 27}}
 set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 58 27}}
-set_db -quiet inst:proj_kmer_buffer/g3 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 26 40}}
-set_db -quiet inst:proj_kmer_buffer/g4 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 26 40}}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[2]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 58 27}}
+set_db -quiet {inst:proj_kmer_buffer/buffer_count_reg[3]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 58 27}}
+set_db -quiet inst:proj_kmer_buffer/g5 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 26 40}}
+set_db -quiet inst:proj_kmer_buffer/g6 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_kmer_buffer.sv 26 40}}
 # there is no file_row_col attribute information available
 set_db -quiet source_verbose true
 #############################################################
@@ -151,7 +331,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 13:42:52 11-Aug 2024
+## Written on 19:14:07 11-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -206,7 +386,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 42623e40-ed09-4e36-825e-569817a1694f}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid d3c2ed78-ccd1-43e8-9be6-3537ff175f84}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

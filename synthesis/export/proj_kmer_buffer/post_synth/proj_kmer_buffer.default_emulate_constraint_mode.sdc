@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:43:25 UTC 2024
+#  Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:14:40 UTC 2024
 
 # ####################################################################
 
@@ -21,6 +21,30 @@ set_load -pin_load 0.0025 [get_ports {out_kmer[2][1]}]
 set_load -pin_load 0.0025 [get_ports {out_kmer[2][0]}]
 set_load -pin_load 0.0025 [get_ports {out_kmer[3][1]}]
 set_load -pin_load 0.0025 [get_ports {out_kmer[3][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[4][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[4][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[5][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[5][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[6][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[6][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[7][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[7][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[8][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[8][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[9][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[9][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[10][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[10][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[11][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[11][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[12][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[12][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[13][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[13][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[14][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[14][0]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[15][1]}]
+set_load -pin_load 0.0025 [get_ports {out_kmer[15][0]}]
 set_load -pin_load 0.0025 [get_ports full]
 set_max_delay 9 -from [list \
   [get_ports clk]  \
@@ -36,6 +60,30 @@ set_max_delay 9 -from [list \
   [get_ports {out_kmer[2][0]}]  \
   [get_ports {out_kmer[3][1]}]  \
   [get_ports {out_kmer[3][0]}]  \
+  [get_ports {out_kmer[4][1]}]  \
+  [get_ports {out_kmer[4][0]}]  \
+  [get_ports {out_kmer[5][1]}]  \
+  [get_ports {out_kmer[5][0]}]  \
+  [get_ports {out_kmer[6][1]}]  \
+  [get_ports {out_kmer[6][0]}]  \
+  [get_ports {out_kmer[7][1]}]  \
+  [get_ports {out_kmer[7][0]}]  \
+  [get_ports {out_kmer[8][1]}]  \
+  [get_ports {out_kmer[8][0]}]  \
+  [get_ports {out_kmer[9][1]}]  \
+  [get_ports {out_kmer[9][0]}]  \
+  [get_ports {out_kmer[10][1]}]  \
+  [get_ports {out_kmer[10][0]}]  \
+  [get_ports {out_kmer[11][1]}]  \
+  [get_ports {out_kmer[11][0]}]  \
+  [get_ports {out_kmer[12][1]}]  \
+  [get_ports {out_kmer[12][0]}]  \
+  [get_ports {out_kmer[13][1]}]  \
+  [get_ports {out_kmer[13][0]}]  \
+  [get_ports {out_kmer[14][1]}]  \
+  [get_ports {out_kmer[14][0]}]  \
+  [get_ports {out_kmer[15][1]}]  \
+  [get_ports {out_kmer[15][0]}]  \
   [get_ports full] ]
 set_clock_gating_check -setup 0.0 
 set_input_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports rst_n]
@@ -50,6 +98,30 @@ set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[2][
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[2][0]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[3][1]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[3][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[4][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[4][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[5][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[5][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[6][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[6][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[7][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[7][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[8][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[8][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[9][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[9][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[10][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[10][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[11][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[11][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[12][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[12][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[13][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[13][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[14][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[14][0]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[15][1]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {out_kmer[15][0]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports full]
 set_max_fanout 16.000 [current_design]
 set_max_transition 0.35 [current_design]

@@ -19,6 +19,7 @@ module proj_sorter #(
     // Internal signals
     signature_index_pack [INDICES_COUNT-1:0] smallest_idx_next;
     signature_index_pack [INDICES_COUNT-1:0] smallest_idx_curr;
+    signature_index_pack new_pack_r;
     signature_index_pack new_pack;
     logic [INDICES_COUNT-1:0] count_signatures_smaller_than;
     logic [POSITION_LEN:0] position_smaller_than;
@@ -36,7 +37,7 @@ module proj_sorter #(
         new_position = '0;
         new_position_long = '0;
         for (int i = 0; i < INDICES_COUNT; i= i+1) begin
-            count_signatures_smaller_than[i] = (new_pack.signature < smallest_idx_curr[i].signature) ? 1'b1 : 1'b0;
+            count_signatures_smaller_than[i] =  (new_pack_r.signature < smallest_idx_curr[i].signature) ? 1'b1 : 1'b0;
             position_smaller_than += count_signatures_smaller_than[i];
             if (position_smaller_than == '0) begin
                 smallest_idx_next[i].signature = smallest_idx_curr[i].signature;
@@ -66,7 +67,7 @@ module proj_sorter #(
     assign sort_valid = end_sorting ? 1'b1 : 1'b0;
 
     // Sequential logic for updating current smallest indices
-    always_ff @(posedge clk) begin
+    always_ff @(posedge clk) begin : smaple_smallest_indices
         for (int i = 0; i < INDICES_COUNT; i++) begin
             if (~rst_n) begin
                 // Reset values
@@ -75,13 +76,24 @@ module proj_sorter #(
             end else begin
                 // Update with new values
                 if ((i == new_position) & (position_smaller_than != '0)) begin 
-                    smallest_idx_curr[i].signature <= new_pack.signature;
-                    smallest_idx_curr[i].index <= new_pack.index;
+                    smallest_idx_curr[i].signature <= new_pack_r.signature;
+                    smallest_idx_curr[i].index <= new_pack_r.index;
                 end else begin 
                     smallest_idx_curr[i].signature <= smallest_idx_next[i].signature;
                     smallest_idx_curr[i].index <= smallest_idx_next[i].index;
                 end 
             end
         end 
+    end
+
+    always_ff @(posedge clk) begin : smaple_new_pack_r
+        if (~rst_n) begin
+            // Reset values
+            new_pack_r.signature <= '1;
+            new_pack_r.index <= '0;
+        end else begin
+            new_pack_r.signature <= new_pack.signature;
+            new_pack_r.index <= new_pack.index;
+        end
     end
 endmodule

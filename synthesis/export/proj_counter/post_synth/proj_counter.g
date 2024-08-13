@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:41:18 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:29:44 UTC 2024
 
 # This file contains the Genus script for design:proj_counter
 
@@ -17,7 +17,7 @@ set_db -quiet db_units 2000
 set_db -quiet capacitance_per_unit_length_mmmc {}
 set_db -quiet resistance_per_unit_length_mmmc {}
 set_db -quiet lp_insert_clock_gating true
-set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 63 0.0 48.999803} {to_generic 3 66 2 52} {first_condense 1 67 0 52} {PBS_Generic_Opt-Post 4 67 3.999215999999997 52.999019} {{PBS_Generic-Postgen HBO Optimizations} 0 67 0.0 52.999019} {PBS_TechMap-Start 0 74 0.0 58.999019} {{PBS_TechMap-Premap HBO Optimizations} 0 74 0.0 58.999019} {first_condense 1 75 0 60} {reify 1 76 0 61} {global_incr_map 0 76 0 61} {{PBS_Techmap-Global Mapping} 2 76 1.9827089999999998 60.981728} {{PBS_TechMap-Datapath Postmap Operations} 3 79 2.0 62.981728} {{PBS_TechMap-Postmap HBO Optimizations} 0 79 -2.9999999995311555e-6 62.981725} {{PBS_TechMap-Postmap Clock Gating} 0 79 0.0 62.981725} {{PBS_TechMap-Postmap Cleanup} 6 85 5.999887000000001 68.981612} {PBS_Techmap-Post_MBCI 0 85 0.0 68.981612} {incr_opt 1 86 0 70} }
+set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 59 0.0 48.999925} {to_generic 4 63 2 52} {first_condense 0 63 0 52} {PBS_Generic_Opt-Post 5 64 3.9922710000000023 52.992196} {{PBS_Generic-Postgen HBO Optimizations} 0 64 0.0 52.992196} {PBS_TechMap-Start 0 71 0.0 59.992196} {{PBS_TechMap-Premap HBO Optimizations} 0 71 0.0 59.992196} {first_condense 1 72 0 60} {reify 1 73 0 61} {global_incr_map 1 74 0 62} {{PBS_Techmap-Global Mapping} 3 74 1.9767110000000017 61.968907} {{PBS_TechMap-Datapath Postmap Operations} 2 76 2.0 63.968907} {{PBS_TechMap-Postmap HBO Optimizations} 0 76 -2.0000000020559128e-6 63.968905} {{PBS_TechMap-Postmap Clock Gating} 0 76 0.0 63.968905} {{PBS_TechMap-Postmap Cleanup} 6 82 5.999843000000006 69.968748} {PBS_Techmap-Post_MBCI 0 82 0.0 69.968748} {incr_opt 0 83 0 70} }
 set_db -quiet timing_adjust_tns_of_complex_flops false
 set_db -quiet hdl_language sv
 set_db -quiet tinfo_tstamp_file .rs_noaant.tstamp
@@ -26,7 +26,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 0bfd3fd8-0d9b-4da3-bf37-478f4918ab15
+set_db -quiet flow_metrics_snapshot_uuid a1f65441-5b8b-4b45-b7bc-755aca6c3514
 set_db -quiet detailed_sdc_messages true
 set_db -quiet timing_report_fields {timing_point flags arc edge cell fanout transition delay arrival}
 set_db -quiet syn_generic_effort low
@@ -50,6 +50,7 @@ set_db -quiet operating_condition:default_emulate_libset_max/sc9_cln65lp_base_hv
 define_clock -name clk -domain domain_1 -period 10000.0 -divide_period 1 -rise 0 -divide_rise 1 -fall 1 -divide_fall 2 -remove -design design:proj_counter port:proj_counter/clk
 set_db -quiet clock:proj_counter/clk .clock_setup_uncertainty {50.0 50.0}
 set_db -quiet clock:proj_counter/clk .clock_hold_uncertainty {50.0 50.0}
+define_cost_group -design design:proj_counter -name cg_enable_group_clk
 define_cost_group -design design:proj_counter -name clk
 define_cost_group -design design:proj_counter -name in2out
 define_cost_group -design design:proj_counter -name in2reg
@@ -61,21 +62,24 @@ external_delay -accumulate -input {no_value 0.0 no_value 0.0} -clock clock:proj_
 set_db -quiet external_delay:proj_counter/create_clock_delay_domain_1_clk_F_0 .clock_network_latency_included true
 external_delay -accumulate -input {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_15 port:proj_counter/rst_n
 external_delay -accumulate -input {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_15_1_1 port:proj_counter/start
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17 {{port:proj_counter/index[6]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_1_1 {{port:proj_counter/index[5]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_2_1 {{port:proj_counter/index[4]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_3_1 {{port:proj_counter/index[3]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_4_1 {{port:proj_counter/index[2]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_5_1 {{port:proj_counter/index[1]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_6_1 {{port:proj_counter/index[0]}}
-external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_7_1 port:proj_counter/finished_count
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17 {{port:proj_counter/index[8]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_1_1 {{port:proj_counter/index[7]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_2_1 {{port:proj_counter/index[6]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_3_1 {{port:proj_counter/index[5]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_4_1 {{port:proj_counter/index[4]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_5_1 {{port:proj_counter/index[3]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_6_1 {{port:proj_counter/index[2]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_7_1 {{port:proj_counter/index[1]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_8_1 {{port:proj_counter/index[0]}}
+external_delay -accumulate -output {2000.0 2000.0 2000.0 2000.0} -clock clock:proj_counter/clk -name proj.sdc_line_17_9_1 port:proj_counter/finished_count
 path_group -paths [specify_paths -lenient -to clock:proj_counter/clk]  -name clk -group cost_group:proj_counter/clk -user_priority -1047552
-path_delay -paths [specify_paths -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {{port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name proj.sdc_line_18 -delay 9000.0 -setup -user_priority -892928
+path_delay -paths [specify_paths -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {{port:proj_counter/index[8]} {port:proj_counter/index[7]} {port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name proj.sdc_line_18 -delay 9000.0 -setup -user_priority -892928
 set_db -quiet exception:proj_counter/proj.sdc_line_18 .sdc_filename_linenumber {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../inputs/proj.sdc 18}}
-path_group -paths [specify_paths -lenient -from {{inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg} -to {{inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg}]  -name reg2reg -group cost_group:proj_counter/reg2reg
-path_group -paths [specify_paths -lenient -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {{inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg}]  -name in2reg -group cost_group:proj_counter/in2reg
-path_group -paths [specify_paths -lenient -from {{inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg} -to {{port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name reg2out -group cost_group:proj_counter/reg2out
-path_group -paths [specify_paths -lenient -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {{port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name in2out -group cost_group:proj_counter/in2out
+path_group -paths [specify_paths -lenient -from {{inst:proj_counter/out_index_reg[8]} {inst:proj_counter/out_index_reg[7]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg} -to {inst:proj_counter/RC_CG_HIER_INST0/RC_CGIC_INST {inst:proj_counter/out_index_reg[8]} {inst:proj_counter/out_index_reg[7]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg}]  -name reg2reg -group cost_group:proj_counter/reg2reg
+path_group -paths [specify_paths -lenient -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {inst:proj_counter/RC_CG_HIER_INST0/RC_CGIC_INST {inst:proj_counter/out_index_reg[8]} {inst:proj_counter/out_index_reg[7]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg}]  -name in2reg -group cost_group:proj_counter/in2reg
+path_group -paths [specify_paths -lenient -from {{inst:proj_counter/out_index_reg[8]} {inst:proj_counter/out_index_reg[7]} {inst:proj_counter/out_index_reg[5]} {inst:proj_counter/out_index_reg[6]} {inst:proj_counter/out_index_reg[4]} {inst:proj_counter/out_index_reg[3]} {inst:proj_counter/out_index_reg[2]} {inst:proj_counter/out_index_reg[1]} {inst:proj_counter/out_index_reg[0]} inst:proj_counter/count_enabled_reg inst:proj_counter/start_prev_reg} -to {{port:proj_counter/index[8]} {port:proj_counter/index[7]} {port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name reg2out -group cost_group:proj_counter/reg2out
+path_group -paths [specify_paths -lenient -from {port:proj_counter/clk port:proj_counter/rst_n port:proj_counter/start} -to {{port:proj_counter/index[8]} {port:proj_counter/index[7]} {port:proj_counter/index[6]} {port:proj_counter/index[5]} {port:proj_counter/index[4]} {port:proj_counter/index[3]} {port:proj_counter/index[2]} {port:proj_counter/index[1]} {port:proj_counter/index[0]} port:proj_counter/finished_count}]  -name in2out -group cost_group:proj_counter/in2out
+path_group -paths [specify_paths -through {hpin:proj_counter/RC_CG_HIER_INST0/enable pin:proj_counter/RC_CG_HIER_INST0/RC_CGIC_INST/E}]  -name cg_enable_group_clk -group cost_group:proj_counter/cg_enable_group_clk
 # BEGIN DFT SECTION
 set_db -quiet dft_scan_style muxed_scan
 set_db -quiet dft_scanbit_waveform_analysis false
@@ -83,7 +87,7 @@ set_db -quiet dft_scanbit_waveform_analysis false
 set_db -quiet design:proj_counter .seq_reason_deleted_internal {}
 set_db -quiet design:proj_counter .max_transition 350.0
 set_db -quiet design:proj_counter .max_fanout 16.000
-set_db -quiet design:proj_counter .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 257} {cell_count 45} {utilization  0.00} {runtime 3 66 2 52} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 297} {cell_count 53} {utilization  0.00} {runtime 1 67 0 52} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 297} {cell_count 53} {utilization  0.00} {runtime 1 75 0 60} }{reify {wns 6896} {tns 0} {vep 0} {area 167} {cell_count 40} {utilization  0.00} {runtime 1 76 0 61} }{global_incr_map {wns 6682} {tns 0} {vep 0} {area 160} {cell_count 40} {utilization  0.00} {runtime 0 76 0 61} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 160} {cell_count 40} {utilization  0.00} {runtime 1 86 0 70} }}
+set_db -quiet design:proj_counter .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 326} {cell_count 57} {utilization  0.00} {runtime 4 63 2 52} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 385} {cell_count 67} {utilization  0.00} {runtime 0 63 0 52} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 377} {cell_count 67} {utilization  0.00} {runtime 1 72 0 60} }{reify {wns 7017} {tns 0} {vep 0} {area 195} {cell_count 45} {utilization  0.00} {runtime 1 73 0 61} }{global_incr_map {wns 6902} {tns 0} {vep 0} {area 190} {cell_count 45} {utilization  0.00} {runtime 1 74 0 62} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 190} {cell_count 45} {utilization  0.00} {runtime 0 83 0 70} }}
 set_db -quiet design:proj_counter .seq_mbci_coverage 0.0
 set_db -quiet design:proj_counter .hdl_filelist {{default {-sv -f} {SYNTHESIS} {/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/../dut_src_list.txt} {} {}}}
 set_db -quiet design:proj_counter .hdl_user_name proj_counter
@@ -123,6 +127,16 @@ set_db -quiet port:proj_counter/start .input_slew_max_fall no_value
 set_db -quiet port:proj_counter/start .input_slew_min_rise no_value
 set_db -quiet port:proj_counter/start .input_slew_min_fall no_value
 set_db -quiet port:proj_counter/start .original_name start
+set_db -quiet {port:proj_counter/index[8]} .external_pin_cap_min 2.5
+set_db -quiet {port:proj_counter/index[8]} .external_capacitance_max {2.5 2.5}
+set_db -quiet {port:proj_counter/index[8]} .external_capacitance_min 2.5
+set_db -quiet {port:proj_counter/index[8]} .original_name {index[8]}
+set_db -quiet {port:proj_counter/index[8]} .external_pin_cap {2.5 2.5}
+set_db -quiet {port:proj_counter/index[7]} .external_pin_cap_min 2.5
+set_db -quiet {port:proj_counter/index[7]} .external_capacitance_max {2.5 2.5}
+set_db -quiet {port:proj_counter/index[7]} .external_capacitance_min 2.5
+set_db -quiet {port:proj_counter/index[7]} .original_name {index[7]}
+set_db -quiet {port:proj_counter/index[7]} .external_pin_cap {2.5 2.5}
 set_db -quiet {port:proj_counter/index[6]} .external_pin_cap_min 2.5
 set_db -quiet {port:proj_counter/index[6]} .external_capacitance_max {2.5 2.5}
 set_db -quiet {port:proj_counter/index[6]} .external_capacitance_min 2.5
@@ -163,16 +177,32 @@ set_db -quiet port:proj_counter/finished_count .external_capacitance_max {2.5 2.
 set_db -quiet port:proj_counter/finished_count .external_capacitance_min 2.5
 set_db -quiet port:proj_counter/finished_count .original_name finished_count
 set_db -quiet port:proj_counter/finished_count .external_pin_cap {2.5 2.5}
-set_db -quiet {inst:proj_counter/out_index_reg[6]} .original_name {{out_index[6]}}
-set_db -quiet {inst:proj_counter/out_index_reg[6]} .orig_hdl_instantiated false
-set_db -quiet {inst:proj_counter/out_index_reg[6]} .single_bit_orig_name {out_index[6]}
-set_db -quiet {inst:proj_counter/out_index_reg[6]} .gint_phase_inversion false
-set_db -quiet {pin:proj_counter/out_index_reg[6]/Q} .original_name {out_index[6]/q}
+set_db -quiet module:proj_counter/RC_CG_MOD .logical_hier false
+set_db -quiet module:proj_counter/RC_CG_MOD .lp_clock_gating_min_flops 8
+set_db -quiet module:proj_counter/RC_CG_MOD .boundary_opto strict_no
+set_db -quiet module:proj_counter/RC_CG_MOD .lp_clock_gating_max_flops inf
+set_db -quiet inst:proj_counter/RC_CG_HIER_INST0/RC_CGIC_INST .gint_phase_inversion false
+set_db -quiet inst:proj_counter/RC_CG_HIER_INST0/RC_CGIC_INST .is_genus_clock_gate true
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .original_name {{out_index[8]}}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .single_bit_orig_name {out_index[8]}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .gint_phase_inversion false
+set_db -quiet {pin:proj_counter/out_index_reg[8]/Q} .original_name {out_index[8]/q}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .original_name {{out_index[7]}}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .single_bit_orig_name {out_index[7]}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .gint_phase_inversion false
+set_db -quiet {pin:proj_counter/out_index_reg[7]/Q} .original_name {out_index[7]/q}
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .original_name {{out_index[5]}}
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .orig_hdl_instantiated false
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .single_bit_orig_name {out_index[5]}
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .gint_phase_inversion false
 set_db -quiet {pin:proj_counter/out_index_reg[5]/Q} .original_name {out_index[5]/q}
+set_db -quiet {inst:proj_counter/out_index_reg[6]} .original_name {{out_index[6]}}
+set_db -quiet {inst:proj_counter/out_index_reg[6]} .orig_hdl_instantiated false
+set_db -quiet {inst:proj_counter/out_index_reg[6]} .single_bit_orig_name {out_index[6]}
+set_db -quiet {inst:proj_counter/out_index_reg[6]} .gint_phase_inversion false
+set_db -quiet {pin:proj_counter/out_index_reg[6]/Q} .original_name {out_index[6]/q}
 set_db -quiet {inst:proj_counter/out_index_reg[4]} .original_name {{out_index[4]}}
 set_db -quiet {inst:proj_counter/out_index_reg[4]} .orig_hdl_instantiated false
 set_db -quiet {inst:proj_counter/out_index_reg[4]} .single_bit_orig_name {out_index[4]}
@@ -207,7 +237,7 @@ set_db -quiet inst:proj_counter/start_prev_reg .original_name start_prev
 set_db -quiet inst:proj_counter/start_prev_reg .orig_hdl_instantiated false
 set_db -quiet inst:proj_counter/start_prev_reg .single_bit_orig_name start_prev
 set_db -quiet inst:proj_counter/start_prev_reg .gint_phase_inversion false
-set_db -quiet pin:proj_counter/start_prev_reg/QN .original_name start_prev/q
+set_db -quiet pin:proj_counter/start_prev_reg/Q .original_name start_prev/q
 # BEGIN PMBIST SECTION
 # END PMBIST SECTION
 # BEGIN PHYSICAL ANNOTATION SECTION
@@ -216,39 +246,40 @@ set_db -quiet pin:proj_counter/start_prev_reg/QN .original_name start_prev/q
 set_db -quiet design:proj_counter .set_boundary_change_new {start restore}
 set_db -quiet design:proj_counter .set_boundary_change_new {finish restore}
 # END GLO TBR TABLE
-set_db -quiet {inst:proj_counter/out_index_reg[6]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g414__2398 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet hinst:proj_counter/RC_CG_HIER_INST0 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g310__2398 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 32}}
+set_db -quiet inst:proj_counter/g311 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 30 37}}
+set_db -quiet inst:proj_counter/g312__5107 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 30 37}}
+set_db -quiet inst:proj_counter/g313__6260 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g314__4319 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g315__8428 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
+set_db -quiet inst:proj_counter/g316__5526 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 32}}
+set_db -quiet inst:proj_counter/g317__6783 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 67}}
+set_db -quiet {inst:proj_counter/out_index_reg[8]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g500__3680 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet {inst:proj_counter/out_index_reg[7]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g502__1617 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g503__2802 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 67}}
 set_db -quiet {inst:proj_counter/out_index_reg[5]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g416__5107 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g417__6260 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g418__4319 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet {inst:proj_counter/out_index_reg[6]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g507__5122 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet {inst:proj_counter/out_index_reg[4]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g420__8428 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 67}}
-set_db -quiet inst:proj_counter/g421__5526 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g423__3680 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g509__8246 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g510__7098 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g511__6131 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 67}}
 set_db -quiet {inst:proj_counter/out_index_reg[3]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g425__1617 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g427__1705 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g515__7482 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g516__4733 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 67}}
 set_db -quiet {inst:proj_counter/out_index_reg[2]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g429__5122 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g431__7098 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g519__9315 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet {inst:proj_counter/out_index_reg[1]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g433__6131 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g522__2883 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet {inst:proj_counter/out_index_reg[0]} .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g435__5115 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g437__7482 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
-set_db -quiet inst:proj_counter/g439__6161 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
+set_db -quiet inst:proj_counter/g525__1666 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 33 20}}
 set_db -quiet inst:proj_counter/count_enabled_reg .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
-set_db -quiet inst:proj_counter/g442__9945 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
-set_db -quiet inst:proj_counter/g444 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 30 37}}
-set_db -quiet inst:proj_counter/g443__2883 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 38}}
-set_db -quiet inst:proj_counter/g445__2346 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 30 37}}
-set_db -quiet inst:proj_counter/g446__1666 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
-set_db -quiet inst:proj_counter/g447 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 32}}
-set_db -quiet inst:proj_counter/g448__7410 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 32}}
 set_db -quiet inst:proj_counter/start_prev_reg .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 35}}
-set_db -quiet inst:proj_counter/g449__6417 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 23 38}}
-set_db -quiet inst:proj_counter/g451__5477 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 46 32}}
+set_db -quiet inst:proj_counter/g529__6417 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 50 26}}
+set_db -quiet inst:proj_counter/g530__5477 .file_row_col {{/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/proj_counter.sv 27 38}}
 # there is no file_row_col attribute information available
 set_db -quiet source_verbose true
 #############################################################
@@ -256,7 +287,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 13:41:20 11-Aug 2024
+## Written on 19:29:45 11-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -311,7 +342,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 0bfd3fd8-0d9b-4da3-bf37-478f4918ab15}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid a1f65441-5b8b-4b45-b7bc-755aca6c3514}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

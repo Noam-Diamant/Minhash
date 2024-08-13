@@ -31,7 +31,24 @@ Total number of assign statements in design 'proj_kmer_buffer' : 0
  ------------------------
 No undriven combinational pin in 'proj_kmer_buffer'
 
-No undriven sequential pin in 'proj_kmer_buffer'
+The following sequential pin(s) in design 'proj_kmer_buffer' are undriven
+pin:proj_kmer_buffer/kmer_buffer_reg[16]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[17]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[18]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[19]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[20]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[21]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[22]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[23]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[24]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[25]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[26]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[27]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[28]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[29]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[30]/d
+pin:proj_kmer_buffer/kmer_buffer_reg[31]/d
+Total number of sequential undriven pins in design 'proj_kmer_buffer' : 16
 
 No undriven hierarchical pin in 'proj_kmer_buffer'
 
@@ -149,7 +166,7 @@ Unloaded Sequential Pin(s)                   0
 Unloaded Combinational Pin(s)                0
 Assigns                                      0
 Undriven Port(s)                             0
-Undriven Leaf Pin(s)                         0
+Undriven Leaf Pin(s)                        16
 Undriven hierarchical pin(s)                 0
 Multidriven Port(s)                          0
 Multidriven Leaf Pin(s)                      0

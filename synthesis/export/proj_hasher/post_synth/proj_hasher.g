@@ -1,6 +1,6 @@
 ######################################################################
 
-# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:47:35 UTC 2024
+# Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:12:38 UTC 2024
 
 # This file contains the Genus script for design:proj_hasher
 
@@ -17,7 +17,7 @@ set_db -quiet db_units 2000
 set_db -quiet capacitance_per_unit_length_mmmc {}
 set_db -quiet resistance_per_unit_length_mmmc {}
 set_db -quiet lp_insert_clock_gating true
-set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 70 0.0 50.982268} {to_generic 21 92 19 71} {first_condense 14 107 13 86} {PBS_Generic_Opt-Post 38 108 34.531116000000004 85.513384} {{PBS_Generic-Postgen HBO Optimizations} 0 108 1.0 86.513384} {PBS_TechMap-Start 0 115 0.0 93.513384} {{PBS_TechMap-Premap HBO Optimizations} 0 115 0.0 93.513384} {first_condense 12 127 13 107} {reify 68 195 95 203} {global_incr_map 11 206 10 213} {{PBS_Techmap-Global Mapping} 91 206 86.64154500000004 180.15492900000004} {{PBS_TechMap-Datapath Postmap Operations} 2 208 1.9987390000000005 182.15366800000004} {{PBS_TechMap-Postmap HBO Optimizations} 0 208 -0.003872999999998683 182.14979500000004} {{PBS_TechMap-Postmap Clock Gating} 1 209 0.0 182.14979500000004} {{PBS_TechMap-Postmap Cleanup} 9 218 8.99188200000009 191.14167700000013} {PBS_Techmap-Post_MBCI 0 218 0.0 191.14167700000013} {incr_opt 4 223 3 229} }
+set_db -quiet runtime_by_stage {{PBS_Generic-Start 0 69 0.0 51.989634} {to_generic 20 89 19 71} {first_condense 11 101 12 85} {PBS_Generic_Opt-Post 33 102 30.548540999999993 82.538175} {{PBS_Generic-Postgen HBO Optimizations} 0 102 0.0 82.538175} {PBS_TechMap-Start 0 109 0.0 89.538175} {{PBS_TechMap-Premap HBO Optimizations} 0 109 0.0 89.538175} {first_condense 12 121 13 107} {reify 62 183 94 202} {global_incr_map 11 194 10 212} {{PBS_Techmap-Global Mapping} 85 194 82.67817400000007 172.21634900000006} {{PBS_TechMap-Datapath Postmap Operations} 2 196 1.9999880000000019 174.21633700000007} {{PBS_TechMap-Postmap HBO Optimizations} 0 196 -0.004088999999993348 174.21224800000007} {{PBS_TechMap-Postmap Clock Gating} 1 197 1.0 175.21224800000007} {{PBS_TechMap-Postmap Cleanup} 9 206 8.989879000000087 184.20212700000016} {PBS_Techmap-Post_MBCI 0 206 0.0 184.20212700000016} {incr_opt 4 211 3 228} }
 set_db -quiet timing_adjust_tns_of_complex_flops false
 set_db -quiet hdl_language sv
 set_db -quiet tinfo_tstamp_file .rs_noaant.tstamp
@@ -26,7 +26,7 @@ set_db -quiet design_process_node 65
 set_db -quiet route_design_with_via_in_pin true
 set_db -quiet use_area_from_lef true
 set_db -quiet hdl_track_filename_row_col true
-set_db -quiet flow_metrics_snapshot_uuid 57e36691-b6d7-464d-85af-5c630c654cee
+set_db -quiet flow_metrics_snapshot_uuid ee128bb2-9b06-4182-ad6c-e9eebadcc353
 set_db -quiet detailed_sdc_messages true
 set_db -quiet timing_report_fields {timing_point flags arc edge cell fanout transition delay arrival}
 set_db -quiet syn_generic_effort low
@@ -170,7 +170,7 @@ set_db -quiet dft_scanbit_waveform_analysis false
 set_db -quiet design:proj_hasher .seq_reason_deleted_internal {}
 set_db -quiet design:proj_hasher .max_transition 350.0
 set_db -quiet design:proj_hasher .max_fanout 16.000
-set_db -quiet design:proj_hasher .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 12503} {cell_count 3233} {utilization  0.00} {runtime 21 92 19 71} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 16150} {cell_count 4087} {utilization  0.00} {runtime 14 107 13 86} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 16099} {cell_count 4074} {utilization  0.00} {runtime 12 127 13 107} }{reify {wns -138} {tns 1835} {vep 18} {area 11380} {cell_count 2214} {utilization  0.00} {runtime 68 195 95 203} }{global_incr_map {wns -105} {tns 1393} {vep 19} {area 9505} {cell_count 1982} {utilization  0.00} {runtime 11 206 10 213} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 9637} {cell_count 1955} {utilization  0.00} {runtime 4 223 3 229} }}
+set_db -quiet design:proj_hasher .qos_by_stage {{to_generic {wns -11111111} {tns -111111111} {vep -111111111} {area 12503} {cell_count 3233} {utilization  0.00} {runtime 20 89 19 71} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 16150} {cell_count 4087} {utilization  0.00} {runtime 11 101 12 85} }{first_condense {wns -11111111} {tns -111111111} {vep -111111111} {area 16099} {cell_count 4074} {utilization  0.00} {runtime 12 121 13 107} }{reify {wns -138} {tns 1835} {vep 18} {area 11380} {cell_count 2214} {utilization  0.00} {runtime 62 183 94 202} }{global_incr_map {wns -105} {tns 1393} {vep 19} {area 9505} {cell_count 1982} {utilization  0.00} {runtime 11 194 10 212} }{incr_opt {wns 214748365} {tns 0} {vep 0} {area 9637} {cell_count 1955} {utilization  0.00} {runtime 4 211 3 228} }}
 set_db -quiet design:proj_hasher .seq_mbci_coverage 0.0
 set_db -quiet design:proj_hasher .hdl_filelist {{default {-sv -f} {SYNTHESIS} {/data/project/tsmc65/users/noaant/ws/Minhash/synthesis/workspace/../sourcecode/rtl/../dut_src_list.txt} {} {}}}
 set_db -quiet design:proj_hasher .hdl_user_name proj_hasher
@@ -2893,7 +2893,7 @@ set_db -quiet source_verbose true
 ##
 ## Written by Genus(TM) Synthesis Solution version 21.15-s080_1
 ## flowkit v21.12-s013_1
-## Written on 13:47:38 11-Aug 2024
+## Written on 19:12:41 11-Aug 2024
 #############################################################
 #####   Flow Definitions   ##################################
 
@@ -2948,7 +2948,7 @@ if {[is_attribute flow_step_next -obj_type root]} {set_db flow_step_next {}}
 if {[is_attribute flow_working_directory -obj_type root]} {set_db flow_working_directory .}
 if {[is_attribute flow_branch -obj_type root]} {set_db flow_branch {}}
 if {[is_attribute flow_caller_data -obj_type root]} {set_db flow_caller_data {}}
-if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid 57e36691-b6d7-464d-85af-5c630c654cee}
+if {[is_attribute flow_metrics_snapshot_uuid -obj_type root]} {set_db flow_metrics_snapshot_uuid ee128bb2-9b06-4182-ad6c-e9eebadcc353}
 if {[is_attribute flow_starting_db -obj_type root]} {set_db flow_starting_db {}}
 if {[is_attribute flow_db_directory -obj_type root]} {set_db flow_db_directory dbs}
 if {[is_attribute flow_report_directory -obj_type root]} {set_db flow_report_directory reports}

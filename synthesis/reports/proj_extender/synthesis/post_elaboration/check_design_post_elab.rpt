@@ -18,15 +18,39 @@ No empty modules in design 'proj_extender'
 No unloaded sequential element in 'proj_extender'
 
 design 'proj_extender' has the following unloaded port(s)
-port:proj_extender/in_fragment[15]
-port:proj_extender/in_fragment[14]
-port:proj_extender/in_fragment[13]
-port:proj_extender/in_fragment[12]
-port:proj_extender/in_fragment[11]
-port:proj_extender/in_fragment[10]
-port:proj_extender/in_fragment[9]
-port:proj_extender/in_fragment[8]
-Total number of unloaded ports in design 'proj_extender' : 8
+port:proj_extender/in_fragment[63]
+port:proj_extender/in_fragment[62]
+port:proj_extender/in_fragment[61]
+port:proj_extender/in_fragment[60]
+port:proj_extender/in_fragment[59]
+port:proj_extender/in_fragment[58]
+port:proj_extender/in_fragment[57]
+port:proj_extender/in_fragment[56]
+port:proj_extender/in_fragment[55]
+port:proj_extender/in_fragment[54]
+port:proj_extender/in_fragment[53]
+port:proj_extender/in_fragment[52]
+port:proj_extender/in_fragment[51]
+port:proj_extender/in_fragment[50]
+port:proj_extender/in_fragment[49]
+port:proj_extender/in_fragment[48]
+port:proj_extender/in_fragment[47]
+port:proj_extender/in_fragment[46]
+port:proj_extender/in_fragment[45]
+port:proj_extender/in_fragment[44]
+port:proj_extender/in_fragment[43]
+port:proj_extender/in_fragment[42]
+port:proj_extender/in_fragment[41]
+port:proj_extender/in_fragment[40]
+port:proj_extender/in_fragment[39]
+port:proj_extender/in_fragment[38]
+port:proj_extender/in_fragment[37]
+port:proj_extender/in_fragment[36]
+port:proj_extender/in_fragment[35]
+port:proj_extender/in_fragment[34]
+port:proj_extender/in_fragment[33]
+port:proj_extender/in_fragment[32]
+Total number of unloaded ports in design 'proj_extender' : 32
 
  Unloaded Combinational Pin(s)
  -------------------------------
@@ -66,9 +90,11 @@ No constant combinational pin(s) in design 'proj_extender'
 No constant sequential pin(s) in design 'proj_extender'
 
 design 'proj_extender' has the following constant input hierarchical pin(s)
-hpin:proj_extender/add_49_77/B 	 (fanout : 1)
+hpin:proj_extender/add_49_77/B 	 (fanout : 2)
 hpin:proj_extender/add_70_64/B 	 (fanout : 2)
-hpin:proj_extender/sub_72_43/A[7] 	 (fanout : 1)
+hpin:proj_extender/sub_72_43/A[9] 	 (fanout : 1)
+hpin:proj_extender/sub_72_43/B[3] 	 (fanout : 1)
+hpin:proj_extender/sub_72_43/B[2] 	 (fanout : 1)
 hpin:proj_extender/sub_72_43/B[1] 	 (fanout : 1)
 hpin:proj_extender/sub_72_43/B[0] 	 (fanout : 2)
 hpin:proj_extender/mux_47_49/in_0 	 (fanout : 1)
@@ -89,23 +115,23 @@ hpin:proj_extender/mux_out_gfm_58_23/in_3[3] 	 (fanout : 1)
 hpin:proj_extender/mux_out_gfm_58_23/in_3[2] 	 (fanout : 1)
 hpin:proj_extender/mux_out_gfm_58_23/in_3[1] 	 (fanout : 1)
 hpin:proj_extender/mux_out_gfm_58_23/in_3[0] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_0[3] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_0[2] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_0[1] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_0[0] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_1[3] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_1[2] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_1[1] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_1[0] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_2[3] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_2[2] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_2[1] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_2[0] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_3[3] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_3[2] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_3[1] 	 (fanout : 1)
-hpin:proj_extender/mux_out_gfm_58_13/in_3[0] 	 (fanout : 1)
-Total number of constant hierarchical pins in design 'proj_extender' : 39
+hpin:proj_extender/mux_out_gfm_58_41/in_0[3] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_0[2] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_0[1] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_0[0] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_1[3] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_1[2] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_1[1] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_1[0] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_2[3] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_2[2] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_2[1] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_2[0] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_3[3] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_3[2] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_3[1] 	 (fanout : 1)
+hpin:proj_extender/mux_out_gfm_58_41/in_3[0] 	 (fanout : 1)
+Total number of constant hierarchical pins in design 'proj_extender' : 41
 
 No constant connected ports in design 'proj_extender'
 
@@ -189,7 +215,7 @@ Total number cell(s) with only physical (LEF) Info : 51
 ----------------------------------------------
 Unresolved References                        0
 Empty Modules                                0
-Unloaded Port(s)                             8
+Unloaded Port(s)                            32
 Unloaded Sequential Pin(s)                   0
 Unloaded Combinational Pin(s)                0
 Assigns                                      0
@@ -202,7 +228,7 @@ Multidriven hierarchical Pin(s)              0
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
 Constant Leaf Pin(s)                         0
-Constant hierarchical Pin(s)                39
+Constant hierarchical Pin(s)                41
 Preserved leaf instance(s)                   0
 Preserved hierarchical instance(s)           0
 Feedthrough Modules(s)                       0

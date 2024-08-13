@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 13:41:19 UTC 2024
+#  Created by Genus(TM) Synthesis Solution 21.15-s080_1 on Sun Aug 11 19:29:44 UTC 2024
 
 # ####################################################################
 
@@ -13,6 +13,8 @@ set_units -time 1000ps
 current_design proj_counter
 
 create_clock -name "clk" -period 10.0 -waveform {0.0 5.0} [get_ports clk]
+set_load -pin_load 0.0025 [get_ports {index[8]}]
+set_load -pin_load 0.0025 [get_ports {index[7]}]
 set_load -pin_load 0.0025 [get_ports {index[6]}]
 set_load -pin_load 0.0025 [get_ports {index[5]}]
 set_load -pin_load 0.0025 [get_ports {index[4]}]
@@ -25,6 +27,8 @@ set_max_delay 9 -from [list \
   [get_ports clk]  \
   [get_ports rst_n]  \
   [get_ports start] ] -to [list \
+  [get_ports {index[8]}]  \
+  [get_ports {index[7]}]  \
   [get_ports {index[6]}]  \
   [get_ports {index[5]}]  \
   [get_ports {index[4]}]  \
@@ -36,6 +40,8 @@ set_max_delay 9 -from [list \
 set_clock_gating_check -setup 0.0 
 set_input_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports rst_n]
 set_input_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports start]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {index[8]}]
+set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {index[7]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {index[6]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {index[5]}]
 set_output_delay -clock [get_clocks clk] -add_delay 2.0 [get_ports {index[4]}]

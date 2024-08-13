@@ -58,6 +58,8 @@ No constant sequential pin(s) in design 'proj_counter'
 
 design 'proj_counter' has the following constant input hierarchical pin(s)
 hpin:proj_counter/add_27_67/B 	 (fanout : 2)
+hpin:proj_counter/mux_out_index_46_32/in_1[8] 	 (fanout : 1)
+hpin:proj_counter/mux_out_index_46_32/in_1[7] 	 (fanout : 1)
 hpin:proj_counter/mux_out_index_46_32/in_1[6] 	 (fanout : 1)
 hpin:proj_counter/mux_out_index_46_32/in_1[5] 	 (fanout : 1)
 hpin:proj_counter/mux_out_index_46_32/in_1[4] 	 (fanout : 1)
@@ -67,7 +69,7 @@ hpin:proj_counter/mux_out_index_46_32/in_1[1] 	 (fanout : 1)
 hpin:proj_counter/mux_out_index_46_32/in_1[0] 	 (fanout : 1)
 hpin:proj_counter/mux_23_38/in_0 	 (fanout : 1)
 hpin:proj_counter/mux_23_38/in_1 	 (fanout : 1)
-Total number of constant hierarchical pins in design 'proj_counter' : 10
+Total number of constant hierarchical pins in design 'proj_counter' : 12
 
 No constant connected ports in design 'proj_counter'
 
@@ -164,7 +166,7 @@ Multidriven hierarchical Pin(s)              0
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
 Constant Leaf Pin(s)                         0
-Constant hierarchical Pin(s)                10
+Constant hierarchical Pin(s)                12
 Preserved leaf instance(s)                   0
 Preserved hierarchical instance(s)           0
 Feedthrough Modules(s)                       0
