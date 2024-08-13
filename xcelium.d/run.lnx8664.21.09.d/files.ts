@@ -4,7 +4,7 @@
 1723380408 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_hasher.sv
 1723217387 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_fm_tb.sv
 1723389494 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_hasher_tb.sv
-1723390396 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_pkg.sv
+1723395094 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_pkg.sv
 1723390422 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_extender_tb.sv
 1723218897 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_counter.sv
 1723389029 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_counter_tb.sv
@@ -12,4 +12,5 @@
 1723219008 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_sorter.sv
 1723208029 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_sorter_tb.sv
 1723387344 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_kmer_buffer_tb.sv
-1723384943 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_top.sv
+1723394535 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_top.sv
+1723394558 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_top_tb.sv

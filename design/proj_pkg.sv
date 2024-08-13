@@ -7,9 +7,9 @@ package proj_pkg;
     // Base length
     parameter BASE_LEN = 2;
     // Kmer length in Bases
-    parameter KMER_LEN = 4;
+    parameter KMER_LEN = 16;
     // Fragment length in bases
-    parameter FRAG_LEN = 8;
+    parameter FRAG_LEN = 32;
     // single one hot encoding base len
     parameter ONE_HOT_LEN = 4;
 
@@ -20,7 +20,7 @@ package proj_pkg;
     // Number of RAMs in each buffer
     parameter FM_RAMS_COUNT = 8;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 2;
+    parameter FM_ENTRIES_COUNT = 8;
     // Size of the offset in each entry
     parameter FM_OFFSET_COUNT = 2;
     // Size of each buffer
