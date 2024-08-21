@@ -7,7 +7,7 @@ module proj_top_tb;
     reg clk;
     reg rst_n;
     reg [proj_pkg::BASE_LEN-1:0] in_data;
-    wire [proj_pkg::FRAG_LEN-1:0] out_fragment;
+    wire [proj_pkg::EXTENDER_OUT_PART_LEN_ONE_HOT-1:0] out_fragment;
     wire out_wait;
 
     // Instantiate the DUT (Device Under Test)

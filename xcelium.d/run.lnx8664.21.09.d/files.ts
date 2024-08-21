@@ -12,5 +12,5 @@
 1723219008 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_sorter.sv
 1723208029 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_sorter_tb.sv
 1723387344 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_kmer_buffer_tb.sv
-1723394535 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_top.sv
-1723394558 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_top_tb.sv
+1724235616 /data/project/tsmc65/users/noaant/ws/Minhash/design/proj_top.sv
+1724235890 /data/project/tsmc65/users/noaant/ws/Minhash/verification/proj_top_tb.sv

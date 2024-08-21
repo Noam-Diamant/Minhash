@@ -4,7 +4,7 @@ module proj_top (
     input wire clk,
     input wire rst_n,
     input wire [proj_pkg::BASE_LEN-1:0] in_data,
-    output wire [proj_pkg::FRAG_LEN-1:0] out_fragment,
+    output wire [proj_pkg::EXTENDER_OUT_PART_LEN_ONE_HOT-1:0] out_fragment,
     output wire out_wait
 );
     // Internal signals
