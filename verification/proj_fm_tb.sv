@@ -20,8 +20,8 @@ module proj_fm_tb();
     logic [DATA_BITS-1:0] in_wdata;
     logic [DATA_BITS-1:0] data;
     logic [FRAG_LEN-1:0] out_rdata;
-    logic in_clk;
-    logic in_rst_n;
+    logic clk;
+    logic rst_n;
     logic chg_idx;
     logic [SIGNED_INDICE_LEN-1:0] frag_idx;
 
@@ -38,26 +38,26 @@ module proj_fm_tb();
     ) dut (
         .in_wdata(in_wdata),
         .out_rdata(out_rdata),
-        .clk(in_clk),
-        .rst_n(in_rst_n),
+        .clk(clk),
+        .rst_n(rst_n),
         .chg_idx(chg_idx),
         .frag_idx(frag_idx)
     );
 
     // Clock generation
-    always #5 in_clk = ~in_clk;
+    always #5 clk = ~clk;
 
     // Testbench logic
     initial begin
         // Initialize signals
-        in_clk = 0;
-        in_rst_n = 0;
+        clk = 0;
+        rst_n = 0;
         in_wdata = 0;
         chg_idx = 0;
         frag_idx = 0;
 
         // Reset
-        #10 in_rst_n = 1;
+        #10 rst_n = 1;
 
 
     for (int test = 0; test < TESTS_NUM; test++) begin
@@ -65,57 +65,57 @@ module proj_fm_tb();
 
         // Write to the first buffer
         for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
-            @(negedge in_clk);
+            @(negedge clk);
             in_wdata = $random & ((1 << DATA_BITS) - 1);
         end
         // Wait KMER_BUFFER_SIZE cycles after writing to the first buffer
-        repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
+        repeat(KMER_BUFFER_SIZE) @(posedge clk);
         // Assert chg_idx on the negedge of the clock
-        @(negedge in_clk);
+        @(negedge clk);
         chg_idx = 1;
         // Deassert chg_idx on the next negedge
-        @(negedge in_clk);
+        @(negedge clk);
         chg_idx = 0;
 
         // Test reading from both buffers
         for (int i = 0; i < BUFFER_COUNT; i++) begin
             frag_idx = 0;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             // Test negative index
             frag_idx = -2;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
         end
 
 
         // Write to the second buffer
         for (int i = 0; i < FM_BUFFER_SIZE; i++) begin
-            @(negedge in_clk);
+            @(negedge clk);
             in_wdata = $random & ((1 << DATA_BITS) - 1);
         end
         // Wait KMER_BUFFER_SIZE cycles after writing to the first buffer
-        repeat(KMER_BUFFER_SIZE) @(posedge in_clk);
+        repeat(KMER_BUFFER_SIZE) @(posedge clk);
         // Assert chg_idx on the negedge of the clock
-        @(negedge in_clk);
+        @(negedge clk);
         chg_idx = 1;
         // Deassert chg_idx on the next negedge
-        @(negedge in_clk);
+        @(negedge clk);
         chg_idx = 0;
         // Test reading from both buffers
         for (int i = 0; i < BUFFER_COUNT; i++) begin
             frag_idx = 0;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             frag_idx = FM_BUFFER_SIZE - FRAG_LEN;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, frag_idx, out_rdata);
             // Test negative index
             frag_idx = -2;
-            @(negedge in_clk);
+            @(negedge clk);
             $display("Test %0d, Buffer %0d, frag_idx = %0d, out_rdata = %b", test, i, $signed(frag_idx), out_rdata);
         end
 
