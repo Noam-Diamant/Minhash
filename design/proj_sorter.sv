@@ -24,6 +24,7 @@ module proj_sorter #(
     logic [POSITION_LEN:0] position_smaller_than;
     logic [POSITION_LEN:0] new_position_long;
     logic [POSITION_LEN-1:0] new_position;
+    logic rst_sorter;
 
     // Assign input values to internal signals
     assign new_pack.signature = in_signature;
@@ -64,11 +65,12 @@ module proj_sorter #(
     endgenerate
 
     assign sort_valid = end_sorting ? 1'b1 : 1'b0;
+    assign rst_sorter = ~rst_n | end_sorting;
 
     // Sequential logic for updating current smallest indices
     always_ff @(posedge clk) begin
         for (int i = 0; i < INDICES_COUNT; i++) begin
-            if (~rst_n) begin
+            if (rst_sorter) begin
                 // Reset values
                 smallest_idx_curr[i].signature <= '1;
                 smallest_idx_curr[i].index <= '0;
