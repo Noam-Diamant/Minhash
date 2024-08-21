@@ -26,7 +26,7 @@ module proj_extender #(
     output logic [FRAG_PART_ONE_HOT-1:0] out_gfm
 );
     // Local parameters
-    localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART_ONE_HOT));
+    localparam FRAG_PARTS_COUNT = (FRAG_LEN_BITS >> $clog2(FRAG_PART));
     localparam FRAG_PARTS_COUNT_BITS = $clog2(FRAG_PARTS_COUNT);
     localparam INDICES_COUNT_BITS = $clog2(INDICES_COUNT);
     // Internal signals

@@ -22,7 +22,7 @@ package proj_pkg;
     // Number of entries in each RAM
     parameter FM_ENTRIES_COUNT = 8;
     // Size of the offset in each entry
-    parameter FM_OFFSET_COUNT = 2;
+    parameter FM_OFFSET_COUNT = 1;
     // Size of each buffer
     parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
     // Size of the  FM - Extender fragment, in bits
