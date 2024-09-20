@@ -7,9 +7,9 @@ package proj_pkg;
     // Base length
     parameter BASE_LEN = 2;
     // Kmer length in Bases
-    parameter KMER_LEN = 4;
+    parameter KMER_LEN = 16;
     // Fragment length in bases
-    parameter FRAG_LEN = 8;
+    parameter FRAG_LEN = 256;
     // single one hot encoding base len
     parameter ONE_HOT_LEN = 4;
 
@@ -20,9 +20,9 @@ package proj_pkg;
     // Number of RAMs in each buffer
     parameter FM_RAMS_COUNT = 8;
     // Number of entries in each RAM
-    parameter FM_ENTRIES_COUNT = 2;
+    parameter FM_ENTRIES_COUNT = 128;
     // Size of the offset in each entry
-    parameter FM_OFFSET_COUNT = 1;
+    parameter FM_OFFSET_COUNT = 32;
     // Size of each buffer
     parameter FM_BUFFER_SIZE = FM_RAMS_COUNT * FM_ENTRIES_COUNT * FM_OFFSET_COUNT;
     // Size of the  FM - Extender fragment, in bits
@@ -37,7 +37,7 @@ package proj_pkg;
     parameter KMER_BUFFER_LEN = KMER_LEN;
 
     // Sorter and Extender parameters
-    parameter SORTER_EXTENDER_INDICES_COUNT = 2;
+    parameter SORTER_EXTENDER_INDICES_COUNT = 256;
 
     // Sorter and Hasher parameters
     parameter HASHER_SORTER_SIGNATURE = 32;
